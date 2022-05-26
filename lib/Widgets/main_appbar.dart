@@ -1,4 +1,4 @@
-import 'package:peddit/libs.dart';
+import '/libs.dart';
 
 class MainAppBar extends StatefulWidget implements PreferredSizeWidget{
   // const mainAppBar({Key? key}) : super(key: key);

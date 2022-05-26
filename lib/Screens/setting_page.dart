@@ -1,4 +1,4 @@
-import 'package:peddit/libs.dart';
+import '/libs.dart';
 
 class SettingPage extends StatefulWidget {
   const SettingPage({Key? key}) : super(key: key);

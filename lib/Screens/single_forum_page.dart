@@ -1,4 +1,4 @@
-import 'package:peddit/libs.dart';
+import '/libs.dart';
 
 class SingleForumPage extends StatefulWidget {
   // const singleForumPage({Key? key}) : super(key: key);

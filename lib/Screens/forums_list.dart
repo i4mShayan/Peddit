@@ -1,4 +1,4 @@
-import 'package:peddit/libs.dart';
+import '/libs.dart';
 
 class ForumsList extends StatefulWidget {
   const ForumsList({Key? key}) : super(key: key);

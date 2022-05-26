@@ -1,4 +1,4 @@
-import 'package:peddit/libs.dart';
+import '/libs.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);

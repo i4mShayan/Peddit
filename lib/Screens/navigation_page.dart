@@ -1,5 +1,4 @@
-import 'package:peddit/Screens/forums_page.dart';
-import 'package:peddit/libs.dart';
+import '/libs.dart';
 
 class NavigationPage extends StatefulWidget {
 

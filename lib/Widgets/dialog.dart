@@ -1,4 +1,4 @@
-import '../libs.dart';
+import '/libs.dart';
 
 void showDialogWith({required context, required String title, required String content}){
   Widget okButton = TextButton(

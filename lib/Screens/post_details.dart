@@ -1,4 +1,4 @@
-import 'package:peddit/libs.dart';
+import '/libs.dart';
 
 class PostDetails extends StatefulWidget {
   const PostDetails({Key? key}) : super(key: key);

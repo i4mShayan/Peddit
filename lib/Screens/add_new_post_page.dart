@@ -1,4 +1,4 @@
-import 'package:peddit/libs.dart';
+import '/libs.dart';
 
 class AddNewPostPage extends StatefulWidget {
   const AddNewPostPage({Key? key}) : super(key: key);
