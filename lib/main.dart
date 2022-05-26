@@ -1,6 +1,11 @@
 import 'libs.dart';
+import 'package:flutter/services.dart';
+
 
 void main() {
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    statusBarColor: Colors.transparent, // status bar color
+  ));
   runApp(
     MaterialApp(
       theme: ThemeData(
@@ -13,8 +18,15 @@ void main() {
         primarySwatch: Colors.grey,
       ),
       themeMode: ThemeMode.light,
-      initialRoute: '/forums_list',
+      initialRoute: '/single_forum_page',
       routes: {
+        '/add_new_post_page': (context) => AddNewPostPage(),
+        '/feed_page': (context) => FeedPage(),
+        '/forums_page': (context) => ForumsPage(),
+        '/navigation_page': (context) => NavigationPage(),
+        '/saved_posts_page': (context) => SavedPostsPage(),
+        '/setting_page': (context) => SettingPage(),
+        '/single_forum_page': (context) => SingleForumPage(),
         '/sign_up': (context) => SignUp(),
         '/login': (context) => Login(),
         '/forums_list': (context) => ForumsList(),
