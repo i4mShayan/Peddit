@@ -18,7 +18,7 @@ void main() {
         primarySwatch: Colors.grey,
       ),
       themeMode: ThemeMode.light,
-      initialRoute: '/single_forum_page',
+      initialRoute: '/NavigationPage',
       routes: {
         '/add_new_post_page': (context) => AddNewPostPage(),
         '/feed_page': (context) => FeedPage(),
