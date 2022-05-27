@@ -1,4 +1,4 @@
-import '../libs.dart';
+import '/libs.dart';
 
 class ForumModel{
   UserModel _owner;
@@ -8,7 +8,6 @@ class ForumModel{
   String _forumName;
   String _forumDesc;
   DateTime _forumCreateTime;
-
 
   ForumModel(this._owner, this._admins, this._posts, this._members,
       this._forumName, this._forumDesc, this._forumCreateTime);

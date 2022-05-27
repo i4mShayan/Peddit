@@ -1,4 +1,4 @@
-import '../libs.dart';
+import '/libs.dart';
 
 class UserModel {
   String _userName;
@@ -11,8 +11,8 @@ class UserModel {
   List<PostModel> _savedPosts;
   List<CommentModel> _likedComment;
   List<CommentModel> _disLikedComments;
+  List<ForumModel> _starredForums;
   Image _usrProfileImage;
-
 
   UserModel(
       this._userName,
@@ -25,6 +25,7 @@ class UserModel {
       this._savedPosts,
       this._likedComment,
       this._disLikedComments,
+      this._starredForums,
       this._usrProfileImage);
 
 
@@ -80,6 +81,12 @@ class UserModel {
 
   set followedForums(List<ForumModel> value) {
     _followedForums = value;
+  }
+
+  List<ForumModel> get starredForums => _starredForums;
+
+  set starredForums(List<ForumModel> value) {
+    _starredForums = value;
   }
 
   String get email => _email;
