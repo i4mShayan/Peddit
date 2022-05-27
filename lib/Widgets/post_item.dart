@@ -83,7 +83,7 @@ class _PostItemState extends State<PostItem> {
                   children: [
                     IconButton(
                         onPressed: () {}, icon: Icon(Icons.arrow_upward_rounded)),
-                    Text("Vote"),
+                    Text("Vote", style: TextStyle(fontWeight: FontWeight.w500),),
                     IconButton(
                         onPressed: () {},
                         icon: Icon(Icons.arrow_downward_rounded)),
@@ -91,19 +91,26 @@ class _PostItemState extends State<PostItem> {
                 ),
                 Row(
                   children: [
-                    IconButton(
-                        onPressed: () {},
-                        icon: Icon(Icons.mode_comment_outlined)),
-                    Text(/*post.comments.length.toString()*/ "0"),
+                    TextButton.icon(
+                      onPressed: () {},
+                      icon: Icon(Icons.mode_comment_outlined), label: Text(/*post.comments.length.toString()*/ "0"),
+                      style: TextButton.styleFrom(
+                        primary: Colors.grey[900],
+                      ),
+                    ),
                   ],
                 ),
                 Container(
                   margin: EdgeInsets.only(right: 15),
                   child: Row(
                     children: [
-                      IconButton(
-                          onPressed: () {}, icon: Icon(Icons.bookmark_border)),
-                      Text("Save"),
+                      TextButton.icon(
+                        onPressed: () {},
+                        icon: Icon(Icons.bookmark_border), label: Text("Save"),
+                        style: TextButton.styleFrom(
+                          primary: Colors.grey[900],
+                        ),
+                      ),
                     ],
                   ),
                 )
