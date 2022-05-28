@@ -12,7 +12,7 @@ void main() {
         textTheme: TextTheme(
           headline1: TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: Colors.black),
         ),
-          primarySwatch: Colors.deepOrange,
+        primarySwatch: Colors.deepOrange,
       ),
       darkTheme: ThemeData(
         primarySwatch: Colors.grey,
@@ -29,7 +29,7 @@ void main() {
         '/single_forum_page': (context) => SingleForumPage(),
         '/sign_up': (context) => SignUp(),
         '/login': (context) => Login(),
-        '/forums_list': (context) => ForumsList(),
+        '/forums_page': (context) => ForumsPage(),
         '/post_details': (context) => PostDetails(),
         '/about_us': (context) => AboutUs(),
       },
