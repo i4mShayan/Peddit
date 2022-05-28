@@ -60,49 +60,118 @@ class AboutUs extends StatelessWidget {
                             thickness: 2,
                             color: Colors.black,
                           ),
-                          SizedBox(
-                            height: 10,
+                          Padding(
+                            padding: const EdgeInsets.all(30),
+                            child: Column(
+                              children: [
+                                CircleAvatar(
+                                  backgroundImage:
+                                      AssetImage('assets/images/farbod.png'),
+                                  backgroundColor: Colors.white,
+                                  radius: 30,
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Text(
+                                  "Farbod Saghafi",
+                                  style:
+                                      TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                SizedBox(height: 20,),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 71),
+                                  child: ElevatedButton(
+                                    onPressed: () {},
+                                    style: ElevatedButton.styleFrom(
+                                      shape: StadiumBorder(),
+                                      primary: Colors.black87,
+                                      elevation: 0,
+                                    ),
+                                    child: Row(
+                                      children: [
+                                        Image.asset("assets/images/logo/github.png", width: 25,),
+                                        SizedBox(width: 7,),
+                                        Text('itsfarbod'),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                           Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              Column(
-                                children: [
-                                  CircleAvatar(
-                                    backgroundImage:
-                                        AssetImage('assets/images/farbod.png'),
-                                    backgroundColor: Colors.white,
-                                    radius: 30,
+                              Expanded(
+                                child: Padding(
+                                  padding: const EdgeInsets.only(left: 45, right: 10),
+                                  child: Divider(
+                                    thickness: 1,
+                                    color: Colors.black87,
                                   ),
-                                  SizedBox(
-                                    height: 5,
-                                  ),
-                                  Text(
-                                    "Farbod Saghafi",
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                ],
+                                ),
                               ),
-                              Column(
-                                children: [
-                                  CircleAvatar(
-                                    backgroundImage:
-                                        AssetImage('assets/images/shayan.jpg'),
-                                    radius: 30,
+                              Text(
+                                "AND",
+                                style: TextStyle(
+                                  color: Colors.black87,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              Expanded(
+                                child: Padding(
+                                  padding: const EdgeInsets.only(right: 45, left: 10),
+                                  child: Divider(
+                                    thickness: 1,
+                                    color: Colors.black87,
                                   ),
-                                  SizedBox(
-                                    height: 5,
-                                  ),
-                                  Text(
-                                    "Shayan Kebriti",
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                ],
-                              )
+                                ),
+                              ),
                             ],
                           ),
+
+                          Padding(
+                            padding: const EdgeInsets.all(30),
+                            child: Column(
+                              children: [
+                                CircleAvatar(
+                                  backgroundImage:
+                                      AssetImage('assets/images/shayan.jpg'),
+                                  radius: 30,
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Text(
+                                  "Shayan Kebriti",
+                                  style:
+                                      TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                SizedBox(height: 20,),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 65),
+                                  child: ElevatedButton(
+                                    onPressed: () {},
+                                    style: ElevatedButton.styleFrom(
+                                      shape: StadiumBorder(),
+                                      primary: Colors.black87,
+                                      elevation: 0,
+                                    ),
+                                    child: Row(
+                                      children: [
+                                        Image.asset("assets/images/logo/github.png", width: 25,),
+                                        SizedBox(width: 7,),
+                                        Text('i4mShayan'),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(height: 10,),
+                          Divider(thickness: 2, color: Colors.black87,),
                         ],
                       ),
                     ),

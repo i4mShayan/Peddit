@@ -40,18 +40,18 @@ class _ForumPreviewState extends State<ForumPreview> {
                 ),
                 Spacer(),
                 IconButton(
-                    onPressed: () {
-                      setState(() {
-                        // if(Datas().currentUser.starredForums.contains(widget.currentForum)){
-                        //   Datas().currentUser.starredForums.remove(widget.currentForum);
-                        // }else{
-                        //   Datas().currentUser.starredForums.add(widget.currentForum);
-                        // }
-                        widget.currentForum.isStarred=!widget.currentForum.isStarred;
-                      });
-                    },
-                    // icon: Datas().currentUser.starredForums.contains(widget.currentForum) ? Icon(Icons.star, color: Colors.yellow[900], size: 25,):Icon(Icons.star_border, color: Colors.grey[800], size: 25,),
-                    icon: widget.currentForum.isStarred ? Icon(Icons.star, color: Colors.yellow[900], size: 25,):Icon(Icons.star_border, color: Colors.grey[800], size: 25,),
+                  onPressed: () {
+                    setState(() {
+                      // if(Datas().currentUser.starredForums.contains(widget.currentForum)){
+                      //   Datas().currentUser.starredForums.remove(widget.currentForum);
+                      // }else{
+                      //   Datas().currentUser.starredForums.add(widget.currentForum);
+                      // }
+                      widget.currentForum.isStarred=!widget.currentForum.isStarred;
+                    });
+                  },
+                  // icon: Datas().currentUser.starredForums.contains(widget.currentForum) ? Icon(Icons.star, color: Colors.yellow[900], size: 25,):Icon(Icons.star_border, color: Colors.grey[800], size: 25,),
+                  icon: widget.currentForum.isStarred ? Icon(Icons.star, color: Colors.yellow[900], size: 25,):Icon(Icons.star_border, color: Colors.grey[800], size: 25,),
                 ),
               ],
             ),

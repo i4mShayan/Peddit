@@ -67,7 +67,7 @@ class _NavigationPageState extends State<NavigationPage> with SingleTickerProvid
       key: _scaffoldKey,
       appBar: _getAppbar(),
       drawer: Drawer(),
-      endDrawer: Profile(),
+      endDrawer: ProfilePreview(),
       body: PageView(
         controller: _pageController,
         children: _screens,
