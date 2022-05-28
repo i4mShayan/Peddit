@@ -1,4 +1,4 @@
-import '/libs.dart';
+import '../libs.dart';
 
 class ForumsPage extends StatefulWidget {
   const ForumsPage({Key? key}) : super(key: key);

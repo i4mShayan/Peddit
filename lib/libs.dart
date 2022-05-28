@@ -27,3 +27,4 @@ export 'Widgets/Comment/comment.dart';
 export 'Widgets/Comment/comment_section.dart';
 export 'datas.dart';
 export 'Models/demo_forum_model.dart';
+export 'Widgets/profile.dart';

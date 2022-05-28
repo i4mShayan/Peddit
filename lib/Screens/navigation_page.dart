@@ -1,4 +1,4 @@
-import '/libs.dart';
+import '../libs.dart';
 
 class NavigationPage extends StatefulWidget {
 
@@ -67,7 +67,7 @@ class _NavigationPageState extends State<NavigationPage> with SingleTickerProvid
       key: _scaffoldKey,
       appBar: _getAppbar(),
       drawer: Drawer(),
-      endDrawer: Drawer(),
+      endDrawer: Profile(),
       body: PageView(
         controller: _pageController,
         children: _screens,

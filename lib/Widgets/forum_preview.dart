@@ -1,4 +1,4 @@
-import '/libs.dart';
+import '../libs.dart';
 
 class ForumPreview extends StatefulWidget {
   DemoForumModel currentForum;

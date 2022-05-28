@@ -1,4 +1,4 @@
-import '/libs.dart';
+import '../libs.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -212,8 +212,7 @@ class _LoginState extends State<Login> {
                       gradient: LinearGradient(
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
-                        colors: [Colors.deepOrange, Colors.amber
-                        ],
+                        colors: [Colors.red, Colors.orange],
                       ),
                     ),
                     child: MaterialButton(
