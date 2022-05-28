@@ -1,4 +1,4 @@
-import '/libs.dart';
+import '../libs.dart';
 
 class FeedPage extends StatefulWidget {
   const FeedPage({Key? key}) : super(key: key);

@@ -1,4 +1,4 @@
-import '/libs.dart';
+import '../libs.dart';
 
 class SavedPostsPage extends StatefulWidget {
   const SavedPostsPage({Key? key}) : super(key: key);
