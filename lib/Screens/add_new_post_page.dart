@@ -8,6 +8,11 @@ class AddNewPostPage extends StatefulWidget {
 }
 
 class _AddNewPostPageState extends State<AddNewPostPage> {
+  late TextEditingController _postText=TextEditingController();
+  late TextEditingController _postTitle=TextEditingController();
+
+  bool canCreatePost=false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,6 +21,12 @@ class _AddNewPostPageState extends State<AddNewPostPage> {
           Container(
             margin: EdgeInsets.only(left: 20 , right: 20 , bottom: 15),
             child: TextFormField(
+              onChanged: (value){
+                setState(() {
+                  canCreatePost = (_postText.text.isNotEmpty && _postTitle.text.isNotEmpty);
+                });
+              },
+              controller: _postTitle,
               style: TextStyle(
                 fontSize: 30
               ),
@@ -32,7 +43,13 @@ class _AddNewPostPageState extends State<AddNewPostPage> {
           Container(
             margin: EdgeInsets.only(right: 20 , left: 20),
             child: TextFormField(
-              maxLines: 19,
+              onChanged: (value){
+                setState(() {
+                  canCreatePost = (_postText.text.isNotEmpty && _postTitle.text.isNotEmpty);
+                });
+              },
+              controller: _postText,
+              maxLines: 20,
               cursorColor: Colors.grey[600],
               style: TextStyle(
                   fontSize: 20
@@ -43,31 +60,33 @@ class _AddNewPostPageState extends State<AddNewPostPage> {
               ),
             ),
           ),
-          Container(
-            width: MediaQuery. of(context). size. width,
-            margin: const EdgeInsets.only(left: 20, right: 20),
-            height: 60,
-            decoration: const ShapeDecoration(
-              shape: StadiumBorder(),
-              gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [Colors.deepOrange, Colors.amber
-                ],
-              ),
-            ),
-            child: MaterialButton(
-              onPressed: () {},
-              materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-              shape: const StadiumBorder(),
-              child: const Text(
-                'Post',
-                style: TextStyle(color: Colors.white, fontSize: 25, fontWeight: FontWeight.bold),
-              ),
-            ),
-          ),
         ]),
       ),
+      floatingActionButton: Container(
+        width: MediaQuery. of(context). size. width,
+        margin: const EdgeInsets.only(left: 20, right: 20,),
+        height: 60,
+        decoration: ShapeDecoration(
+          shape: StadiumBorder(),
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: (canCreatePost ? [Colors.deepOrange, Colors.amber]:[Colors.black87, Colors.black54]),
+          ),
+        ),
+        child: MaterialButton(
+          splashColor: canCreatePost ? null:Colors.transparent,
+          highlightColor: canCreatePost ? null:Colors.transparent,
+          onPressed: () {},
+          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+          shape: const StadiumBorder(),
+          child: const Text(
+            'Post',
+            style: TextStyle(color: Colors.white, fontSize: 25, fontWeight: FontWeight.bold),
+          ),
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }

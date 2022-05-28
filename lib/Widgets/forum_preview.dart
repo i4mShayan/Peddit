@@ -1,8 +1,8 @@
 import '/libs.dart';
 
 class ForumPreview extends StatefulWidget {
-  Forum forum;
-  ForumPreview({Key? key, required this.forum}) : super(key: key);
+  DemoForumModel currentForum;
+  ForumPreview({Key? key, required this.currentForum}) : super(key: key);
 
   @override
   State<ForumPreview> createState() => _ForumPreviewState();
@@ -16,7 +16,7 @@ class _ForumPreviewState extends State<ForumPreview> {
         TextButton(
           onPressed: () {
             setState(() {
-              widget.forum.moveTo(0);
+
             });
           },
           child: SizedBox(
@@ -35,17 +35,23 @@ class _ForumPreviewState extends State<ForumPreview> {
                   style: TextStyle(color: Colors.black),
                 ),
                 Text(
-                  widget.forum.name,
+                  widget.currentForum.forumName,
                   style: TextStyle(color: Colors.black, fontSize: 20),
                 ),
                 Spacer(),
                 IconButton(
                     onPressed: () {
                       setState(() {
-                        widget.forum.isStarred=!widget.forum.isStarred;
+                        // if(Datas().currentUser.starredForums.contains(widget.currentForum)){
+                        //   Datas().currentUser.starredForums.remove(widget.currentForum);
+                        // }else{
+                        //   Datas().currentUser.starredForums.add(widget.currentForum);
+                        // }
+                        widget.currentForum.isStarred=!widget.currentForum.isStarred;
                       });
                     },
-                    icon: widget.forum.isStarred ? Icon(Icons.star, color: Colors.yellow[900], size: 25,):Icon(Icons.star_border, color: Colors.grey[800], size: 25,),
+                    // icon: Datas().currentUser.starredForums.contains(widget.currentForum) ? Icon(Icons.star, color: Colors.yellow[900], size: 25,):Icon(Icons.star_border, color: Colors.grey[800], size: 25,),
+                    icon: widget.currentForum.isStarred ? Icon(Icons.star, color: Colors.yellow[900], size: 25,):Icon(Icons.star_border, color: Colors.grey[800], size: 25,),
                 ),
               ],
             ),
