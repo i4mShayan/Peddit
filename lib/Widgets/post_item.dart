@@ -1,10 +1,9 @@
 import '../libs.dart';
 
 class PostItem extends StatefulWidget {
-  final PostModel post;
+  PostModel post;
 
-  const PostItem({Key? key, required this.post}) : super(key: key);
-
+  PostItem({Key? key, required this.post}) : super(key: key);
   @override
   State<PostItem> createState() => _PostItemState();
 }
@@ -83,11 +82,45 @@ class _PostItemState extends State<PostItem> {
                 Row(
                   children: [
                     IconButton(
-                        onPressed: () {}, icon: Icon(Icons.arrow_upward_rounded)),
-                    Text("Vote", style: TextStyle(fontWeight: FontWeight.w500),),
+                        onPressed: () {
+                          setState((){
+                            if(widget.post.userDownVoted(Datas().currentUser)){ //deleting other vote
+                              widget.post.downVotedUsers.remove(Datas().currentUser);
+                            }
+                            if(widget.post.userUpVoted(Datas().currentUser)) {
+                              widget.post.upVotedUsers.remove(Datas().currentUser);
+                            }
+                            else{
+                              widget.post.upVotedUsers.add(Datas().currentUser);
+                            }
+                          });
+                        },
+                        icon: Icon(
+                          Icons.arrow_upward_rounded),
+                          color: widget.post.userUpVoted(Datas().currentUser) ? Colors.green:Colors.black,
+                        ),
+                    Text(
+                      (widget.post.anyVotes() ? widget.post.postScore().toString():"Vote"),
+                      style: TextStyle(fontWeight: FontWeight.w500),),
                     IconButton(
-                        onPressed: () {},
-                        icon: Icon(Icons.arrow_downward_rounded)),
+                        onPressed: () {
+                          setState((){
+                            if(widget.post.userUpVoted(Datas().currentUser)){ //deleting other vote
+                              widget.post.upVotedUsers.remove(Datas().currentUser);
+                            }
+                            if(widget.post.userDownVoted(Datas().currentUser)) {
+                              widget.post.downVotedUsers.remove(Datas().currentUser);
+                            }
+                            else{
+                              widget.post.downVotedUsers.add(Datas().currentUser);
+                            }
+                          });
+                        },
+                        icon: Icon(
+                          Icons.arrow_downward_rounded,
+                          color: widget.post.userDownVoted(Datas().currentUser) ? Colors.red:Colors.black,
+                        ),
+                    ),
                   ],
                 ),
                 Row(

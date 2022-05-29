@@ -14,12 +14,12 @@ class _SavedPostsPageState extends State<SavedPostsPage> {
       publisher: UserModel(userName: "user", email: "email", userProfileImage: Datas().defaultProfilePicture, followedForums: [], starredForums: []),
       forum: ForumModel(owner: UserModel(userName: "user", email: "email", userProfileImage: Datas().defaultProfilePicture, followedForums: [], starredForums: [], ),
           forumCreateTime: DateTime.now(), profileImage: Datas().defaultProfilePicture),
-      publishTime: DateTime.now(), hasImage: true, postImage: Datas().defaultBackground,),
+      publishTime: DateTime.now(), hasImage: true, postImage: Datas().defaultBackground, upVotedUsers: [], downVotedUsers: [],),
     PostModel(title: "title", desc: "dec",
       publisher: UserModel(userName: "user", email: "email", userProfileImage: Datas().defaultProfilePicture, followedForums: [], starredForums: []),
       forum: ForumModel(owner: UserModel(userName: "user", email: "email", userProfileImage: Datas().defaultProfilePicture, followedForums: [], starredForums: [], ),
           forumCreateTime: DateTime.now(), profileImage: Datas().defaultProfilePicture),
-      publishTime: DateTime.now(), hasImage: true, postImage: Datas().defaultBackground,),
+      publishTime: DateTime.now(), hasImage: true, postImage: Datas().defaultBackground, downVotedUsers: [], upVotedUsers: [],),
   ];
 
   @override
