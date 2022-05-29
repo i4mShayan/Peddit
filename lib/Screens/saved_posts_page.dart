@@ -10,19 +10,24 @@ class SavedPostsPage extends StatefulWidget {
 class _SavedPostsPageState extends State<SavedPostsPage> {
 
   List<PostModel> posts = [
-    new PostModel("title", "Description",
-        new UserModel("TestUser", "pm@oamsdka.com", [], [], [] , [] , [] , [] , [] , [] , [], Image.asset('assets/images/logo/google.png')),
-        new ForumModel(new UserModel("TestUser", "pm@oamsdka.com", [], [], [] , [] , [] , [] , [] , [] , [], Image.asset('assets/images/logo/google.png')), [], [], [], "Testforum", "forumDesc" , DateTime.now()),
-        DateTime.now(), false, [] , [] , [] , Image.asset('assets/images/logo/google.png')),
-    new PostModel("title", "Description",
-        new UserModel("TestUser", "pm@oamsdka.com", [], [], [] , [] , [] , [] , [] , [] , [], Image.asset('assets/images/logo/google.png')),
-        new ForumModel(new UserModel("TestUser", "pm@oamsdka.com", [], [], [] , [] , [] , [] , [] , [] , [], Image.asset('assets/images/logo/google.png')), [], [], [], "Testforum", "forumDesc" , DateTime.now()),
-        DateTime.now(), false, [] , [] , [] , Image.asset('assets/images/logo/google.png')),
+    PostModel(title: "title", desc: "dec",
+      publisher: UserModel(userName: "user", email: "email", userProfileImage: Datas().defaultProfilePicture, followedForums: [], starredForums: []),
+      forum: ForumModel(owner: UserModel(userName: "user", email: "email", userProfileImage: Datas().defaultProfilePicture, followedForums: [], starredForums: [], ),
+          forumCreateTime: DateTime.now(), profileImage: Datas().defaultProfilePicture),
+      publishTime: DateTime.now(), hasImage: true, postImage: Datas().defaultBackground,),
+    PostModel(title: "title", desc: "dec",
+      publisher: UserModel(userName: "user", email: "email", userProfileImage: Datas().defaultProfilePicture, followedForums: [], starredForums: []),
+      forum: ForumModel(owner: UserModel(userName: "user", email: "email", userProfileImage: Datas().defaultProfilePicture, followedForums: [], starredForums: [], ),
+          forumCreateTime: DateTime.now(), profileImage: Datas().defaultProfilePicture),
+      publishTime: DateTime.now(), hasImage: true, postImage: Datas().defaultBackground,),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[300],
+      resizeToAvoidBottomInset: false,
+
       body: ListView.builder(
           itemCount: posts.length,
           itemBuilder: (contex, index) {

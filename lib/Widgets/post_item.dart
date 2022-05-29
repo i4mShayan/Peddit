@@ -22,7 +22,8 @@ class _PostItemState extends State<PostItem> {
               children: [
                 Container(
                   margin: EdgeInsets.all(10),
-                  child: const CircleAvatar(
+                  child: CircleAvatar(
+                    backgroundImage: widget.post.publisher.userProfileImage.image,
                     radius: 20,
                   ),
                 ),
@@ -41,12 +42,12 @@ class _PostItemState extends State<PostItem> {
                       Row(
                         children: [
                           Text(
-                            "u/" + widget.post.usr.userName,
+                            "u/" + widget.post.publisher.userName,
                             style: TextStyle(fontSize: 15),
                           ),
                           Text('.'),
                           Text(DateTime.now()
-                                  .difference(widget.post.time)
+                                  .difference(widget.post.publishTime)
                                   .inHours
                                   .toString() +
                               "h"),
@@ -73,7 +74,7 @@ class _PostItemState extends State<PostItem> {
                     margin: EdgeInsets.only(left: 20, bottom: 10, right: 20),
                     child: Text(widget.post.desc))),
             Container(
-              child: Image.asset('assets/images/logo/google.png', cacheHeight: 250),
+              child: widget.post.postImage,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
