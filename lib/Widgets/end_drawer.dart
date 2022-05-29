@@ -2,14 +2,14 @@ import 'dart:ui';
 import 'dart:math';
 import '../libs.dart';
 
-class ProfilePreview extends StatefulWidget {
-  const ProfilePreview({Key? key}) : super(key: key);
+class EndDrawer extends StatefulWidget {
+  const EndDrawer({Key? key}) : super(key: key);
 
   @override
-  State<ProfilePreview> createState() => _ProfilePreviewState();
+  State<EndDrawer> createState() => _EndDrawerState();
 }
 
-class _ProfilePreviewState extends State<ProfilePreview> {
+class _EndDrawerState extends State<EndDrawer> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -21,7 +21,7 @@ class _ProfilePreviewState extends State<ProfilePreview> {
             child: ClipRRect(
                 borderRadius: BorderRadius.circular(30),
                 child: Image(
-                  image: AssetImage("assets/images/profile_background.png"),
+                  image: Datas().defaultBackground.image,
               ),
             ),
           ),
@@ -31,8 +31,7 @@ class _ProfilePreviewState extends State<ProfilePreview> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 CircleAvatar(
-                  backgroundImage:
-                  AssetImage('assets/images/default_profile.png'),
+                  backgroundImage: Datas().currentUser.userProfileImage.image,
                   radius: 20,
                 ),
                 SizedBox(width: 8,),

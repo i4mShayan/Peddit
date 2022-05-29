@@ -9,7 +9,8 @@ class SingleForumPage extends StatefulWidget {
 }
 
 class _SingleForumPageState extends State<SingleForumPage> {
-  ForumModel _forum = ForumModel(UserModel("TestUser", "pm@oamsdka.com", [], [], [] , [] , [] , [] , [] , [] , [], Image.asset('assets/images/logo/google.png')), [], [], [], "Testforum", "forumDesc" , DateTime.now());
+  ForumModel _forum = ForumModel(owner: UserModel(userName: "username", email: "email", userProfileImage: Datas().defaultProfilePicture, followedForums: [], starredForums: []),
+      forumCreateTime: DateTime.now(), profileImage: Datas().defaultBackground);
   @override
   Widget build(BuildContext context) {
     return Scaffold(

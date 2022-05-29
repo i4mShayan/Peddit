@@ -26,6 +26,5 @@ export 'Widgets/forum_preview.dart';
 export 'Widgets/Comment/comment.dart';
 export 'Widgets/Comment/comment_section.dart';
 export 'datas.dart';
-export 'Widgets/profile_preview.dart';
+export 'Widgets/end_drawer.dart';
 export 'Screens/forums_list.dart';
-export 'Models/demo_forum_model.dart';
