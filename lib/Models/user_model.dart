@@ -14,7 +14,11 @@ class UserModel {
   late List<ForumModel> starredForums;
   late Image userProfileImage;
 
-  UserModel({required this.userName, required this.email, required this.followedForums, required this.starredForums, this.comments=const [],
-    this.userPosts=const [], this.upVotedPosts=const [], this.downVotedPosts=const [], this.savedPosts=const [],
-    this.likedComments=const [], this.disLikedComments=const [], required this.userProfileImage});
+  UserModel({required this.userName, required this.email, required this.followedForums, required this.starredForums, required this.comments,
+    required this.userPosts, required this.upVotedPosts, required this.downVotedPosts, required this.savedPosts,
+    required this.likedComments, required this.disLikedComments, required this.userProfileImage});
+
+  bool savedThisPost(PostModel post){
+    return savedPosts.contains(post);
+  }
 }

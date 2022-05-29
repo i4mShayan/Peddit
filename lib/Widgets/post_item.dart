@@ -139,8 +139,23 @@ class _PostItemState extends State<PostItem> {
                   child: Row(
                     children: [
                       TextButton.icon(
-                        onPressed: () {},
-                        icon: Icon(Icons.bookmark_border), label: Text("Save"),
+                        onPressed: () {
+                          setState((){
+                            if(Datas().currentUser.savedThisPost(widget.post)) {
+                              Datas().currentUser.savedPosts.remove(widget.post);
+                            }
+                            else{
+                              Datas().currentUser.savedPosts.add(widget.post);
+                            }
+                          });
+                        },
+                        icon: Icon(
+                          Datas().currentUser.savedThisPost(widget.post) ? Icons.bookmark_rounded :Icons.bookmark_border_rounded,
+                        ),
+                        label: Text(
+                            Datas().currentUser.savedThisPost(widget.post) ? "Saved!" : "Save",
+
+                        ),
                         style: TextButton.styleFrom(
                           primary: Colors.grey[900],
                         ),
