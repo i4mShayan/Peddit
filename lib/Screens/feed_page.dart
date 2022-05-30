@@ -8,22 +8,6 @@ class FeedPage extends StatefulWidget {
 }
 
 class _FeedPageState extends State<FeedPage> {
-
-
-  List<PostModel> posts = [
-    PostModel(title: "title", desc: "dec",
-      publisher: UserModel(userName: "user", email: "email", userProfileImage: Datas().defaultProfilePicture, followedForums: [], starredForums: []),
-      forum: ForumModel(owner: UserModel(userName: "user", email: "email", userProfileImage: Datas().defaultProfilePicture, followedForums: [], starredForums: [], ),
-          forumCreateTime: DateTime.now(), profileImage: Datas().defaultProfilePicture),
-      publishTime: DateTime.now(), hasImage: true, postImage: Datas().defaultBackground,),
-    PostModel(title: "title", desc: "dec",
-      publisher: UserModel(userName: "user", email: "email", userProfileImage: Datas().defaultProfilePicture, followedForums: [], starredForums: []),
-      forum: ForumModel(owner: UserModel(userName: "user", email: "email", userProfileImage: Datas().defaultProfilePicture, followedForums: [], starredForums: [], ),
-          forumCreateTime: DateTime.now(), profileImage: Datas().defaultProfilePicture),
-      publishTime: DateTime.now(), hasImage: true, postImage: Datas().defaultBackground,),
-  ];
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,9 +16,9 @@ class _FeedPageState extends State<FeedPage> {
 
       // Feed Body(Posts)
       body: ListView.builder(
-          itemCount: posts.length,
+          itemCount: Datas().feedPosts.length,
           itemBuilder: (contex, index) {
-            return PostItem(post: posts[index]);
+            return PostItem(post: Datas().feedPosts[index]);
           }),
     );
   }

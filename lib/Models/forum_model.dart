@@ -10,6 +10,6 @@ class ForumModel{
   late DateTime forumCreateTime;
   late Image profileImage;
 
-  ForumModel({required this.owner, this.admins=const [], this.posts=const [], this.members=const [],
+  ForumModel({required this.owner, required this.admins, required this.posts, required this.members,
     this.forumName="ForumName", this.forumDesc="description", required this.forumCreateTime, required this.profileImage});
 }

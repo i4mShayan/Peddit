@@ -9,19 +9,6 @@ class SavedPostsPage extends StatefulWidget {
 
 class _SavedPostsPageState extends State<SavedPostsPage> {
 
-  List<PostModel> posts = [
-    PostModel(title: "title", desc: "dec",
-      publisher: UserModel(userName: "user", email: "email", userProfileImage: Datas().defaultProfilePicture, followedForums: [], starredForums: []),
-      forum: ForumModel(owner: UserModel(userName: "user", email: "email", userProfileImage: Datas().defaultProfilePicture, followedForums: [], starredForums: [], ),
-          forumCreateTime: DateTime.now(), profileImage: Datas().defaultProfilePicture),
-      publishTime: DateTime.now(), hasImage: true, postImage: Datas().defaultBackground,),
-    PostModel(title: "title", desc: "dec",
-      publisher: UserModel(userName: "user", email: "email", userProfileImage: Datas().defaultProfilePicture, followedForums: [], starredForums: []),
-      forum: ForumModel(owner: UserModel(userName: "user", email: "email", userProfileImage: Datas().defaultProfilePicture, followedForums: [], starredForums: [], ),
-          forumCreateTime: DateTime.now(), profileImage: Datas().defaultProfilePicture),
-      publishTime: DateTime.now(), hasImage: true, postImage: Datas().defaultBackground,),
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,9 +16,9 @@ class _SavedPostsPageState extends State<SavedPostsPage> {
       resizeToAvoidBottomInset: false,
 
       body: ListView.builder(
-          itemCount: posts.length,
+          itemCount: Datas().currentUser.savedPosts.length,
           itemBuilder: (contex, index) {
-            return PostItem(post: posts[index]);
+            return PostItem(post: Datas().currentUser.savedPosts[index]);
           }),
     );
   }

@@ -43,11 +43,11 @@ class _NavigationPageState extends State<NavigationPage> with SingleTickerProvid
   }
 
   PreferredSizeWidget? _getAppbar() {
-          return SlidingAppBar(
-              controller: _controller,
-              visible: (_selectedIndex == 0 || _selectedIndex == 1 || _selectedIndex == 3) ? true : false,
-              child: MainAppBar(() => openDrawer , () => openEndDrawer)
-              );
+      return SlidingAppBar(
+          controller: _controller,
+          visible: (_selectedIndex == 0 || _selectedIndex == 1 || _selectedIndex == 3) ? true : false,
+          child: MainAppBar(() => openDrawer , () => openEndDrawer)
+          );
   }
 
   void openDrawer() {

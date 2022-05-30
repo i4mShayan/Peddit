@@ -12,6 +12,6 @@ class CommentModel{
 
   CommentModel({required this.publisher, required this.post, required this.forum, required this.time,
     required this.commentDesc,
-    this.likedUsers=const [], this.disLikedUsers=const [], this.usersReplied=const [],
+    required this.likedUsers, required this.disLikedUsers, required this.usersReplied,
   });
 }

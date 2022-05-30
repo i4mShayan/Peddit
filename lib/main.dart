@@ -30,7 +30,6 @@ void main() {
         '/sign_up': (context) => SignUp(),
         '/login': (context) => Login(),
         '/forums_page': (context) => ForumsPage(),
-        '/post_details': (context) => PostDetails(),
         '/about_us': (context) => AboutUs(),
       },
     ),
