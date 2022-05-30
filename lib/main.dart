@@ -26,7 +26,6 @@ void main() {
         '/navigation_page': (context) => NavigationPage(),
         '/saved_posts_page': (context) => SavedPostsPage(),
         '/setting_page': (context) => SettingPage(),
-        '/single_forum_page': (context) => SingleForumPage(),
         '/sign_up': (context) => SignUp(),
         '/login': (context) => Login(),
         '/forums_page': (context) => ForumsPage(),

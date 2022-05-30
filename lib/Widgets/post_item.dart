@@ -59,7 +59,7 @@ class _PostItemState extends State<PostItem> {
                                   onTap: () {
                                     Navigator.push(
                                       context,
-                                      MaterialPageRoute(builder: (context) => SingleForumPage()),
+                                      MaterialPageRoute(builder: (context) => SingleForumPage(forum: widget.post.forum)),
                                     );
                                   },
                                   child: Text(
