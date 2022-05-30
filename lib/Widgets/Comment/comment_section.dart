@@ -11,15 +11,13 @@ class CommentSection extends StatefulWidget {
 class _CommentSectionState extends State<CommentSection> {
   @override
   Widget build(BuildContext context) {
-    return Scrollbar(
-      child: ListView(
-        shrinkWrap: true,
-        children: [
-          Comment(),
-          Comment(),
-          Comment(),
-        ],
-      ),
+    return Column(
+      children: [
+        Comment(comment: CommentModel(publisher: Datas().currentUser,
+            post: Datas().feedPosts[0], forum: Datas().forumsList[0], time: DateTime.now(),
+            commentDesc: "hello!", likedUsers: [],
+            disLikedUsers: [], usersReplied: []),),
+      ],
     );
   }
 }

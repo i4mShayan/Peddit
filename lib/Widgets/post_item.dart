@@ -10,190 +10,168 @@ class PostItem extends StatefulWidget {
 class _PostItemState extends State<PostItem> {
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: (){
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => PostDetails(post: widget.post),
-          ),
-        );
-      },
-      onDoubleTap: (){
-        setState((){
-          if(widget.post.userDownVoted(Datas().currentUser)){ //deleting other vote
-            widget.post.downVotedUsers.remove(Datas().currentUser);
-          }
-          if(widget.post.userUpVoted(Datas().currentUser)) {
-            widget.post.upVotedUsers.remove(Datas().currentUser);
-          }
-          else{
-            widget.post.upVotedUsers.add(Datas().currentUser);
-          }
-        });
-      },
-      child: Container(
-        margin: EdgeInsets.only(bottom: 5),
-        color: Colors.white,
-        child: Material(
-          child: (
-            Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 5, top: 10),
-                  child: Row(
-                    children: [
-                      Container(
-                        margin: EdgeInsets.only(left: 15, right: 10),
-                        child: CircleAvatar(
-                          backgroundImage: widget.post.publisher.userProfileImage.image,
-                          radius: 20,
-                        ),
+    return Container(
+      margin: EdgeInsets.only(bottom: 5),
+      color: Colors.white,
+      child: Material(
+        child: (
+          Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(bottom: 5, top: 10),
+                child: Row(
+                  children: [
+                    Container(
+                      margin: EdgeInsets.only(left: 15, right: 10),
+                      child: CircleAvatar(
+                        backgroundImage: widget.post.publisher.userProfileImage.image,
+                        radius: 20,
                       ),
-                      Expanded(
-                        child: Column(
-                          children: [
-                            Row(
-                              children: [
-                                Text(
-                                  "r/" + widget.post.forum.forumName,
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w500, fontSize: 17),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                Text(
-                                  "u/" + widget.post.publisher.userName,
-                                  style: TextStyle(fontSize: 15),
-                                ),
-                                Text('.'),
-                                Text(DateTime.now()
-                                        .difference(widget.post.publishTime)
-                                        .inHours
-                                        .toString() +
-                                    "h"),
-                              ],
-                            ),
-                          ],
-                        ),
+                    ),
+                    Expanded(
+                      child: Column(
+                        children: [
+                          Row(
+                            children: [
+                              Text(
+                                "r/" + widget.post.forum.forumName,
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w500, fontSize: 17),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Text(
+                                "u/" + widget.post.publisher.userName,
+                                style: TextStyle(fontSize: 15),
+                              ),
+                              Text('.'),
+                              Text(DateTime.now()
+                                      .difference(widget.post.publishTime)
+                                      .inHours
+                                      .toString() +
+                                  "h"),
+                            ],
+                          ),
+                        ],
                       ),
-                      Spacer(),
-                      IconButton(onPressed: () {}, icon: Icon(Icons.more_vert))
-                    ],
-                  ),
+                    ),
+                    Spacer(),
+                    IconButton(onPressed: () {}, icon: Icon(Icons.more_vert))
+                  ],
                 ),
-                Align(
+              ),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Container(
+                    margin: EdgeInsets.only(left: 15, bottom: 5, right: 20),
+                    child: Text(
+                      widget.post.title,
+                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+                    )),
+              ),
+              Align(
                   alignment: Alignment.centerLeft,
                   child: Container(
-                      margin: EdgeInsets.only(left: 15, bottom: 5, right: 20),
-                      child: Text(
-                        widget.post.title,
-                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
-                      )),
-                ),
-                Align(
-                    alignment: Alignment.centerLeft,
-                    child: Container(
-                        margin: EdgeInsets.only(left: 15, bottom: 10, right: 20),
-                        child: Text(widget.post.desc))),
-                Container(
-                  child: widget.post.postImage,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Row(
-                      children: [
-                        IconButton(
-                            onPressed: () {
-                              setState((){
-                                if(widget.post.userDownVoted(Datas().currentUser)){ //deleting other vote
-                                  widget.post.downVotedUsers.remove(Datas().currentUser);
-                                }
-                                if(widget.post.userUpVoted(Datas().currentUser)) {
-                                  widget.post.upVotedUsers.remove(Datas().currentUser);
-                                }
-                                else{
-                                  widget.post.upVotedUsers.add(Datas().currentUser);
-                                }
-                              });
-                            },
-                            icon: Icon(
-                              Icons.arrow_upward_rounded),
-                              color: widget.post.userUpVoted(Datas().currentUser) ? Colors.green:Colors.black,
-                            ),
-                        Text(
-                          (widget.post.anyVotes() ? widget.post.postScore().toString():"Vote"),
-                          style: TextStyle(fontWeight: FontWeight.w500),),
-                        IconButton(
-                            onPressed: () {
-                              setState((){
-                                if(widget.post.userUpVoted(Datas().currentUser)){ //deleting other vote
-                                  widget.post.upVotedUsers.remove(Datas().currentUser);
-                                }
-                                if(widget.post.userDownVoted(Datas().currentUser)) {
-                                  widget.post.downVotedUsers.remove(Datas().currentUser);
-                                }
-                                else{
-                                  widget.post.downVotedUsers.add(Datas().currentUser);
-                                }
-                              });
-                            },
-                            icon: Icon(
-                              Icons.arrow_downward_rounded,
-                              color: widget.post.userDownVoted(Datas().currentUser) ? Colors.red:Colors.black,
-                            ),
+                      margin: EdgeInsets.only(left: 15, bottom: 10, right: 20),
+                      child: Text(widget.post.desc))),
+              Container(
+                child: widget.post.postImage,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Row(
+                    children: [
+                      IconButton(
+                          onPressed: () {
+                            setState((){
+                              if(widget.post.userDownVoted(Datas().currentUser)){ //deleting other vote
+                                widget.post.downVotedUsers.remove(Datas().currentUser);
+                              }
+                              if(widget.post.userUpVoted(Datas().currentUser)) {
+                                widget.post.upVotedUsers.remove(Datas().currentUser);
+                              }
+                              else{
+                                widget.post.upVotedUsers.add(Datas().currentUser);
+                              }
+                            });
+                          },
+                          icon: Icon(
+                            Icons.arrow_upward_rounded),
+                            color: widget.post.userUpVoted(Datas().currentUser) ? Colors.green:Colors.black,
+                          ),
+                      Text(
+                        // (widget.post.anyVotes() ? widget.post.postScore().toString():"Vote"),
+                        widget.post.postScore().toString(),
+                        style: TextStyle(fontWeight: FontWeight.w500),),
+                      IconButton(
+                          onPressed: () {
+                            setState((){
+                              if(widget.post.userUpVoted(Datas().currentUser)){ //deleting other vote
+                                widget.post.upVotedUsers.remove(Datas().currentUser);
+                              }
+                              if(widget.post.userDownVoted(Datas().currentUser)) {
+                                widget.post.downVotedUsers.remove(Datas().currentUser);
+                              }
+                              else{
+                                widget.post.downVotedUsers.add(Datas().currentUser);
+                              }
+                            });
+                          },
+                          icon: Icon(
+                            Icons.arrow_downward_rounded,
+                            color: widget.post.userDownVoted(Datas().currentUser) ? Colors.red:Colors.black,
+                          ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      TextButton.icon(
+                        onPressed: () {},
+                        icon: Icon(Icons.mode_comment_outlined), label: Text(/*post.comments.length.toString()*/ "0"),
+                        style: TextButton.styleFrom(
+                          primary: Colors.grey[900],
                         ),
-                      ],
-                    ),
-                    Row(
+                      ),
+                    ],
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(right: 15),
+                    child: Row(
                       children: [
                         TextButton.icon(
-                          onPressed: () {},
-                          icon: Icon(Icons.mode_comment_outlined), label: Text(/*post.comments.length.toString()*/ "0"),
+                          onPressed: () {
+                            setState((){
+                              if(Datas().currentUser.savedThisPost(widget.post)) {
+                                Datas().currentUser.savedPosts.remove(widget.post);
+                              }
+                              else{
+                                Datas().currentUser.savedPosts.add(widget.post);
+                              }
+                            });
+                          },
+                          icon: Icon(
+                            Datas().currentUser.savedThisPost(widget.post) ? Icons.bookmark_rounded :Icons.bookmark_border_rounded,
+                          ),
+                          label: Text(
+                              Datas().currentUser.savedThisPost(widget.post) ? "Saved!" : "Save",
+
+                          ),
                           style: TextButton.styleFrom(
                             primary: Colors.grey[900],
                           ),
                         ),
                       ],
                     ),
-                    Container(
-                      margin: EdgeInsets.only(right: 15),
-                      child: Row(
-                        children: [
-                          TextButton.icon(
-                            onPressed: () {
-                              setState((){
-                                if(Datas().currentUser.savedThisPost(widget.post)) {
-                                  Datas().currentUser.savedPosts.remove(widget.post);
-                                }
-                                else{
-                                  Datas().currentUser.savedPosts.add(widget.post);
-                                }
-                              });
-                            },
-                            icon: Icon(
-                              Datas().currentUser.savedThisPost(widget.post) ? Icons.bookmark_rounded :Icons.bookmark_border_rounded,
-                            ),
-                            label: Text(
-                                Datas().currentUser.savedThisPost(widget.post) ? "Saved!" : "Save",
-
-                            ),
-                            style: TextButton.styleFrom(
-                              primary: Colors.grey[900],
-                            ),
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              ],
-            )
-          ),
+                  )
+                ],
+              ),
+            ],
+          )
         ),
       ),
     );

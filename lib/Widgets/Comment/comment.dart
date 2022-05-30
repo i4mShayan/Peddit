@@ -1,7 +1,8 @@
 import '../../libs.dart';
 
 class Comment extends StatefulWidget {
-  const Comment({Key? key}) : super(key: key);
+  CommentModel comment;
+  Comment({required this.comment, Key? key}) : super(key: key);
 
   @override
   State<Comment> createState() => _CommentState();
@@ -10,13 +11,14 @@ class Comment extends StatefulWidget {
 class _CommentState extends State<Comment> {
   @override
   Widget build(BuildContext context) {
-    return Card(
+    return Container(
+      color: Colors.white,
       child: Column(
         children: [
           Row(
             children: [
               Container(
-                margin: EdgeInsets.all(10),
+                margin: EdgeInsets.only(bottom: 10),
                 child: const CircleAvatar(
                   radius: 20,
                 ),
