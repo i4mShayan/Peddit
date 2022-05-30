@@ -2,11 +2,11 @@ import '../libs.dart';
 
 class SingleForumPageSliverAppbar extends StatefulWidget
     implements PreferredSizeWidget {
-  // const singleForumPageSliverAppbar({Key? key}) : super(key: key);
+  SingleForumPageSliverAppbar({required this.openEndDrawer ,required this.forum ,Key? key}) : super(key: key);
 
-  ForumModel _forum;
+  ForumModel forum;
+  Function openEndDrawer;
 
-  SingleForumPageSliverAppbar(this._forum);
   @override
   State<SingleForumPageSliverAppbar> createState() =>
       _SingleForumPageSliverAppbarState();
@@ -24,9 +24,9 @@ class _SingleForumPageSliverAppbarState
       pinned: true,
       floating: false,
       snap: false,
-      expandedHeight: 300,
+      expandedHeight: 320,
       elevation: 5,
-      forceElevated: true,
+      // forceElevated: true,
       flexibleSpace: FlexibleSpaceBar(
         background: Stack(
           children: [
@@ -36,9 +36,9 @@ class _SingleForumPageSliverAppbarState
                   height: 150,
                   width: MediaQuery.of(context).size.width,
                   color: Colors.orangeAccent,
-                  child: Image.asset(
-                    'assets/images/logo/google.png',
-                    cacheHeight: 100,
+                  child: Image(
+                    image: widget.forum.headerImage.image,
+                    fit: BoxFit.fitWidth,
                   ),
                 ),
                 Container(
@@ -58,7 +58,7 @@ class _SingleForumPageSliverAppbarState
                   children: [
                     Container(
                       margin: EdgeInsets.only(top: 20, left: 20),
-                      child: Text("r/" + widget._forum.forumName,
+                      child: Text("r/" + widget.forum.forumName,
                           style: TextStyle(
                               fontSize: 30, fontWeight: FontWeight.bold)),
                     ),
@@ -89,7 +89,7 @@ class _SingleForumPageSliverAppbarState
                   alignment: Alignment.centerLeft,
                   child: Container(
                     margin: EdgeInsets.only(top: 2, left: 20),
-                    child: Text(widget._forum.members.length.toString() + " Memebers",
+                    child: Text(widget.forum.members.length.toString() + " Memebers",
                         style: TextStyle(
                             fontSize: 15)),
                   ),
@@ -97,10 +97,20 @@ class _SingleForumPageSliverAppbarState
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Container(
-                    margin: EdgeInsets.only(top: 5, left: 20),
-                    child: Text(widget._forum.forumDesc,
-                        style: TextStyle(
-                            fontSize: 20,)),
+                    height: 100,
+                    margin: EdgeInsets.only(top: 5, left: 20 , right: 10),
+                    child: NotificationListener<OverscrollIndicatorNotification>(
+                      onNotification: (overScroll) {
+                        overScroll.disallowIndicator();
+                        return true;
+                      },
+                      child: SingleChildScrollView(
+                          scrollDirection: Axis.vertical,
+                        child: Text(widget.forum.forumDesc,
+                            style: TextStyle(
+                                fontSize: 15,)),
+                      ),
+                    ),
                   ),
                 ),
               ],
@@ -122,6 +132,7 @@ class _SingleForumPageSliverAppbarState
               ),
               margin: EdgeInsets.only(top: 105, left: 20),
               child: CircleAvatar(
+                backgroundImage: widget.forum.profileImage.image,
                 radius: 30,
               ),
             ),
@@ -134,9 +145,11 @@ class _SingleForumPageSliverAppbarState
           icon: Icon(
             Icons.arrow_back_rounded,
             size: 35,
-            color: Colors.grey[700],
+            color: Colors.deepOrange[400],
           ),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
       ),
       title: GestureDetector(
@@ -151,7 +164,7 @@ class _SingleForumPageSliverAppbarState
                 margin: const EdgeInsets.only(left: 5, right: 5),
                 child: Icon(
                   Icons.search,
-                  color: Colors.grey[700],
+                  color: Colors.grey[800],
                 ),
               ),
               Text(
@@ -159,14 +172,14 @@ class _SingleForumPageSliverAppbarState
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.w300,
-                  color: Colors.grey[700],
+                  color: Colors.grey[800],
                 ),
               ),
             ],
           ),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(5),
-            color: Colors.grey.withOpacity(0.54),
+            color: Colors.grey.withOpacity(0.9),
           ),
           // margin: EdgeInsets.only(top: 5),
           width: 250,
@@ -175,11 +188,20 @@ class _SingleForumPageSliverAppbarState
       ),
       actions: [
         GestureDetector(
-          onTap: () {},
+          onTap: widget.openEndDrawer(),
           child: Container(
-            margin: const EdgeInsets.only(right: 10),
-            child: CircleAvatar(
-              radius: 20,
+            margin: const EdgeInsets.only(right: 15),
+            padding: EdgeInsets.all(7),
+            child: Container(
+              child: FittedBox(
+                fit: BoxFit.contain,
+                child: CircleAvatar(
+                  backgroundImage: Datas().currentUser.userProfileImage.image,
+                ),
+              ),
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+              ),
             ),
           ),
         ),

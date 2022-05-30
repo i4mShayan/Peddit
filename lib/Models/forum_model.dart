@@ -9,7 +9,8 @@ class ForumModel{
   late String forumDesc;
   late DateTime forumCreateTime;
   late Image profileImage;
+  late Image headerImage;
 
-  ForumModel({required this.owner, required this.admins, required this.posts, required this.members,
-    this.forumName="ForumName", this.forumDesc="description", required this.forumCreateTime, required this.profileImage});
+  ForumModel({required  , required this.owner, required this.admins, required this.posts, required this.members,
+    required this.forumName, required this.forumDesc, required this.forumCreateTime, required this.profileImage , required this.headerImage});
 }

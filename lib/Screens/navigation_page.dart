@@ -11,7 +11,7 @@ class NavigationPage extends StatefulWidget {
 class _NavigationPageState extends State<NavigationPage> with SingleTickerProviderStateMixin{
 
   late final AnimationController _controller;
-  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
@@ -63,7 +63,6 @@ class _NavigationPageState extends State<NavigationPage> with SingleTickerProvid
   Widget build(BuildContext context) {
     return
     Scaffold(
-
       key: _scaffoldKey,
       appBar: _getAppbar(),
       drawer: Drawer(),

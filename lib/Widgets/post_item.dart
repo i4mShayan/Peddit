@@ -55,10 +55,18 @@ class _PostItemState extends State<PostItem> {
                           children: [
                             Row(
                               children: [
-                                Text(
-                                  "r/" + widget.post.forum.forumName,
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w500, fontSize: 17),
+                                GestureDetector(
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(builder: (context) => SingleForumPage(forum: widget.post.forum)),
+                                    );
+                                  },
+                                  child: Text(
+                                    "r/" + widget.post.forum.forumName,
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w500, fontSize: 17),
+                                  ),
                                 ),
                               ],
                             ),
@@ -90,6 +98,7 @@ class _PostItemState extends State<PostItem> {
                       margin: EdgeInsets.only(left: 15, bottom: 5, right: 20),
                       child: Text(
                         widget.post.title,
+                        overflow: TextOverflow.ellipsis,
                         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
                       )),
                 ),
@@ -97,7 +106,7 @@ class _PostItemState extends State<PostItem> {
                     alignment: Alignment.centerLeft,
                     child: Container(
                         margin: EdgeInsets.only(left: 15, bottom: 10, right: 20),
-                        child: Text(widget.post.desc))),
+                        child: Text(widget.post.desc , maxLines: 3 , overflow: TextOverflow.ellipsis,))),
                 Container(
                   child: widget.post.postImage,
                 ),
@@ -125,9 +134,15 @@ class _PostItemState extends State<PostItem> {
                               Icons.arrow_upward_rounded),
                               color: widget.post.userUpVoted(Datas().currentUser) ? Colors.green:Colors.black,
                             ),
-                        Text(
-                          (widget.post.anyVotes() ? widget.post.postScore().toString():"Vote"),
-                          style: TextStyle(fontWeight: FontWeight.w500),),
+                        SizedBox(
+                          width: 30,
+                          child: Align(
+                            alignment: Alignment.center,
+                            child: Text(
+                              (widget.post.anyVotes() ? widget.post.postScore().toString():"Vote"),
+                              style: TextStyle(fontWeight: FontWeight.w500),),
+                          ),
+                        ),
                         IconButton(
                             onPressed: () {
                               setState((){
@@ -153,7 +168,7 @@ class _PostItemState extends State<PostItem> {
                       children: [
                         TextButton.icon(
                           onPressed: () {},
-                          icon: Icon(Icons.mode_comment_outlined), label: Text(/*post.comments.length.toString()*/ "0"),
+                          icon: Icon(Icons.mode_comment_outlined), label: Text(widget.post.comments.length.toString()),
                           style: TextButton.styleFrom(
                             primary: Colors.grey[900],
                           ),
@@ -161,6 +176,7 @@ class _PostItemState extends State<PostItem> {
                       ],
                     ),
                     Container(
+                      width: 90,
                       margin: EdgeInsets.only(right: 15),
                       child: Row(
                         children: [
