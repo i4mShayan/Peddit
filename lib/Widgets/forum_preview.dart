@@ -26,7 +26,7 @@ class _ForumPreviewState extends State<ForumPreview> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 CircleAvatar(
-                  backgroundColor: Colors.deepOrange,
+                  backgroundImage: widget.currentForum.profileImage.image,
                   radius: 20,
                 ),
                 SizedBox(width: 10,),
