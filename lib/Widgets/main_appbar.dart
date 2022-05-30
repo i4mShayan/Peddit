@@ -61,7 +61,6 @@ class _MainAppBarState extends State<MainAppBar> {
             color: Colors.grey[300],
           ),
           // margin: EdgeInsets.only(top: 5),
-          width: 250,
           height: 40,
         ),
       ),
@@ -70,9 +69,18 @@ class _MainAppBarState extends State<MainAppBar> {
         GestureDetector(
           onTap: widget._openEndDrawer(),
           child: Container(
-            margin: const EdgeInsets.only(right: 10),
-            child: CircleAvatar(
-              radius: 20,
+            margin: const EdgeInsets.only(right: 15),
+            padding: EdgeInsets.all(7),
+            child: Container(
+              child: FittedBox(
+                fit: BoxFit.contain,
+                child: CircleAvatar(
+                  backgroundImage: Datas().currentUser.userProfileImage.image,
+                ),
+              ),
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+              ),
             ),
           ),
         ),

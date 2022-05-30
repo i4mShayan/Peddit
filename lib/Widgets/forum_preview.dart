@@ -1,7 +1,7 @@
-import '/libs.dart';
+import '../libs.dart';
 
 class ForumPreview extends StatefulWidget {
-  DemoForumModel currentForum;
+  ForumModel currentForum;
   ForumPreview({Key? key, required this.currentForum}) : super(key: key);
 
   @override
@@ -26,7 +26,7 @@ class _ForumPreviewState extends State<ForumPreview> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 CircleAvatar(
-                  backgroundColor: Colors.deepOrange,
+                  backgroundImage: widget.currentForum.profileImage.image,
                   radius: 20,
                 ),
                 SizedBox(width: 10,),
@@ -40,18 +40,16 @@ class _ForumPreviewState extends State<ForumPreview> {
                 ),
                 Spacer(),
                 IconButton(
-                    onPressed: () {
-                      setState(() {
-                        // if(Datas().currentUser.starredForums.contains(widget.currentForum)){
-                        //   Datas().currentUser.starredForums.remove(widget.currentForum);
-                        // }else{
-                        //   Datas().currentUser.starredForums.add(widget.currentForum);
-                        // }
-                        widget.currentForum.isStarred=!widget.currentForum.isStarred;
-                      });
-                    },
-                    // icon: Datas().currentUser.starredForums.contains(widget.currentForum) ? Icon(Icons.star, color: Colors.yellow[900], size: 25,):Icon(Icons.star_border, color: Colors.grey[800], size: 25,),
-                    icon: widget.currentForum.isStarred ? Icon(Icons.star, color: Colors.yellow[900], size: 25,):Icon(Icons.star_border, color: Colors.grey[800], size: 25,),
+                  onPressed: () {
+                    setState(() {
+                      if(Datas().currentUser.starredForums.contains(widget.currentForum)){
+                        Datas().currentUser.starredForums.remove(widget.currentForum);
+                      }else{
+                        Datas().currentUser.starredForums.add(widget.currentForum);
+                      }
+                    });
+                  },
+                  icon: Datas().currentUser.starredForums.contains(widget.currentForum) ? Icon(Icons.star_rate_rounded, color: Colors.yellow[900], size: 25,):Icon(Icons.star_outline_rounded, color: Colors.grey[800], size: 25,),
                 ),
               ],
             ),

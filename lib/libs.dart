@@ -1,4 +1,7 @@
+// Important packages!
 export 'package:flutter/material.dart';
+
+// exporting project files!
 export 'Screens/sign_up.dart';
 export 'Screens/login.dart';
 export 'Widgets/dialog.dart';
@@ -26,4 +29,6 @@ export 'Widgets/forum_preview.dart';
 export 'Widgets/Comment/comment.dart';
 export 'Widgets/Comment/comment_section.dart';
 export 'datas.dart';
-export 'Models/demo_forum_model.dart';
+export 'Widgets/end_drawer.dart';
+export 'Screens/forums_list.dart';
+export 'Widgets/post_appbar.dart';

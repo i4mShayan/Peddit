@@ -1,88 +1,43 @@
-import '/libs.dart';
+import '../libs.dart';
 
 class PostModel{
-  String _title;
-  String _desc;
-  UserModel _usr;
-  ForumModel _forum;
-  DateTime _time;
-  bool _hasImage;
-  List<UserModel> _upVotedUsers;
-  List<UserModel> _downVotedUsers;
-  List<CommentModel> _comments;
-  Image _postImage;
+  late String title;
+  late String desc;
+  late UserModel publisher;
+  late ForumModel forum;
+  late DateTime publishTime;
+  late List<UserModel> upVotedUsers;
+  late List<UserModel> downVotedUsers;
+  late List<CommentModel> comments;
+  late bool hasImage;
+  late Image postImage;
+
+  PostModel({required this.title, required this.desc, required this.publisher, required this.forum,
+    required this.publishTime, required this.upVotedUsers,
+    required this.downVotedUsers, required this.hasImage, required this.postImage});
 
 
-  PostModel(
-      this._title,
-      this._desc,
-      this._usr,
-      this._forum,
-      this._time,
-      this._hasImage,
-      this._upVotedUsers,
-      this._downVotedUsers,
-      this._comments,
-      this._postImage);
-
-
-  Image get postImage => _postImage;
-
-  set postImage(Image value) {
-    _postImage = value;
+  int postScore(){
+    return upVotedUsers.length - downVotedUsers.length;
   }
 
-  List<CommentModel> get comments => _comments;
-
-  set comments(List<CommentModel> value) {
-    _comments = value;
+  bool anyVotes(){
+    return upVotedUsers.length!=0 || downVotedUsers.length!=0;
   }
 
-  List<UserModel> get upVotedUsers => _upVotedUsers;
-
-  set upVotedUsers(List<UserModel> value) {
-    _upVotedUsers = value;
+  bool userUpVoted(UserModel user){
+    return upVotedUsers.contains(user);
   }
 
-  bool get hasImage => _hasImage;
-
-  set hasImage(bool value) {
-    _hasImage = value;
+  bool userDownVoted(UserModel user){
+    return downVotedUsers.contains(user);
   }
 
-  DateTime get time => _time;
-
-  set time(DateTime value) {
-    _time = value;
+  bool userVoted(UserModel user){
+    return downVotedUsers.contains(user) || upVotedUsers.contains(user);
   }
 
-  ForumModel get forum => _forum;
-
-  set forum(ForumModel value) {
-    _forum = value;
-  }
-
-  UserModel get usr => _usr;
-
-  set usr(UserModel value) {
-    _usr = value;
-  }
-
-  String get desc => _desc;
-
-  set desc(String value) {
-    _desc = value;
-  }
-
-  String get title => _title;
-
-  set title(String value) {
-    _title = value;
-  }
-
-  List<UserModel> get downVotedUsers => _downVotedUsers;
-
-  set downVotedUsers(List<UserModel> value) {
-    _downVotedUsers = value;
+  bool userNotVoted(UserModel user){
+    return !userVoted(user);
   }
 }

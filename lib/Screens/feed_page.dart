@@ -1,4 +1,4 @@
-import '/libs.dart';
+import '../libs.dart';
 
 class FeedPage extends StatefulWidget {
   const FeedPage({Key? key}) : super(key: key);
@@ -8,21 +8,6 @@ class FeedPage extends StatefulWidget {
 }
 
 class _FeedPageState extends State<FeedPage> {
-
-
-  List<PostModel> posts = [
-    new PostModel("title", "Description",
-        new UserModel("TestUser", "pm@oamsdka.com", [], [], [] , [] , [] , [] , [] , [] , [], Image.asset('assets/images/logo/google.png')),
-        new ForumModel(new UserModel("TestUser", "pm@oamsdka.com", [], [], [] , [] , [] , [] , [] , [] , [], Image.asset('assets/images/logo/google.png')), [], [], [], "Testforum", "forumDesc" , DateTime.now()),
-        DateTime.now(), false, [] , [] , [] , Image.asset('assets/images/logo/google.png')),
-    new PostModel("title", "Description",
-        new UserModel("TestUser", "pm@oamsdka.com", [], [], [] , [] , [] , [] , [] , [] , [], Image.asset('assets/images/logo/google.png')),
-        new ForumModel(new UserModel("TestUser", "pm@oamsdka.com", [], [], [] , [] , [] , [] , [] , [] , [], Image.asset('assets/images/logo/google.png')), [], [], [], "Testforum", "forumDesc" , DateTime.now()),
-        DateTime.now(), false, [] , [] , [] , Image.asset('assets/images/logo/google.png')),
-  ];
-
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,9 +16,9 @@ class _FeedPageState extends State<FeedPage> {
 
       // Feed Body(Posts)
       body: ListView.builder(
-          itemCount: posts.length,
+          itemCount: Datas().feedPosts.length,
           itemBuilder: (contex, index) {
-            return PostItem(post: posts[index]);
+            return PostItem(post: Datas().feedPosts[index]);
           }),
     );
   }

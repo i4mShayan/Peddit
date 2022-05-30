@@ -1,4 +1,4 @@
-import '/libs.dart';
+import '../libs.dart';
 
 class AddNewPostPage extends StatefulWidget {
   const AddNewPostPage({Key? key}) : super(key: key);
@@ -71,7 +71,7 @@ class _AddNewPostPageState extends State<AddNewPostPage> {
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            colors: (canCreatePost ? [Colors.deepOrange, Colors.amber]:[Colors.black87, Colors.black54]),
+            colors: (canCreatePost ? [Colors.red, Colors.orange]:[Colors.red.withOpacity(0.6), Colors.orange.withOpacity(0.6)]),
           ),
         ),
         child: MaterialButton(

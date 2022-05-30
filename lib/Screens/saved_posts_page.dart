@@ -1,4 +1,4 @@
-import '/libs.dart';
+import '../libs.dart';
 
 class SavedPostsPage extends StatefulWidget {
   const SavedPostsPage({Key? key}) : super(key: key);
@@ -9,24 +9,16 @@ class SavedPostsPage extends StatefulWidget {
 
 class _SavedPostsPageState extends State<SavedPostsPage> {
 
-  List<PostModel> posts = [
-    new PostModel("title", "Description",
-        new UserModel("TestUser", "pm@oamsdka.com", [], [], [] , [] , [] , [] , [] , [] , [], Image.asset('assets/images/logo/google.png')),
-        new ForumModel(new UserModel("TestUser", "pm@oamsdka.com", [], [], [] , [] , [] , [] , [] , [] , [], Image.asset('assets/images/logo/google.png')), [], [], [], "Testforum", "forumDesc" , DateTime.now()),
-        DateTime.now(), false, [] , [] , [] , Image.asset('assets/images/logo/google.png')),
-    new PostModel("title", "Description",
-        new UserModel("TestUser", "pm@oamsdka.com", [], [], [] , [] , [] , [] , [] , [] , [], Image.asset('assets/images/logo/google.png')),
-        new ForumModel(new UserModel("TestUser", "pm@oamsdka.com", [], [], [] , [] , [] , [] , [] , [] , [], Image.asset('assets/images/logo/google.png')), [], [], [], "Testforum", "forumDesc" , DateTime.now()),
-        DateTime.now(), false, [] , [] , [] , Image.asset('assets/images/logo/google.png')),
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[300],
+      resizeToAvoidBottomInset: false,
+
       body: ListView.builder(
-          itemCount: posts.length,
+          itemCount: Datas().currentUser.savedPosts.length,
           itemBuilder: (contex, index) {
-            return PostItem(post: posts[index]);
+            return PostItem(post: Datas().currentUser.savedPosts[index]);
           }),
     );
   }
