@@ -14,7 +14,7 @@ class PostModel{
 
   PostModel({required this.title, required this.desc, required this.publisher, required this.forum,
     required this.publishTime, required this.upVotedUsers,
-    required this.downVotedUsers, required this.hasImage, required this.postImage});
+    required this.downVotedUsers, required this.hasImage, required this.postImage , required this.comments});
 
 
   int postScore(){
