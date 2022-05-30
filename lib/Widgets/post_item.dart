@@ -17,51 +17,55 @@ class _PostItemState extends State<PostItem> {
       child: (Material(
         child: Column(
           children: [
-            Row(
-              children: [
-                Container(
-                  margin: EdgeInsets.all(10),
-                  child: CircleAvatar(
-                    backgroundImage: widget.post.publisher.userProfileImage.image,
-                    radius: 20,
+            Padding(
+              padding: const EdgeInsets.only(bottom: 5, top: 10),
+              child: Row(
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(left: 15, right: 10),
+                    child: CircleAvatar(
+                      backgroundImage: widget.post.publisher.userProfileImage.image,
+                      radius: 20,
+                    ),
                   ),
-                ),
-                Expanded(
-                  child: Column(
-                    children: [
-                      Row(
-                        children: [
-                          Text(
-                            "r/" + widget.post.forum.forumName,
-                            style: TextStyle(
-                                fontWeight: FontWeight.w900, fontSize: 18),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Text(
-                            "u/" + widget.post.publisher.userName,
-                            style: TextStyle(fontSize: 15),
-                          ),
-                          Text('.'),
-                          Text(DateTime.now()
-                                  .difference(widget.post.publishTime)
-                                  .inHours
-                                  .toString() +
-                              "h"),
-                        ],
-                      ),
-                    ],
+                  Expanded(
+                    child: Column(
+                      children: [
+                        Row(
+                          children: [
+                            Text(
+                              "r/" + widget.post.forum.forumName,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w500, fontSize: 17),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Text(
+                              "u/" + widget.post.publisher.userName,
+                              style: TextStyle(fontSize: 15),
+                            ),
+                            Text('.'),
+                            Text(DateTime.now()
+                                    .difference(widget.post.publishTime)
+                                    .inHours
+                                    .toString() +
+                                "h"),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-                IconButton(onPressed: () {}, icon: Icon(Icons.more_vert))
-              ],
+                  Spacer(),
+                  IconButton(onPressed: () {}, icon: Icon(Icons.more_vert))
+                ],
+              ),
             ),
             Align(
               alignment: Alignment.centerLeft,
               child: Container(
-                  margin: EdgeInsets.only(left: 20, bottom: 10, right: 20),
+                  margin: EdgeInsets.only(left: 15, bottom: 5, right: 20),
                   child: Text(
                     widget.post.title,
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
@@ -70,7 +74,7 @@ class _PostItemState extends State<PostItem> {
             Align(
                 alignment: Alignment.centerLeft,
                 child: Container(
-                    margin: EdgeInsets.only(left: 20, bottom: 10, right: 20),
+                    margin: EdgeInsets.only(left: 15, bottom: 10, right: 20),
                     child: Text(widget.post.desc))),
             Container(
               child: widget.post.postImage,
