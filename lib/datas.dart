@@ -1,14 +1,37 @@
 import 'libs.dart';
 
 class Datas{
-  late UserModel currentUser=UserModel("username", "email@gmail.com", forumsList, [], [], [], [], [], [], [], [], Image.asset("assets/images/logo/google.png"));
-  late List<UserModel> usersList;
+  Image defaultProfilePicture=Image.asset("assets/images/default_profile.png");
+  Image defaultBackground=Image.asset("assets/images/default_background.png");
+  late UserModel currentUser=UserModel(userName: "username", email: "email", userProfileImage: Datas().defaultProfilePicture,
+  followedForums: forumsList, starredForums: [], downVotedPosts: [], upVotedPosts: [], savedPosts: [],
+      likedComments: [], disLikedComments: [], userPosts: [], comments: []);
+
+  late List<UserModel> usersList=[currentUser];
+
   late List<ForumModel> forumsList=[
-    ForumModel(currentUser, [currentUser], [], [], "forum0!", "desc!", DateTime.now()),
-    ForumModel(currentUser, [currentUser], [], [], "forum1!", "desc!", DateTime.now()),
-    ForumModel(currentUser, [currentUser], [], [], "forum2!", "desc!", DateTime.now()),
-    ForumModel(currentUser, [currentUser], [], [], "forum3!", "desc!", DateTime.now()),
+    ForumModel(owner: UserModel(userName: "username", email: "email", userProfileImage: Datas().defaultProfilePicture,
+        followedForums: [], starredForums: [], downVotedPosts: [], upVotedPosts: [], savedPosts: [],
+        likedComments: [], disLikedComments: [], userPosts: [], comments: []),
+        forumCreateTime: DateTime.now() , headerImage: Datas().defaultBackground, profileImage: Datas().defaultProfilePicture, members: [], posts: [], admins: [] , forumName: "hello",forumDesc: "forum Desc_forum Desc_forum Desc_forum Desc_forum Desc_forum Desc_forum Desc_forum Desc_forum Desc_forum Desc_forum Desc_forum Desc_forum Desc_forum Desc_forum Desc_forum Desc_forum Desc_forum Desc_forum Desc_"),
   ];
+
+  late List<PostModel> feedPosts=[
+    PostModel(title: "title_title_title_title_title_title_title_title_title_", desc: "post decription_post decription_post decription_post decription_post decription_post decription_post decription_post decription_post decription_post decription_post decription_post decription_post decription_post decription_",
+      publisher: UserModel(userName: "user", email: "email",
+          userProfileImage: Datas().defaultProfilePicture, followedForums: [], starredForums: [], upVotedPosts: [], userPosts: [],
+          disLikedComments: [], comments: [], downVotedPosts: [], savedPosts: [], likedComments: []),
+      forum: forumsList[0],
+      publishTime: DateTime.now(), hasImage: true, postImage: Datas().defaultBackground, upVotedUsers: [], downVotedUsers: [] , comments: []),
+
+    PostModel(title: "title", desc: "dec",
+      publisher: UserModel(userName: "user", email: "email",
+          userProfileImage: Datas().defaultProfilePicture, followedForums: [], starredForums: [], upVotedPosts: [], userPosts: [],
+          disLikedComments: [], comments: [], downVotedPosts: [], savedPosts: [], likedComments: []),
+      forum: forumsList[0],
+      publishTime: DateTime.now(), hasImage: true, postImage: Datas().defaultBackground, upVotedUsers: [], downVotedUsers: [], comments: []),
+  ];
+
   Datas._();
 
   static final Datas _instance = Datas._();

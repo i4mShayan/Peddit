@@ -1,4 +1,4 @@
-import '/libs.dart';
+import '../libs.dart';
 
 class NavigationPage extends StatefulWidget {
 
@@ -11,7 +11,7 @@ class NavigationPage extends StatefulWidget {
 class _NavigationPageState extends State<NavigationPage> with SingleTickerProviderStateMixin{
 
   late final AnimationController _controller;
-  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
@@ -43,11 +43,11 @@ class _NavigationPageState extends State<NavigationPage> with SingleTickerProvid
   }
 
   PreferredSizeWidget? _getAppbar() {
-          return SlidingAppBar(
-              controller: _controller,
-              visible: (_selectedIndex == 0 || _selectedIndex == 1 || _selectedIndex == 3) ? true : false,
-              child: MainAppBar(() => openDrawer , () => openEndDrawer)
-              );
+      return SlidingAppBar(
+          controller: _controller,
+          visible: (_selectedIndex == 0 || _selectedIndex == 1 || _selectedIndex == 3) ? true : false,
+          child: MainAppBar(() => openDrawer , () => openEndDrawer)
+          );
   }
 
   void openDrawer() {
@@ -63,11 +63,10 @@ class _NavigationPageState extends State<NavigationPage> with SingleTickerProvid
   Widget build(BuildContext context) {
     return
     Scaffold(
-
       key: _scaffoldKey,
       appBar: _getAppbar(),
       drawer: Drawer(),
-      endDrawer: Drawer(),
+      endDrawer: EndDrawer(),
       body: PageView(
         controller: _pageController,
         children: _screens,
