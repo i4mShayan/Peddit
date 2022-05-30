@@ -90,6 +90,7 @@ class _PostItemState extends State<PostItem> {
                       margin: EdgeInsets.only(left: 15, bottom: 5, right: 20),
                       child: Text(
                         widget.post.title,
+                        overflow: TextOverflow.ellipsis,
                         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
                       )),
                 ),

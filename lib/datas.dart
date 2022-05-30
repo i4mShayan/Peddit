@@ -17,7 +17,7 @@ class Datas{
   ];
 
   late List<PostModel> feedPosts=[
-    PostModel(title: "title", desc: "dec",
+    PostModel(title: "title_title_title_title_title_title_title_title_title_", desc: "dec",
       publisher: UserModel(userName: "user", email: "email",
           userProfileImage: Datas().defaultProfilePicture, followedForums: [], starredForums: [], upVotedPosts: [], userPosts: [],
           disLikedComments: [], comments: [], downVotedPosts: [], savedPosts: [], likedComments: []),

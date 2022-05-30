@@ -136,7 +136,9 @@ class _SingleForumPageSliverAppbarState
             size: 35,
             color: Colors.grey[700],
           ),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
       ),
       title: GestureDetector(
