@@ -1,7 +1,8 @@
 import '../libs.dart';
 
 class SingleForumPage extends StatefulWidget {
-  SingleForumPage({required this.forum ,Key? key}) : super(key: key);
+  var pageSetState;
+  SingleForumPage({required this.forum, required this.pageSetState,Key? key}) : super(key: key);
 
   ForumModel forum;
   @override
@@ -21,7 +22,7 @@ class _SingleForumPageState extends State<SingleForumPage> {
     return Scaffold(
       key: _scaffoldKey,
       endDrawer: EndDrawer(),
-      backgroundColor: Colors.grey[300],
+      backgroundColor: Colors.blueGrey[50],
       body: CustomScrollView(
         slivers: <Widget>[
           SingleForumPageSliverAppbar(forum: widget.forum , openEndDrawer:()=> openEndDrawer),
@@ -34,7 +35,7 @@ class _SingleForumPageState extends State<SingleForumPage> {
           SliverList(
             delegate: SliverChildBuilderDelegate(
                   (BuildContext context, int index) {
-                    return PostItem(post: Datas().feedPosts[index]);
+                    return PostItem(post: Datas().feedPosts[index], pageSetState: widget.pageSetState);
               },
               childCount: Datas().feedPosts.length,
             ),

@@ -40,7 +40,7 @@ class _PostDetailsState extends State<PostDetails> with SingleTickerProviderStat
     return SlidingAppBar(
         controller: _controller,
         visible: true,
-        child: PostAppBar(() => openDrawer , () => openEndDrawer, widget.post)
+        child: PostAppBar(() => openDrawer , () => openEndDrawer, widget.post, ()=>setState((){}))
     );
   }
 

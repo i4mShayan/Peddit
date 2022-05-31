@@ -23,6 +23,7 @@ class _CommentState extends State<Comment> {
                   margin: EdgeInsets.all(10),
                   child: CircleAvatar(
                     backgroundImage: widget.comment.publisher.userProfileImage.image,
+                    backgroundColor: Colors.white,
                     radius: 15,
                   ),
                 ),

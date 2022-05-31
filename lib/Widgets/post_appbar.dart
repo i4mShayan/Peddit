@@ -5,8 +5,8 @@ class PostAppBar extends StatefulWidget implements PreferredSizeWidget{
   Function _openDrawer;
   Function _openEndDrawer;
   PostModel post;
-
-  PostAppBar(this._openDrawer, this._openEndDrawer, this.post);
+  var pageSetState;
+  PostAppBar(this._openDrawer, this._openEndDrawer, this.post, this.pageSetState);
 
   @override
   State<PostAppBar> createState() => _PostAppBarState();
@@ -43,8 +43,8 @@ class _PostAppBarState extends State<PostAppBar> {
         onTap: (){
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => SingleForumPage(forum: widget.post.forum)),
-          );
+            MaterialPageRoute(builder: (context) => SingleForumPage(forum: widget.post.forum, pageSetState: widget.pageSetState,)),
+          ).then(widget.pageSetState());
         },
         child: Row(
           children: [
@@ -70,6 +70,7 @@ class _PostAppBarState extends State<PostAppBar> {
                 fit: BoxFit.contain,
                 child: CircleAvatar(
                   backgroundImage: Datas().currentUser.userProfileImage.image,
+                  backgroundColor: Colors.white,
                 ),
               ),
               decoration: BoxDecoration(

@@ -76,6 +76,7 @@ class _MainAppBarState extends State<MainAppBar> {
                 fit: BoxFit.contain,
                 child: CircleAvatar(
                   backgroundImage: Datas().currentUser.userProfileImage.image,
+                  backgroundColor: Colors.white,
                 ),
               ),
               decoration: BoxDecoration(
