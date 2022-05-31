@@ -58,6 +58,8 @@ class _NavigationPageState extends State<NavigationPage> with SingleTickerProvid
   }
 
 
+  double iconSizeWhenSelected=30;
+
   @override
   Widget build(BuildContext context) {
     return
@@ -84,27 +86,27 @@ class _NavigationPageState extends State<NavigationPage> with SingleTickerProvid
         ),
         child: BottomNavigationBar(
           elevation: 1,
-          iconSize: 25,
+          iconSize: 30,
           type: BottomNavigationBarType.fixed,
-          items: const<BottomNavigationBarItem>[
+          items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-              icon: Icon(Icons.home),
+              icon: _selectedIndex==0 ? Icon(Icons.home, size: iconSizeWhenSelected):Icon(Icons.home_outlined),
               label: '',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.list_alt_outlined),
+              icon: _selectedIndex==1 ? Icon(Icons.list_alt, size: iconSizeWhenSelected):Icon(Icons.list_alt_outlined),
               label: '',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.add, size: 30),
+              icon: _selectedIndex==2 ? Icon(Icons.add_circle_rounded, size: iconSizeWhenSelected,):Icon(Icons.add_circle_outline_rounded),
               label: '',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.bookmark),
+              icon: _selectedIndex==3 ? Icon(Icons.bookmark_rounded, size: iconSizeWhenSelected):Icon(Icons.bookmark_outline_rounded),
               label: '',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.settings),
+              icon: _selectedIndex==4 ? Icon(Icons.settings, size: iconSizeWhenSelected):Icon(Icons.settings_outlined),
               label: '',
             ),
           ],
