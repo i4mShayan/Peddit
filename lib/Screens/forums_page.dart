@@ -14,16 +14,10 @@ class _ForumsPageState extends State<ForumsPage> {
     return ListView(
       children: [
         Padding(
-          padding: const EdgeInsets.only(left: 10, top: 20),
+          padding: const EdgeInsets.only(left: 20, top: 20, bottom: 10),
           child: Text(
             "Favorite forums",
-            style: TextStyle(fontWeight: FontWeight.w500, fontSize: 17),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(left: 10, right: 10, bottom: 5),
-          child: Divider(
-            thickness: 1, color: Colors.black,
+            style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
           ),
         ),
         (Datas().currentUser.starredForums.length!=0 ? Column(
@@ -45,16 +39,16 @@ class _ForumsPageState extends State<ForumsPage> {
         ),
         SizedBox(height: 5,),
         Padding(
-          padding: const EdgeInsets.only(left: 10, top: 20),
-          child: Text(
-            "Followed forums",
-            style: TextStyle(fontWeight: FontWeight.w500, fontSize: 17),
+          padding: const EdgeInsets.only(top: 15),
+          child: Divider(
+            thickness: 1,
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(left: 10, right: 10, bottom: 5),
-          child: Divider(
-            thickness: 1, color: Colors.black,
+          padding: const EdgeInsets.only(left: 20, top: 5, bottom: 10),
+          child: Text(
+            "Followed forums",
+            style: TextStyle(fontWeight: FontWeight.w500, fontSize: 17),
           ),
         ),
         (Datas().currentUser.followedForums.length!=0 ? Column(

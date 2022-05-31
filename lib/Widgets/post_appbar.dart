@@ -70,6 +70,7 @@ class _PostAppBarState extends State<PostAppBar> {
                 fit: BoxFit.contain,
                 child: CircleAvatar(
                   backgroundImage: Datas().currentUser.userProfileImage.image,
+                  backgroundColor: Colors.white,
                 ),
               ),
               decoration: BoxDecoration(

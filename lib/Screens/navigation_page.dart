@@ -94,7 +94,7 @@ class _NavigationPageState extends State<NavigationPage> with SingleTickerProvid
               label: '',
             ),
             BottomNavigationBarItem(
-              icon: _selectedIndex==1 ? Icon(Icons.list_alt, size: iconSizeWhenSelected):Icon(Icons.list_alt_outlined),
+              icon: _selectedIndex==1 ? Icon(Icons., size: iconSizeWhenSelected):Icon(Icons.list_alt_outlined),
               label: '',
             ),
             BottomNavigationBarItem(
@@ -106,7 +106,7 @@ class _NavigationPageState extends State<NavigationPage> with SingleTickerProvid
               label: '',
             ),
             BottomNavigationBarItem(
-              icon: _selectedIndex==4 ? Icon(Icons.settings, size: iconSizeWhenSelected):Icon(Icons.settings_outlined),
+              icon: _selectedIndex==4 ? Icon(Icons.settings_rounded, size: iconSizeWhenSelected):Icon(Icons.settings_outlined),
               label: '',
             ),
           ],

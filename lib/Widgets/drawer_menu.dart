@@ -11,6 +11,7 @@ class _DrawerMenuState extends State<DrawerMenu> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
+      width: 330,
       child: ForumsPage()
     );
   }

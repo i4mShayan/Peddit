@@ -22,7 +22,7 @@ class _SingleForumPageState extends State<SingleForumPage> {
     return Scaffold(
       key: _scaffoldKey,
       endDrawer: EndDrawer(),
-      backgroundColor: Colors.grey[300],
+      backgroundColor: Colors.blueGrey[50],
       body: CustomScrollView(
         slivers: <Widget>[
           SingleForumPageSliverAppbar(forum: widget.forum , openEndDrawer:()=> openEndDrawer),

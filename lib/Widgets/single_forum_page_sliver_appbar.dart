@@ -19,6 +19,8 @@ class SingleForumPageSliverAppbar extends StatefulWidget
 
 class _SingleForumPageSliverAppbarState
     extends State<SingleForumPageSliverAppbar> {
+
+  int maxDescLines=3;
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
@@ -46,7 +48,7 @@ class _SingleForumPageSliverAppbarState
                       ),
                     ),
                     child: BackdropFilter(
-                      filter: ImageFilter.blur(sigmaX: 0, sigmaY: 0), //blur using this
+                      filter: ImageFilter.blur(sigmaX: 0, sigmaY: 0), //blur header using this
                       child: Container(
                         decoration: BoxDecoration(color: Colors.white.withOpacity(0.0)),
                       ),
@@ -72,7 +74,7 @@ class _SingleForumPageSliverAppbarState
                       margin: EdgeInsets.only(top: 20, left: 20),
                       child: Text("r/" + widget.forum.forumName,
                           style: TextStyle(
-                              fontSize: 30, fontWeight: FontWeight.bold)),
+                              fontSize: 15, fontWeight: FontWeight.bold)),
                     ),
                     Container(
                       margin: EdgeInsets.only(top: 20, left: 20 , right: 20),
@@ -110,17 +112,19 @@ class _SingleForumPageSliverAppbarState
                   alignment: Alignment.centerLeft,
                   child: Container(
                     height: 100,
-                    margin: EdgeInsets.only(top: 5, left: 20 , right: 10),
+                    margin: EdgeInsets.only(top: 5, left: 20 , right: 10,),
                     child: NotificationListener<OverscrollIndicatorNotification>(
                       onNotification: (overScroll) {
                         overScroll.disallowIndicator();
                         return true;
                       },
-                      child: SingleChildScrollView(
-                          scrollDirection: Axis.vertical,
-                        child: Text(widget.forum.forumDesc,
-                            style: TextStyle(
-                                fontSize: 15,)),
+                      child: Scrollbar(
+                        child: SingleChildScrollView(
+                            scrollDirection: Axis.vertical,
+                          child: Text(widget.forum.forumDesc,
+                              style: TextStyle(
+                                  fontSize: 15,)),
+                        ),
                       ),
                     ),
                   ),
@@ -145,6 +149,7 @@ class _SingleForumPageSliverAppbarState
               margin: EdgeInsets.only(top: 105, left: 20),
               child: CircleAvatar(
                 backgroundImage: widget.forum.profileImage.image,
+                backgroundColor: Colors.white,
                 radius: 30,
               ),
             ),
@@ -194,7 +199,7 @@ class _SingleForumPageSliverAppbarState
             color: Colors.grey[300]!.withOpacity(0.9),
           ),
           // margin: EdgeInsets.only(top: 5),
-          height: 40,
+          height: 100
         ),
       ),
       actions: [
@@ -208,6 +213,7 @@ class _SingleForumPageSliverAppbarState
                 fit: BoxFit.contain,
                 child: CircleAvatar(
                   backgroundImage: Datas().currentUser.userProfileImage.image,
+                  backgroundColor: Colors.white,
                 ),
               ),
               decoration: BoxDecoration(

@@ -15,7 +15,6 @@ class _ForumPreviewState extends State<ForumPreview> {
     return Column(
       children: [
         MaterialButton(
-          height: 30,
           onPressed: () {
             setState(() {
               Navigator.push(
@@ -30,12 +29,13 @@ class _ForumPreviewState extends State<ForumPreview> {
             children: [
               CircleAvatar(
                 backgroundImage: widget.forum.profileImage.image,
-                radius: 17,
+                backgroundColor: Colors.white,
+                radius: 15,
               ),
               SizedBox(width: 10,),
               Text(
                 "r/" + widget.forum.forumName,
-                style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.w400),
+                style: TextStyle(color: Colors.black, fontSize: 14, fontWeight: FontWeight.w400),
               ),
               Spacer(),
               IconButton(

@@ -32,6 +32,7 @@ class _EndDrawerState extends State<EndDrawer> {
               children: [
                 CircleAvatar(
                   backgroundImage: Datas().currentUser.userProfileImage.image,
+                  backgroundColor: Colors.white,
                   radius: 20,
                 ),
                 SizedBox(width: 8,),

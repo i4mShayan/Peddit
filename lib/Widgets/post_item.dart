@@ -48,6 +48,7 @@ class _PostItemState extends State<PostItem> {
                           margin: EdgeInsets.only(left: 15, right: 10),
                           child: CircleAvatar(
                             backgroundImage: widget.post.publisher.userProfileImage.image,
+                            backgroundColor: Colors.white,
                             radius: 20,
                           ),
                         ),
@@ -100,7 +101,7 @@ class _PostItemState extends State<PostItem> {
                         child: Text(
                           widget.post.title,
                           overflow: TextOverflow.ellipsis,
-                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                         )),
                   ),
                   Align(
@@ -108,9 +109,10 @@ class _PostItemState extends State<PostItem> {
                       child: Container(
                           margin: EdgeInsets.only(left: 15, bottom: 10, right: 20),
                           child: Text(widget.post.desc , maxLines: 3 , overflow: TextOverflow.ellipsis,))),
-                  Container(
+                  (widget.post.hasImage ? Container(
                     child: widget.post.postImage,
-                  ),
+                  ) :
+                      SizedBox(height: 5,)),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     mainAxisSize: MainAxisSize.max,
