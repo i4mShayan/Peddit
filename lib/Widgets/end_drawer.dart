@@ -159,9 +159,15 @@ class _EndDrawerState extends State<EndDrawer> {
                 child: InkWell(
                   onTap: (){
                     setState(() {
+                      if(ModalRoute.of(context)?.settings.name=='/navigation_page'){
+                        Navigator.pop(context);
+                      }
+                      Navigator.of(context).popUntil((route) {
+                        return route.settings.name == '/navigation_page';
+                      });
+                      // Navigator.pop(context);
                       Datas().navigationSelectedIndex=4;
                       Datas().pageController.animateToPage(4, duration: Duration(milliseconds: 200), curve: Curves.ease);
-                      Navigator.pop(context);
                     }
                     );
                   },

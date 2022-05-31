@@ -23,7 +23,6 @@ class _NavigationPageState extends State<NavigationPage> with SingleTickerProvid
   }
 
   PageController _pageController = Datas().pageController;
-
   int _selectedIndex = Datas().navigationSelectedIndex;
 
   List<Widget> _screens = [
