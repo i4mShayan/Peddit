@@ -39,17 +39,25 @@ class _PostAppBarState extends State<PostAppBar> {
           onPressed: (){Navigator.of(context).pop();},
         ),
       ),
-      title: Row(
-        children: [
-          Text(
-            "r/",
-            style: TextStyle(color: Colors.white70, fontWeight: FontWeight.w400,),
-          ),
-          Text(
-            widget.post.forum.forumName,
-            style: TextStyle(color: Colors.grey[250], fontWeight: FontWeight.w500,),
-          ),
-        ],
+      title: GestureDetector(
+        onTap: (){
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => SingleForumPage(forum: widget.post.forum)),
+          );
+        },
+        child: Row(
+          children: [
+            Text(
+              "r/",
+              style: TextStyle(color: Colors.white70, fontWeight: FontWeight.w400,),
+            ),
+            Text(
+              widget.post.forum.forumName,
+              style: TextStyle(color: Colors.grey[250], fontWeight: FontWeight.w500,),
+            ),
+          ],
+        ),
       ),
       actions: [
         GestureDetector(

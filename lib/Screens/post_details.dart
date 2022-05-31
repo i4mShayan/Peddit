@@ -46,12 +46,10 @@ class _PostDetailsState extends State<PostDetails> with SingleTickerProviderStat
       key: _scaffoldKey,
       appBar: _getAppbar(),
       endDrawer: EndDrawer(),
-      body: Stack(
-        children: [
-          SingleChildScrollView(
+      body: SingleChildScrollView(
             child: Column(
               children: [
-                PostItem(post: widget.post),
+                PostItemInDetails(post: widget.post),
                 Container(
                   // margin: EdgeInsets.only(bottom: 5),
                   height: 40,
@@ -60,7 +58,7 @@ class _PostDetailsState extends State<PostDetails> with SingleTickerProviderStat
                       PopupMenuItem(
                         child: Row(
                           children: [
-                            Icon(Icons.rocket_launch_rounded, size: 20,
+                            Icon(Icons.rocket_launch_outlined, size: 20,
                               // color: Colors.grey[600],
                             ),
                             SizedBox(width: 5,),
@@ -78,7 +76,7 @@ class _PostDetailsState extends State<PostDetails> with SingleTickerProviderStat
                       PopupMenuItem(
                           child: Row(
                             children: [
-                              Icon(Icons.new_releases_rounded, size: 20, color: Colors.grey[600],),
+                              Icon(Icons.new_releases_outlined, size: 20, color: Colors.grey[600],),
                               SizedBox(width: 5,),
                               Text(
                                 'NEWEST COMMENTS',
@@ -111,24 +109,12 @@ class _PostDetailsState extends State<PostDetails> with SingleTickerProviderStat
                     ),
                   ),
                 ),
-                CommentSection(),
-                SizedBox(height: 60,),
+                SizedBox(height: 5,),
+                CommentSection(post: widget.post),
+                SizedBox(height: 200,),
               ],
             ),
           ),
-          Spacer(),
-          Positioned.fill(
-            child: Align(
-              alignment: Alignment.bottomCenter,
-              child: Row(
-                children: [
-
-                ],
-              )
-            ),
-          ),
-        ]
-      ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: Container(
         width: MediaQuery.of(context).size.width,
@@ -151,7 +137,7 @@ class _PostDetailsState extends State<PostDetails> with SingleTickerProviderStat
                     child: Container(
                       child: Container(
                         padding: EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 10),
-                        margin: EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 10),
+                        margin: EdgeInsets.only(left: 10, right: 10, top: 7, bottom: 10),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5),
                           color: Colors.blueGrey[50],
