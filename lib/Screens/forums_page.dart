@@ -11,6 +11,71 @@ class _ForumsPageState extends State<ForumsPage> {
 
   @override
   Widget build(BuildContext context) {
-    return ForumsList();
+    return ListView(
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(left: 10, top: 20),
+          child: Text(
+            "Favorite forums",
+            style: TextStyle(fontWeight: FontWeight.w500, fontSize: 17),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(left: 10, right: 10, bottom: 5),
+          child: Divider(
+            thickness: 1, color: Colors.black,
+          ),
+        ),
+        (Datas().currentUser.starredForums.length!=0 ? Column(
+          children: [
+            ForumsList(forums: Datas().currentUser.starredForums, pageSetState: () => setState((){}),),
+          ],
+        )
+            :
+        Column(
+          children: [
+            Icon(Icons.star_rate_rounded, color: Colors.grey[600]!.withOpacity(0.5), size: 50,),
+            Text("Star a forum to show here!",
+            style: TextStyle(
+            fontWeight: FontWeight.w400,
+            fontSize: 15,
+            color: Colors.grey[600],)),
+          ],
+        )
+        ),
+        SizedBox(height: 5,),
+        Padding(
+          padding: const EdgeInsets.only(left: 10, top: 20),
+          child: Text(
+            "Followed forums",
+            style: TextStyle(fontWeight: FontWeight.w500, fontSize: 17),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(left: 10, right: 10, bottom: 5),
+          child: Divider(
+            thickness: 1, color: Colors.black,
+          ),
+        ),
+        (Datas().currentUser.followedForums.length!=0 ? Column(
+          children: [
+            ForumsList(forums: Datas().currentUser.followedForums, pageSetState: () => setState((){}),),
+          ],
+        )
+            :
+        Column(
+          children: [
+            Icon(Icons.question_answer_rounded, color: Colors.grey[600]!.withOpacity(0.5), size: 50,),
+            Text("Follow a forum to show here!",
+                style: TextStyle(
+                  fontWeight: FontWeight.w400,
+                  fontSize: 15,
+                  color: Colors.grey[600],)),
+          ],
+        )
+        ),
+        SizedBox(height: 10,),
+      ],
+    );
   }
 }

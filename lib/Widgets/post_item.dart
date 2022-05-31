@@ -2,7 +2,8 @@ import '../libs.dart';
 
 class PostItem extends StatefulWidget {
   PostModel post;
-  PostItem({required this.post, Key? key}) : super(key: key);
+  var pageSetState;
+  PostItem({required this.post, required this.pageSetState, Key? key}) : super(key: key);
   @override
   State<PostItem> createState() => _PostItemState();
 }
@@ -17,7 +18,7 @@ class _PostItemState extends State<PostItem> {
           MaterialPageRoute(
             builder: (context) => PostDetails(post: widget.post),
           ),
-        );
+        ).then((value) => setState(() {}));
       },
       onDoubleTap: (){
         setState((){
@@ -59,8 +60,8 @@ class _PostItemState extends State<PostItem> {
                                     onTap: () {
                                       Navigator.push(
                                         context,
-                                        MaterialPageRoute(builder: (context) => SingleForumPage(forum: widget.post.forum)),
-                                      );
+                                        MaterialPageRoute(builder: (context) => SingleForumPage(forum: widget.post.forum, pageSetState: ()=>setState((){}),)),
+                                      ).then((value) => setState(() {}));
                                     },
                                     child: Text(
                                       "r/" + widget.post.forum.forumName,
@@ -119,6 +120,7 @@ class _PostItemState extends State<PostItem> {
                           IconButton(
                             onPressed: () {
                               setState((){
+                                widget.pageSetState();
                                 if(widget.post.userDownVoted(Datas().currentUser)){ //deleting other vote
                                   widget.post.downVotedUsers.remove(Datas().currentUser);
                                 }
@@ -143,6 +145,7 @@ class _PostItemState extends State<PostItem> {
                           IconButton(
                             onPressed: () {
                               setState((){
+                                widget.pageSetState();
                                 if(widget.post.userUpVoted(Datas().currentUser)){ //deleting other vote
                                   widget.post.upVotedUsers.remove(Datas().currentUser);
                                 }
@@ -186,6 +189,7 @@ class _PostItemState extends State<PostItem> {
                             TextButton.icon(
                               onPressed: () {
                                 setState((){
+                                  widget.pageSetState();
                                   if(Datas().currentUser.savedThisPost(widget.post)) {
                                     Datas().currentUser.savedPosts.remove(widget.post);
                                   }

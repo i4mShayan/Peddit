@@ -20,7 +20,7 @@ class _FeedPageState extends State<FeedPage> {
           itemCount: Datas().feedPosts.length,
           itemBuilder: (contex, index) {
             return InkWell(
-              child: PostItem(post: Datas().feedPosts[index]),
+              child: PostItem(post: Datas().feedPosts[index], pageSetState: ()=>setState((){}),),
               onTap: (){
                 PostModel post = Datas().feedPosts[index];
                 SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(

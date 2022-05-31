@@ -11,14 +11,13 @@ class _PostItemInDetailsState extends State<PostItemInDetails> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(bottom: 5),
       color: Colors.white,
       child: Material(
         child: (
             Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(bottom: 5, top: 10),
+                  padding: const EdgeInsets.only(bottom: 0, top: 10),
                   child: Row(
                     children: [
                       Expanded(
@@ -27,7 +26,7 @@ class _PostItemInDetailsState extends State<PostItemInDetails> {
                             Row(
                               children: [
                                 Container(
-                                  margin: EdgeInsets.all(10),
+                                  margin: EdgeInsets.only(left: 15, top: 10, right: 10, bottom: 10),
                                   child: CircleAvatar(
                                     backgroundImage: widget.post.publisher.userProfileImage.image,
                                     radius: 20,

@@ -9,11 +9,16 @@ class Datas{
 
   late List<UserModel> usersList=[currentUser];
 
-  late List<ForumModel> forumsList=[
+  late List<ForumModel> forumsList=[for(var i = 1; i <= 10; i++)
     ForumModel(owner: UserModel(userName: "username", email: "email", userProfileImage: Datas().defaultProfilePicture,
         followedForums: [], starredForums: [], downVotedPosts: [], upVotedPosts: [], savedPosts: [],
         likedComments: [], disLikedComments: [], userPosts: [], comments: []),
-        forumCreateTime: DateTime.now() , headerImage: Datas().defaultBackground, profileImage: Datas().defaultProfilePicture, members: [], posts: [], admins: [] , forumName: "hello",forumDesc: "forum Desc_forum Desc_forum Desc_forum Desc_forum Desc_forum Desc_forum Desc_forum Desc_forum Desc_forum Desc_forum Desc_forum Desc_forum Desc_forum Desc_forum Desc_forum Desc_forum Desc_forum Desc_forum Desc_"),
+        forumCreateTime: DateTime.now(),
+        headerImage: Datas().defaultBackground,
+        profileImage: Datas().defaultProfilePicture,
+        members: [], posts: [], admins: [],
+        forumName: "hello",
+        forumDesc: "forum Desc_forum Desc_forum Desc_forum Desc_forum Desc_forum Desc_forum Desc_forum Desc_forum Desc_forum Desc_forum Desc_forum Desc_forum Desc_forum Desc_forum Desc_forum Desc_forum Desc_forum Desc_forum Desc_"),
   ];
 
   late List<PostModel> feedPosts=[

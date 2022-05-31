@@ -18,7 +18,7 @@ class _SavedPostsPageState extends State<SavedPostsPage> {
       body: ListView.builder(
           itemCount: Datas().currentUser.savedPosts.length,
           itemBuilder: (contex, index) {
-            return PostItem(post: Datas().currentUser.savedPosts[index]);
+            return PostItem(post: Datas().currentUser.savedPosts[index], pageSetState: ()=>setState((){}));
           }),
     );
   }
