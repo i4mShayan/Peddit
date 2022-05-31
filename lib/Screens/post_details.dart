@@ -1,5 +1,9 @@
 import '../libs.dart';
 
+enum SortType{
+  best, newest
+}
+
 class PostDetails extends StatefulWidget {
   PostModel post;
   PostDetails({required this.post ,Key? key}) : super(key: key);
@@ -9,6 +13,8 @@ class PostDetails extends StatefulWidget {
 }
 
 class _PostDetailsState extends State<PostDetails> with SingleTickerProviderStateMixin{
+
+  SortType sortType=SortType.best;
 
   @override
   void initState() {
@@ -56,41 +62,78 @@ class _PostDetailsState extends State<PostDetails> with SingleTickerProviderStat
                   child: PopupMenuButton(
                     itemBuilder: (context)=>[
                       PopupMenuItem(
-                        child: Row(
+                        onTap: (){
+                          setState((){
+                            sortType=SortType.best;
+                          });
+                        },
+                        child: sortType==SortType.best ? Row(
                           children: [
-                            Icon(Icons.rocket_launch_outlined, size: 20,
-                              // color: Colors.grey[600],
-                            ),
+                            Icon(Icons.rocket_launch_rounded, size: 20),
                             SizedBox(width: 5,),
                             Text(
                               'BEST COMMENTS',
                               style: TextStyle(
                                 fontWeight: FontWeight.w500,
                                 fontSize: 12,
-                                // color: Colors.grey[600],
+                              ),
+                            ),
+                          ],
+                        )
+                            :
+                        Row(
+                          children: [
+                            Icon(Icons.rocket_launch_outlined, size: 20, color: Colors.grey[600],),
+                            SizedBox(width: 5,),
+                            Text(
+                              'BEST COMMENTS',
+                              style: TextStyle(
+                                fontWeight: FontWeight.w500,
+                                fontSize: 12,
+                                color: Colors.grey[600],
                               ),
                             ),
                           ],
                         )
                       ),
                       PopupMenuItem(
-                          child: Row(
-                            children: [
-                              Icon(Icons.new_releases_outlined, size: 20, color: Colors.grey[600],),
-                              SizedBox(width: 5,),
-                              Text(
-                                'NEWEST COMMENTS',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 12,
-                                  color: Colors.grey[600],
-                                ),
+                          onTap: (){
+                            setState((){
+                              sortType=SortType.newest;
+                            });
+                          },
+                        child: sortType==SortType.best ? Row(
+                          children: [
+                            Icon(Icons.new_releases_outlined, size: 20, color: Colors.grey[600],),
+                            SizedBox(width: 5,),
+                            Text(
+                              'NEWEST COMMENTS',
+                              style: TextStyle(
+                                fontWeight: FontWeight.w500,
+                                fontSize: 12,
+                                color: Colors.grey[600],
                               ),
-                            ],
-                          )
+                            ),
+                          ],
+                        )
+                            :
+                        Row(
+                          children: [
+                            Icon(Icons.new_releases_rounded, size: 20,),
+                            SizedBox(width: 5,),
+                            Text(
+                              'NEWEST COMMENTS',
+                              style: TextStyle(
+                                fontWeight: FontWeight.w500,
+                                fontSize: 12,
+                              ),
+                            ),
+                          ],
+                        )
                       ),
                     ],
-                    child: Row(
+                    child: sortType==SortType.best ?
+                    Row(
                       children: [
                         SizedBox(width: 15,),
                         Icon(Icons.rocket_launch_rounded, size: 20, color: Colors.grey[600],),
@@ -106,7 +149,25 @@ class _PostDetailsState extends State<PostDetails> with SingleTickerProviderStat
                         SizedBox(width: 5,),
                         Icon(Icons.keyboard_arrow_down_rounded, size: 15, color: Colors.grey[600],),
                       ],
-                    ),
+                    )
+                        :
+                    Row(
+                      children: [
+                        SizedBox(width: 15,),
+                        Icon(Icons.new_releases_rounded, size: 20, color: Colors.grey[600],),
+                        SizedBox(width: 5,),
+                        Text(
+                          'NEWEST COMMENTS',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 12,
+                            color: Colors.grey[600],
+                          ),
+                        ),
+                        SizedBox(width: 5,),
+                        Icon(Icons.keyboard_arrow_down_rounded, size: 15, color: Colors.grey[600],),
+                      ],
+                    )
                   ),
                 ),
                 SizedBox(height: 5,),

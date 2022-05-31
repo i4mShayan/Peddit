@@ -130,7 +130,7 @@ class _PostItemInDetailsState extends State<PostItemInDetails> {
                     Row(
                       children: [
                         Icon(Icons.mode_comment_outlined),
-                        SizedBox(width: 5,),
+                        SizedBox(width: 7,),
                         Text(
                           widget.post.comments.length.toString(),
                           style: TextStyle(fontWeight: FontWeight.w500),
