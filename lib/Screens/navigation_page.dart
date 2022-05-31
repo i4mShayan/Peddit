@@ -94,7 +94,7 @@ class _NavigationPageState extends State<NavigationPage> with SingleTickerProvid
               label: '',
             ),
             BottomNavigationBarItem(
-              icon: _selectedIndex==1 ? Icon(Icons., size: iconSizeWhenSelected):Icon(Icons.list_alt_outlined),
+              icon: _selectedIndex==1 ? Icon(Icons.list_alt_rounded, size: iconSizeWhenSelected):Icon(Icons.list_alt_outlined),
               label: '',
             ),
             BottomNavigationBarItem(
