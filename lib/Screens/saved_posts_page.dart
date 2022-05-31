@@ -12,7 +12,7 @@ class _SavedPostsPageState extends State<SavedPostsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[300],
+      backgroundColor: Colors.blueGrey[50],
       resizeToAvoidBottomInset: false,
 
       body: ListView.builder(

@@ -37,86 +37,86 @@ class _PostItemState extends State<PostItem> {
         color: Colors.white,
         child: Material(
           child: (
-            Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 5, top: 10),
-                  child: Row(
-                    children: [
-                      Container(
-                        margin: EdgeInsets.only(left: 15, right: 10),
-                        child: CircleAvatar(
-                          backgroundImage: widget.post.publisher.userProfileImage.image,
-                          radius: 20,
+              Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 5, top: 10),
+                    child: Row(
+                      children: [
+                        Container(
+                          margin: EdgeInsets.only(left: 15, right: 10),
+                          child: CircleAvatar(
+                            backgroundImage: widget.post.publisher.userProfileImage.image,
+                            radius: 20,
+                          ),
                         ),
-                      ),
-                      Expanded(
-                        child: Column(
-                          children: [
-                            Row(
-                              children: [
-                                GestureDetector(
-                                  onTap: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(builder: (context) => SingleForumPage(forum: widget.post.forum)),
-                                    );
-                                  },
-                                  child: Text(
-                                    "r/" + widget.post.forum.forumName,
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w500, fontSize: 17),
+                        Expanded(
+                          child: Column(
+                            children: [
+                              Row(
+                                children: [
+                                  GestureDetector(
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(builder: (context) => SingleForumPage(forum: widget.post.forum)),
+                                      );
+                                    },
+                                    child: Text(
+                                      "r/" + widget.post.forum.forumName,
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w500, fontSize: 17),
+                                    ),
                                   ),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                Text(
-                                  "u/" + widget.post.publisher.userName,
-                                  style: TextStyle(fontSize: 15),
-                                ),
-                                Text('.'),
-                                Text(DateTime.now()
-                                        .difference(widget.post.publishTime)
-                                        .inHours
-                                        .toString() +
-                                    "h"),
-                              ],
-                            ),
-                          ],
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Text(
+                                    "u/" + widget.post.publisher.userName,
+                                    style: TextStyle(fontSize: 15),
+                                  ),
+                                  Text('.'),
+                                  Text(DateTime.now()
+                                      .difference(widget.post.publishTime)
+                                      .inHours
+                                      .toString() +
+                                      "h"),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                      Spacer(),
-                      IconButton(onPressed: () {}, icon: Icon(Icons.more_vert))
-                    ],
+                        Spacer(),
+                        IconButton(onPressed: () {}, icon: Icon(Icons.more_vert))
+                      ],
+                    ),
                   ),
-                ),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Container(
-                      margin: EdgeInsets.only(left: 15, bottom: 5, right: 20),
-                      child: Text(
-                        widget.post.title,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
-                      )),
-                ),
-                Align(
+                  Align(
                     alignment: Alignment.centerLeft,
                     child: Container(
-                        margin: EdgeInsets.only(left: 15, bottom: 10, right: 20),
-                        child: Text(widget.post.desc , maxLines: 3 , overflow: TextOverflow.ellipsis,))),
-                Container(
-                  child: widget.post.postImage,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Row(
-                      children: [
-                        IconButton(
+                        margin: EdgeInsets.only(left: 15, bottom: 5, right: 20),
+                        child: Text(
+                          widget.post.title,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+                        )),
+                  ),
+                  Align(
+                      alignment: Alignment.centerLeft,
+                      child: Container(
+                          margin: EdgeInsets.only(left: 15, bottom: 10, right: 20),
+                          child: Text(widget.post.desc , maxLines: 3 , overflow: TextOverflow.ellipsis,))),
+                  Container(
+                    child: widget.post.postImage,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Row(
+                        children: [
+                          IconButton(
                             onPressed: () {
                               setState((){
                                 if(widget.post.userDownVoted(Datas().currentUser)){ //deleting other vote
@@ -131,19 +131,16 @@ class _PostItemState extends State<PostItem> {
                               });
                             },
                             icon: Icon(
-                              Icons.arrow_upward_rounded),
-                              color: widget.post.userUpVoted(Datas().currentUser) ? Colors.green:Colors.black,
-                            ),
-                        SizedBox(
-                          width: 30,
-                          child: Align(
+                                Icons.arrow_upward_rounded),
+                            color: widget.post.userUpVoted(Datas().currentUser) ? Colors.green:Colors.black,
+                          ),
+                          Align(
                             alignment: Alignment.center,
                             child: Text(
                               (widget.post.anyVotes() ? widget.post.postScore().toString():"Vote"),
                               style: TextStyle(fontWeight: FontWeight.w500),),
                           ),
-                        ),
-                        IconButton(
+                          IconButton(
                             onPressed: () {
                               setState((){
                                 if(widget.post.userUpVoted(Datas().currentUser)){ //deleting other vote
@@ -161,54 +158,60 @@ class _PostItemState extends State<PostItem> {
                               Icons.arrow_downward_rounded,
                               color: widget.post.userDownVoted(Datas().currentUser) ? Colors.red:Colors.black,
                             ),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        TextButton.icon(
-                          onPressed: () {},
-                          icon: Icon(Icons.mode_comment_outlined), label: Text(widget.post.comments.length.toString()),
-                          style: TextButton.styleFrom(
-                            primary: Colors.grey[900],
                           ),
-                        ),
-                      ],
-                    ),
-                    Container(
-                      width: 90,
-                      margin: EdgeInsets.only(right: 15),
-                      child: Row(
+                        ],
+                      ),
+                      Row(
                         children: [
                           TextButton.icon(
                             onPressed: () {
-                              setState((){
-                                if(Datas().currentUser.savedThisPost(widget.post)) {
-                                  Datas().currentUser.savedPosts.remove(widget.post);
-                                }
-                                else{
-                                  Datas().currentUser.savedPosts.add(widget.post);
-                                }
-                              });
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => PostDetails(post: widget.post),
+                                ),
+                              );
                             },
-                            icon: Icon(
-                              Datas().currentUser.savedThisPost(widget.post) ? Icons.bookmark_rounded :Icons.bookmark_border_rounded,
-                            ),
-                            label: Text(
-                                Datas().currentUser.savedThisPost(widget.post) ? "Saved!" : "Save",
-
-                            ),
+                            icon: Icon(Icons.mode_comment_outlined), label: Text(widget.post.comments.length.toString()),
                             style: TextButton.styleFrom(
                               primary: Colors.grey[900],
                             ),
                           ),
                         ],
                       ),
-                    )
-                  ],
-                ),
-              ],
-            )
+                      Container(
+                        margin: EdgeInsets.only(right: 15),
+                        child: Row(
+                          children: [
+                            TextButton.icon(
+                              onPressed: () {
+                                setState((){
+                                  if(Datas().currentUser.savedThisPost(widget.post)) {
+                                    Datas().currentUser.savedPosts.remove(widget.post);
+                                  }
+                                  else{
+                                    Datas().currentUser.savedPosts.add(widget.post);
+                                  }
+                                });
+                              },
+                              icon: Icon(
+                                Datas().currentUser.savedThisPost(widget.post) ? Icons.bookmark_rounded :Icons.bookmark_border_rounded,
+                              ),
+                              label: Text(
+                                Datas().currentUser.savedThisPost(widget.post) ? "Saved!" : "Save",
+
+                              ),
+                              style: TextButton.styleFrom(
+                                primary: Colors.grey[900],
+                              ),
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                ],
+              )
           ),
         ),
       ),

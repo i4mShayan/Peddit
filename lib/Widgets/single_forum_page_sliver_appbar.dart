@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import '../libs.dart';
 
 class SingleForumPageSliverAppbar extends StatefulWidget
@@ -36,9 +38,19 @@ class _SingleForumPageSliverAppbarState
                   height: 150,
                   width: MediaQuery.of(context).size.width,
                   color: Colors.orangeAccent,
-                  child: Image(
-                    image: widget.forum.headerImage.image,
-                    fit: BoxFit.fitWidth,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: Image(image: widget.forum.headerImage.image,).image,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    child: BackdropFilter(
+                      filter: ImageFilter.blur(sigmaX: 0, sigmaY: 0), //blur using this
+                      child: Container(
+                        decoration: BoxDecoration(color: Colors.white.withOpacity(0.0)),
+                      ),
+                    ),
                   ),
                 ),
                 Container(
@@ -145,7 +157,7 @@ class _SingleForumPageSliverAppbarState
           icon: Icon(
             Icons.arrow_back_rounded,
             size: 35,
-            color: Colors.deepOrange[400],
+            color: Colors.grey[700],
           ),
           onPressed: () {
             Navigator.pop(context);
@@ -164,7 +176,7 @@ class _SingleForumPageSliverAppbarState
                 margin: const EdgeInsets.only(left: 5, right: 5),
                 child: Icon(
                   Icons.search,
-                  color: Colors.grey[800],
+                  color: Colors.grey[500],
                 ),
               ),
               Text(
@@ -172,17 +184,16 @@ class _SingleForumPageSliverAppbarState
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.w300,
-                  color: Colors.grey[800],
+                  color: Colors.grey[500],
                 ),
               ),
             ],
           ),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(5),
-            color: Colors.grey.withOpacity(0.9),
+            color: Colors.grey[300]!.withOpacity(0.9),
           ),
           // margin: EdgeInsets.only(top: 5),
-          width: 250,
           height: 40,
         ),
       ),

@@ -22,7 +22,17 @@ class Datas{
           userProfileImage: Datas().defaultProfilePicture, followedForums: [], starredForums: [], upVotedPosts: [], userPosts: [],
           disLikedComments: [], comments: [], downVotedPosts: [], savedPosts: [], likedComments: []),
       forum: forumsList[0],
-      publishTime: DateTime.now(), hasImage: true, postImage: Datas().defaultBackground, upVotedUsers: [], downVotedUsers: [] , comments: []),
+      publishTime: DateTime.now(), hasImage: true, postImage: Datas().defaultBackground, upVotedUsers: [], downVotedUsers: [] , comments: [
+        CommentModel(publisher: UserModel(userName: "user", email: "email",
+            userProfileImage: Datas().defaultProfilePicture, followedForums: [], starredForums: [], upVotedPosts: [], userPosts: [],
+            disLikedComments: [], comments: [], downVotedPosts: [], savedPosts: [], likedComments: []), publishTime: DateTime.now(), commentDesc: "wow nice comment section!", usersReplied: [], upVotedUsers: [], downVotedUsers: []),
+          CommentModel(publisher: UserModel(userName: "user", email: "email",
+              userProfileImage: Datas().defaultProfilePicture, followedForums: [], starredForums: [], upVotedPosts: [], userPosts: [],
+              disLikedComments: [], comments: [], downVotedPosts: [], savedPosts: [], likedComments: []), publishTime: DateTime.now(), commentDesc: "wow nice comment section!", usersReplied: [], upVotedUsers: [], downVotedUsers: []),
+          CommentModel(publisher: UserModel(userName: "user", email: "email",
+              userProfileImage: Datas().defaultProfilePicture, followedForums: [], starredForums: [], upVotedPosts: [], userPosts: [],
+              disLikedComments: [], comments: [], downVotedPosts: [], savedPosts: [], likedComments: []), publishTime: DateTime.now(), commentDesc: "wow nice comment section!", usersReplied: [], upVotedUsers: [], downVotedUsers: []),
+        ]),
 
     PostModel(title: "title", desc: "dec",
       publisher: UserModel(userName: "user", email: "email",
