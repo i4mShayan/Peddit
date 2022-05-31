@@ -1,6 +1,8 @@
 import 'libs.dart';
 
 class Datas{
+  PageController pageController=PageController();
+  int navigationSelectedIndex=0;
   Image defaultProfilePicture=Image.asset("assets/images/default_profile.png");
   Image defaultBackground=Image.asset("assets/images/default_background.png");
   late UserModel currentUser=UserModel(userName: "username", email: "email", userProfileImage: Datas().defaultProfilePicture,
@@ -46,6 +48,7 @@ class Datas{
       forum: forumsList[0],
       publishTime: DateTime.now(), hasImage: true, postImage: Datas().defaultBackground, upVotedUsers: [], downVotedUsers: [], comments: []),
   ];
+
 
   Datas._();
 

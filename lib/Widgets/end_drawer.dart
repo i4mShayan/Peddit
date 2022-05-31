@@ -158,15 +158,20 @@ class _EndDrawerState extends State<EndDrawer> {
                 width: 127,
                 child: InkWell(
                   onTap: (){
-                    Navigator.pushNamed(context, '/about_us');
+                    setState(() {
+                      Datas().navigationSelectedIndex=4;
+                      Datas().pageController.animateToPage(4, duration: Duration(milliseconds: 200), curve: Curves.ease);
+                      Navigator.pop(context);
+                    }
+                    );
                   },
                   child: Row(
                     children: [
                       SizedBox(width: 15,),
-                      Icon(Icons.info_outline, size: 25, color: Colors.grey[900],),
+                      Icon(Icons.settings_outlined, size: 25, color: Colors.grey[900],),
                       SizedBox(width: 10,),
                       Text(
-                        'About us',
+                        'Settings',
                         style: TextStyle(
                           fontWeight: FontWeight.w500,
                         ),

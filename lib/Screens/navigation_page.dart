@@ -22,12 +22,12 @@ class _NavigationPageState extends State<NavigationPage> with SingleTickerProvid
     );
   }
 
-  PageController _pageController = PageController();
+  PageController _pageController = Datas().pageController;
 
-  int _selectedIndex = 0;
+  int _selectedIndex = Datas().navigationSelectedIndex;
 
   List<Widget> _screens = [
-  FeedPage() , ForumsPage() , AddNewPostPage() , SavedPostsPage() , SettingPage()
+    FeedPage() , ForumsPage() , AddNewPostPage() , SavedPostsPage() , SettingPage()
   ];
 
   void _onPageChanged(int index) {
@@ -65,7 +65,7 @@ class _NavigationPageState extends State<NavigationPage> with SingleTickerProvid
     Scaffold(
       key: _scaffoldKey,
       appBar: _getAppbar(),
-      drawer: Drawer(),
+      drawer: DrawerMenu(),
       endDrawer: EndDrawer(),
       body: PageView(
         controller: _pageController,
