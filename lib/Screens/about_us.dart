@@ -138,6 +138,7 @@ class AboutUs extends StatelessWidget {
                                 CircleAvatar(
                                   backgroundImage:
                                       AssetImage('assets/images/shayan.jpg'),
+                                  backgroundColor: Colors.white,
                                   radius: 30,
                                 ),
                                 SizedBox(

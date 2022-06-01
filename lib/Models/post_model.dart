@@ -22,7 +22,7 @@ class PostModel{
   }
 
   bool anyVotes(){
-    return upVotedUsers.length!=0 || downVotedUsers.length!=0;
+    return upVotedUsers.isNotEmpty || downVotedUsers.isNotEmpty;
   }
 
   bool userUpVoted(UserModel user){

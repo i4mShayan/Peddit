@@ -12,14 +12,28 @@ class _SavedPostsPageState extends State<SavedPostsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[300],
+      backgroundColor: Colors.blueGrey[50],
       resizeToAvoidBottomInset: false,
 
-      body: ListView.builder(
+      body: Datas().currentUser.savedPosts.isNotEmpty ? ListView.builder(
           itemCount: Datas().currentUser.savedPosts.length,
           itemBuilder: (contex, index) {
-            return PostItem(post: Datas().currentUser.savedPosts[index]);
-          }),
+            return PostItem(post: Datas().currentUser.savedPosts[index], pageSetState: ()=>setState((){}));
+          })
+          :
+      Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(Icons.bookmark_rounded, color: Colors.grey[600]!.withOpacity(0.5), size: 100,),
+            Text("No saved post", style: TextStyle(
+              fontWeight: FontWeight.w400,
+              fontSize: 15,
+              color: Colors.grey[600],
+            ),),
+          ],
+        ),
+      )
     );
   }
 }

@@ -32,6 +32,7 @@ class _EndDrawerState extends State<EndDrawer> {
               children: [
                 CircleAvatar(
                   backgroundImage: Datas().currentUser.userProfileImage.image,
+                  backgroundColor: Colors.white,
                   radius: 20,
                 ),
                 SizedBox(width: 8,),
@@ -158,15 +159,26 @@ class _EndDrawerState extends State<EndDrawer> {
                 width: 127,
                 child: InkWell(
                   onTap: (){
-                    Navigator.pushNamed(context, '/about_us');
+                    setState(() {
+                      if(ModalRoute.of(context)?.settings.name=='/navigation_page'){
+                        Navigator.pop(context);
+                      }
+                      Navigator.of(context).popUntil((route) {
+                        return route.settings.name == '/navigation_page';
+                      });
+                      // Navigator.pop(context);
+                      Datas().navigationSelectedIndex=4;
+                      Datas().pageController.animateToPage(4, duration: Duration(milliseconds: 200), curve: Curves.ease);
+                    }
+                    );
                   },
                   child: Row(
                     children: [
                       SizedBox(width: 15,),
-                      Icon(Icons.info_outline, size: 25, color: Colors.grey[900],),
+                      Icon(Icons.settings_outlined, size: 25, color: Colors.grey[900],),
                       SizedBox(width: 10,),
                       Text(
-                        'About us',
+                        'Settings',
                         style: TextStyle(
                           fontWeight: FontWeight.w500,
                         ),
