@@ -2,23 +2,24 @@ import '../libs.dart';
 
 class CommentModel{
   late UserModel publisher;
-  // late PostModel post;
-  // late ForumModel forum;
+  late PostModel post;
+  late ForumModel forum;
   late DateTime publishTime;
   late String commentDesc;
   late List<UserModel> usersReplied;
   late List<UserModel> upVotedUsers;
   late List<UserModel> downVotedUsers;
-
-  CommentModel({required this.publisher, required this.publishTime,
-    required this.commentDesc, required this.usersReplied,
-    required this.upVotedUsers, required this.downVotedUsers,
-  });
-
+  late List<CommentModel> repliedComments;
 
   int commentScore(){
     return upVotedUsers.length - downVotedUsers.length;
   }
+
+
+  CommentModel({required this.publisher, required this.publishTime,
+    required this.commentDesc, required this.usersReplied,
+    required this.upVotedUsers, required this.downVotedUsers ,  required this.repliedComments,
+  });
 
   bool anyVotes(){
     return upVotedUsers.length!=0 || downVotedUsers.length!=0;
