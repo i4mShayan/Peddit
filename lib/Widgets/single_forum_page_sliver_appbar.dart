@@ -133,11 +133,11 @@ class _SingleForumPageSliverAppbarState
             ),
             Container(
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.all( Radius.circular(40.0)),
-                border: Border.all(
-                  color: Colors.white,
-                  width: 4.0,
-                ),
+                // borderRadius: BorderRadius.all( Radius.circular(40.0)),
+                // border: Border.all(
+                //   color: Colors.white,
+                //   width: 4.0,
+                // ),
                 boxShadow: <BoxShadow>[
                   BoxShadow(
                       color: Colors.black54,
@@ -195,11 +195,11 @@ class _SingleForumPageSliverAppbarState
             ],
           ),
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(5),
+            borderRadius: BorderRadius.circular(4),
             color: Colors.grey[300]!.withOpacity(0.9),
           ),
           // margin: EdgeInsets.only(top: 5),
-          height: 100
+          height: 45,
         ),
       ),
       actions: [
