@@ -73,7 +73,7 @@ class _PostItemInDetailsState extends State<PostItemInDetails> {
                     child: Container(
                         margin: EdgeInsets.only(left: 15, bottom: 10, right: 20),
                         child: Text(widget.post.desc , maxLines: 50 , overflow: TextOverflow.ellipsis,))),
-                (widget.post.hasImage ? Container(
+                (widget.post.hasImage() ? Container(
                   child: widget.post.postImage,
                 ) :
                 SizedBox(height: 5,)),

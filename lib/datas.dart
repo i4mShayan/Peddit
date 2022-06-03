@@ -40,7 +40,7 @@ class Datas{
           userProfileImage: Datas().defaultProfilePicture, followedForums: [], starredForums: [], upVotedPosts: [], userPosts: [],
           disLikedComments: [], comments: [], downVotedPosts: [], savedPosts: [], likedComments: []),
       forum: forumsList[0],
-      publishTime: DateTime.now(), hasImage: true, postImage: Image.network("https://uploads-ssl.webflow.com/5f841209f4e71b2d70034471/6078b650748b8558d46ffb7f_Flutter%20app%20development.png"), upVotedUsers: [], downVotedUsers: []
+      publishTime: DateTime.now(), postImage: Image.network("https://uploads-ssl.webflow.com/5f841209f4e71b2d70034471/6078b650748b8558d46ffb7f_Flutter%20app%20development.png"), upVotedUsers: [], downVotedUsers: []
         , comments: [
         CommentModel(publisher: UserModel(userName: "SBU", email: "email",
             userProfileImage: Datas().defaultProfilePicture, followedForums: [], starredForums: [], upVotedPosts: [], userPosts: [],

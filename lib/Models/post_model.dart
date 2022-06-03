@@ -9,12 +9,16 @@ class PostModel{
   late List<UserModel> upVotedUsers;
   late List<UserModel> downVotedUsers;
   late List<CommentModel> comments;
-  late bool hasImage;
-  late Image postImage;
+  late Image? postImage;
 
   PostModel({required this.title, required this.desc, required this.publisher, required this.forum,
     required this.publishTime, required this.upVotedUsers,
-    required this.downVotedUsers, required this.hasImage, required this.postImage , required this.comments});
+    required this.downVotedUsers, this.postImage=null, required this.comments});
+
+
+  bool hasImage(){
+    return postImage!=null;
+  }
 
 
   int postScore(){
