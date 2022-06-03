@@ -9,6 +9,21 @@ class PostItem extends StatefulWidget {
 }
 
 class _PostItemState extends State<PostItem> {
+
+  String publishTimeAgo(){
+    Duration diff=DateTime.now().difference(widget.post.publishTime);
+    if(diff.inDays <= 1){
+      if(diff.inHours<1){
+        if(diff.inMinutes<1){
+          return diff.inSeconds.toString() + "s";
+        }
+        return diff.inMinutes.toString() + "min";
+      }
+      return diff.inHours.toString() + "h";
+    }
+    return diff.inDays.toString() + "days";
+  }
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -79,11 +94,7 @@ class _PostItemState extends State<PostItem> {
                                     style: TextStyle(fontSize: 13),
                                   ),
                                   Text('.'),
-                                  Text(DateTime.now()
-                                      .difference(widget.post.publishTime)
-                                      .inHours
-                                      .toString() +
-                                      "h"),
+                                  Text(publishTimeAgo()),
                                 ],
                               ),
                             ],

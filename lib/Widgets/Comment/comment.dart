@@ -10,6 +10,20 @@ class Comment extends StatefulWidget {
 }
 
 class _CommentState extends State<Comment> {
+  String publishTimeAgo(){
+    Duration diff=DateTime.now().difference(widget.comment.publishTime);
+    if(diff.inDays <= 1){
+      if(diff.inHours<1){
+        if(diff.inMinutes<1){
+          return diff.inSeconds.toString() + "s";
+        }
+        return diff.inMinutes.toString() + "min";
+      }
+      return diff.inHours.toString() + "h";
+    }
+    return diff.inDays.toString() + "days";
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -45,11 +59,7 @@ class _CommentState extends State<Comment> {
                   ),
                 ),
                 Text(
-                  DateTime.now()
-                          .difference(widget.comment.publishTime)
-                          .inHours
-                          .toString() +
-                      "h",
+                  publishTimeAgo(),
                   style: TextStyle(
                       fontSize: 13,
                       color: Colors.grey,

@@ -10,7 +10,7 @@ class PostDetails extends StatefulWidget {
 
 class _PostDetailsState extends State<PostDetails> with SingleTickerProviderStateMixin{
 
-  SortType _sortType=SortType.newest;
+  SortType _sortType=SortType.best;
 
   @override
   void initState() {

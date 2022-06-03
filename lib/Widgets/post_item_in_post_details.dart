@@ -8,6 +8,21 @@ class PostItemInDetails extends StatefulWidget {
 }
 
 class _PostItemInDetailsState extends State<PostItemInDetails> {
+
+  String publishTimeAgo(){
+    Duration diff=DateTime.now().difference(widget.post.publishTime);
+    if(diff.inDays <= 1){
+      if(diff.inHours<1){
+        if(diff.inMinutes<1){
+          return diff.inSeconds.toString() + "s";
+        }
+        return diff.inMinutes.toString() + "min";
+      }
+      return diff.inHours.toString() + "h";
+    }
+    return diff.inDays.toString() + "days";
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -40,11 +55,8 @@ class _PostItemInDetailsState extends State<PostItemInDetails> {
                                       "u/" + widget.post.publisher.userName,
                                       style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500),
                                     ),
-                                    Text(DateTime.now()
-                                        .difference(widget.post.publishTime)
-                                        .inHours
-                                        .toString() +
-                                        " hours ago", style: TextStyle(fontSize: 13, color: Colors.grey, fontWeight: FontWeight.w400),),
+                                    Text(publishTimeAgo() +
+                                        " ago", style: TextStyle(fontSize: 13, color: Colors.grey, fontWeight: FontWeight.w400),),
                                   ],
                                 ),
                               ],

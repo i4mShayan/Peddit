@@ -160,7 +160,7 @@ class _AddNewPostPageState extends State<AddNewPostPage> {
                 SizedBox(height: 100,),
               ]),
             ),
-          floatingActionButton: Row(
+          bottomNavigationBar: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               ButtonBar(
