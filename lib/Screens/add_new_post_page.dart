@@ -18,9 +18,9 @@ class _AddNewPostPageState extends State<AddNewPostPage> {
   File? image;
   late TextEditingController _postText=TextEditingController();
   late TextEditingController _postTitle=TextEditingController();
-  Future pickImage() async{
+  Future pickImage(ImageSource source) async{
     try{
-      final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+      final image = await ImagePicker().pickImage(source: source);
       if(image==null) return;
       final imageTemp=File(image.path);
       setState(() => this.image=imageTemp);
@@ -80,7 +80,7 @@ class _AddNewPostPageState extends State<AddNewPostPage> {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.only(left: 20 , right: 20 , bottom: 5),
+                  margin: EdgeInsets.only(left: 20 , right: 20 , bottom: 5, top: 5,),
                   child: TextFormField(
                     onChanged: (value){
                       setState(() {
@@ -111,6 +111,7 @@ class _AddNewPostPageState extends State<AddNewPostPage> {
                     },
                     controller: _postText,
                     maxLines: 20,
+                    minLines: 1,
                     cursorColor: Colors.grey[600],
                     style: TextStyle(
                         fontSize: 20
@@ -121,7 +122,32 @@ class _AddNewPostPageState extends State<AddNewPostPage> {
                     ),
                   ),
                 ),
-                SizedBox(height: 70,),
+                SizedBox(height: 5,),
+                (
+                image!=null
+                    ?
+                Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(right: 5),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          IconButton(onPressed: (){
+                            setState((){
+                              image=null;
+                            });
+                          }, icon: Icon(Icons.close_rounded)),
+                        ],
+                      ),
+                    ),
+                    Image(image: Image.file(image!).image),
+                  ],
+                )
+                    :
+                SizedBox()
+                ),
+                SizedBox(height: 100,),
               ]),
             ),
           floatingActionButton: Row(
@@ -130,11 +156,11 @@ class _AddNewPostPageState extends State<AddNewPostPage> {
               ButtonBar(
                 children: [
                   IconButton(
-                      onPressed: (){},
+                      onPressed: () => pickImage(ImageSource.gallery),
                       icon: Icon(Icons.photo_outlined,)
                   ),
                   IconButton(
-                      onPressed: (){},
+                      onPressed: () => pickImage(ImageSource.camera),
                       icon: Icon(Icons.photo_camera_outlined,)
                   ),
                 ],
