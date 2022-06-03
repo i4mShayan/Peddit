@@ -21,7 +21,7 @@ class _SingleForumPageState extends State<SingleForumPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      endDrawer: EndDrawer(),
+      endDrawer: EndDrawer(pageSetState: ()=>setState((){}),),
       backgroundColor: Colors.blueGrey[50],
       body: CustomScrollView(
         slivers: <Widget>[

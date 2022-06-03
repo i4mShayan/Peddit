@@ -51,7 +51,7 @@ class _PostDetailsState extends State<PostDetails> with SingleTickerProviderStat
       resizeToAvoidBottomInset: false,
       key: _scaffoldKey,
       appBar: _getAppbar(),
-      endDrawer: EndDrawer(),
+      endDrawer: EndDrawer(pageSetState: ()=>setState((){}),),
       body: SingleChildScrollView(
             child: Column(
               children: [

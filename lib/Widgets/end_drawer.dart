@@ -3,13 +3,21 @@ import 'dart:math';
 import '../libs.dart';
 
 class EndDrawer extends StatefulWidget {
-  const EndDrawer({Key? key}) : super(key: key);
+  Function pageSetState;
+  EndDrawer({Key? key, required this.pageSetState}) : super(key: key);
 
   @override
   State<EndDrawer> createState() => _EndDrawerState();
 }
 
 class _EndDrawerState extends State<EndDrawer> {
+
+  void _onDarkModeSelection(){
+    setState((){
+      Datas().darkMode=!Datas().darkMode;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -115,7 +123,20 @@ class _EndDrawerState extends State<EndDrawer> {
           SizedBox(
             height: 37,
             child: InkWell(
-              onTap: (){},
+              onTap: (){
+                setState(() {
+                  if(ModalRoute.of(context)?.settings.name=='/navigation_page'){
+                    Navigator.pop(context);
+                  }
+                  Navigator.of(context).popUntil((route) {
+                    return route.settings.name == '/navigation_page';
+                  });
+                  // Navigator.pop(context);
+                  Datas().navigationSelectedIndex=1;
+                  Datas().pageController.animateToPage(1, duration: Duration(milliseconds: 200), curve: Curves.ease);
+                }
+                );
+              },
               child: Row(
                 children: [
                   SizedBox(width: 15,),
@@ -233,10 +254,14 @@ class _EndDrawerState extends State<EndDrawer> {
                 ),
               ),
               IconButton(
-                  onPressed: (){},
+                  onPressed: (){
+                    _onDarkModeSelection();
+                    widget.pageSetState();
+                  },
                   icon: Transform.rotate(
                     angle: 225 * pi / 180,
-                    child: Icon(Icons.nightlight_outlined),
+                    child: Datas().darkMode ? Icon(Icons.nightlight,):Icon(Icons.nightlight_outlined,),
+
                   )
               ),
             ],
