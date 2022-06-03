@@ -34,3 +34,4 @@ export 'Widgets/forums_list.dart';
 export 'Widgets/post_appbar.dart';
 export 'Widgets/post_item_in_post_details.dart';
 export 'Widgets/drawer_menu.dart';
+export 'Screens/select_forum_for_new_post.dart';

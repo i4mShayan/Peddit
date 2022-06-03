@@ -13,4 +13,12 @@ class ForumModel{
 
   ForumModel({required  , required this.owner, required this.admins, required this.posts, required this.members,
     required this.forumName, required this.forumDesc, required this.forumCreateTime, required this.profileImage , required this.headerImage});
+
+  int membersCount(){
+    return 1 + members.length + admins.length;
+  }
+
+  void addPost(PostModel post){
+    posts.insert(0, post);
+  }
 }

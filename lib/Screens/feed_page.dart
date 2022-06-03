@@ -9,6 +9,11 @@ class FeedPage extends StatefulWidget {
 }
 
 class _FeedPageState extends State<FeedPage> {
+
+  Future<void> _onRefresh() async {
+    setState((){});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,40 +21,59 @@ class _FeedPageState extends State<FeedPage> {
       resizeToAvoidBottomInset: false,
 
       // Feed Body(Posts)
-      body: ListView.builder(
-          itemCount: Datas().feedPosts.length,
-          itemBuilder: (contex, index) {
-            return InkWell(
-              child: PostItem(post: Datas().feedPosts[index], pageSetState: ()=>setState((){}),),
-              onTap: (){
-                PostModel post = Datas().feedPosts[index];
-                SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-                  systemNavigationBarColor: Colors.white,
-                  systemNavigationBarIconBrightness: Brightness.dark,
-                ));
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => PostDetails(post: post),
-                  ),
-                ).then((value) => setState(() {}));
-              },
-              onDoubleTap: (){
-                PostModel post = Datas().feedPosts[index];
-                setState((){
-                  if(post.userDownVoted(Datas().currentUser)){ //deleting other vote
-                    post.downVotedUsers.remove(Datas().currentUser);
-                  }
-                  if(post.userUpVoted(Datas().currentUser)) {
-                    post.upVotedUsers.remove(Datas().currentUser);
-                  }
-                  else{
-                    post.upVotedUsers.add(Datas().currentUser);
-                  }
-                });
-              },
-            );
-          }),
+  body: RefreshIndicator(
+    color: Colors.black54,
+    onRefresh: _onRefresh,
+    child: Datas().feedPosts.length!=0 ? ListView.builder(
+      itemCount: Datas().feedPosts.length,
+      itemBuilder: (contex, index) {
+        return InkWell(
+          child: PostItem(post: Datas().feedPosts[index], pageSetState: ()=>setState((){}),),
+          onTap: (){
+            PostModel post = Datas().feedPosts[index];
+            SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+              systemNavigationBarColor: Colors.white,
+              systemNavigationBarIconBrightness: Brightness.dark,
+            ));
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => PostDetails(post: post),
+              ),
+            ).then((value) => setState(() {}));
+          },
+          onDoubleTap: (){
+            PostModel post = Datas().feedPosts[index];
+            setState((){
+              if(post.userDownVoted(Datas().currentUser)){ //deleting other vote
+                post.downVotedUsers.remove(Datas().currentUser);
+              }
+              if(post.userUpVoted(Datas().currentUser)) {
+                post.upVotedUsers.remove(Datas().currentUser);
+              }
+              else{
+                post.upVotedUsers.add(Datas().currentUser);
+              }
+            });
+          },
+        );
+      })
+      :
+      Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset("assets/gifs/funny_empty_feed.gif", scale: 4,),
+            SizedBox(height: 7,),
+            Text("such empty!", style: TextStyle(
+              fontWeight: FontWeight.w400,
+              fontSize: 17,
+              color: Colors.grey[600],
+            ),),
+          ],
+        ),
+      )
+      )
     );
   }
 }

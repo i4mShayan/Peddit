@@ -16,7 +16,7 @@ class _ForumsListState extends State<ForumsList> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        for(ForumModel f in widget.forums) ForumPreview(forum: f, pageSetStateFunc: widget.pageSetState,)
+        for(ForumModel f in widget.forums) ForumPreview(forum: f,)
       ],
     );
   }

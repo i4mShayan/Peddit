@@ -26,7 +26,11 @@ class _NavigationPageState extends State<NavigationPage> with SingleTickerProvid
   int _selectedIndex = Datas().navigationSelectedIndex;
 
   List<Widget> _screens = [
-    FeedPage() , ForumsPage() , AddNewPostPage() , SavedPostsPage() , SettingPage()
+    FeedPage(), ForumsPage(),
+    // AddNewPostPage(),
+    SizedBox(),
+    SavedPostsPage(),
+    SettingPage(),
   ];
 
   void _onPageChanged(int index) {
@@ -37,7 +41,12 @@ class _NavigationPageState extends State<NavigationPage> with SingleTickerProvid
 
   void _onItemTapped(int selectedIndex) {
     setState(() {
-      _pageController.animateToPage(selectedIndex, duration: Duration(milliseconds: 200), curve: Curves.ease);
+      if(selectedIndex==2){
+        Navigator.pushNamed(context, '/add_new_post_page').then((value) => setState((){}));
+      }
+      else{
+        _pageController.animateToPage(selectedIndex, duration: Duration(milliseconds: 200), curve: Curves.ease);
+      }
     });
   }
 
@@ -58,7 +67,7 @@ class _NavigationPageState extends State<NavigationPage> with SingleTickerProvid
   }
 
 
-  double iconSizeWhenSelected=30;
+  double activeIconSize=30;
 
   @override
   Widget build(BuildContext context) {
@@ -90,23 +99,28 @@ class _NavigationPageState extends State<NavigationPage> with SingleTickerProvid
           type: BottomNavigationBarType.fixed,
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-              icon: _selectedIndex==0 ? Icon(Icons.home, size: iconSizeWhenSelected):Icon(Icons.home_outlined),
+              icon :Icon(Icons.home_outlined),
+              activeIcon: Icon(Icons.home, size: activeIconSize),
               label: '',
             ),
             BottomNavigationBarItem(
-              icon: _selectedIndex==1 ? Icon(Icons.list_alt_rounded, size: iconSizeWhenSelected):Icon(Icons.list_alt_outlined),
+              icon:Icon(Icons.category_outlined),
+              activeIcon:  Icon(Icons.category_rounded, size: activeIconSize),
               label: '',
             ),
             BottomNavigationBarItem(
-              icon: _selectedIndex==2 ? Icon(Icons.add_circle_rounded, size: iconSizeWhenSelected,):Icon(Icons.add_circle_outline_rounded),
+              icon:Icon(Icons.add_rounded),
+              // activeIcon: Icon(Icons.add_circle_rounded, size: activeIconSize,),
               label: '',
             ),
             BottomNavigationBarItem(
-              icon: _selectedIndex==3 ? Icon(Icons.bookmark_rounded, size: iconSizeWhenSelected):Icon(Icons.bookmark_outline_rounded),
+              icon:Icon(Icons.bookmark_outline_rounded),
+              activeIcon: Icon(Icons.bookmark_rounded, size: activeIconSize),
               label: '',
             ),
             BottomNavigationBarItem(
-              icon: _selectedIndex==4 ? Icon(Icons.settings_rounded, size: iconSizeWhenSelected):Icon(Icons.settings_outlined),
+              icon:Icon(Icons.settings_outlined),
+              activeIcon: Icon(Icons.settings_rounded, size: activeIconSize),
               label: '',
             ),
           ],

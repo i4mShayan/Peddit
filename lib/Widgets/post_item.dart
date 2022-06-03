@@ -49,7 +49,7 @@ class _PostItemState extends State<PostItem> {
                           child: CircleAvatar(
                             backgroundImage: widget.post.publisher.userProfileImage.image,
                             backgroundColor: Colors.white,
-                            radius: 20,
+                            radius: 18,
                           ),
                         ),
                         Expanded(
@@ -67,7 +67,7 @@ class _PostItemState extends State<PostItem> {
                                     child: Text(
                                       "r/" + widget.post.forum.forumName,
                                       style: TextStyle(
-                                          fontWeight: FontWeight.w500, fontSize: 17),
+                                          fontWeight: FontWeight.w500, fontSize: 13),
                                     ),
                                   ),
                                 ],
@@ -76,7 +76,7 @@ class _PostItemState extends State<PostItem> {
                                 children: [
                                   Text(
                                     "u/" + widget.post.publisher.userName,
-                                    style: TextStyle(fontSize: 15),
+                                    style: TextStyle(fontSize: 13),
                                   ),
                                   Text('.'),
                                   Text(DateTime.now()
@@ -109,10 +109,10 @@ class _PostItemState extends State<PostItem> {
                       child: Container(
                           margin: EdgeInsets.only(left: 15, bottom: 10, right: 20),
                           child: Text(widget.post.desc , maxLines: 3 , overflow: TextOverflow.ellipsis,))),
-                  (widget.post.hasImage ? Container(
+                  (widget.post.hasImage() ? Container(
                     child: widget.post.postImage,
                   ) :
-                      SizedBox(height: 5,)),
+                      SizedBox()),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     mainAxisSize: MainAxisSize.max,
@@ -196,7 +196,7 @@ class _PostItemState extends State<PostItem> {
                                     Datas().currentUser.savedPosts.remove(widget.post);
                                   }
                                   else{
-                                    Datas().currentUser.savedPosts.add(widget.post);
+                                    Datas().currentUser.savedPosts.insert(0, widget.post);
                                   }
                                 });
                               },
