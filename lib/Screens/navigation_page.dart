@@ -30,7 +30,7 @@ class _NavigationPageState extends State<NavigationPage> with SingleTickerProvid
     // AddNewPostPage(),
     SizedBox(),
     SavedPostsPage(),
-    SettingPage(),
+    SettingsPage(),
   ];
 
   void _onPageChanged(int index) {

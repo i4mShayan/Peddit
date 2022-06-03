@@ -18,7 +18,7 @@ export 'Widgets/post_item.dart';
 export 'Widgets/main_appbar.dart';
 export 'Screens/navigation_page.dart';
 export 'Screens/forums_page.dart';
-export 'Screens/setting_page.dart';
+export 'Screens/settings_page.dart';
 export 'Screens/saved_posts_page.dart';
 export 'Screens/add_new_post_page.dart';
 export 'Widgets/sliding_appbar.dart';

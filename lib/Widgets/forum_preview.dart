@@ -2,7 +2,9 @@ import '../libs.dart';
 
 class ForumPreview extends StatefulWidget {
   ForumModel forum;
-  ForumPreview({Key? key, required this.forum}) : super(key: key);
+  var pageSetStateFunc;
+
+  ForumPreview({Key? key, required this.forum, this.pageSetStateFunc}) : super(key: key);
 
   @override
   State<ForumPreview> createState() => _ForumPreviewState();
@@ -45,6 +47,7 @@ class _ForumPreviewState extends State<ForumPreview> {
                     }else{
                       Datas().currentUser.starredForums.insert(0, widget.forum);
                     }
+                    widget.pageSetStateFunc();
                   });
                 },
                 icon: Datas().currentUser.starredForums.contains(widget.forum) ? Icon(Icons.star_rate_rounded, color: Colors.yellow[900], size: 25,):Icon(Icons.star_outline_rounded, color: Colors.grey[800], size: 25,),
