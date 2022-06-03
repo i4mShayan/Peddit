@@ -61,14 +61,19 @@ class _SettingsPageState extends State<SettingsPage> {
         SizedBox(
           height: _buttonsHeight,
           child: InkWell(
-            onTap: (){},
+            onTap: (){
+              setState((){
+                Datas().navigationSelectedIndex=3;
+                Datas().pageController.animateToPage(3, duration: Duration(milliseconds: 200), curve: Curves.ease);
+              });
+            },
             child: Row(
               children: [
                 SizedBox(width: 15,),
-                Icon(Icons.group_add_outlined, size: _iconsSize, color: Colors.grey[900],),
+                Icon(Icons.bookmark_border_rounded, size: _iconsSize, color: Colors.grey[900],),
                 SizedBox(width: 10,),
                 Text(
-                  'Create a forum',
+                  'Saved posts',
                   style: TextStyle(
                     fontWeight: _fontWeight,
                     fontSize: _fontSize,
@@ -88,7 +93,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 Icon(Icons.group_add_outlined, size: _iconsSize, color: Colors.grey[900],),
                 SizedBox(width: 10,),
                 Text(
-                  'Saved posts',
+                  'Create a forum',
                   style: TextStyle(
                     fontWeight: _fontWeight,
                     fontSize: _fontSize,

@@ -134,7 +134,52 @@ class _EndDrawerState extends State<EndDrawer> {
           SizedBox(
             height: 37,
             child: InkWell(
-              onTap: (){},
+              onTap: (){
+                setState(() {
+                  if(ModalRoute.of(context)?.settings.name=='/navigation_page'){
+                    Navigator.pop(context);
+                  }
+                  Navigator.of(context).popUntil((route) {
+                    return route.settings.name == '/navigation_page';
+                  });
+                  // Navigator.pop(context);
+                  Datas().navigationSelectedIndex=3;
+                  Datas().pageController.animateToPage(3, duration: Duration(milliseconds: 200), curve: Curves.ease);
+                }
+                );
+              },
+              child: Row(
+                children: [
+                  SizedBox(width: 15,),
+                  Icon(Icons.bookmark_border_rounded, size: 25, color: Colors.grey[900],),
+                  SizedBox(width: 10,),
+                  Text(
+                    'Saved posts',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 37,
+            child: InkWell(
+              onTap: (){
+                setState(() {
+                  if(ModalRoute.of(context)?.settings.name=='/navigation_page'){
+                    Navigator.pop(context);
+                  }
+                  Navigator.of(context).popUntil((route) {
+                    return route.settings.name == '/navigation_page';
+                  });
+                  // Navigator.pop(context);
+                  Datas().navigationSelectedIndex=4;
+                  Datas().pageController.animateToPage(4, duration: Duration(milliseconds: 200), curve: Curves.ease);
+                }
+                );
+              },
               child: Row(
                 children: [
                   SizedBox(width: 15,),
