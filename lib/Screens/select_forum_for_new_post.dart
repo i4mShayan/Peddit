@@ -59,7 +59,7 @@ class _SelectForumForNewPostState extends State<SelectForumForNewPost> {
                         onPressed: () {
                           if(canCreatePost()) {
                             setState((){
-                              _selectedForum!.addPost(PostModel(postImage: widget.postImageFile!=null ? Image.file(widget.postImageFile!):null ,title: widget.title, desc: widget.desc, publisher: Datas().currentUser, forum: _selectedForum!, publishTime: DateTime.now(), upVotedUsers: [], downVotedUsers: [], comments: []));
+                              _selectedForum!.addPost(PostModel(postImage: widget.postImageFile!=null ? Image.file(widget.postImageFile!):null ,title: widget.title, desc: widget.desc, publisher: Datas().currentUser, forum: _selectedForum!, publishTime: DateTime.now(), upVotedUsers: [], downVotedUsers: [], comments: [], commentsCount: 0));
                               Datas().updateFeed();
                               widget.feedSetState();
                               Navigator.of(context).popUntil((route) {

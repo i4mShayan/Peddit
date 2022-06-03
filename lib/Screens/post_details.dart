@@ -1,9 +1,5 @@
 import '../libs.dart';
 
-enum SortType{
-  best, newest
-}
-
 class PostDetails extends StatefulWidget {
   PostModel post;
   PostDetails({required this.post ,Key? key}) : super(key: key);
@@ -14,7 +10,7 @@ class PostDetails extends StatefulWidget {
 
 class _PostDetailsState extends State<PostDetails> with SingleTickerProviderStateMixin{
 
-  SortType sortType=SortType.best;
+  SortType _sortType=SortType.best;
 
   @override
   void initState() {
@@ -44,6 +40,20 @@ class _PostDetailsState extends State<PostDetails> with SingleTickerProviderStat
     );
   }
 
+
+  final ScrollController _scrollController=ScrollController();
+  void _scrollDown() {
+    _scrollController.animateTo(
+      0.0,
+      curve: Curves.easeOut,
+      duration: const Duration(milliseconds: 300),
+    );
+  }
+
+  Future<void> _onRefresh() async {
+    setState((){});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,166 +62,192 @@ class _PostDetailsState extends State<PostDetails> with SingleTickerProviderStat
       key: _scaffoldKey,
       appBar: _getAppbar(),
       endDrawer: EndDrawer(pageSetState: ()=>setState((){}),),
-      body: SingleChildScrollView(
-            child: Column(
-              children: [
-                PostItemInDetails(post: widget.post),
-                Container(
-                  margin: EdgeInsets.only(top: 5),
-                  height: 40,
-                  child: PopupMenuButton(
-                    itemBuilder: (context)=>[
-                      PopupMenuItem(
+      body: RefreshIndicator(
+        color: Colors.black54,
+        onRefresh: _onRefresh,
+        child: ListView(
+          controller: _scrollController,
+            children: [
+              PostItemInDetails(post: widget.post),
+              Container(
+                margin: EdgeInsets.only(top: 5),
+                height: 40,
+                child: PopupMenuButton(
+                  itemBuilder: (context)=>[
+                    PopupMenuItem(
+                      onTap: (){
+                        setState((){
+                          _sortType=SortType.best;
+                        });
+                      },
+                      child: _sortType==SortType.best ? Row(
+                        children: [
+                          Icon(Icons.rocket_launch_rounded, size: 20),
+                          SizedBox(width: 5,),
+                          Text(
+                            'BEST COMMENTS',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 12,
+                            ),
+                          ),
+                        ],
+                      )
+                          :
+                      Row(
+                        children: [
+                          Icon(Icons.rocket_launch_outlined, size: 20, color: Colors.grey[600],),
+                          SizedBox(width: 5,),
+                          Text(
+                            'BEST COMMENTS',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 12,
+                              color: Colors.grey[600],
+                            ),
+                          ),
+                        ],
+                      )
+                    ),
+                    PopupMenuItem(
                         onTap: (){
                           setState((){
-                            sortType=SortType.best;
+                            _sortType=SortType.newest;
                           });
                         },
-                        child: sortType==SortType.best ? Row(
-                          children: [
-                            Icon(Icons.rocket_launch_rounded, size: 20),
-                            SizedBox(width: 5,),
-                            Text(
-                              'BEST COMMENTS',
-                              style: TextStyle(
-                                fontWeight: FontWeight.w500,
-                                fontSize: 12,
-                              ),
+                      child: _sortType==SortType.best ? Row(
+                        children: [
+                          Icon(Icons.new_releases_outlined, size: 20, color: Colors.grey[600],),
+                          SizedBox(width: 5,),
+                          Text(
+                            'NEWEST COMMENTS',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 12,
+                              color: Colors.grey[600],
                             ),
-                          ],
-                        )
-                            :
-                        Row(
-                          children: [
-                            Icon(Icons.rocket_launch_outlined, size: 20, color: Colors.grey[600],),
-                            SizedBox(width: 5,),
-                            Text(
-                              'BEST COMMENTS',
-                              style: TextStyle(
-                                fontWeight: FontWeight.w500,
-                                fontSize: 12,
-                                color: Colors.grey[600],
-                              ),
+                          ),
+                        ],
+                      )
+                          :
+                      Row(
+                        children: [
+                          Icon(Icons.new_releases_rounded, size: 20,),
+                          SizedBox(width: 5,),
+                          Text(
+                            'NEWEST COMMENTS',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 12,
                             ),
-                          ],
-                        )
+                          ),
+                        ],
+                      )
+                    ),
+                  ],
+                  child: _sortType==SortType.best ?
+                  Row(
+                    children: [
+                      SizedBox(width: 15,),
+                      Icon(Icons.rocket_launch_rounded, size: 20, color: Colors.grey[600],),
+                      SizedBox(width: 5,),
+                      Text(
+                        'BEST COMMENTS',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 12,
+                          color: Colors.grey[600],
+                        ),
                       ),
-                      PopupMenuItem(
-                          onTap: (){
-                            setState((){
-                              sortType=SortType.newest;
-                            });
-                          },
-                        child: sortType==SortType.best ? Row(
-                          children: [
-                            Icon(Icons.new_releases_outlined, size: 20, color: Colors.grey[600],),
-                            SizedBox(width: 5,),
-                            Text(
-                              'NEWEST COMMENTS',
-                              style: TextStyle(
-                                fontWeight: FontWeight.w500,
-                                fontSize: 12,
-                                color: Colors.grey[600],
-                              ),
-                            ),
-                          ],
-                        )
-                            :
-                        Row(
-                          children: [
-                            Icon(Icons.new_releases_rounded, size: 20,),
-                            SizedBox(width: 5,),
-                            Text(
-                              'NEWEST COMMENTS',
-                              style: TextStyle(
-                                fontWeight: FontWeight.w500,
-                                fontSize: 12,
-                              ),
-                            ),
-                          ],
-                        )
-                      ),
+                      SizedBox(width: 5,),
+                      Icon(Icons.keyboard_arrow_down_rounded, size: 15, color: Colors.grey[600],),
                     ],
-                    child: sortType==SortType.best ?
-                    Row(
-                      children: [
-                        SizedBox(width: 15,),
-                        Icon(Icons.rocket_launch_rounded, size: 20, color: Colors.grey[600],),
-                        SizedBox(width: 5,),
-                        Text(
-                          'BEST COMMENTS',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 12,
-                            color: Colors.grey[600],
-                          ),
-                        ),
-                        SizedBox(width: 5,),
-                        Icon(Icons.keyboard_arrow_down_rounded, size: 15, color: Colors.grey[600],),
-                      ],
-                    )
-                        :
-                    Row(
-                      children: [
-                        SizedBox(width: 15,),
-                        Icon(Icons.new_releases_rounded, size: 20, color: Colors.grey[600],),
-                        SizedBox(width: 5,),
-                        Text(
-                          'NEWEST COMMENTS',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 12,
-                            color: Colors.grey[600],
-                          ),
-                        ),
-                        SizedBox(width: 5,),
-                        Icon(Icons.keyboard_arrow_down_rounded, size: 15, color: Colors.grey[600],),
-                      ],
-                    )
-                  ),
-                ),
-                SizedBox(height: 5,),
-                CommentSection(post: widget.post),
-                SizedBox(height: 200,),
-              ],
-            ),
-          ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: Container(
-        width: MediaQuery.of(context).size.width,
-        child: InkWell(
-          child: Expanded(
-            child: Container(
-              decoration: BoxDecoration(
-                boxShadow: <BoxShadow>[
-                  BoxShadow(
-                      color: Colors.black54,
-                      blurRadius: 2,
-                      offset: Offset(0.0, 0.75)
                   )
-                ],
-              ),
-              child: Expanded(
-                child: Container(
-                  color: Colors.white,
-                  child: Expanded(
-                    child: Container(
-                      child: Container(
-                        padding: EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 10),
-                        margin: EdgeInsets.only(left: 10, right: 10, top: 7, bottom: 10),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5),
-                          color: Colors.blueGrey[50],
-                        ),
-                        child: Text(
-                          "Add a comment",
-                          style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.grey[500],
-                          ),
+                      :
+                  Row(
+                    children: [
+                      SizedBox(width: 15,),
+                      Icon(Icons.new_releases_rounded, size: 20, color: Colors.grey[600],),
+                      SizedBox(width: 5,),
+                      Text(
+                        'NEWEST COMMENTS',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 12,
+                          color: Colors.grey[600],
                         ),
                       ),
+                      SizedBox(width: 5,),
+                      Icon(Icons.keyboard_arrow_down_rounded, size: 15, color: Colors.grey[600],),
+                    ],
+                  )
+                ),
+              ),
+              SizedBox(height: 5,),
+              CommentSection(post: widget.post, sortType: _sortType,),
+              SizedBox(height: 200,),
+            ],
+            ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: Positioned(
+        child: Container(
+          width: MediaQuery.of(context).size.width,
+          child: InkWell(
+            child: Expanded(
+              child: Container(
+                decoration: BoxDecoration(
+                  boxShadow: <BoxShadow>[
+                    BoxShadow(
+                        color: Colors.black54,
+                        blurRadius: 2,
+                        offset: Offset(0.0, 0.75)
+                    )
+                  ],
+                ),
+                child: Expanded(
+                  child: Container(
+                    color: Colors.white,
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Container(
+                            child: Container(
+                              padding: EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 10),
+                              margin: EdgeInsets.only(left: 10, right: 0, top: 7, bottom: 10),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(5),
+                                color: Colors.blueGrey[50],
+                              ),
+                              child: InkWell(
+                                onTap: (){
+                                  Navigator.push(context, MaterialPageRoute(
+                                      builder: (context) => AddNewCommentPage(pageSetState: ()=>setState((){}), replyingPost: widget.post,)
+                                  ));
+                                },
+                                child: Text(
+                                  "Add a comment",
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w400,
+                                    color: Colors.grey[500],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 5, right: 5),
+                          child: Material(child: IconButton(onPressed: (){
+                            _scrollController.animateTo(
+                              0.0,
+                              curve: Curves.easeOut,
+                              duration: const Duration(milliseconds: 300),
+                            );
+                          }, icon: Icon(Icons.keyboard_double_arrow_up_rounded,),)),
+                        ),
+                      ],
                     ),
                   ),
                 ),

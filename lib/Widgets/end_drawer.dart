@@ -51,7 +51,7 @@ class _EndDrawerState extends State<EndDrawer> {
                   ),
                 ),
                 Text(
-                  "Username",
+                  Datas().currentUser.userName,
                   style: TextStyle(
                   fontSize: 17,
                   fontWeight: FontWeight.bold

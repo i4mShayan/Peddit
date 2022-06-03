@@ -10,6 +10,20 @@ class Comment extends StatefulWidget {
 }
 
 class _CommentState extends State<Comment> {
+  String publishTimeAgo(){
+    Duration diff=DateTime.now().difference(widget.comment.publishTime);
+    if(diff.inDays <= 1){
+      if(diff.inHours<1){
+        if(diff.inMinutes<1){
+          return diff.inSeconds.toString() + "s";
+        }
+        return diff.inMinutes.toString() + "min";
+      }
+      return diff.inHours.toString() + "h";
+    }
+    return diff.inDays.toString() + "days";
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -45,11 +59,7 @@ class _CommentState extends State<Comment> {
                   ),
                 ),
                 Text(
-                  DateTime.now()
-                          .difference(widget.comment.publishTime)
-                          .inHours
-                          .toString() +
-                      "h",
+                  publishTimeAgo(),
                   style: TextStyle(
                       fontSize: 13,
                       color: Colors.grey,
@@ -91,13 +101,10 @@ class _CommentState extends State<Comment> {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             TextButton.icon(
-                              onPressed: () {
-                                // Navigator.push(
-                                //   context,
-                                //   MaterialPageRoute(
-                                //     builder: (context) => PostDetails(post: widget.post),
-                                //   ),
-                                // );
+                              onPressed: (){
+                                Navigator.push(context, MaterialPageRoute(
+                                    builder: (context) => AddNewCommentPage(pageSetState: ()=>setState((){}), replyingComment: widget.comment, replyingPost: widget.comment.post, )
+                                ));
                               },
                               icon: Icon(Icons.reply_rounded),
                               label: Text("Reply"),
