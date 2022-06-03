@@ -27,7 +27,7 @@ class _SettingsPageState extends State<SettingsPage> {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.fromLTRB(15, 0, 15, 10),
+          padding: const EdgeInsets.fromLTRB(25, 0, 25, 10),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(30),
             child: Image(
