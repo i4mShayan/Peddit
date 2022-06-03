@@ -93,7 +93,7 @@ class _CommentState extends State<Comment> {
                             TextButton.icon(
                               onPressed: (){
                                 Navigator.push(context, MaterialPageRoute(
-                                    builder: (context) => AddNewCommentPage(pageSetState: ()=>setState((){}), replyingComment: widget.comment,)
+                                    builder: (context) => AddNewCommentPage(pageSetState: ()=>setState((){}), replyingComment: widget.comment, replyingPost: widget.comment.post, )
                                 ));
                               },
                               icon: Icon(Icons.reply_rounded),

@@ -2,9 +2,9 @@ import '../libs.dart';
 
 class AddNewCommentPage extends StatefulWidget {
   Function pageSetState;
-  PostModel? replyingPost;
+  late PostModel replyingPost;
   CommentModel? replyingComment;
-  AddNewCommentPage({Key? key, this.replyingPost=null, this.replyingComment=null, required this.pageSetState}) : super(key: key);
+  AddNewCommentPage({Key? key, required this.replyingPost, this.replyingComment=null, required this.pageSetState}) : super(key: key);
 
   @override
   State<AddNewCommentPage> createState() => _AddNewCommentPageState();
@@ -15,7 +15,7 @@ class _AddNewCommentPageState extends State<AddNewCommentPage> {
 
   String desc(){
     if(widget.replyingPost!=null){
-      return widget.replyingPost!.desc;
+      return widget.replyingPost.desc;
     }
     else if(widget.replyingComment!=null){
       return widget.replyingComment!.commentDesc;
@@ -88,11 +88,12 @@ class _AddNewCommentPageState extends State<AddNewCommentPage> {
                             setState((){
                               if(isReply()){
                                 widget.replyingComment!.repliedComments.insert(0,
-                                    CommentModel(publisher: Datas().currentUser, publishTime: DateTime.now(), commentDesc: _commentText.text, upVotedUsers: [], downVotedUsers: [], repliedComments: []));
+                                    CommentModel(publisher: Datas().currentUser, publishTime: DateTime.now(), post: widget.replyingPost, commentDesc: _commentText.text, upVotedUsers: [], downVotedUsers: [], repliedComments: []));
                               }
                               else{
-                                widget.replyingPost!.comments.insert(0, CommentModel(publisher: Datas().currentUser, publishTime: DateTime.now(), commentDesc: _commentText.text, upVotedUsers: [], downVotedUsers: [], repliedComments: []));
+                                widget.replyingPost.comments.insert(0, CommentModel(publisher: Datas().currentUser, post: widget.replyingPost, publishTime: DateTime.now(), commentDesc: _commentText.text, upVotedUsers: [], downVotedUsers: [], repliedComments: []));
                               }
+                              widget.replyingPost.commentsCount++;
                               widget.pageSetState();
                               Navigator.pop(context);
                             });

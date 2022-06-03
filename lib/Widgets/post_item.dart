@@ -177,7 +177,7 @@ class _PostItemState extends State<PostItem> {
                                 ),
                               );
                             },
-                            icon: Icon(Icons.mode_comment_outlined), label: Text(widget.post.comments.length.toString()),
+                            icon: Icon(Icons.mode_comment_outlined), label: Text(widget.post.commentsCount.toString()),
                             style: TextButton.styleFrom(
                               primary: Colors.grey[900],
                             ),

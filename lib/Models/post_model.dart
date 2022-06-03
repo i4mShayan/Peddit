@@ -10,10 +10,11 @@ class PostModel{
   late List<UserModel> downVotedUsers;
   late List<CommentModel> comments;
   late Image? postImage;
+  late int commentsCount;
 
   PostModel({required this.title, required this.desc, required this.publisher, required this.forum,
     required this.publishTime, required this.upVotedUsers,
-    required this.downVotedUsers, this.postImage=null, required this.comments});
+    required this.downVotedUsers, this.postImage=null, required this.comments, required this.commentsCount});
 
 
   bool hasImage(){

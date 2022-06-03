@@ -17,7 +17,7 @@ class CommentModel{
 
   CommentModel({required this.publisher, required this.publishTime,
     required this.commentDesc,
-    required this.upVotedUsers, required this.downVotedUsers ,  required this.repliedComments,
+    required this.upVotedUsers, required this.downVotedUsers ,  required this.repliedComments, required this.post
   });
 
   bool anyVotes(){
