@@ -16,7 +16,7 @@ class _PostItemState extends State<PostItem> {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => PostDetails(post: widget.post),
+            builder: (context) => PostDetails(post: widget.post,),
           ),
         ).then((value) => setState(() {}));
       },

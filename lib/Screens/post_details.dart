@@ -1,9 +1,5 @@
 import '../libs.dart';
 
-enum SortType{
-  best, newest
-}
-
 class PostDetails extends StatefulWidget {
   PostModel post;
   PostDetails({required this.post ,Key? key}) : super(key: key);
@@ -14,7 +10,7 @@ class PostDetails extends StatefulWidget {
 
 class _PostDetailsState extends State<PostDetails> with SingleTickerProviderStateMixin{
 
-  SortType sortType=SortType.best;
+  SortType _sortType=SortType.newest;
 
   @override
   void initState() {
@@ -54,6 +50,10 @@ class _PostDetailsState extends State<PostDetails> with SingleTickerProviderStat
     );
   }
 
+  Future<void> _onRefresh() async {
+    setState((){});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,129 +62,133 @@ class _PostDetailsState extends State<PostDetails> with SingleTickerProviderStat
       key: _scaffoldKey,
       appBar: _getAppbar(),
       endDrawer: EndDrawer(pageSetState: ()=>setState((){}),),
-      body: ListView(
-        controller: _scrollController,
-          children: [
-            PostItemInDetails(post: widget.post),
-            Container(
-              margin: EdgeInsets.only(top: 5),
-              height: 40,
-              child: PopupMenuButton(
-                itemBuilder: (context)=>[
-                  PopupMenuItem(
-                    onTap: (){
-                      setState((){
-                        sortType=SortType.best;
-                      });
-                    },
-                    child: sortType==SortType.best ? Row(
-                      children: [
-                        Icon(Icons.rocket_launch_rounded, size: 20),
-                        SizedBox(width: 5,),
-                        Text(
-                          'BEST COMMENTS',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 12,
-                          ),
-                        ),
-                      ],
-                    )
-                        :
-                    Row(
-                      children: [
-                        Icon(Icons.rocket_launch_outlined, size: 20, color: Colors.grey[600],),
-                        SizedBox(width: 5,),
-                        Text(
-                          'BEST COMMENTS',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 12,
-                            color: Colors.grey[600],
-                          ),
-                        ),
-                      ],
-                    )
-                  ),
-                  PopupMenuItem(
+      body: RefreshIndicator(
+        color: Colors.black54,
+        onRefresh: _onRefresh,
+        child: ListView(
+          controller: _scrollController,
+            children: [
+              PostItemInDetails(post: widget.post),
+              Container(
+                margin: EdgeInsets.only(top: 5),
+                height: 40,
+                child: PopupMenuButton(
+                  itemBuilder: (context)=>[
+                    PopupMenuItem(
                       onTap: (){
                         setState((){
-                          sortType=SortType.newest;
+                          _sortType=SortType.best;
                         });
                       },
-                    child: sortType==SortType.best ? Row(
-                      children: [
-                        Icon(Icons.new_releases_outlined, size: 20, color: Colors.grey[600],),
-                        SizedBox(width: 5,),
-                        Text(
-                          'NEWEST COMMENTS',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 12,
-                            color: Colors.grey[600],
+                      child: _sortType==SortType.best ? Row(
+                        children: [
+                          Icon(Icons.rocket_launch_rounded, size: 20),
+                          SizedBox(width: 5,),
+                          Text(
+                            'BEST COMMENTS',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 12,
+                            ),
                           ),
-                        ),
-                      ],
-                    )
-                        :
-                    Row(
-                      children: [
-                        Icon(Icons.new_releases_rounded, size: 20,),
-                        SizedBox(width: 5,),
-                        Text(
-                          'NEWEST COMMENTS',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 12,
+                        ],
+                      )
+                          :
+                      Row(
+                        children: [
+                          Icon(Icons.rocket_launch_outlined, size: 20, color: Colors.grey[600],),
+                          SizedBox(width: 5,),
+                          Text(
+                            'BEST COMMENTS',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 12,
+                              color: Colors.grey[600],
+                            ),
                           ),
+                        ],
+                      )
+                    ),
+                    PopupMenuItem(
+                        onTap: (){
+                          setState((){
+                            _sortType=SortType.newest;
+                          });
+                        },
+                      child: _sortType==SortType.best ? Row(
+                        children: [
+                          Icon(Icons.new_releases_outlined, size: 20, color: Colors.grey[600],),
+                          SizedBox(width: 5,),
+                          Text(
+                            'NEWEST COMMENTS',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 12,
+                              color: Colors.grey[600],
+                            ),
+                          ),
+                        ],
+                      )
+                          :
+                      Row(
+                        children: [
+                          Icon(Icons.new_releases_rounded, size: 20,),
+                          SizedBox(width: 5,),
+                          Text(
+                            'NEWEST COMMENTS',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 12,
+                            ),
+                          ),
+                        ],
+                      )
+                    ),
+                  ],
+                  child: _sortType==SortType.best ?
+                  Row(
+                    children: [
+                      SizedBox(width: 15,),
+                      Icon(Icons.rocket_launch_rounded, size: 20, color: Colors.grey[600],),
+                      SizedBox(width: 5,),
+                      Text(
+                        'BEST COMMENTS',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 12,
+                          color: Colors.grey[600],
                         ),
-                      ],
-                    )
-                  ),
-                ],
-                child: sortType==SortType.best ?
-                Row(
-                  children: [
-                    SizedBox(width: 15,),
-                    Icon(Icons.rocket_launch_rounded, size: 20, color: Colors.grey[600],),
-                    SizedBox(width: 5,),
-                    Text(
-                      'BEST COMMENTS',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        fontSize: 12,
-                        color: Colors.grey[600],
                       ),
-                    ),
-                    SizedBox(width: 5,),
-                    Icon(Icons.keyboard_arrow_down_rounded, size: 15, color: Colors.grey[600],),
-                  ],
-                )
-                    :
-                Row(
-                  children: [
-                    SizedBox(width: 15,),
-                    Icon(Icons.new_releases_rounded, size: 20, color: Colors.grey[600],),
-                    SizedBox(width: 5,),
-                    Text(
-                      'NEWEST COMMENTS',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        fontSize: 12,
-                        color: Colors.grey[600],
+                      SizedBox(width: 5,),
+                      Icon(Icons.keyboard_arrow_down_rounded, size: 15, color: Colors.grey[600],),
+                    ],
+                  )
+                      :
+                  Row(
+                    children: [
+                      SizedBox(width: 15,),
+                      Icon(Icons.new_releases_rounded, size: 20, color: Colors.grey[600],),
+                      SizedBox(width: 5,),
+                      Text(
+                        'NEWEST COMMENTS',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 12,
+                          color: Colors.grey[600],
+                        ),
                       ),
-                    ),
-                    SizedBox(width: 5,),
-                    Icon(Icons.keyboard_arrow_down_rounded, size: 15, color: Colors.grey[600],),
-                  ],
-                )
+                      SizedBox(width: 5,),
+                      Icon(Icons.keyboard_arrow_down_rounded, size: 15, color: Colors.grey[600],),
+                    ],
+                  )
+                ),
               ),
+              SizedBox(height: 5,),
+              CommentSection(post: widget.post, sortType: _sortType,),
+              SizedBox(height: 200,),
+            ],
             ),
-            SizedBox(height: 5,),
-            CommentSection(post: widget.post),
-            SizedBox(height: 200,),
-          ],
-          ),
+      ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: Positioned(
         child: Container(
