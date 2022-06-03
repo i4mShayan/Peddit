@@ -35,9 +35,9 @@ class _SingleForumPageState extends State<SingleForumPage> {
           SliverList(
             delegate: SliverChildBuilderDelegate(
                   (BuildContext context, int index) {
-                    return PostItem(post: Datas().feedPosts[index], pageSetState: widget.pageSetState);
+                    return PostItem(post: widget.forum.posts[index], pageSetState: widget.pageSetState);
               },
-              childCount: Datas().feedPosts.length,
+              childCount: widget.forum.posts.length,
             ),
           ),
         ],

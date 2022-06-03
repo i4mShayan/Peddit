@@ -42,7 +42,7 @@ class _NavigationPageState extends State<NavigationPage> with SingleTickerProvid
   void _onItemTapped(int selectedIndex) {
     setState(() {
       if(selectedIndex==2){
-        Navigator.pushNamed(context, '/add_new_post_page');
+        Navigator.pushNamed(context, '/add_new_post_page').then((value) => setState((){}));
       }
       else{
         _pageController.animateToPage(selectedIndex, duration: Duration(milliseconds: 200), curve: Curves.ease);

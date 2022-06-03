@@ -15,7 +15,7 @@ class AddNewPostPage extends StatefulWidget {
 
 class _AddNewPostPageState extends State<AddNewPostPage> {
 
-  File? image;
+  File? imageFile;
   late TextEditingController _postText=TextEditingController();
   late TextEditingController _postTitle=TextEditingController();
   Future pickImage(ImageSource source) async{
@@ -23,7 +23,7 @@ class _AddNewPostPageState extends State<AddNewPostPage> {
       final image = await ImagePicker().pickImage(source: source);
       if(image==null) return;
       final imageTemp=File(image.path);
-      setState(() => this.image=imageTemp);
+      setState(() => this.imageFile=imageTemp);
     }on PlatformException catch(e){
       print(e);
     }
@@ -65,7 +65,16 @@ class _AddNewPostPageState extends State<AddNewPostPage> {
                         child: MaterialButton(
                           splashColor: canCreatePost ? null:Colors.transparent,
                           highlightColor: canCreatePost ? null:Colors.transparent,
-                          onPressed: () {},
+                          onPressed: () {
+                            if(canCreatePost) {
+                              Navigator.push(context, MaterialPageRoute(
+                                  builder: (context) =>
+                                      SelectForumForNewPost(
+                                        title: _postTitle.text,
+                                        desc: _postText.text,
+                                        postImageFile: imageFile,)),);
+                            }
+                          },
                           materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(50),
@@ -124,7 +133,7 @@ class _AddNewPostPageState extends State<AddNewPostPage> {
                 ),
                 SizedBox(height: 5,),
                 (
-                image!=null
+                imageFile!=null
                     ?
                 Column(
                   children: [
@@ -135,13 +144,13 @@ class _AddNewPostPageState extends State<AddNewPostPage> {
                         children: [
                           IconButton(onPressed: (){
                             setState((){
-                              image=null;
+                              imageFile=null;
                             });
                           }, icon: Icon(Icons.close_rounded)),
                         ],
                       ),
                     ),
-                    Image(image: Image.file(image!).image),
+                    Image(image: Image.file(imageFile!).image),
                   ],
                 )
                     :

@@ -57,7 +57,7 @@ class _PostDetailsState extends State<PostDetails> with SingleTickerProviderStat
               children: [
                 PostItemInDetails(post: widget.post),
                 Container(
-                  // margin: EdgeInsets.only(bottom: 5),
+                  margin: EdgeInsets.only(top: 5),
                   height: 40,
                   child: PopupMenuButton(
                     itemBuilder: (context)=>[
