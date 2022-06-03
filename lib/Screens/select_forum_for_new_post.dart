@@ -13,7 +13,9 @@ class SelectForumForNewPost extends StatefulWidget {
 
 class _SelectForumForNewPostState extends State<SelectForumForNewPost> {
 
+
   ForumModel? _selectedForum;
+
   bool canCreatePost(){
     return _selectedForum!=null;
   }
@@ -63,6 +65,24 @@ class _SelectForumForNewPostState extends State<SelectForumForNewPost> {
                               Navigator.of(context).popUntil((route) {
                                 return route.settings.name == '/navigation_page';
                               });
+                              SnackBar snackBar = SnackBar(
+                                backgroundColor: Colors.green,
+                                content: Expanded(
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Icon(Icons.emoji_emotions_outlined, color: Colors.white,),
+                                      SizedBox(width: 10,),
+                                      Text('Posted in r/'),
+                                      Text(_selectedForum!.forumName, style: TextStyle(fontWeight: FontWeight.w500),),
+                                      Spacer(),
+                                      Icon(Icons.check, color: Colors.white,)
+                                    ],
+                                  ),
+                                ),
+                                duration: Duration(milliseconds: 5000),
+                              );
+                              ScaffoldMessenger.of(context).showSnackBar(snackBar);
                             });
                           }
                         },
