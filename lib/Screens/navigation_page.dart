@@ -30,7 +30,7 @@ class _NavigationPageState extends State<NavigationPage> with SingleTickerProvid
     // AddNewPostPage(),
     SizedBox(),
     SavedPostsPage(),
-    SettingPage(),
+    SettingsPage(),
   ];
 
   void _onPageChanged(int index) {
@@ -76,7 +76,7 @@ class _NavigationPageState extends State<NavigationPage> with SingleTickerProvid
       key: _scaffoldKey,
       appBar: _getAppbar(),
       drawer: DrawerMenu(),
-      endDrawer: EndDrawer(),
+      endDrawer: EndDrawer(pageSetState: ()=>setState((){}),),
       body: PageView(
         controller: _pageController,
         children: _screens,
