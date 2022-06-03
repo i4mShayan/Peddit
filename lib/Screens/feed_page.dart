@@ -9,6 +9,11 @@ class FeedPage extends StatefulWidget {
 }
 
 class _FeedPageState extends State<FeedPage> {
+
+  Future<void> _onRefresh() async {
+    setState((){});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,7 +21,10 @@ class _FeedPageState extends State<FeedPage> {
       resizeToAvoidBottomInset: false,
 
       // Feed Body(Posts)
-  body: Datas().feedPosts.length!=0 ? ListView.builder(
+  body: RefreshIndicator(
+    color: Colors.black54,
+    onRefresh: _onRefresh,
+    child: Datas().feedPosts.length!=0 ? ListView.builder(
       itemCount: Datas().feedPosts.length,
       itemBuilder: (contex, index) {
         return InkWell(
@@ -59,11 +67,12 @@ class _FeedPageState extends State<FeedPage> {
             SizedBox(height: 7,),
             Text("such empty!", style: TextStyle(
               fontWeight: FontWeight.w400,
-              fontSize: 15,
+              fontSize: 17,
               color: Colors.grey[600],
             ),),
           ],
         ),
+      )
       )
     );
   }

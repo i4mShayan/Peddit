@@ -149,7 +149,7 @@ class _PostItemInDetailsState extends State<PostItemInDetails> {
                                   Datas().currentUser.savedPosts.remove(widget.post);
                                 }
                                 else{
-                                  Datas().currentUser.savedPosts.add(widget.post);
+                                  Datas().currentUser.savedPosts.insert(0, widget.post);
                                 }
                               });
                             },

@@ -28,13 +28,26 @@ class Datas{
         headerImage: Image.network('https://www.karzar.net/uploads/campaigns/2021/12/022812919113_446.jfif.jpg'),
         profileImage: Image.network("https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco,dpr_1/zblwhkcto9iqiwjx2ckg"),
         members: [], posts: [], admins: [],
-        forumName: "Shahid_Beheshti_University",
+        forumName: "Shahid_Beheshti_Uni",
         forumDesc:  "Shahid Beheshti University is a public university founded in 1959 and one of the top universities in Iran. The university offers a large number of programs at Bachelor's, Master's and Ph.D. levels."
     ),
   ];
 
-  late List<PostModel> feedPosts=[for(ForumModel forum in currentUser.followedForums) for(PostModel post in forum.posts) post];
+  late List<PostModel> feedPosts=[];
 
+
+  void sortFeed(){
+    feedPosts.sort((a,b) => b.publishTime.compareTo(a.publishTime));
+  }
+
+  void updateFeed(){
+    List<PostModel> newFeedPosts=[];
+    for(ForumModel forum in currentUser.followedForums){
+      newFeedPosts.addAll(forum.posts);
+    }
+    feedPosts=newFeedPosts;
+    sortFeed();
+  }
 
   Datas._();
 

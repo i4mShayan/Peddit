@@ -4,7 +4,8 @@ import '../libs.dart';
 class SelectForumForNewPost extends StatefulWidget {
   String title, desc;
   File? postImageFile;
-  SelectForumForNewPost({Key? key, required this.title, required this.desc, required this.postImageFile,}) : super(key: key);
+  Function feedSetState;
+  SelectForumForNewPost({Key? key, required this.title, required this.desc, required this.postImageFile, required this.feedSetState}) : super(key: key);
 
   @override
   State<SelectForumForNewPost> createState() => _SelectForumForNewPostState();
@@ -55,11 +56,14 @@ class _SelectForumForNewPostState extends State<SelectForumForNewPost> {
                         highlightColor: canCreatePost() ? null:Colors.transparent,
                         onPressed: () {
                           if(canCreatePost()) {
-                            _selectedForum!.addPost(PostModel(postImage: widget.postImageFile!=null ? Image.file(widget.postImageFile!):null ,title: widget.title, desc: widget.desc, publisher: Datas().currentUser, forum: _selectedForum!, publishTime: DateTime.now(), upVotedUsers: [], downVotedUsers: [], comments: []));
-                            Navigator.of(context).popUntil((route) {
-                              return route.settings.name == '/navigation_page';
+                            setState((){
+                              _selectedForum!.addPost(PostModel(postImage: widget.postImageFile!=null ? Image.file(widget.postImageFile!):null ,title: widget.title, desc: widget.desc, publisher: Datas().currentUser, forum: _selectedForum!, publishTime: DateTime.now(), upVotedUsers: [], downVotedUsers: [], comments: []));
+                              Datas().updateFeed();
+                              widget.feedSetState();
+                              Navigator.of(context).popUntil((route) {
+                                return route.settings.name == '/navigation_page';
+                              });
                             });
-                            setState((){});
                           }
                         },
                         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,

@@ -2,8 +2,7 @@ import '../libs.dart';
 
 class ForumPreview extends StatefulWidget {
   ForumModel forum;
-  var pageSetStateFunc;
-  ForumPreview({Key? key, required this.forum, this.pageSetStateFunc}) : super(key: key);
+  ForumPreview({Key? key, required this.forum}) : super(key: key);
 
   @override
   State<ForumPreview> createState() => _ForumPreviewState();
@@ -41,11 +40,10 @@ class _ForumPreviewState extends State<ForumPreview> {
               IconButton(
                 onPressed: () {
                   setState(() {
-                    widget.pageSetStateFunc();
                     if(Datas().currentUser.starredForums.contains(widget.forum)){
                       Datas().currentUser.starredForums.remove(widget.forum);
                     }else{
-                      Datas().currentUser.starredForums.add(widget.forum);
+                      Datas().currentUser.starredForums.insert(0, widget.forum);
                     }
                   });
                 },

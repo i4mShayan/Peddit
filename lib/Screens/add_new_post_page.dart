@@ -70,6 +70,7 @@ class _AddNewPostPageState extends State<AddNewPostPage> {
                               Navigator.push(context, MaterialPageRoute(
                                   builder: (context) =>
                                       SelectForumForNewPost(
+                                        feedSetState: () => setState((){}),
                                         title: _postTitle.text,
                                         desc: _postText.text,
                                         postImageFile: imageFile,)),);
