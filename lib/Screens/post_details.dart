@@ -186,50 +186,65 @@ class _PostDetailsState extends State<PostDetails> with SingleTickerProviderStat
           ],
           ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: Container(
-        width: MediaQuery.of(context).size.width,
-        child: InkWell(
-          child: Expanded(
-            child: Container(
-              decoration: BoxDecoration(
-                boxShadow: <BoxShadow>[
-                  BoxShadow(
-                      color: Colors.black54,
-                      blurRadius: 2,
-                      offset: Offset(0.0, 0.75)
-                  )
-                ],
-              ),
-              child: Expanded(
-                child: Container(
-                  color: Colors.white,
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Container(
+      floatingActionButton: Positioned(
+        child: Container(
+          width: MediaQuery.of(context).size.width,
+          child: InkWell(
+            child: Expanded(
+              child: Container(
+                decoration: BoxDecoration(
+                  boxShadow: <BoxShadow>[
+                    BoxShadow(
+                        color: Colors.black54,
+                        blurRadius: 2,
+                        offset: Offset(0.0, 0.75)
+                    )
+                  ],
+                ),
+                child: Expanded(
+                  child: Container(
+                    color: Colors.white,
+                    child: Row(
+                      children: [
+                        Expanded(
                           child: Container(
-                            padding: EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 10),
-                            margin: EdgeInsets.only(left: 10, right: 0, top: 7, bottom: 10),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(5),
-                              color: Colors.blueGrey[50],
-                            ),
-                            child: Text(
-                              "Add a comment",
-                              style: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.grey[500],
+                            child: Container(
+                              padding: EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 10),
+                              margin: EdgeInsets.only(left: 10, right: 0, top: 7, bottom: 10),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(5),
+                                color: Colors.blueGrey[50],
+                              ),
+                              child: InkWell(
+                                onTap: (){
+                                  Navigator.push(context, MaterialPageRoute(
+                                      builder: (context) => AddNewCommentPage(pageSetState: ()=>setState((){}), replyingPost: widget.post,)
+                                  ));
+                                },
+                                child: Text(
+                                  "Add a comment",
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w400,
+                                    color: Colors.grey[500],
+                                  ),
+                                ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 5, right: 5),
-                        child: Material(child: IconButton(onPressed: (){}, icon: Icon(Icons.keyboard_double_arrow_down_rounded))),
-                      ),
-                    ],
+                        Padding(
+                          padding: const EdgeInsets.only(left: 5, right: 5),
+                          child: Material(child: IconButton(onPressed: (){
+                            _scrollController.animateTo(
+                              0.0,
+                              curve: Curves.easeOut,
+                              duration: const Duration(milliseconds: 300),
+                            );
+                          }, icon: Icon(Icons.keyboard_double_arrow_up_rounded,),)),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),

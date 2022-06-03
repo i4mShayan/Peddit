@@ -6,7 +6,6 @@ class CommentModel{
   late ForumModel forum;
   late DateTime publishTime;
   late String commentDesc;
-  late List<UserModel> usersReplied;
   late List<UserModel> upVotedUsers;
   late List<UserModel> downVotedUsers;
   late List<CommentModel> repliedComments;
@@ -17,7 +16,7 @@ class CommentModel{
 
 
   CommentModel({required this.publisher, required this.publishTime,
-    required this.commentDesc, required this.usersReplied,
+    required this.commentDesc,
     required this.upVotedUsers, required this.downVotedUsers ,  required this.repliedComments,
   });
 

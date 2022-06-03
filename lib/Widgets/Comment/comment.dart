@@ -91,13 +91,10 @@ class _CommentState extends State<Comment> {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             TextButton.icon(
-                              onPressed: () {
-                                // Navigator.push(
-                                //   context,
-                                //   MaterialPageRoute(
-                                //     builder: (context) => PostDetails(post: widget.post),
-                                //   ),
-                                // );
+                              onPressed: (){
+                                Navigator.push(context, MaterialPageRoute(
+                                    builder: (context) => AddNewCommentPage(pageSetState: ()=>setState((){}), replyingComment: widget.comment,)
+                                ));
                               },
                               icon: Icon(Icons.reply_rounded),
                               label: Text("Reply"),
