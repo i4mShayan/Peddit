@@ -102,7 +102,7 @@ class _PostItemState extends State<PostItem> {
                                     },
                                     child: Text(
                                       "r/" + widget.post.forum.forumName,
-                                      style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
+                                      style: TextStyle(fontSize: 13, fontWeight: FontWeight.w500),
                                     ),
                                   ),
                                 ],

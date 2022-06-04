@@ -40,3 +40,5 @@ export 'sort_type.dart';
 export 'Screens/create_new_forum_page.dart';
 export 'Screens/profile_page.dart';
 export 'Screens/edit_profile_page.dart';
+export 'Widgets/single_forum_posts_list.dart';
+export 'Widgets/forum_info.dart';
