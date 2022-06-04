@@ -59,19 +59,30 @@ class _FeedPageState extends State<FeedPage> {
         );
       })
       :
-      Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset("assets/gifs/funny_empty_feed.gif", scale: 4,),
-            SizedBox(height: 7,),
-            Text("such empty!", style: TextStyle(
-              fontWeight: FontWeight.w400,
-              fontSize: 17,
-              color: Colors.grey[600],
-            ),),
-          ],
+      ListView(
+        children: [
+          SizedBox(
+            height: MediaQuery.of(context).size.height -    // total height
+                kToolbarHeight -                      // top AppBar height
+                MediaQuery.of(context).padding.top -  // top padding
+                MediaQuery.of(context).padding.bottom - // bottom padding
+                kBottomNavigationBarHeight,
+            child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset("assets/gifs/funny_empty_feed.gif", scale: 4,),
+                SizedBox(height: 7,),
+                Text("such empty!", style: TextStyle(
+                  fontWeight: FontWeight.w400,
+                  fontSize: 17,
+                  color: Colors.grey[600],
+                ),),
+              ],
+            ),
         ),
+          ),
+      ]
       )
       )
     );

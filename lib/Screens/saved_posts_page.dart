@@ -29,11 +29,16 @@ class _SavedPostsPageState extends State<SavedPostsPage> {
                 return PostItem(post: Datas().currentUser.savedPosts[index], pageSetState: ()=>setState((){}));
               })
               :
-          Center(
-            child: ListView(
-              shrinkWrap: true,
-              children: [
-                Center(
+          ListView(
+            // shrinkWrap: true,
+            children: [
+              SizedBox(
+              height: MediaQuery.of(context).size.height -    // total height
+              kToolbarHeight -                      // top AppBar height
+              MediaQuery.of(context).padding.top -  // top padding
+              MediaQuery.of(context).padding.bottom - // bottom padding
+              kBottomNavigationBarHeight,            // BottomNavigationBar height
+                child: Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -45,9 +50,9 @@ class _SavedPostsPageState extends State<SavedPostsPage> {
                     ),),
                   ],
                 ),
-              ),
-              ]
             ),
+              ),
+            ]
           )
         ),
     );
