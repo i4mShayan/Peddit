@@ -239,7 +239,9 @@ class _PostDetailsState extends State<PostDetails> with SingleTickerProviderStat
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 5, right: 5),
-                          child: Material(child: IconButton(onPressed: (){
+                          child: Material(
+                            color: Colors.white,
+                              child: IconButton(onPressed: (){
                             _scrollController.animateTo(
                               0.0,
                               curve: Curves.easeOut,
