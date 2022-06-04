@@ -39,3 +39,4 @@ export 'Screens/add_new_comment_page.dart';
 export 'sort_type.dart';
 export 'Screens/create_new_forum_page.dart';
 export 'Screens/profile_page.dart';
+export 'Screens/edit_profile_page.dart';

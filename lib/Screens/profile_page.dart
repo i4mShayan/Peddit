@@ -40,11 +40,28 @@ class _ProfilePageState extends State<ProfilePage> {
                   padding: const EdgeInsets.only(top: 30),
                   child: Stack(
                     children: [
-                      CircleAvatar(
-                        backgroundColor: Colors.white,
-                        backgroundImage: widget.user.userProfileImage.image,
-                        radius: profileRadius,
+                      ClipOval(
+                        child: Material(
+                          // color: Colors.transparent,
+                          child: Ink.image(
+                            image: widget.user.userProfileImage.image,
+                            fit: BoxFit.cover,
+                            width: profileRadius*2,
+                            height: profileRadius*2,
+                            child: (widget.user == Datas().currentUser ? InkWell(
+                              onTap: (){
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => EditProfilePage(user: widget.user),
+                                  ),
+                                ).then((value) => setState(() {}));
+                              },
+                            ):SizedBox()),
+                          ),
+                        ),
                       ),
+                      (widget.user == Datas().currentUser ?
                       Positioned(
                         bottom: 0,
                         right: 5,
@@ -54,14 +71,16 @@ class _ProfilePageState extends State<ProfilePage> {
                             color: Colors.white,
                             child: ClipOval(
                               child: Container(
-                                padding: EdgeInsets.all(5),
+                                padding: EdgeInsets.all(7),
                                 color: Colors.blue,
-                                child: Icon(Icons.edit_rounded, color: Colors.white,)
+                                child: Icon(Icons.edit_rounded, color: Colors.white, size: 20,)
                               ),
                             ),
                           ),
                         ),
-                      ),
+                      )
+                          :
+                      SizedBox()),
                     ],
                   ),
                 ),

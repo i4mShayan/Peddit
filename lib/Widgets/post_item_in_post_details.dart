@@ -38,28 +38,38 @@ class _PostItemInDetailsState extends State<PostItemInDetails> {
                       Expanded(
                         child: Column(
                           children: [
-                            Row(
-                              children: [
-                                Container(
-                                  margin: EdgeInsets.only(left: 15, top: 10, right: 10, bottom: 10),
-                                  child: CircleAvatar(
-                                    backgroundImage: widget.post.publisher.userProfileImage.image,
-                                    backgroundColor: Colors.white,
-                                    radius: 20,
+                            GestureDetector(
+                              onTap: (){
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => ProfilePage(user: widget.post.publisher),
                                   ),
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      "u/" + widget.post.publisher.userName,
-                                      style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500),
+                                ).then((value) => setState(() {}));
+                              },
+                              child: Row(
+                                children: [
+                                  Container(
+                                    margin: EdgeInsets.only(left: 15, top: 10, right: 10, bottom: 10),
+                                    child: CircleAvatar(
+                                      backgroundImage: widget.post.publisher.userProfileImage.image,
+                                      backgroundColor: Colors.white,
+                                      radius: 20,
                                     ),
-                                    Text(publishTimeAgo() +
-                                        " ago", style: TextStyle(fontSize: 13, color: Colors.grey, fontWeight: FontWeight.w400),),
-                                  ],
-                                ),
-                              ],
+                                  ),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "u/" + widget.post.publisher.userName,
+                                        style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500),
+                                      ),
+                                      Text(publishTimeAgo() +
+                                          " ago", style: TextStyle(fontSize: 13, color: Colors.grey, fontWeight: FontWeight.w400),),
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ),
                           ],
                         ),

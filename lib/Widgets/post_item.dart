@@ -61,10 +61,20 @@ class _PostItemState extends State<PostItem> {
                       children: [
                         Container(
                           margin: EdgeInsets.only(left: 15, right: 10),
-                          child: CircleAvatar(
-                            backgroundImage: widget.post.publisher.userProfileImage.image,
-                            backgroundColor: Colors.white,
-                            radius: 18,
+                          child: GestureDetector(
+                            onTap: (){
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => ProfilePage(user: widget.post.publisher),
+                                ),
+                              ).then((value) => setState(() {}));
+                            },
+                            child: CircleAvatar(
+                              backgroundImage: widget.post.publisher.userProfileImage.image,
+                              backgroundColor: Colors.white,
+                              radius: 18,
+                            ),
                           ),
                         ),
                         Expanded(
