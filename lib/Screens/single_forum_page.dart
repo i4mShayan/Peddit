@@ -2,9 +2,10 @@ import '../libs.dart';
 
 class SingleForumPage extends StatefulWidget {
   var pageSetState;
+  ForumModel forum;
   SingleForumPage({required this.forum, required this.pageSetState,Key? key}) : super(key: key);
 
-  ForumModel forum;
+
   @override
   State<SingleForumPage> createState() => _SingleForumPageState();
 }

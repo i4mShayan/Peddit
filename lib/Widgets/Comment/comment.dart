@@ -2,8 +2,9 @@ import '../../libs.dart';
 
 class Comment extends StatefulWidget {
   CommentModel comment;
-
-  Comment({required this.comment, Key? key}) : super(key: key);
+  bool isReply;
+  double dividerThickness;
+  Comment({required this.comment, this.isReply=false, this.dividerThickness=1, Key? key}) : super(key: key);
 
   @override
   State<Comment> createState() => _CommentState();
@@ -28,7 +29,7 @@ class _CommentState extends State<Comment> {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
-      // margin: EdgeInsets.only(bottom: 7),
+      margin: EdgeInsets.only(bottom: widget.isReply ? 0:10),
       child: Material(
         child: Column(
           children: [
@@ -71,16 +72,16 @@ class _CommentState extends State<Comment> {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Container(
-                    margin: EdgeInsets.only(left: 20),
-                    child: const VerticalDivider(
-                      width: 1,
-                      thickness: 1,
-                      // indent: 20,
-                      endIndent: 0,
-                      color: Colors.grey,
-                    ),
-                  ),
+                  // Container(
+                  //   margin: EdgeInsets.only(left: 20),
+                  //   child: const VerticalDivider(
+                  //     width: 1,
+                  //     thickness: 1,
+                  //     // indent: 20,
+                  //     endIndent: 0,
+                  //     color: Colors.grey,
+                  //   ),
+                  // ),
                   Expanded(
                     child: Column(
                       children: [
@@ -185,10 +186,10 @@ class _CommentState extends State<Comment> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Container(
-                    margin: EdgeInsets.only(left: 20),
-                    child: const VerticalDivider(
-                      width: 1,
-                      thickness: 1,
+                    margin: EdgeInsets.only(left: 20, top: 10),
+                    child: VerticalDivider(
+                      width: 1 + widget.dividerThickness/5,
+                      thickness: widget.dividerThickness,
                       // indent: 20,
                       endIndent: 5,
                       color: Colors.grey,
@@ -209,7 +210,7 @@ class _CommentState extends State<Comment> {
                           child: Column(children: [
                             for (CommentModel comment
                                 in widget.comment.repliedComments)
-                              Comment(comment: comment)
+                              Comment(comment: comment, isReply: true, dividerThickness: widget.dividerThickness+0.5,)
                           ]),
                         )
                       : SizedBox(),

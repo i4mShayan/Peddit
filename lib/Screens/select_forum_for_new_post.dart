@@ -82,7 +82,6 @@ class _SelectForumForNewPostState extends State<SelectForumForNewPost> {
                                     ],
                                   ),
                                 ),
-                                duration: Duration(milliseconds: 5000),
                               );
                               ScaffoldMessenger.of(context).showSnackBar(snackBar);
                             });

@@ -253,7 +253,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                   ],
                                 ),
                               ),
-                              duration: Duration(milliseconds: 5000),
                             );
                             ScaffoldMessenger.of(context).showSnackBar(snackBar);
                           }
