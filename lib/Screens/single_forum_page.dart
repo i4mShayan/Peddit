@@ -34,6 +34,7 @@ class _SingleForumPageState extends State<SingleForumPage> with SingleTickerProv
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       backgroundColor: Colors.blueGrey[50],
       endDrawer: EndDrawer(pageSetState: ()=>setState((){}),),
       body: NestedScrollView(
@@ -160,17 +161,17 @@ class _SingleForumPageState extends State<SingleForumPage> with SingleTickerProv
           Container(
           decoration: BoxDecoration(
           borderRadius: BorderRadius.all( Radius.circular(40.0)),
-          border: Border.all(
-          color: Colors.grey,
-          width: 4.0,
-          ),
-          // boxShadow: <BoxShadow>[
-          //   BoxShadow(
-          //       color: Colors.black54,
-          //       blurRadius: 35.0,
-          //       offset: Offset(0.0, 5)
-          //   )
-          // ],
+          // border: Border.all(
+          // color: Colors.grey,
+          // width: 4.0,
+          // ),
+          boxShadow: <BoxShadow>[
+            BoxShadow(
+                color: Colors.black54,
+                blurRadius: 20.0,
+                offset: Offset(0.0, 5)
+            )
+          ],
           ),
           margin: EdgeInsets.only(top: 100, left: 20),
           child: CircleAvatar(
