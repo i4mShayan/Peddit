@@ -104,7 +104,14 @@ class _EndDrawerState extends State<EndDrawer> {
           SizedBox(
             height: 37,
             child: InkWell(
-              onTap: (){},
+              onTap: (){
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ProfilePage(user: Datas().currentUser),
+                  ),
+                ).then((value) => setState(() {}));
+              },
               child: Row(
                 children: [
                   SizedBox(width: 15,),
@@ -188,6 +195,12 @@ class _EndDrawerState extends State<EndDrawer> {
             height: 37,
             child: InkWell(
               onTap: (){
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(
+                //     builder: (context) => CreateNewForumPage(),
+                //   ),
+                // ).then((value) => setState(() {}));
               },
               child: Row(
                 children: [

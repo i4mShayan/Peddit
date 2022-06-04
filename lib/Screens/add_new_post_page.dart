@@ -178,45 +178,6 @@ class _AddNewPostPageState extends State<AddNewPostPage> {
             ],
           ),
           floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-          // bottomNavigationBar: Container(
-          //   decoration: const BoxDecoration(
-          //     boxShadow: <BoxShadow>[
-          //       BoxShadow(
-          //           color: Colors.black54,
-          //           blurRadius: 5.0,
-          //           offset: Offset(0.0, 0.75)
-          //       )
-          //     ],
-          //   ),
-          //   child: BottomNavigationBar(
-          //     elevation: 1,
-          //     iconSize: 30,
-          //     type: BottomNavigationBarType.fixed,
-          //     items: <BottomNavigationBarItem>[
-          //       BottomNavigationBarItem(
-          //         icon :Icon(Icons.home_outlined),
-          //         label: '',
-          //       ),
-          //       BottomNavigationBarItem(
-          //         icon:Icon(Icons.category_outlined),
-          //         label: '',
-          //       ),
-          //       BottomNavigationBarItem(
-          //         icon:Icon(Icons.add_rounded),
-          //         label: '',
-          //       ),
-          //       BottomNavigationBarItem(
-          //         icon:Icon(Icons.bookmark_outline_rounded),
-          //         label: '',
-          //       ),
-          //       BottomNavigationBarItem(
-          //         icon:Icon(Icons.settings_outlined),
-          //         label: '',
-          //       ),
-          //     ],
-          //     selectedItemColor: Colors.black,
-          //   ),
-          // ),
         ),
       ),
     );

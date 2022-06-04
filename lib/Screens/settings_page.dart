@@ -106,7 +106,14 @@ class _SettingsPageState extends State<SettingsPage> {
         SizedBox(
           height: _buttonsHeight,
           child: InkWell(
-            onTap: (){},
+            onTap: (){
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ProfilePage(user: Datas().currentUser,),
+                ),
+              ).then((value) => setState(() {}));
+            },
             child: Row(
               children: [
                 SizedBox(width: 15,),
@@ -176,7 +183,14 @@ class _SettingsPageState extends State<SettingsPage> {
         SizedBox(
           height: _buttonsHeight,
           child: InkWell(
-            onTap: (){},
+            onTap: (){
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(
+              //     builder: (context) => CreateNewForumPage(),
+              //   ),
+              // ).then((value) => setState(() {}));
+            },
             child: Row(
               children: [
                 SizedBox(width: 15,),

@@ -38,3 +38,4 @@ export 'Screens/select_forum_for_new_post.dart';
 export 'Screens/add_new_comment_page.dart';
 export 'sort_type.dart';
 export 'Screens/create_new_forum_page.dart';
+export 'Screens/profile_page.dart';
