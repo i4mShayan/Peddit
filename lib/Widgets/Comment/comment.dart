@@ -18,7 +18,7 @@ class _CommentState extends State<Comment> {
         if(diff.inMinutes<1){
           return diff.inSeconds.toString() + "s";
         }
-        return diff.inMinutes.toString() + "min";
+        return diff.inMinutes.toString() + "m";
       }
       return diff.inHours.toString() + "h";
     }
