@@ -2,8 +2,9 @@ import '../libs.dart';
 
 class PostItem extends StatefulWidget {
   PostModel post;
-  var pageSetState;
-  PostItem({required this.post, required this.pageSetState, Key? key}) : super(key: key);
+  Function pageSetState;
+  bool inForumPage;
+  PostItem({required this.post, required this.pageSetState, Key? key, this.inForumPage=false}) : super(key: key);
   @override
   State<PostItem> createState() => _PostItemState();
 }
@@ -17,7 +18,7 @@ class _PostItemState extends State<PostItem> {
         if(diff.inMinutes<1){
           return diff.inSeconds.toString() + "s";
         }
-        return diff.inMinutes.toString() + "min";
+        return diff.inMinutes.toString() + "m";
       }
       return diff.inHours.toString() + "h";
     }
@@ -61,14 +62,34 @@ class _PostItemState extends State<PostItem> {
                       children: [
                         Container(
                           margin: EdgeInsets.only(left: 15, right: 10),
-                          child: CircleAvatar(
-                            backgroundImage: widget.post.publisher.userProfileImage.image,
-                            backgroundColor: Colors.white,
-                            radius: 18,
+                          child: GestureDetector(
+                            onTap: (){
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => ProfilePage(user: widget.post.publisher),
+                                ),
+                              ).then((value) => setState(() {}));
+                            },
+                            child: CircleAvatar(
+                              backgroundImage: widget.post.publisher.userProfileImage.image,
+                              backgroundColor: Colors.white,
+                              radius: 18,
+                            ),
                           ),
                         ),
                         Expanded(
-                          child: Column(
+                          child: (widget.inForumPage ? Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "u/" + widget.post.publisher.userName,
+                                style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500),
+                              ),
+                              Text(publishTimeAgo() +
+                                  " ago", style: TextStyle(fontSize: 13, color: Colors.grey, fontWeight: FontWeight.w400),),
+                            ],
+                          ): Column(
                             children: [
                               Row(
                                 children: [
@@ -81,8 +102,7 @@ class _PostItemState extends State<PostItem> {
                                     },
                                     child: Text(
                                       "r/" + widget.post.forum.forumName,
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w500, fontSize: 13),
+                                      style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
                                     ),
                                   ),
                                 ],
@@ -91,14 +111,27 @@ class _PostItemState extends State<PostItem> {
                                 children: [
                                   Text(
                                     "u/" + widget.post.publisher.userName,
-                                    style: TextStyle(fontSize: 13),
+                                    style: TextStyle(fontSize: 13, color: Colors.grey[800]),
                                   ),
-                                  Text('.'),
-                                  Text(publishTimeAgo()),
+                                  Padding(
+                                    padding: const EdgeInsets.all(4),
+                                    child: Icon(
+                                      Icons.circle,
+                                      size: 4,
+                                      color: Colors.grey[600],
+                                    ),
+                                  ),
+                                  Text(
+                                    publishTimeAgo(),
+                                    style: TextStyle(
+                                        fontSize: 13,
+                                        color: Colors.grey[600],
+                                        fontWeight: FontWeight.w400),
+                                  ),
                                 ],
                               ),
                             ],
-                          ),
+                          )) ,
                         ),
                         Spacer(),
                         IconButton(onPressed: () {}, icon: Icon(Icons.more_vert))

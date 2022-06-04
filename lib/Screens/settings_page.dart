@@ -106,7 +106,14 @@ class _SettingsPageState extends State<SettingsPage> {
         SizedBox(
           height: _buttonsHeight,
           child: InkWell(
-            onTap: (){},
+            onTap: (){
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ProfilePage(user: Datas().currentUser,),
+                ),
+              ).then((value) => setState(() {}));
+            },
             child: Row(
               children: [
                 SizedBox(width: 15,),
@@ -176,7 +183,14 @@ class _SettingsPageState extends State<SettingsPage> {
         SizedBox(
           height: _buttonsHeight,
           child: InkWell(
-            onTap: (){},
+            onTap: (){
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(
+              //     builder: (context) => CreateNewForumPage(),
+              //   ),
+              // ).then((value) => setState(() {}));
+            },
             child: Row(
               children: [
                 SizedBox(width: 15,),
@@ -194,36 +208,72 @@ class _SettingsPageState extends State<SettingsPage> {
           ),
         ),
         Spacer(),
-        SizedBox(
-          height: _buttonsHeight*1.5,
-          child: InkWell(
-            onTap: (){
-              _onDarkModeSelection();
-            },
-            child: Row(
-              children: [
-                SizedBox(width: 15,),
-                Transform.rotate(
-                  angle: 315 * pi / 180,
-                  child: Datas().darkMode ? Icon(Icons.nightlight, color: Colors.black, size: _iconsSize,):Icon(Icons.nightlight_outlined, color: Colors.black, size: _iconsSize,),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Flexible(
+              child: SizedBox(
+                height: _buttonsHeight,
+                child: InkWell(
+                  onTap: (){
+                    Navigator.pushNamed(context, '/about_us');
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 10),
+                    child: Row(
+                      children: [
+                        SizedBox(width: 15,),
+                        Icon(Icons.info_outline_rounded, size: _iconsSize, color: Colors.grey[900],),
+                        SizedBox(width: 10,),
+                        Text(
+                          'About us',
+                          style: TextStyle(
+                            fontWeight: _fontWeight,
+                            fontSize: _fontSize,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
-                SizedBox(width: 10,),
-                Text("Dark mode", style: TextStyle(
-                  fontWeight: _fontWeight,
-                  fontSize: _fontSize,
-                ),),
-                Spacer(),
-                Switch(
-                  activeColor: Colors.black,
-                  value: Datas().darkMode,
-                  onChanged: (value){
-                    _onDarkModeSelection();
-                  }
-                ),
-                SizedBox(width: 10,),
-              ],
+              ),
             ),
-          ),
+            Flexible(
+              child: SizedBox(
+                height: _buttonsHeight,
+                child: InkWell(
+                  onTap: (){
+                    _onDarkModeSelection();
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 10),
+                    child: Row(
+                      children: [
+                        SizedBox(width: 15,),
+                        Transform.rotate(
+                          angle: 315 * pi / 180,
+                          child: Datas().darkMode ? Icon(Icons.nightlight, color: Colors.black, size: _iconsSize,):Icon(Icons.nightlight_outlined, color: Colors.black, size: _iconsSize,),
+                        ),
+                        SizedBox(width: 10,),
+                        Text("Dark mode", style: TextStyle(
+                          fontWeight: _fontWeight,
+                          fontSize: _fontSize,
+                        ),),
+                        Spacer(),
+                        Switch(
+                          activeColor: Colors.black,
+                          value: Datas().darkMode,
+                          onChanged: (value){
+                            _onDarkModeSelection();
+                          }
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
       ],
     );

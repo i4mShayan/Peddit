@@ -5,7 +5,6 @@ class MainAppBar extends StatefulWidget implements PreferredSizeWidget{
   Function _openDrawer;
   Function _openEndDrawer;
 
-
   MainAppBar(this._openDrawer, this._openEndDrawer);
 
   @override

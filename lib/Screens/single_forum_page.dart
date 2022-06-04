@@ -2,9 +2,10 @@ import '../libs.dart';
 
 class SingleForumPage extends StatefulWidget {
   var pageSetState;
+  ForumModel forum;
   SingleForumPage({required this.forum, required this.pageSetState,Key? key}) : super(key: key);
 
-  ForumModel forum;
+
   @override
   State<SingleForumPage> createState() => _SingleForumPageState();
 }
@@ -35,7 +36,7 @@ class _SingleForumPageState extends State<SingleForumPage> {
           SliverList(
             delegate: SliverChildBuilderDelegate(
                   (BuildContext context, int index) {
-                    return PostItem(post: widget.forum.posts[index], pageSetState: widget.pageSetState);
+                    return PostItem(post: widget.forum.posts[index], pageSetState: widget.pageSetState, inForumPage: true,);
               },
               childCount: widget.forum.posts.length,
             ),
