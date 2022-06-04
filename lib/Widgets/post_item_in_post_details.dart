@@ -1,4 +1,5 @@
 import '../libs.dart';
+import 'package:shamsi_date/shamsi_date.dart';
 
 class PostItemInDetails extends StatefulWidget {
   PostModel post;
@@ -8,6 +9,12 @@ class PostItemInDetails extends StatefulWidget {
 }
 
 class _PostItemInDetailsState extends State<PostItemInDetails> {
+
+
+  String shamsiDateOf(DateTime dateTime){
+    final f = Jalali.fromDateTime(dateTime).formatter;
+    return '${f.wN} ${f.d} ${f.mN} ${f.yyyy}';
+  }
 
   String publishTimeAgo(){
     Duration diff=DateTime.now().difference(widget.post.publishTime);
@@ -64,8 +71,7 @@ class _PostItemInDetailsState extends State<PostItemInDetails> {
                                         "u/" + widget.post.publisher.userName,
                                         style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500),
                                       ),
-                                      Text(publishTimeAgo() +
-                                          " ago", style: TextStyle(fontSize: 13, color: Colors.grey, fontWeight: FontWeight.w400),),
+                                      Text(shamsiDateOf(widget.post.publishTime), style: TextStyle(fontSize: 13, color: Colors.grey, fontWeight: FontWeight.w400),),
                                     ],
                                   ),
                                 ],
