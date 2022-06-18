@@ -33,11 +33,11 @@ class _SavedPostsPageState extends State<SavedPostsPage> {
             // shrinkWrap: true,
             children: [
               SizedBox(
-              height: MediaQuery.of(context).size.height -    // total height
-              kToolbarHeight -                      // top AppBar height
-              MediaQuery.of(context).padding.top -  // top padding
-              MediaQuery.of(context).padding.bottom - // bottom padding
-              kBottomNavigationBarHeight,            // BottomNavigationBar height
+              height: (MediaQuery.of(context).size.height -    // total height
+                  kToolbarHeight -                      // top AppBar height
+                  MediaQuery.of(context).padding.top -  // top padding
+                  MediaQuery.of(context).padding.bottom - // bottom padding
+                  kBottomNavigationBarHeight)/1.1,            // BottomNavigationBar height
                 child: Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,

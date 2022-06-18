@@ -31,6 +31,10 @@ class _SingleForumPageState extends State<SingleForumPage> with SingleTickerProv
     super.initState();
   }
 
+  Future<void> _onRefresh() async {
+    setState((){});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
