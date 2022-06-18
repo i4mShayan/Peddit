@@ -18,7 +18,7 @@ void main() {
         primarySwatch: Colors.grey,
       ),
       themeMode: ThemeMode.light,
-      initialRoute: '/navigation_page',
+      initialRoute: Datas().currentUser==null ? 'login':'/navigation_page',
       routes: {
         '/add_new_post_page': (context) => AddNewPostPage(),
         '/feed_page': (context) => FeedPage(),

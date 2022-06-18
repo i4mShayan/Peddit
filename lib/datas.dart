@@ -1,14 +1,15 @@
 import 'libs.dart';
 
 class Datas{
+  bool loggedIn = true;
+  late UserModel currentUser=UserModel(userName: "username", email: "email", userProfileImage: Datas().defaultProfilePicture,
+  followedForums: forumsList, starredForums: [], downVotedPosts: [], upVotedPosts: [], savedPosts: [],
+      likedComments: [], disLikedComments: [], userPosts: [], comments: [], password: 'Fasda1231');
   bool darkMode=false;
   PageController pageController=PageController();
   int navigationSelectedIndex=0;
   Image defaultProfilePicture=Image.asset("assets/images/default_profile.png");
   Image defaultBackground=Image.asset("assets/images/default_background.png");
-  late UserModel currentUser=UserModel(userName: "username", email: "email", userProfileImage: Datas().defaultProfilePicture,
-  followedForums: forumsList, starredForums: [], downVotedPosts: [], upVotedPosts: [], savedPosts: [],
-      likedComments: [], disLikedComments: [], userPosts: [], comments: [], password: 'Fasda1231');
 
   late List<UserModel> usersList=[currentUser];
 

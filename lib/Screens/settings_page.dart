@@ -78,6 +78,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 child: MaterialButton(
                   height: _buttonsHeight,
                   onPressed: () {
+                    Datas().loggedIn=false;
                     Navigator.of(context).pushNamedAndRemoveUntil('/login', (route) => false);
                   },
                   materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
