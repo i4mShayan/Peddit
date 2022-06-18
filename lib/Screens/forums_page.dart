@@ -56,7 +56,7 @@ class _ForumsPageState extends State<ForumsPage> {
             padding: const EdgeInsets.only(left: 20, top: 5, bottom: 10),
             child: Text(
               "Followed forums",
-              style: TextStyle(fontWeight: FontWeight.w500, fontSize: 17),
+              style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
             ),
           ),
           (Datas().currentUser.followedForums.length!=0 ? Column(
