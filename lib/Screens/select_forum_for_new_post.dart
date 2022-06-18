@@ -35,7 +35,7 @@ class _SelectForumForNewPostState extends State<SelectForumForNewPost> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    IconButton(onPressed: (){Navigator.pop(context);}, icon: Icon(Icons.close_rounded, size: 30,)),
+                    IconButton(onPressed: (){Navigator.pop(context);}, icon: Icon(Icons.arrow_back_rounded, size: 30,)),
                     SizedBox(width: 15,),
                     Text("Post to", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),),
                     Spacer(),

@@ -14,11 +14,11 @@ class _AddNewCommentPageState extends State<AddNewCommentPage> {
 
 
   String desc(){
-    if(widget.replyingPost!=null){
-      return widget.replyingPost.desc;
-    }
-    else if(widget.replyingComment!=null){
+    if(widget.replyingComment!=null){
       return widget.replyingComment!.commentDesc;
+    }
+    else if(widget.replyingPost!=null){
+      return widget.replyingPost.desc;
     }
     else{
       return "unable to show this!";
@@ -114,7 +114,7 @@ class _AddNewCommentPageState extends State<AddNewCommentPage> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 20, bottom: 10, left: 30, right: 30),
+                padding: EdgeInsets.only(top: 20, bottom: 10, left: 30, right: 30),
                 child: Text(desc(),
                   style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18),
                   overflow: TextOverflow.ellipsis,
@@ -122,7 +122,7 @@ class _AddNewCommentPageState extends State<AddNewCommentPage> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
+                padding: EdgeInsets.symmetric(horizontal: 20),
                 child: Divider(
                   color: Colors.black,
                   // thickness: 1,
