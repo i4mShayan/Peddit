@@ -195,12 +195,12 @@ class _EndDrawerState extends State<EndDrawer> {
             height: 37,
             child: InkWell(
               onTap: (){
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(
-                //     builder: (context) => CreateNewForumPage(),
-                //   ),
-                // ).then((value) => setState(() {}));
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => CreateNewForumPage(),
+                  ),
+                ).then((value) => setState(() {}));
               },
               child: Row(
                 children: [

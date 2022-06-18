@@ -1,277 +1,305 @@
-// import 'dart:io';
-// import 'dart:math';
-//
-// import 'package:flutter/services.dart';
-// import 'package:image_picker/image_picker.dart';
-//
-// import '../libs.dart';
-//
-// class CreateNewForumPage extends StatefulWidget {
-//   ForumModel? forum;
-//   CreateNewForumPage({Key? key, this.forum=null}) : super(key: key);
-//
-//   @override
-//   State<CreateNewForumPage> createState() => _CreateNewForumPageState();
-// }
-//
-// class _CreateNewForumPageState extends State<CreateNewForumPage> {
-//
-//   File? imageFile;
-//   late TextEditingController _postText=TextEditingController();
-//   late TextEditingController _postTitle=TextEditingController();
-//   Future pickImage(ImageSource source) async{
-//     try{
-//       final image = await ImagePicker().pickImage(source: source);
-//       if(image==null) return;
-//       final imageTemp=File(image.path);
-//       setState(() => this.imageFile=imageTemp);
-//     }on PlatformException catch(e){
-//       print(e);
-//     }
-//   }
-//
-//   String? emailErrorMessage=null;
-//   String? usernameErrorMessage=null;
-//   String? passwordErrorMessage=null;
-//
-//   bool _passwordVisible = false;
-//
-//
-//   TextEditingController _email=TextEditingController();
-//   TextEditingController _username=TextEditingController();
-//   TextEditingController _password=TextEditingController();
-//
-//   @override
-//   void initState() {
-//     _passwordVisible = false;
-//     _email.text=widget.user.email;
-//     _username.text=widget.user.userName;
-//     _password.text=widget.user.password;
-//   }
-//
-//   double profileRadius=70;
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//       color: Colors.white,
-//       child: SafeArea(
-//         child: Scaffold(
-//           resizeToAvoidBottomInset: false,
-//           backgroundColor: Colors.white,
-//           body: Column(
-//             children: [
-//               Padding(
-//                 padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 5),
-//                 child: Row(
-//                   mainAxisAlignment: MainAxisAlignment.start,
-//                   crossAxisAlignment: CrossAxisAlignment.center,
-//                   children: [
-//                     IconButton(onPressed: (){
-//                       Navigator.pop(context);}, icon: Icon(Icons.arrow_back_rounded, size: 30,
-//                     )),
-//                     SizedBox(width: 15,),
-//                     Text("Edit profile page", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),),
-//                   ],
-//                 ),
-//               ),
-//               Padding(
-//                 padding: const EdgeInsets.only(top: 30),
-//                 child: Stack(
-//                   children: [
-//                     ClipOval(
-//                       child: Material(
-//                         // color: Colors.transparent,
-//                         child: Ink.image(
-//                           image: imageFile==null ? widget.user.userProfileImage.image:Image.file(imageFile!).image,
-//                           fit: BoxFit.cover,
-//                           width: profileRadius*2,
-//                           height: profileRadius*2,
-//                           child: InkWell(
-//                             onTap: ()=>pickImage(ImageSource.gallery),
-//                           ),
-//                         ),
-//                       ),
-//                     ),
-//                     (widget.user == Datas().currentUser ?
-//                     Positioned(
-//                       bottom: 0,
-//                       right: 5,
-//                       child: ClipOval(
-//                         child: Container(
-//                           padding: EdgeInsets.all(4),
-//                           color: Colors.white,
-//                           child: ClipOval(
-//                             child: Container(
-//                                 padding: EdgeInsets.all(7),
-//                                 color: Colors.blue,
-//                                 child: Icon(Icons.add_a_photo, color: Colors.white, size: 20,)
-//                             ),
-//                           ),
-//                         ),
-//                       ),
-//                     )
-//                         :
-//                     SizedBox()),
-//                   ],
-//                 ),
-//               ),
-//               SizedBox(height: 35,),
-//               Padding(
-//                 padding: const EdgeInsets.only(left: 20, right: 20),
-//                 child: TextField(
-//                   autofocus: true,
-//                   controller: _email,
-//                   onChanged: (value){
-//                     emailErrorMessage=emailError(_email);
-//                     setState(() { });
-//                   },
-//                   decoration: InputDecoration(
-//                     border: OutlineInputBorder(
-//                       borderRadius: BorderRadius.circular(50),
-//                     ),
-//                     focusedBorder: OutlineInputBorder(
-//                         borderRadius: BorderRadius.circular(50),
-//                         borderSide: BorderSide(color: Colors.blue, width: 2)
-//                     ),
-//                     filled: true,
-//                     hintStyle: TextStyle(color: Colors.grey[800]),
-//                     hintText: "New email" ,
-//                     errorText: emailErrorMessage,
-//                   ),
-//                 ),
-//               ),
-//               Padding(
-//                 padding: const EdgeInsets.only(top: 10, left: 20, right: 20),
-//                 child: TextField(
-//                   autofocus: true,
-//                   controller: _username,
-//                   onChanged: (value){
-//                     usernameErrorMessage=usernameError(_username);
-//                     setState(() { });
-//                   },
-//                   decoration: InputDecoration(
-//                     border: OutlineInputBorder(
-//                       borderRadius: BorderRadius.circular(50),
-//                     ),
-//                     focusedBorder: OutlineInputBorder(
-//                         borderRadius: BorderRadius.circular(50),
-//                         borderSide: BorderSide(color: Colors.blue, width: 2)
-//                     ),
-//                     filled: true,
-//                     hintStyle: TextStyle(color: Colors.grey[800]),
-//                     hintText: "New username",
-//                     errorText: usernameErrorMessage,
-//
-//                   ),
-//                 ),
-//               ),
-//               Padding(
-//                 padding: const EdgeInsets.only(top: 10, left: 20, right: 20),
-//                 child: TextFormField(
-//                   autofocus: true,
-//                   controller: _password,
-//                   onChanged: (value){
-//                     passwordErrorMessage=passwordError(_password);
-//                     setState(() { });
-//                   },
-//                   keyboardType: TextInputType.text,
-//                   obscureText: !_passwordVisible,
-//                   decoration: InputDecoration(
-//                     border: OutlineInputBorder(
-//                       borderRadius: BorderRadius.circular(50),
-//                     ),
-//                     focusedBorder: OutlineInputBorder(
-//                         borderRadius: BorderRadius.circular(50),
-//                         borderSide: BorderSide(color: Colors.blue, width: 2)
-//                     ),
-//                     filled: true,
-//                     hintStyle: TextStyle(color: Colors.grey[800]),
-//                     hintText: "New password",
-//                     errorText: passwordErrorMessage,
-//                     suffixIcon: IconButton(
-//                       icon: Icon(
-//                         _passwordVisible
-//                             ? Icons.visibility
-//                             : Icons.visibility_off,
-//                         color: Colors.blue,
-//                       ),
-//                       onPressed: () {
-//                         setState(() {
-//                           _passwordVisible = !_passwordVisible;
-//                         });
-//                       },
-//                     ),
-//                   ),
-//                 ),
-//               ),
-//               Spacer(),
-//               Row(
-//                 children: [
-//                   Expanded(
-//                     child: Container(
-//                       margin: const EdgeInsets.only(top: 10, bottom:30, left: 20, right: 20),
-//                       height: 60,
-//                       decoration: const ShapeDecoration(
-//                         shape: StadiumBorder(),
-//                         gradient: LinearGradient(
-//                           begin: Alignment.topLeft,
-//                           end: Alignment.bottomRight,
-//                           colors: [Color(0xff374ABE), Colors.blue],
-//                         ),
-//                       ),
-//                       child: MaterialButton(
-//                         onPressed: () {
-//                           if(signupHasError(_email, _username, _password)){
-//                             setState(() {
-//                               emailErrorMessage=emailError(_email);
-//                               usernameErrorMessage=usernameError(_username);
-//                               passwordErrorMessage=passwordError(_password);
-//                             });
-//                             // showDialogWith(context: context, title: 'Wrong fields', content: 'Fill all fields correctly!');
-//                           }
-//                           else{
-//                             widget.user.userName=_username.text;
-//                             widget.user.email=_email.text;
-//                             widget.user.password=_password.text;
-//                             if(imageFile!=null) {
-//                               widget.user.userProfileImage =
-//                                   Image.file(imageFile!);
-//                             }
-//                             Navigator.pop(context);
-//                             SnackBar snackBar = SnackBar(
-//                               backgroundColor: Colors.green,
-//                               content: Expanded(
-//                                 child: Row(
-//                                   mainAxisAlignment: MainAxisAlignment.start,
-//                                   children: [
-//                                     Icon(Icons.emoji_emotions_outlined, color: Colors.white,),
-//                                     SizedBox(width: 10,),
-//                                     Text('Profile changes saved'),
-//                                     Spacer(),
-//                                     Icon(Icons.check, color: Colors.white,)
-//                                   ],
-//                                 ),
-//                               ),
-//                             );
-//                             ScaffoldMessenger.of(context).showSnackBar(snackBar);
-//                           }
-//                         },
-//                         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-//                         shape: const StadiumBorder(),
-//                         child: const Text(
-//                           'Save',
-//                           style: TextStyle(color: Colors.white, fontSize: 25, fontWeight: FontWeight.bold),
-//                         ),
-//                       ),
-//                     ),
-//                   ),
-//                 ],
-//               ),
-//             ],
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
+import 'dart:io';
+import 'dart:math';
+
+import 'package:flutter/services.dart';
+import 'package:image_picker/image_picker.dart';
+
+import '../libs.dart';
+
+class CreateNewForumPage extends StatefulWidget {
+  ForumModel? forum;
+  CreateNewForumPage({Key? key, this.forum=null}) : super(key: key);
+
+  @override
+  State<CreateNewForumPage> createState() => _CreateNewForumPageState();
+}
+
+class _CreateNewForumPageState extends State<CreateNewForumPage> {
+
+  late TextEditingController _postText=TextEditingController();
+  late TextEditingController _postTitle=TextEditingController();
+
+  File? profileImageFile;
+  Future pickProfile(ImageSource source) async{
+    try{
+      final image = await ImagePicker().pickImage(source: source);
+      if(image==null) return;
+      final imageTemp=File(image.path);
+      setState(() => this.profileImageFile=imageTemp);
+    }on PlatformException catch(e){
+      print(e);
+    }
+  }
+  File? headerImageFile;
+  Future pickHeader(ImageSource source) async{
+    try{
+      final image = await ImagePicker().pickImage(source: source);
+      if(image==null) return;
+      final imageTemp=File(image.path);
+      setState(() => this.headerImageFile=imageTemp);
+    }on PlatformException catch(e){
+      print(e);
+    }
+  }
+
+
+
+
+  String? nameErrorMessage=null;
+  String? descErrorMessage=null;
+
+  bool _passwordVisible = false;
+
+
+  TextEditingController _name=TextEditingController();
+  TextEditingController _desc=TextEditingController();
+
+  String? forumNameError(){
+    return _name.text.isEmpty ? "Forum name can't be empty!" : null;
+  }
+
+  @override
+  void initState() {
+  }
+
+  double profileRadius=70;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.white,
+      child: SafeArea(
+        child: Scaffold(
+          floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+          floatingActionButton: Row(
+            children: [
+              Expanded(
+                child: Container(
+                  margin: const EdgeInsets.only(top: 0, bottom:5, left: 20, right: 20),
+                  height: 60,
+                  decoration: const ShapeDecoration(
+                    shape: StadiumBorder(),
+                    gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [Colors.red, Colors.orange],
+                    ),
+                  ),
+                  child: MaterialButton(
+                    onPressed: () {
+                      setState((){
+                        nameErrorMessage=forumNameError();
+                      });
+                      if(nameErrorMessage==null) {
+                        setState(() {
+                          ForumModel newForum = ForumModel(owner: Datas().currentUser,
+                              admins: [],
+                              posts: [],
+                              members: [],
+                              forumName: _name.text,
+                              forumDesc: _desc.text,
+                              forumCreateTime: DateTime.now(),
+                              profileImage: profileImageFile == null ? Datas()
+                                  .defaultProfilePicture : Image.file(profileImageFile!),
+                              headerImage: headerImageFile == null
+                                  ? Datas().defaultBackground
+                                  : Image.file(headerImageFile!));
+                          Datas().forumsList.add(newForum);
+                          Navigator.of(context).pop();
+                          SnackBar snackBar = SnackBar(
+                            backgroundColor: Colors.green,
+                            content: Expanded(
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Icon(Icons.emoji_emotions_outlined, color: Colors.white,),
+                                  SizedBox(width: 10,),
+                                  Text('Created r/'),
+                                  Text(
+                                    _name.text, style: TextStyle(fontWeight: FontWeight.w500),),
+                                  Spacer(),
+                                  Icon(Icons.check, color: Colors.white,)
+                                ],
+                              ),
+                            ),
+                          );
+                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                        });
+                      }
+                    },
+                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    shape: const StadiumBorder(),
+                    child: const Text(
+                      'Create forum',
+                      style: TextStyle(color: Colors.white, fontSize: 25, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          resizeToAvoidBottomInset: false,
+          backgroundColor: Colors.white,
+          body: SingleChildScrollView(
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 5),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      IconButton(onPressed: (){
+                        Navigator.pop(context);}, icon: Icon(Icons.close_rounded, size: 30,
+                      )),
+                      SizedBox(width: 15,),
+                      Text("Create new forum", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 7),
+                  child: Stack(
+                    clipBehavior: Clip.none,
+                    children: [
+                      Material(
+                        // color: Colors.transparent,
+                        child: Ink.image(
+                          image: headerImageFile==null ? Datas().defaultBackground.image:Image.file(headerImageFile!).image,
+                          fit: BoxFit.cover,
+                          // width: profileRadius*3,
+                          height: profileRadius*4,
+                          child: InkWell(
+                            onTap: ()=>pickHeader(ImageSource.gallery),
+                          ),
+                        ),
+                      ),
+                      Positioned(
+                        bottom: 5,
+                        right: 5,
+                        child: ClipOval(
+                          child: Container(
+                            padding: EdgeInsets.all(4),
+                            color: Colors.white,
+                            child: ClipOval(
+                              child: Container(
+                                  padding: EdgeInsets.all(7),
+                                  color: Colors.blue,
+                                  child: Icon(Icons.add_a_photo, color: Colors.white, size: 20,)
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Positioned(
+                        bottom: -30,
+                        left: 20,
+                        child: Container(
+                          decoration: BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.5),
+                                  spreadRadius: 3,
+                                  blurRadius: 30,
+                                  offset: Offset(0, 5), // changes position of shadow
+                                ),
+                              ],
+                              borderRadius: BorderRadius.all(Radius.circular(20))
+                          ),
+                          child: Stack(
+                          children: [
+                            ClipOval(
+                              child: Material(
+                                // color: Colors.transparent,
+                                child: Ink.image(
+                                  image: profileImageFile==null ? Datas().defaultProfilePicture.image:Image.file(profileImageFile!).image,
+                                  fit: BoxFit.cover,
+                                  width: profileRadius*1.5,
+                                  height: profileRadius*1.5,
+                                  child: InkWell(
+                                    onTap: ()=>pickProfile(ImageSource.gallery),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Positioned(
+                              bottom: 0,
+                              right: 5,
+                              child: ClipOval(
+                                child: Container(
+                                  padding: EdgeInsets.all(3),
+                                  color: Colors.white,
+                                  child: ClipOval(
+                                    child: Container(
+                                        padding: EdgeInsets.all(5),
+                                        color: Colors.blue,
+                                        child: Icon(Icons.add_a_photo, color: Colors.white, size: 15,)
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                      ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 50,),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20, right: 20),
+                  child: TextField(
+                    autofocus: true,
+                    controller: _name,
+                    onChanged: (value){},
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(50),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(50),
+                          borderSide: BorderSide(color: Colors.deepOrange, width: 2)
+                      ),
+                      filled: true,
+                      hintStyle: TextStyle(color: Colors.grey[800]),
+                      hintText: "Forum name" ,
+                      errorText: nameErrorMessage,
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 10, left: 20, right: 20),
+                  child: TextField(
+                    autofocus: true,
+                    minLines: 3,
+                    maxLines: 20,
+                    controller: _desc,
+                    onChanged: (value){
+                      // setState(() { });
+                    },
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(35),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(35),
+                          borderSide: BorderSide(color: Colors.deepOrange, width: 2)
+                      ),
+                      filled: true,
+                      hintStyle: TextStyle(color: Colors.grey[800]),
+                      hintText: "About forum",
+                      errorText: descErrorMessage,
+
+                    ),
+                  ),
+                ),
+                SizedBox(height: 100,),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}

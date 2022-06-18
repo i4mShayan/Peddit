@@ -185,12 +185,12 @@ class _SettingsPageState extends State<SettingsPage> {
           height: _buttonsHeight,
           child: InkWell(
             onTap: (){
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(
-              //     builder: (context) => CreateNewForumPage(),
-              //   ),
-              // ).then((value) => setState(() {}));
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => CreateNewForumPage(),
+                ),
+              ).then((value) => setState(() {}));
             },
             child: Row(
               children: [
