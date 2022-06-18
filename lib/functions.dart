@@ -24,3 +24,16 @@ String? usernameError(TextEditingController _username){
 bool signupHasError(TextEditingController _email, TextEditingController _username, TextEditingController _password){
   return (usernameError(_username)!=null || emailError(_email)!=null || passwordError(_password)!=null);
 }
+
+bool userAdminOf(UserModel user, ForumModel forum){
+  return forum.admins.contains(user) || forum.owner==user;
+}
+
+bool userCanDeletePost( UserModel user, PostModel post,){
+  return post.publisher==user || userAdminOf(user, post.forum);
+}
+
+void deletePost(PostModel post){
+  post.forum.posts.remove(post);
+  Datas().updateFeed();
+}

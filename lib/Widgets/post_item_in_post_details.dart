@@ -81,7 +81,36 @@ class _PostItemInDetailsState extends State<PostItemInDetails> {
                         ),
                       ),
                       Spacer(),
-                      IconButton(onPressed: () {}, icon: Icon(Icons.more_vert))
+                      PopupMenuButton(
+                        child: Padding(
+                          padding: const EdgeInsets.all(12),
+                          child: Icon(Icons.more_vert_rounded),
+                        ),
+                        itemBuilder: (context)=>[
+                          PopupMenuItem(
+                              enabled: userCanDeletePost(Datas().currentUser, widget.post),
+                              onTap: (){
+                                setState((){
+                                  deletePost(widget.post);
+                                });
+                              },
+                              child: Row(
+                                children: [
+                                  Icon(Icons.delete_rounded, size: 20, color: Colors.red,),
+                                  SizedBox(width: 10,),
+                                  Text(
+                                    'Delete',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 12,
+                                      color: Colors.red,
+                                    ),
+                                  ),
+                                ],
+                              )
+                          ),
+                        ],
+                      ),
                     ],
                   ),
                 ),

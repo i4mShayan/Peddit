@@ -1,4 +1,5 @@
 // import 'dart:io';
+// import 'dart:math';
 //
 // import 'package:flutter/services.dart';
 // import 'package:image_picker/image_picker.dart';
@@ -6,7 +7,8 @@
 // import '../libs.dart';
 //
 // class CreateNewForumPage extends StatefulWidget {
-//   const CreateNewForumPage({Key? key}) : super(key: key);
+//   ForumModel? forum;
+//   CreateNewForumPage({Key? key, this.forum=null}) : super(key: key);
 //
 //   @override
 //   State<CreateNewForumPage> createState() => _CreateNewForumPageState();
@@ -14,21 +16,40 @@
 //
 // class _CreateNewForumPageState extends State<CreateNewForumPage> {
 //
-//   File? profileImageFile;
-//   File? headerImageFile;
+//   File? imageFile;
 //   late TextEditingController _postText=TextEditingController();
 //   late TextEditingController _postTitle=TextEditingController();
-//   Future pickImage(File imageFile, ImageSource source,) async{
+//   Future pickImage(ImageSource source) async{
 //     try{
 //       final image = await ImagePicker().pickImage(source: source);
 //       if(image==null) return;
 //       final imageTemp=File(image.path);
-//       setState(() => imageFile=imageTemp);
+//       setState(() => this.imageFile=imageTemp);
 //     }on PlatformException catch(e){
 //       print(e);
 //     }
 //   }
-//   bool canCreatePost=false;
+//
+//   String? emailErrorMessage=null;
+//   String? usernameErrorMessage=null;
+//   String? passwordErrorMessage=null;
+//
+//   bool _passwordVisible = false;
+//
+//
+//   TextEditingController _email=TextEditingController();
+//   TextEditingController _username=TextEditingController();
+//   TextEditingController _password=TextEditingController();
+//
+//   @override
+//   void initState() {
+//     _passwordVisible = false;
+//     _email.text=widget.user.email;
+//     _username.text=widget.user.userName;
+//     _password.text=widget.user.password;
+//   }
+//
+//   double profileRadius=70;
 //
 //   @override
 //   Widget build(BuildContext context) {
@@ -36,152 +57,221 @@
 //       color: Colors.white,
 //       child: SafeArea(
 //         child: Scaffold(
+//           resizeToAvoidBottomInset: false,
 //           backgroundColor: Colors.white,
-//           body: SingleChildScrollView(
-//             child: Column(
-//                 mainAxisAlignment: MainAxisAlignment.start,
-//                 children: [
-//                   Padding(
-//                     padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 5),
-//                     child: Row(
-//                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                       crossAxisAlignment: CrossAxisAlignment.center,
-//                       children: [
-//                         IconButton(onPressed: (){
-//                           Navigator.pop(context);}, icon: Icon(Icons.close_rounded, size: 30,
-//                         )),
-//                         Container(
-//                           width: 80,
-//                           margin: const EdgeInsets.only(right: 5,),
-//                           height: 40,
-//                           decoration: ShapeDecoration(
-//                             shape: RoundedRectangleBorder(
-//                               borderRadius: BorderRadius.circular(50),
-//                             ),
-//                             gradient: LinearGradient(
-//                               begin: Alignment.topLeft,
-//                               end: Alignment.bottomRight,
-//                               colors: (canCreatePost ? [Color(0xff374ABE), Colors.blue]:[Color(0xff374ABE).withOpacity(0.6), Colors.blue.withOpacity(0.6)]),
-//                             ),
+//           body: Column(
+//             children: [
+//               Padding(
+//                 padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 5),
+//                 child: Row(
+//                   mainAxisAlignment: MainAxisAlignment.start,
+//                   crossAxisAlignment: CrossAxisAlignment.center,
+//                   children: [
+//                     IconButton(onPressed: (){
+//                       Navigator.pop(context);}, icon: Icon(Icons.arrow_back_rounded, size: 30,
+//                     )),
+//                     SizedBox(width: 15,),
+//                     Text("Edit profile page", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),),
+//                   ],
+//                 ),
+//               ),
+//               Padding(
+//                 padding: const EdgeInsets.only(top: 30),
+//                 child: Stack(
+//                   children: [
+//                     ClipOval(
+//                       child: Material(
+//                         // color: Colors.transparent,
+//                         child: Ink.image(
+//                           image: imageFile==null ? widget.user.userProfileImage.image:Image.file(imageFile!).image,
+//                           fit: BoxFit.cover,
+//                           width: profileRadius*2,
+//                           height: profileRadius*2,
+//                           child: InkWell(
+//                             onTap: ()=>pickImage(ImageSource.gallery),
 //                           ),
-//                           child: MaterialButton(
-//                             splashColor: canCreatePost ? null:Colors.transparent,
-//                             highlightColor: canCreatePost ? null:Colors.transparent,
-//                             onPressed: () {
-//                               if(canCreatePost) {
-//                                 Navigator.push(context, MaterialPageRoute(
-//                                     builder: (context) =>
-//                                         SelectForumForNewPost(
-//                                           feedSetState: () => setState((){}),
-//                                           title: _postTitle.text,
-//                                           desc: _postText.text,
-//                                           postImageFile: imageFile,)),);
-//                               }
-//                             },
-//                             materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-//                             shape: RoundedRectangleBorder(
-//                               borderRadius: BorderRadius.circular(50),
-//                             ),
-//                             child: const Text(
-//                               'Next',
-//                               style: TextStyle(color: Colors.white, fontSize: 17,fontWeight: FontWeight.w500),
+//                         ),
+//                       ),
+//                     ),
+//                     (widget.user == Datas().currentUser ?
+//                     Positioned(
+//                       bottom: 0,
+//                       right: 5,
+//                       child: ClipOval(
+//                         child: Container(
+//                           padding: EdgeInsets.all(4),
+//                           color: Colors.white,
+//                           child: ClipOval(
+//                             child: Container(
+//                                 padding: EdgeInsets.all(7),
+//                                 color: Colors.blue,
+//                                 child: Icon(Icons.add_a_photo, color: Colors.white, size: 20,)
 //                             ),
 //                           ),
 //                         ),
-//                       ],
+//                       ),
+//                     )
+//                         :
+//                     SizedBox()),
+//                   ],
+//                 ),
+//               ),
+//               SizedBox(height: 35,),
+//               Padding(
+//                 padding: const EdgeInsets.only(left: 20, right: 20),
+//                 child: TextField(
+//                   autofocus: true,
+//                   controller: _email,
+//                   onChanged: (value){
+//                     emailErrorMessage=emailError(_email);
+//                     setState(() { });
+//                   },
+//                   decoration: InputDecoration(
+//                     border: OutlineInputBorder(
+//                       borderRadius: BorderRadius.circular(50),
 //                     ),
+//                     focusedBorder: OutlineInputBorder(
+//                         borderRadius: BorderRadius.circular(50),
+//                         borderSide: BorderSide(color: Colors.blue, width: 2)
+//                     ),
+//                     filled: true,
+//                     hintStyle: TextStyle(color: Colors.grey[800]),
+//                     hintText: "New email" ,
+//                     errorText: emailErrorMessage,
 //                   ),
-//                   Container(
-//                     margin: EdgeInsets.only(left: 20 , right: 20 , bottom: 5, top: 5,),
-//                     child: TextFormField(
-//                       onChanged: (value){
+//                 ),
+//               ),
+//               Padding(
+//                 padding: const EdgeInsets.only(top: 10, left: 20, right: 20),
+//                 child: TextField(
+//                   autofocus: true,
+//                   controller: _username,
+//                   onChanged: (value){
+//                     usernameErrorMessage=usernameError(_username);
+//                     setState(() { });
+//                   },
+//                   decoration: InputDecoration(
+//                     border: OutlineInputBorder(
+//                       borderRadius: BorderRadius.circular(50),
+//                     ),
+//                     focusedBorder: OutlineInputBorder(
+//                         borderRadius: BorderRadius.circular(50),
+//                         borderSide: BorderSide(color: Colors.blue, width: 2)
+//                     ),
+//                     filled: true,
+//                     hintStyle: TextStyle(color: Colors.grey[800]),
+//                     hintText: "New username",
+//                     errorText: usernameErrorMessage,
+//
+//                   ),
+//                 ),
+//               ),
+//               Padding(
+//                 padding: const EdgeInsets.only(top: 10, left: 20, right: 20),
+//                 child: TextFormField(
+//                   autofocus: true,
+//                   controller: _password,
+//                   onChanged: (value){
+//                     passwordErrorMessage=passwordError(_password);
+//                     setState(() { });
+//                   },
+//                   keyboardType: TextInputType.text,
+//                   obscureText: !_passwordVisible,
+//                   decoration: InputDecoration(
+//                     border: OutlineInputBorder(
+//                       borderRadius: BorderRadius.circular(50),
+//                     ),
+//                     focusedBorder: OutlineInputBorder(
+//                         borderRadius: BorderRadius.circular(50),
+//                         borderSide: BorderSide(color: Colors.blue, width: 2)
+//                     ),
+//                     filled: true,
+//                     hintStyle: TextStyle(color: Colors.grey[800]),
+//                     hintText: "New password",
+//                     errorText: passwordErrorMessage,
+//                     suffixIcon: IconButton(
+//                       icon: Icon(
+//                         _passwordVisible
+//                             ? Icons.visibility
+//                             : Icons.visibility_off,
+//                         color: Colors.blue,
+//                       ),
+//                       onPressed: () {
 //                         setState(() {
-//                           canCreatePost = (_postText.text.isNotEmpty && _postTitle.text.isNotEmpty);
+//                           _passwordVisible = !_passwordVisible;
 //                         });
 //                       },
-//                       controller: _postTitle,
-//                       style: TextStyle(
-//                           fontSize: 30
-//                       ),
-//                       cursorColor: Colors.grey,
-//                       decoration: InputDecoration(
-//                         // hintStyle: TextStyle(
-//                         //   fontSize: 30,
-//                         // ),
-//                         border: InputBorder.none,
-//                         hintText: "An interesting title",
-//                       ),
 //                     ),
 //                   ),
-//                   Container(
-//                     margin: EdgeInsets.only(right: 20 , left: 20),
-//                     child: TextFormField(
-//                       onChanged: (value){
-//                         setState(() {
-//                           canCreatePost = (_postText.text.isNotEmpty && _postTitle.text.isNotEmpty);
-//                         });
-//                       },
-//                       controller: _postText,
-//                       maxLines: 20,
-//                       minLines: 1,
-//                       cursorColor: Colors.grey[600],
-//                       style: TextStyle(
-//                           fontSize: 20
-//                       ),
-//                       decoration: InputDecoration(
-//                         border: InputBorder.none /*OutlineInputBorder()*/,
-//                         hintText: "Your text post",
-//                       ),
-//                     ),
-//                   ),
-//                   SizedBox(height: 5,),
-//                   (
-//                       imageFile!=null
-//                           ?
-//                       Column(
-//                         children: [
-//                           Padding(
-//                             padding: const EdgeInsets.only(right: 5),
-//                             child: Row(
-//                               mainAxisAlignment: MainAxisAlignment.end,
-//                               children: [
-//                                 IconButton(onPressed: (){
-//                                   setState((){
-//                                     imageFile=null;
-//                                   });
-//                                 }, icon: Icon(Icons.close_rounded)),
-//                               ],
-//                             ),
-//                           ),
-//                           Image(image: Image.file(imageFile!).image),
-//                         ],
-//                       )
-//                           :
-//                       SizedBox()
-//                   ),
-//                   SizedBox(height: 100,),
-//                 ]),
-//           ),
-//           bottomNavigationBar: Row(
-//             mainAxisAlignment: MainAxisAlignment.start,
-//             children: [
-//               ButtonBar(
+//                 ),
+//               ),
+//               Spacer(),
+//               Row(
 //                 children: [
-//                   IconButton(
-//                       onPressed: () => pickImage(ImageSource.gallery),
-//                       icon: Icon(Icons.photo_outlined,)
-//                   ),
-//                   IconButton(
-//                       onPressed: () => pickImage(ImageSource.camera),
-//                       icon: Icon(Icons.photo_camera_outlined,)
+//                   Expanded(
+//                     child: Container(
+//                       margin: const EdgeInsets.only(top: 10, bottom:30, left: 20, right: 20),
+//                       height: 60,
+//                       decoration: const ShapeDecoration(
+//                         shape: StadiumBorder(),
+//                         gradient: LinearGradient(
+//                           begin: Alignment.topLeft,
+//                           end: Alignment.bottomRight,
+//                           colors: [Color(0xff374ABE), Colors.blue],
+//                         ),
+//                       ),
+//                       child: MaterialButton(
+//                         onPressed: () {
+//                           if(signupHasError(_email, _username, _password)){
+//                             setState(() {
+//                               emailErrorMessage=emailError(_email);
+//                               usernameErrorMessage=usernameError(_username);
+//                               passwordErrorMessage=passwordError(_password);
+//                             });
+//                             // showDialogWith(context: context, title: 'Wrong fields', content: 'Fill all fields correctly!');
+//                           }
+//                           else{
+//                             widget.user.userName=_username.text;
+//                             widget.user.email=_email.text;
+//                             widget.user.password=_password.text;
+//                             if(imageFile!=null) {
+//                               widget.user.userProfileImage =
+//                                   Image.file(imageFile!);
+//                             }
+//                             Navigator.pop(context);
+//                             SnackBar snackBar = SnackBar(
+//                               backgroundColor: Colors.green,
+//                               content: Expanded(
+//                                 child: Row(
+//                                   mainAxisAlignment: MainAxisAlignment.start,
+//                                   children: [
+//                                     Icon(Icons.emoji_emotions_outlined, color: Colors.white,),
+//                                     SizedBox(width: 10,),
+//                                     Text('Profile changes saved'),
+//                                     Spacer(),
+//                                     Icon(Icons.check, color: Colors.white,)
+//                                   ],
+//                                 ),
+//                               ),
+//                             );
+//                             ScaffoldMessenger.of(context).showSnackBar(snackBar);
+//                           }
+//                         },
+//                         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+//                         shape: const StadiumBorder(),
+//                         child: const Text(
+//                           'Save',
+//                           style: TextStyle(color: Colors.white, fontSize: 25, fontWeight: FontWeight.bold),
+//                         ),
+//                       ),
+//                     ),
 //                   ),
 //                 ],
 //               ),
 //             ],
 //           ),
-//           floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
 //         ),
 //       ),
-//     );;
+//     );
 //   }
 // }

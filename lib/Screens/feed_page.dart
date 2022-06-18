@@ -62,11 +62,11 @@ class _FeedPageState extends State<FeedPage> {
       ListView(
         children: [
           SizedBox(
-            height: MediaQuery.of(context).size.height -    // total height
+            height: (MediaQuery.of(context).size.height -    // total height
                 kToolbarHeight -                      // top AppBar height
                 MediaQuery.of(context).padding.top -  // top padding
                 MediaQuery.of(context).padding.bottom - // bottom padding
-                kBottomNavigationBarHeight,
+                kBottomNavigationBarHeight)/1.1,
             child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
