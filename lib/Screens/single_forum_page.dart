@@ -105,7 +105,7 @@ class _SingleForumPageState extends State<SingleForumPage> with SingleTickerProv
                         //   height: 5,
                         // ),
                         Padding(
-                          padding: const EdgeInsets.only(top: 35, left: 17, right: 17),
+                          padding: const EdgeInsets.only(top: 35, left: 22, right: 22),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -224,7 +224,7 @@ class _SingleForumPageState extends State<SingleForumPage> with SingleTickerProv
                           ),
                         ],
                       ),
-                      margin: EdgeInsets.only(top: 100, left: 15),
+                      margin: EdgeInsets.only(top: 100, left: 22),
                       child: CircleAvatar(
                         backgroundImage: widget.forum.profileImage.image,
                         backgroundColor: Colors.white,
