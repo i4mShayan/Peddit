@@ -31,7 +31,7 @@ class AboutUs extends StatelessWidget {
                               Expanded(
                                 flex: 1,
                                 child: IconButton(
-                                  icon: Icon(Icons.arrow_back_ios),
+                                  icon: Icon(Icons.arrow_back_ios,color: Colors.black),
                                   onPressed: () => Navigator.of(context).pop(),
                                 ),
                               ),
@@ -43,7 +43,7 @@ class AboutUs extends StatelessWidget {
                               ),
                               Text(
                                 "Developed by",
-                                style: TextStyle(fontSize: 25),
+                                style: TextStyle(fontSize: 25, color: Colors.black),
                               ),
                               Expanded(
                                 flex: 2,
@@ -58,7 +58,7 @@ class AboutUs extends StatelessWidget {
                           ),
                           Divider(
                             thickness: 2,
-                            // color: Colors.black,
+                            color: Colors.black,
                           ),
                           Padding(
                             padding: const EdgeInsets.all(30),
@@ -76,7 +76,7 @@ class AboutUs extends StatelessWidget {
                                 Text(
                                   "Farbod Saghafi",
                                   style:
-                                      TextStyle(fontWeight: FontWeight.bold),
+                                      TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
                                 ),
                                 SizedBox(height: 20,),
                                 Padding(
@@ -92,7 +92,7 @@ class AboutUs extends StatelessWidget {
                                       children: [
                                         Image.asset("assets/images/logo/github.png", width: 25,),
                                         SizedBox(width: 7,),
-                                        Text('itsfarbod'),
+                                        Text('itsfarbod', style: TextStyle(color: Colors.white),),
                                       ],
                                     ),
                                   ),
@@ -147,7 +147,7 @@ class AboutUs extends StatelessWidget {
                                 Text(
                                   "Shayan Kebriti",
                                   style:
-                                      TextStyle(fontWeight: FontWeight.bold),
+                                      TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
                                 ),
                                 SizedBox(height: 20,),
                                 Padding(
@@ -163,7 +163,7 @@ class AboutUs extends StatelessWidget {
                                       children: [
                                         Image.asset("assets/images/logo/github.png", width: 25,),
                                         SizedBox(width: 7,),
-                                        Text('i4mShayan'),
+                                        Text('i4mShayan', style: TextStyle(color: Colors.white),),
                                       ],
                                     ),
                                   ),
