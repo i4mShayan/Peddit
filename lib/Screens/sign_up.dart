@@ -80,7 +80,7 @@ class _SignUpState extends State<SignUp> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text("Create new account",
-                    style: Theme.of(context).textTheme.headline1),
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30)),
               ],
             ),
             SizedBox(
@@ -172,11 +172,14 @@ class _SignUpState extends State<SignUp> {
                   setState(() { });
                 },
                 decoration: InputDecoration(
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(50),
+                    borderSide: BorderSide(color: Colors.deepOrange, width: 2),
+                  ),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(50),
                   ),
                   filled: true,
-                  hintStyle: TextStyle(color: Colors.grey[800]),
                   hintText: "Email" ,
                   errorText: emailErrorMessage,
                 ),
@@ -192,11 +195,14 @@ class _SignUpState extends State<SignUp> {
                   setState(() { });
                 },
                 decoration: InputDecoration(
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(50),
+                    borderSide: BorderSide(color: Colors.deepOrange, width: 2),
+                  ),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(50),
                   ),
                   filled: true,
-                  hintStyle: TextStyle(color: Colors.grey[800]),
                   hintText: "Username",
                   errorText: usernameErrorMessage,
 
@@ -215,11 +221,14 @@ class _SignUpState extends State<SignUp> {
                 keyboardType: TextInputType.text,
                 obscureText: !_passwordVisible,
                 decoration: InputDecoration(
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(50),
+                    borderSide: BorderSide(color: Colors.deepOrange, width: 2),
+                  ),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(50),
                   ),
                   filled: true,
-                  hintStyle: TextStyle(color: Colors.grey[800]),
                   hintText: "Password",
                   errorText: passwordErrorMessage,
                   suffixIcon: IconButton(
@@ -227,7 +236,7 @@ class _SignUpState extends State<SignUp> {
                       _passwordVisible
                           ? Icons.visibility
                           : Icons.visibility_off,
-                      color: Theme.of(context).primaryColorDark,
+                      color: Colors.deepOrange,
                     ),
                     onPressed: () {
                       setState(() {

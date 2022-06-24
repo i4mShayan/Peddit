@@ -35,6 +35,6 @@ class Themes{
       style: TextButton.styleFrom(
         primary: Colors.white,
       ),
-    )
+    ),
   );
 }

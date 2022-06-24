@@ -39,6 +39,7 @@ class _LoginState extends State<Login> {
                       child: Image.asset(
                         'assets/images/logo/reddit_with_text.png',
                         width: 120,
+                        // color: Colors.white.withOpacity(0.5),
                       )),
                   Expanded(
                     flex: 1,
@@ -77,7 +78,7 @@ class _LoginState extends State<Login> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text("Log in",
-                    style: Theme.of(context).textTheme.headline1),
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30)),
               ],
             ),
             SizedBox(
@@ -161,11 +162,14 @@ class _LoginState extends State<Login> {
               child: TextField(
                 // controller: _taskName,
                 decoration: InputDecoration(
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(50),
+                    borderSide: BorderSide(color: Colors.deepOrange, width: 2),
+                  ),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(50),
                   ),
                   filled: true,
-                  hintStyle: TextStyle(color: Colors.grey[800]),
                   hintText: "Username",
                   // fillColor: Colors.grey[500],
                 ),
@@ -178,18 +182,21 @@ class _LoginState extends State<Login> {
                 // controller: _userPasswordController,
                 obscureText: !_passwordVisible,
                 decoration: InputDecoration(
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(50),
+                    borderSide: BorderSide(color: Colors.deepOrange, width: 2),
+                  ),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(50),
                   ),
                   filled: true,
-                  hintStyle: TextStyle(color: Colors.grey[800]),
                   hintText: "Password",
                   suffixIcon: IconButton(
                     icon: Icon(
                       _passwordVisible
                           ? Icons.visibility
                           : Icons.visibility_off,
-                      color: Theme.of(context).primaryColorDark,
+                      color: Colors.deepOrange,
                     ),
                     onPressed: () {
                       setState(() {
