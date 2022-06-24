@@ -105,7 +105,7 @@ class _SingleForumPageState extends State<SingleForumPage> with SingleTickerProv
                         //   height: 5,
                         // ),
                         Padding(
-                          padding: const EdgeInsets.only(top: 30, left: 17, right: 17),
+                          padding: const EdgeInsets.only(top: 35, left: 17, right: 17),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -120,37 +120,65 @@ class _SingleForumPageState extends State<SingleForumPage> with SingleTickerProv
                                             fontSize: 20, fontWeight: FontWeight.w500)),
                                   ),
                                   Container(
-                                    margin: EdgeInsets.only(top: 2),
+                                    margin: EdgeInsets.only(top: 5),
                                     child: Text(memberCountText(),
                                         style: TextStyle(
                                             fontSize: 17, fontWeight: FontWeight.w400)),
                                   ),
                                 ],
                               ),
+                              (userAdminOf(Datas().currentUser, widget.forum) ?
                               Padding(
                                 padding: const EdgeInsets.only(bottom: 7),
-                                child: TextButton(
+                                child: TextButton.icon(
                                   onPressed: () {
                                     setState((){
-                                      if(userMemberOf(Datas().currentUser, widget.forum)){
-                                        widget.forum.members.remove(Datas().currentUser);
-                                      }
-                                      else{
-                                        widget.forum.members.add(Datas().currentUser);
-                                      }
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => EditForumPage(forum: widget.forum),
+                                        ),
+                                      ).then((value) => setState(() {}));
                                     });
                                   },
                                   style: ElevatedButton.styleFrom(
-                                    primary: userMemberOf(Datas().currentUser, widget.forum) ? Colors.transparent:Colors.blueAccent,
                                     onPrimary: Colors.blueAccent,
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(50),
                                       side: BorderSide(color: Colors.blueAccent),
                                     ),
-                                    padding: EdgeInsets.symmetric(vertical: 5, horizontal: 30),
+                                    padding: EdgeInsets.symmetric(vertical: 5, horizontal: 20),
                                   ),
-                                  child: userMemberOf(Datas().currentUser, widget.forum) ? Text("Joined", style: TextStyle(color: Colors.blueAccent),):Text("Join", style: TextStyle(color: Colors.white),),
+                                  label: Text("Edit", style: TextStyle(color: Colors.blueAccent),),
+                                  icon: Icon(Icons.edit_rounded),
                                 ),
+                              )
+                                  :
+                                Padding(
+                                  padding: const EdgeInsets.only(bottom: 7),
+                                  child: TextButton(
+                                    onPressed: () {
+                                      setState((){
+                                        if(userMemberOf(Datas().currentUser, widget.forum)){
+                                          widget.forum.members.remove(Datas().currentUser);
+                                        }
+                                        else{
+                                          widget.forum.members.add(Datas().currentUser);
+                                        }
+                                      });
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      primary: userMemberOf(Datas().currentUser, widget.forum) ? Colors.transparent:Colors.blueAccent,
+                                      onPrimary: Colors.blueAccent,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(50),
+                                        side: BorderSide(color: Colors.blueAccent),
+                                      ),
+                                      padding: EdgeInsets.symmetric(vertical: 5, horizontal: 30),
+                                    ),
+                                    child: userMemberOf(Datas().currentUser, widget.forum) ? Text("Joined", style: TextStyle(color: Colors.blueAccent),):Text("Join", style: TextStyle(color: Colors.white),),
+                                  ),
+                                )
                               ),
                             ],
                           ),

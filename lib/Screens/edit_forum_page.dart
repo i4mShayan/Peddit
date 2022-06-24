@@ -6,14 +6,15 @@ import 'package:image_picker/image_picker.dart';
 
 import '../libs.dart';
 
-class CreateNewForumPage extends StatefulWidget {
-  CreateNewForumPage({Key? key}) : super(key: key);
+class EditForumPage extends StatefulWidget {
+  ForumModel forum;
+  EditForumPage({Key? key, required this.forum}) : super(key: key);
 
   @override
-  State<CreateNewForumPage> createState() => _CreateNewForumPageState();
+  State<EditForumPage> createState() => _EditForumPageState();
 }
 
-class _CreateNewForumPageState extends State<CreateNewForumPage> {
+class _EditForumPageState extends State<EditForumPage> {
 
   late TextEditingController _postText=TextEditingController();
   late TextEditingController _postTitle=TextEditingController();
@@ -42,12 +43,8 @@ class _CreateNewForumPageState extends State<CreateNewForumPage> {
   }
 
 
-
-
   String? nameErrorMessage=null;
   String? descErrorMessage=null;
-
-  bool _passwordVisible = false;
 
 
   TextEditingController _name=TextEditingController();
@@ -59,6 +56,8 @@ class _CreateNewForumPageState extends State<CreateNewForumPage> {
 
   @override
   void initState() {
+    _name.text=widget.forum.forumName;
+    _desc.text=widget.forum.forumDesc;
   }
 
   double profileRadius=70;
@@ -91,20 +90,13 @@ class _CreateNewForumPageState extends State<CreateNewForumPage> {
                       });
                       if(nameErrorMessage==null) {
                         setState(() {
-                          ForumModel newForum = ForumModel(owner: Datas().currentUser,
-                              admins: [],
-                              posts: [],
-                              members: [],
-                              forumName: _name.text,
-                              forumDesc: _desc.text,
-                              forumCreateTime: DateTime.now(),
-                              profileImage: profileImageFile == null ? Datas()
-                                  .defaultProfilePicture : Image.file(profileImageFile!),
-                              headerImage: headerImageFile == null
-                                  ? Datas().defaultBackground
-                                  : Image.file(headerImageFile!));
-                          Datas().forumsList.add(newForum);
+                          widget.forum.forumName= _name.text;
+                          widget.forum.forumDesc= _desc.text;
+                          widget.forum.forumCreateTime= DateTime.now();
+                          widget.forum.profileImage= profileImageFile == null ? widget.forum.profileImage : Image.file(profileImageFile!);
+                          widget.forum.headerImage= headerImageFile == null ? widget.forum.headerImage : Image.file(headerImageFile!);
                           Navigator.of(context).pop();
+
                           SnackBar snackBar = SnackBar(
                             backgroundColor: Colors.green,
                             content: Expanded(
@@ -113,9 +105,7 @@ class _CreateNewForumPageState extends State<CreateNewForumPage> {
                                 children: [
                                   Icon(Icons.emoji_emotions_outlined, color: Colors.white,),
                                   SizedBox(width: 10,),
-                                  Text('Created r/'),
-                                  Text(
-                                    _name.text, style: TextStyle(fontWeight: FontWeight.w500),),
+                                  Text('Saved changes'),
                                   Spacer(),
                                   Icon(Icons.check, color: Colors.white,)
                                 ],
@@ -129,7 +119,7 @@ class _CreateNewForumPageState extends State<CreateNewForumPage> {
                     materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     shape: const StadiumBorder(),
                     child: const Text(
-                      'Create forum',
+                      'Save',
                       style: TextStyle(color: Colors.white, fontSize: 25, fontWeight: FontWeight.bold),
                     ),
                   ),
@@ -152,7 +142,7 @@ class _CreateNewForumPageState extends State<CreateNewForumPage> {
                         Navigator.pop(context);}, icon: Icon(Icons.close_rounded, size: 30,
                       )),
                       SizedBox(width: 15,),
-                      Text("Create new forum", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),),
+                      Text("Edit forum", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),),
                     ],
                   ),
                 ),
@@ -164,7 +154,7 @@ class _CreateNewForumPageState extends State<CreateNewForumPage> {
                       Material(
                         // color: Colors.transparent,
                         child: Ink.image(
-                          image: headerImageFile==null ? Datas().defaultBackground.image:Image.file(headerImageFile!).image,
+                          image: headerImageFile==null ? widget.forum.headerImage.image:Image.file(headerImageFile!).image,
                           fit: BoxFit.cover,
                           // width: profileRadius*3,
                           height: profileRadius*4,
@@ -206,40 +196,40 @@ class _CreateNewForumPageState extends State<CreateNewForumPage> {
                               borderRadius: BorderRadius.all(Radius.circular(20))
                           ),
                           child: Stack(
-                          children: [
-                            ClipOval(
-                              child: Material(
-                                // color: Colors.transparent,
-                                child: Ink.image(
-                                  image: profileImageFile==null ? Datas().defaultProfilePicture.image:Image.file(profileImageFile!).image,
-                                  fit: BoxFit.cover,
-                                  width: profileRadius*1.5,
-                                  height: profileRadius*1.5,
-                                  child: InkWell(
-                                    onTap: ()=>pickProfile(ImageSource.gallery),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Positioned(
-                              bottom: 0,
-                              right: 5,
-                              child: ClipOval(
-                                child: Container(
-                                  padding: EdgeInsets.all(3),
-                                  color: Colors.white,
-                                  child: ClipOval(
-                                    child: Container(
-                                        padding: EdgeInsets.all(5),
-                                        color: Colors.blue,
-                                        child: Icon(Icons.add_a_photo, color: Colors.white, size: 15,)
+                            children: [
+                              ClipOval(
+                                child: Material(
+                                  // color: Colors.transparent,
+                                  child: Ink.image(
+                                    image: profileImageFile==null ? widget.forum.profileImage.image:Image.file(profileImageFile!).image,
+                                    fit: BoxFit.cover,
+                                    width: profileRadius*1.5,
+                                    height: profileRadius*1.5,
+                                    child: InkWell(
+                                      onTap: ()=>pickProfile(ImageSource.gallery),
                                     ),
                                   ),
                                 ),
                               ),
-                            ),
-                          ],
-                      ),
+                              Positioned(
+                                bottom: 0,
+                                right: 5,
+                                child: ClipOval(
+                                  child: Container(
+                                    padding: EdgeInsets.all(3),
+                                    color: Colors.white,
+                                    child: ClipOval(
+                                      child: Container(
+                                          padding: EdgeInsets.all(5),
+                                          color: Colors.blue,
+                                          child: Icon(Icons.add_a_photo, color: Colors.white, size: 15,)
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ],
