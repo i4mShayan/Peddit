@@ -145,6 +145,7 @@ class _PostItemState extends State<PostItem> {
                                   onTap: (){
                                     setState((){
                                       deletePost(widget.post);
+                                      widget.pageSetState();
                                     });
                                   },
                                   child: Row(

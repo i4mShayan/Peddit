@@ -29,6 +29,10 @@ bool userAdminOf(UserModel user, ForumModel forum){
   return forum.admins.contains(user) || forum.owner==user;
 }
 
+bool userCanEditForum(UserModel user, ForumModel forum){
+  return userAdminOf(user, forum);
+}
+
 bool userCanDeletePost( UserModel user, PostModel post,){
   return post.publisher==user || userAdminOf(user, post.forum);
 }

@@ -92,6 +92,7 @@ class _PostItemInDetailsState extends State<PostItemInDetails> {
                               onTap: (){
                                 setState((){
                                   deletePost(widget.post);
+                                  Navigator.pop(context);
                                 });
                               },
                               child: Row(
