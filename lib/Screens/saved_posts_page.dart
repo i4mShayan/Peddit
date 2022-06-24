@@ -17,7 +17,7 @@ class _SavedPostsPageState extends State<SavedPostsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blueGrey[50],
+      // backgroundColor: Colors.blueGrey[50],
       resizeToAvoidBottomInset: false,
       body:
         RefreshIndicator(

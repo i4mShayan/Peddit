@@ -17,6 +17,7 @@ class MainAppBar extends StatefulWidget implements PreferredSizeWidget{
 class _MainAppBarState extends State<MainAppBar> {
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<ThemeProvider>(context, listen: false);
     return AppBar(
       elevation: 1,
       leading: Container(
@@ -25,7 +26,7 @@ class _MainAppBarState extends State<MainAppBar> {
           icon: Icon(
             Icons.menu_rounded,
             size: 35,
-            color: Colors.grey[700],
+            color: provider.isDarkMode ? Colors.grey[400]:Colors.grey[800],
           ),
           onPressed: widget._openDrawer(),
         ),
@@ -63,7 +64,6 @@ class _MainAppBarState extends State<MainAppBar> {
           height: 40,
         ),
       ),
-      backgroundColor: Colors.white,
       actions: [
         GestureDetector(
           onTap: widget._openEndDrawer(),

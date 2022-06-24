@@ -1,11 +1,11 @@
 import 'libs.dart';
 
 class Datas{
+  ThemeMode themeMode=ThemeMode.dark;
   bool loggedIn = true;
   late UserModel currentUser=UserModel(userName: "username", email: "email", userProfileImage: Datas().defaultProfilePicture,
   followedForums: forumsList, starredForums: [], downVotedPosts: [], upVotedPosts: [], savedPosts: [],
       likedComments: [], disLikedComments: [], userPosts: [], comments: [], password: 'Fasda1231');
-  bool darkMode=false;
   PageController pageController=PageController();
   int navigationSelectedIndex=0;
   Image defaultProfilePicture=Image.asset("assets/images/default_profile.png");

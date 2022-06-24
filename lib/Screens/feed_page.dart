@@ -17,12 +17,12 @@ class _FeedPageState extends State<FeedPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blueGrey[50],
+      // backgroundColor: Colors.blueGrey[50],
       resizeToAvoidBottomInset: false,
 
       // Feed Body(Posts)
   body: RefreshIndicator(
-    color: Colors.black54,
+    // color: Colors.black54,
     onRefresh: _onRefresh,
     child: Datas().feedPosts.length!=0 ? ListView.builder(
       itemCount: Datas().feedPosts.length,

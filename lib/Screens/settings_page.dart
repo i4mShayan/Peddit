@@ -16,16 +16,11 @@ class _SettingsPageState extends State<SettingsPage> {
   double _fontSize=16;
   FontWeight _fontWeight=FontWeight.w500;
 
-  void _onDarkModeSelection(){
-    setState((){
-      Datas().darkMode=!Datas().darkMode;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<ThemeProvider>(context, listen: false);
     return SingleChildScrollView(
-      child: Column(
+    child: Column(
         children: [
           Padding(
             padding: const EdgeInsets.fromLTRB(25, 0, 25, 10),
@@ -245,7 +240,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   height: _buttonsHeight,
                   child: InkWell(
                     onTap: (){
-                      _onDarkModeSelection();
+
                     },
                     child: Padding(
                       padding: const EdgeInsets.only(bottom: 10),
@@ -254,7 +249,7 @@ class _SettingsPageState extends State<SettingsPage> {
                           SizedBox(width: 15,),
                           Transform.rotate(
                             angle: 315 * pi / 180,
-                            child: Datas().darkMode ? Icon(Icons.nightlight, color: Colors.black, size: _iconsSize,):Icon(Icons.nightlight_outlined, color: Colors.black, size: _iconsSize,),
+                            child: provider.isDarkMode ? Icon(Icons.nightlight, color: Colors.black, size: _iconsSize,):Icon(Icons.nightlight_outlined, color: Colors.black, size: _iconsSize,),
                           ),
                           SizedBox(width: 10,),
                           Text("Dark mode", style: TextStyle(
@@ -264,9 +259,12 @@ class _SettingsPageState extends State<SettingsPage> {
                           Spacer(),
                           Switch(
                             activeColor: Colors.black,
-                            value: Datas().darkMode,
+                            value: provider.isDarkMode,
                             onChanged: (value){
-                              _onDarkModeSelection();
+                              setState((){
+                                final provider = Provider.of<ThemeProvider>(context, listen: false);
+                                provider.toggleTheme(!provider.isDarkMode);
+                              });
                             }
                           ),
                         ],

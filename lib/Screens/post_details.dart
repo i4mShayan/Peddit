@@ -57,7 +57,7 @@ class _PostDetailsState extends State<PostDetails> with SingleTickerProviderStat
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blueGrey[50],
+      // backgroundColor: Colors.blueGrey[50],
       resizeToAvoidBottomInset: false,
       key: _scaffoldKey,
       appBar: _getAppbar(),
@@ -96,14 +96,16 @@ class _PostDetailsState extends State<PostDetails> with SingleTickerProviderStat
                           :
                       Row(
                         children: [
-                          Icon(Icons.rocket_launch_outlined, size: 20, color: Colors.grey[600],),
+                          Icon(Icons.rocket_launch_outlined, size: 20,
+                            // color: Colors.grey[600],
+                          ),
                           SizedBox(width: 5,),
                           Text(
                             'BEST COMMENTS',
                             style: TextStyle(
                               fontWeight: FontWeight.w500,
                               fontSize: 12,
-                              color: Colors.grey[600],
+                              // color: Colors.grey[600],
                             ),
                           ),
                         ],
@@ -217,7 +219,7 @@ class _PostDetailsState extends State<PostDetails> with SingleTickerProviderStat
                               margin: EdgeInsets.only(left: 10, right: 0, top: 7, bottom: 10),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(5),
-                                color: Colors.blueGrey[50],
+                                // color: Colors.blueGrey[50],
                               ),
                               child: InkWell(
                                 onTap: (){

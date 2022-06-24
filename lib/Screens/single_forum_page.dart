@@ -46,7 +46,7 @@ class _SingleForumPageState extends State<SingleForumPage> with SingleTickerProv
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      backgroundColor: Colors.blueGrey[50],
+      // backgroundColor: Colors.blueGrey[50],
       endDrawer: EndDrawer(pageSetState: ()=>setState((){}),),
       body: NestedScrollView(
         floatHeaderSlivers: true,
