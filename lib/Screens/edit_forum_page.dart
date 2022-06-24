@@ -105,7 +105,7 @@ class _EditForumPageState extends State<EditForumPage> {
                                 children: [
                                   Icon(Icons.emoji_emotions_outlined, color: Colors.white,),
                                   SizedBox(width: 10,),
-                                  Text('Saved changes'),
+                                  Text('Forum changes saved'),
                                   Spacer(),
                                   Icon(Icons.check, color: Colors.white,)
                                 ],

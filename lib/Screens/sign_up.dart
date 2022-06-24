@@ -255,14 +255,15 @@ class _SignUpState extends State<SignUp> {
                     ),
                     child: MaterialButton(
                       onPressed: () {
-                        if(signupHasError(_email, _username, _password)){
-                          setState(() {
-                            emailErrorMessage=emailError(_email);
-                            usernameErrorMessage=usernameError(_username);
-                            passwordErrorMessage=passwordError(_password);
-                          });
-                          // showDialogWith(context: context, title: 'Wrong fields', content: 'Fill all fields correctly!');
-                        }
+                        setState((){
+                          emailErrorMessage=emailError(_email);
+                          usernameErrorMessage=usernameError(_username);
+                          passwordErrorMessage=passwordError(_password);
+                          if(!signupHasError(_email, _username, _password)){
+                            Datas().currentUser=UserModel(userName: _username.text, email: _email.text, followedForums: [], starredForums: [], comments: [], userPosts: [], upVotedPosts: [], downVotedPosts: [], savedPosts: [], likedComments: [], disLikedComments: [], userProfileImage: Datas().defaultProfilePicture, password: _password.text);
+                            Navigator.of(context).pushNamedAndRemoveUntil('/navigation_page', (route) => false);
+                          }
+                        });
                       },
                       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                       shape: const StadiumBorder(),
