@@ -25,6 +25,10 @@ bool signupHasError(TextEditingController _email, TextEditingController _usernam
   return (usernameError(_username)!=null || emailError(_email)!=null || passwordError(_password)!=null);
 }
 
+bool userMemberOf(UserModel user, ForumModel forum){
+  return forum.members.contains(user);
+}
+
 bool userAdminOf(UserModel user, ForumModel forum){
   return forum.admins.contains(user) || forum.owner==user;
 }

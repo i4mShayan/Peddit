@@ -35,6 +35,13 @@ class _SingleForumPageState extends State<SingleForumPage> with SingleTickerProv
     setState((){});
   }
 
+  String memberCountText(){
+    String ans=widget.forum.members.length.toString() + " ";
+    if(widget.forum.members.length<=1) ans+="member";
+    else ans+="members";
+    return ans;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -97,47 +104,58 @@ class _SingleForumPageState extends State<SingleForumPage> with SingleTickerProv
                         //   ),
                         //   height: 5,
                         // ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Container(
-                              margin: EdgeInsets.only(top: 20, left: 20),
-                              child: Text("r/" + widget.forum.forumName,
-                                  style: TextStyle(
-                                      fontSize: 15, fontWeight: FontWeight.bold)),
-                            ),
-                            Container(
-                              margin: EdgeInsets.only(top: 20, left: 20 , right: 20),
-                              padding: EdgeInsets.only(top: 2 , bottom: 2 , right: 10 , left: 10),
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.grey.withOpacity(0.5),
-                                      spreadRadius: 3,
-                                      blurRadius: 10,
-                                      offset: Offset(0, 5), // changes position of shadow
-                                    ),
-                                  ],
-                                  border: Border.all(
-                                    width: 3,
-                                    color: Colors.deepOrange,
+                        Padding(
+                          padding: const EdgeInsets.only(top: 30, left: 17, right: 17),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    margin: EdgeInsets.only(top: 0),
+                                    child: Text("r/" + widget.forum.forumName,
+                                        style: TextStyle(
+                                            fontSize: 20, fontWeight: FontWeight.w500)),
                                   ),
-                                  borderRadius: BorderRadius.all(Radius.circular(20))
+                                  Container(
+                                    margin: EdgeInsets.only(top: 2),
+                                    child: Text(memberCountText(),
+                                        style: TextStyle(
+                                            fontSize: 17, fontWeight: FontWeight.w400)),
+                                  ),
+                                ],
                               ),
-                              child: Text("Join" , style: TextStyle(color: Colors.deepOrange , fontSize: 20),),
-                            ),
-                          ],
-                        ),
-                        Align(
-                          alignment: Alignment.centerLeft,
-                          child: Container(
-                            margin: EdgeInsets.only(top: 2, left: 20),
-                            child: Text(widget.forum.members.length.toString() + " Memebers",
-                                style: TextStyle(
-                                    fontSize: 15)),
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 7),
+                                child: TextButton(
+                                  onPressed: () {
+                                    setState((){
+                                      if(userMemberOf(Datas().currentUser, widget.forum)){
+                                        widget.forum.members.remove(Datas().currentUser);
+                                      }
+                                      else{
+                                        widget.forum.members.add(Datas().currentUser);
+                                      }
+                                    });
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                    primary: userMemberOf(Datas().currentUser, widget.forum) ? Colors.transparent:Colors.blueAccent,
+                                    onPrimary: Colors.blueAccent,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(50),
+                                      side: BorderSide(color: Colors.blueAccent),
+                                    ),
+                                    padding: EdgeInsets.symmetric(vertical: 5, horizontal: 30),
+                                  ),
+                                  child: userMemberOf(Datas().currentUser, widget.forum) ? Text("Joined", style: TextStyle(color: Colors.blueAccent),):Text("Join", style: TextStyle(color: Colors.white),),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
+
                         // Align(
                         //   alignment: Alignment.centerLeft,
                         //   child: Container(
@@ -164,24 +182,25 @@ class _SingleForumPageState extends State<SingleForumPage> with SingleTickerProv
                     ),
                     Container(
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all( Radius.circular(40.0)),
+                        borderRadius: BorderRadius.all( Radius.circular(100)),
                         // border: Border.all(
                         // color: Colors.grey,
-                        // width: 4.0,
+                        // width: 5,
                         // ),
-                        boxShadow: <BoxShadow>[
+                        boxShadow: [
                           BoxShadow(
-                              color: Colors.black54,
-                              blurRadius: 20.0,
-                              offset: Offset(0.0, 5)
-                          )
+                            color: Colors.grey.withOpacity(0.7),
+                            spreadRadius: 2,
+                            blurRadius: 30,
+                            offset: Offset(0, 5), // changes position of shadow
+                          ),
                         ],
                       ),
-                      margin: EdgeInsets.only(top: 100, left: 20),
+                      margin: EdgeInsets.only(top: 100, left: 15),
                       child: CircleAvatar(
                         backgroundImage: widget.forum.profileImage.image,
                         backgroundColor: Colors.white,
-                        radius: 30,
+                        radius: 35,
                       ),
                     ),
                   ],
