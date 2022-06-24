@@ -71,7 +71,7 @@ class _FeedPageState extends State<FeedPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.asset("assets/gifs/funny_empty_feed.gif", scale: 4,),
+                Image.asset("assets/gifs/empty_feed.gif", scale: 4,),
                 SizedBox(height: 7,),
                 Text("such empty!", style: TextStyle(
                   fontWeight: FontWeight.w400,

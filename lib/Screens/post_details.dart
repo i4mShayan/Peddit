@@ -56,6 +56,7 @@ class _PostDetailsState extends State<PostDetails> with SingleTickerProviderStat
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<ThemeProvider>(context, listen: false);
     return Scaffold(
       // backgroundColor: Colors.blueGrey[50],
       resizeToAvoidBottomInset: false,
@@ -97,7 +98,7 @@ class _PostDetailsState extends State<PostDetails> with SingleTickerProviderStat
                       Row(
                         children: [
                           Icon(Icons.rocket_launch_outlined, size: 20,
-                            // color: Colors.grey[600],
+                            color: Colors.grey[600],
                           ),
                           SizedBox(width: 5,),
                           Text(
@@ -105,7 +106,7 @@ class _PostDetailsState extends State<PostDetails> with SingleTickerProviderStat
                             style: TextStyle(
                               fontWeight: FontWeight.w500,
                               fontSize: 12,
-                              // color: Colors.grey[600],
+                              color: Colors.grey[600],
                             ),
                           ),
                         ],
@@ -209,17 +210,17 @@ class _PostDetailsState extends State<PostDetails> with SingleTickerProviderStat
                 ),
                 child: Expanded(
                   child: Container(
-                    color: Colors.white,
+                    color: provider.isDarkMode ? null:Colors.white,
                     child: Row(
                       children: [
                         Expanded(
                           child: Container(
                             child: Container(
                               padding: EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 10),
-                              margin: EdgeInsets.only(left: 10, right: 0, top: 7, bottom: 10),
+                              margin: EdgeInsets.only(left: 10, right: 0, top: 10, bottom: 10),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(5),
-                                // color: Colors.blueGrey[50],
+                                color: provider.isDarkMode ? Colors.grey[800]:Colors.blueGrey[50],
                               ),
                               child: InkWell(
                                 onTap: (){
@@ -232,7 +233,7 @@ class _PostDetailsState extends State<PostDetails> with SingleTickerProviderStat
                                   style: TextStyle(
                                     fontSize: 15,
                                     fontWeight: FontWeight.w400,
-                                    color: Colors.grey[500],
+                                    color: provider.isDarkMode ? Colors.grey[400]:Colors.grey[500],
                                   ),
                                 ),
                               ),
@@ -242,7 +243,7 @@ class _PostDetailsState extends State<PostDetails> with SingleTickerProviderStat
                         Padding(
                           padding: const EdgeInsets.only(left: 5, right: 5),
                           child: Material(
-                            color: Colors.white,
+                            color: Colors.transparent,
                               child: IconButton(onPressed: (){
                             _scrollController.animateTo(
                               0.0,

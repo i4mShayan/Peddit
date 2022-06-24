@@ -218,9 +218,6 @@ class _PostItemInDetailsState extends State<PostItemInDetails> {
                               Datas().currentUser.savedThisPost(widget.post) ? "Saved!" : "Save",
 
                             ),
-                            style: TextButton.styleFrom(
-                              primary: Colors.grey[900],
-                            ),
                           ),
                         ],
                       ),

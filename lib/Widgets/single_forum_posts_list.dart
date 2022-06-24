@@ -37,7 +37,7 @@ class _ForumPostsListState extends State<ForumPostsList> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset("assets/gifs/funny_empty_feed.gif", scale: 4,),
+                  Image.asset("assets/gifs/empty_feed.gif", scale: 4,),
                   Text("such empty!", style: TextStyle(
                     fontWeight: FontWeight.w400,
                     fontSize: 17,

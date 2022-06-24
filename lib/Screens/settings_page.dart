@@ -226,6 +226,7 @@ class _SettingsPageState extends State<SettingsPage> {
                       });
                     }
                   ),
+                  SizedBox(width: 10,),
                 ],
               ),
             ),

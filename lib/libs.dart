@@ -44,3 +44,4 @@ export 'Widgets/single_forum_posts_list.dart';
 export 'Widgets/forum_info.dart';
 export 'Screens/edit_forum_page.dart';
 export 'theme_provider.dart';
+export 'themes.dart';
