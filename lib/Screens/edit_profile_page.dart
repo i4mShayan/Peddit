@@ -53,12 +53,13 @@ class _EditProfilePageState extends State<EditProfilePage> {
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<ThemeProvider>(context, listen: false);
     return Container(
-      color: Colors.white,
+      color: provider.isDarkMode ? Colors.grey.shade900:Colors.white,
       child: SafeArea(
         child: Scaffold(
           resizeToAvoidBottomInset: false,
-          backgroundColor: Colors.white,
+          backgroundColor: provider.isDarkMode ? Colors.grey.shade900:Colors.white,
           body: Column(
             children: [
               Padding(
@@ -99,13 +100,13 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       right: 5,
                       child: ClipOval(
                         child: Container(
-                          padding: EdgeInsets.all(4),
-                          color: Colors.white,
+                          padding: EdgeInsets.all(5),
+                          color: provider.isDarkMode ? Colors.grey.shade900:Colors.white,
                           child: ClipOval(
                             child: Container(
-                                padding: EdgeInsets.all(7),
+                                padding: EdgeInsets.all(6),
                                 color: Colors.blue,
-                                child: Icon(Icons.add_a_photo, color: Colors.white, size: 20,)
+                                child: Icon(Icons.add_photo_alternate_rounded, color: Colors.white, size: 18,)
                             ),
                           ),
                         ),
@@ -247,7 +248,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                   children: [
                                     Icon(Icons.emoji_emotions_outlined, color: Colors.white,),
                                     SizedBox(width: 10,),
-                                    Text('Profile changes saved'),
+                                    Text('Profile changes saved', style: TextStyle(color: Colors.white),),
                                     Spacer(),
                                     Icon(Icons.check, color: Colors.white,)
                                   ],

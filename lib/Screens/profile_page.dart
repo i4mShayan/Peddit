@@ -15,11 +15,12 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<ThemeProvider>(context, listen: false);
     return Container(
-      color: Colors.white,
+      color: provider.isDarkMode ? Colors.grey.shade900:Colors.white,
       child: SafeArea(
           child: Scaffold(
-            backgroundColor: Colors.white,
+            backgroundColor: provider.isDarkMode ? Colors.grey.shade900:Colors.white,
             body: Column(
               children: [
                 Padding(
@@ -67,13 +68,13 @@ class _ProfilePageState extends State<ProfilePage> {
                         right: 5,
                         child: ClipOval(
                           child: Container(
-                            padding: EdgeInsets.all(4),
-                            color: Colors.white,
+                            padding: EdgeInsets.all(5),
+                            color: provider.isDarkMode ? Colors.grey.shade900:Colors.white,
                             child: ClipOval(
                               child: Container(
-                                padding: EdgeInsets.all(7),
+                                padding: EdgeInsets.all(6),
                                 color: Colors.blue,
-                                child: Icon(Icons.edit_rounded, color: Colors.white, size: 20,)
+                                child: Icon(Icons.edit_rounded, color: Colors.white, size: 18,)
                               ),
                             ),
                           ),
@@ -113,7 +114,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                     ),
                     SizedBox(width: 15,),
-                    Container(child: VerticalDivider(color: Colors.black,), height: 45,),
+                    Container(child: VerticalDivider(thickness: 2,), height: 45,),
                     SizedBox(width: 15,),
 
                     SizedBox(
@@ -127,7 +128,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                     ),
                     SizedBox(width: 15,),
-                    Container(child: VerticalDivider(color: Colors.black,), height: 45,),
+                    Container(child: VerticalDivider(thickness: 2,), height: 45,),
                     SizedBox(width: 15,),
                     SizedBox(
                       width: 65,

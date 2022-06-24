@@ -32,11 +32,12 @@ class _AddNewPostPageState extends State<AddNewPostPage> {
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<ThemeProvider>(context, listen: false);
     return Container(
-      color: Colors.white,
+      color: provider.isDarkMode ? Colors.grey.shade900:Colors.white,
       child: SafeArea(
         child: Scaffold(
-          backgroundColor: Colors.white,
+          backgroundColor: provider.isDarkMode ? Colors.grey.shade900:Colors.white,
           body: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -49,7 +50,7 @@ class _AddNewPostPageState extends State<AddNewPostPage> {
                     children: [
                       IconButton(onPressed: (){Navigator.pop(context);}, icon: Icon(Icons.close_rounded, size: 30,)),
                       Container(
-                        width: 80,
+                        width: 85,
                         margin: const EdgeInsets.only(right: 5,),
                         height: 40,
                         decoration: ShapeDecoration(

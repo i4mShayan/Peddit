@@ -67,6 +67,7 @@ class _PostDetailsState extends State<PostDetails> with SingleTickerProviderStat
         color: Colors.black54,
         onRefresh: _onRefresh,
         child: ListView(
+          shrinkWrap: true,
           controller: _scrollController,
             children: [
               PostItemInDetails(post: widget.post),
@@ -210,7 +211,7 @@ class _PostDetailsState extends State<PostDetails> with SingleTickerProviderStat
                 ),
                 child: Expanded(
                   child: Container(
-                    color: provider.isDarkMode ? null:Colors.white,
+                    color: provider.isDarkMode ? Colors.grey[900]:Colors.white,
                     child: Row(
                       children: [
                         Expanded(

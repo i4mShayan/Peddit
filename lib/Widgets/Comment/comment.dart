@@ -48,7 +48,7 @@ class _CommentState extends State<Comment> {
                   "u/" + widget.comment.publisher.userName,
                   style: TextStyle(
                       fontSize: 14,
-                      color: Colors.grey[700],
+                      // color: Colors.grey[700],
                       fontWeight: FontWeight.w500),
                 ),
                 Padding(
@@ -56,14 +56,14 @@ class _CommentState extends State<Comment> {
                   child: Icon(
                     Icons.circle,
                     size: 4,
-                    color: Colors.grey[500],
+                    // color: Colors.grey[500],
                   ),
                 ),
                 Text(
                   publishTimeAgo(),
                   style: TextStyle(
                       fontSize: 13,
-                      color: Colors.grey,
+                      // color: Colors.grey,
                       fontWeight: FontWeight.w400),
                 ),
               ],
@@ -110,7 +110,7 @@ class _CommentState extends State<Comment> {
                               icon: Icon(Icons.reply_rounded),
                               label: Text("Reply"),
                               style: TextButton.styleFrom(
-                                primary: Colors.grey[600],
+                                // primary: Colors.grey[600],
                               ),
                             ),
                             SizedBox(
@@ -134,7 +134,7 @@ class _CommentState extends State<Comment> {
                               icon: Icon(Icons.arrow_upward_rounded),
                               color: widget.comment.userUpVoted(Datas().currentUser)
                                   ? Colors.green
-                                  : Colors.grey[600],
+                                  : null,
                             ),
                             Align(
                               alignment: Alignment.center,
@@ -144,7 +144,7 @@ class _CommentState extends State<Comment> {
                                     : "Vote"),
                                 style: TextStyle(
                                   fontWeight: FontWeight.w500,
-                                  color: Colors.grey[600],
+                                  // color: Colors.grey[600],
                                 ),
                               ),
                             ),
@@ -167,7 +167,7 @@ class _CommentState extends State<Comment> {
                                 Icons.arrow_downward_rounded,
                                 color: widget.comment.userDownVoted(Datas().currentUser)
                                     ? Colors.red
-                                    : Colors.grey[600],
+                                    : null,
                               ),
                             ),
                           ],
@@ -186,9 +186,9 @@ class _CommentState extends State<Comment> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Container(
-                    margin: EdgeInsets.only(left: 20, top: 10),
+                    margin: EdgeInsets.only(left: 20, top: 0),
                     child: VerticalDivider(
-                      width: 1 + widget.dividerThickness/5,
+                      width: 0.8 + widget.dividerThickness/4,
                       thickness: widget.dividerThickness,
                       // indent: 20,
                       endIndent: 5,
@@ -210,7 +210,7 @@ class _CommentState extends State<Comment> {
                           child: Column(children: [
                             for (CommentModel comment
                                 in widget.comment.repliedComments)
-                              Comment(comment: comment, isReply: true, dividerThickness: widget.dividerThickness+0.5,)
+                              Comment(comment: comment, isReply: true, dividerThickness: widget.dividerThickness+1,)
                           ]),
                         )
                       : SizedBox(),

@@ -30,6 +30,7 @@ class _ForumPreviewState extends State<ForumPreview> {
             children: [
               CircleAvatar(
                 backgroundImage: widget.forum.profileImage.image,
+                backgroundColor: Colors.white,
                 radius: 15,
               ),
               SizedBox(width: 10,),

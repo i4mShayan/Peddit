@@ -22,11 +22,12 @@ class _SelectForumForNewPostState extends State<SelectForumForNewPost> {
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<ThemeProvider>(context, listen: false);
     return Container(
-      color: Colors.white,
+      color: provider.isDarkMode ? Colors.grey.shade900:Colors.white,
       child: SafeArea(
         child: Scaffold(
-          backgroundColor: Colors.white,
+          backgroundColor: provider.isDarkMode ? Colors.grey.shade900:Colors.white,
           body: Column(
             children: [
               Padding(
@@ -40,7 +41,7 @@ class _SelectForumForNewPostState extends State<SelectForumForNewPost> {
                     Text("Post to", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),),
                     Spacer(),
                     Container(
-                      width: 80,
+                      width: 85,
                       margin: const EdgeInsets.only(right: 5,),
                       height: 40,
                       decoration: ShapeDecoration(
@@ -73,12 +74,12 @@ class _SelectForumForNewPostState extends State<SelectForumForNewPost> {
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
-                                      Icon(Icons.emoji_emotions_outlined, color: Colors.white,),
+                                      Icon(Icons.emoji_emotions_outlined,),
                                       SizedBox(width: 10,),
-                                      Text('Posted in r/'),
-                                      Text(_selectedForum!.forumName, style: TextStyle(fontWeight: FontWeight.w500),),
+                                      Text('Posted in r/', style: TextStyle(color: Colors.white),),
+                                      Text(_selectedForum!.forumName, style: TextStyle(fontWeight: FontWeight.w500, color: Colors.white),),
                                       Spacer(),
-                                      Icon(Icons.check, color: Colors.white,)
+                                      Icon(Icons.check,)
                                     ],
                                   ),
                                 ),

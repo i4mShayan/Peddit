@@ -5,7 +5,7 @@ class FeedSearchDelegate extends SearchDelegate {
   List<Widget> buildActions(BuildContext context) {
     return [
       IconButton(
-        icon: Icon(Icons.clear, color: Colors.black),
+        icon: Icon(Icons.clear_rounded),
         onPressed: () {
           query = '';
         },
@@ -16,7 +16,7 @@ class FeedSearchDelegate extends SearchDelegate {
   @override
   Widget buildLeading(BuildContext context) {
     return IconButton(
-      icon: Icon(Icons.arrow_back , color: Colors.black),
+      icon: Icon(Icons.arrow_back_rounded),
       onPressed: () {
         close(context, null);
       },
