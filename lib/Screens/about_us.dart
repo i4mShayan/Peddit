@@ -58,7 +58,7 @@ class AboutUs extends StatelessWidget {
                           ),
                           Divider(
                             thickness: 2,
-                            color: Colors.black,
+                            // color: Colors.black,
                           ),
                           Padding(
                             padding: const EdgeInsets.all(30),

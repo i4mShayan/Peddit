@@ -44,9 +44,10 @@ class _SingleForumPageState extends State<SingleForumPage> with SingleTickerProv
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<ThemeProvider>(context, listen: false);
     return Scaffold(
       key: _scaffoldKey,
-      backgroundColor: Colors.blueGrey[50],
+      // backgroundColor: Colors.blueGrey[50],
       endDrawer: EndDrawer(pageSetState: ()=>setState((){}),),
       body: NestedScrollView(
         floatHeaderSlivers: true,
@@ -54,14 +55,14 @@ class _SingleForumPageState extends State<SingleForumPage> with SingleTickerProv
           return <Widget>[
             SliverAppBar(
               bottom: TabBar(
-                  indicatorColor: Colors.black,
+                  indicatorColor: provider.isDarkMode ? Colors.white:Colors.black,
                   labelPadding: const EdgeInsets.all(10),
                   controller: _tabController,
                   tabs: [
-                    Text("Posts", style: TextStyle(color: Colors.black),),
-                    Text("About", style: TextStyle(color: Colors.black)),
+                    Text("Posts", style: TextStyle(color: provider.isDarkMode ? Colors.white:Colors.black,),),
+                    Text("About", style: TextStyle(color: provider.isDarkMode ? Colors.white:Colors.black,),),
                   ]),
-              backgroundColor: Colors.white,
+              // backgroundColor: Colors.white,
               pinned: true,
               floating: false,
               snap: false,
@@ -211,20 +212,20 @@ class _SingleForumPageState extends State<SingleForumPage> with SingleTickerProv
                     Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.all( Radius.circular(100)),
-                        // border: Border.all(
-                        // color: Colors.grey,
-                        // width: 5,
-                        // ),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.7),
-                            spreadRadius: 2,
-                            blurRadius: 30,
-                            offset: Offset(0, 5), // changes position of shadow
-                          ),
-                        ],
+                        border: Border.all(
+                        color: Colors.grey.shade300,
+                        width: 5,
+                        ),
+                        // boxShadow: [
+                        //   BoxShadow(
+                        //     color: Colors.grey.withOpacity(0.7),
+                        //     spreadRadius: 2,
+                        //     blurRadius: 30,
+                        //     offset: Offset(0, 5), // changes position of shadow
+                        //   ),
+                        // ],
                       ),
-                      margin: EdgeInsets.only(top: 100, left: 22),
+                      margin: EdgeInsets.only(top: 100, left: 12),
                       child: CircleAvatar(
                         backgroundImage: widget.forum.profileImage.image,
                         backgroundColor: Colors.white,

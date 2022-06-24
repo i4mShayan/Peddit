@@ -157,7 +157,7 @@ class _PostItemInDetailsState extends State<PostItemInDetails> {
                           },
                           icon: Icon(
                               Icons.arrow_upward_rounded),
-                          color: widget.post.userUpVoted(Datas().currentUser) ? Colors.green:Colors.black,
+                          color: widget.post.userUpVoted(Datas().currentUser) ? Colors.green:null,
                         ),
                         Align(
                           alignment: Alignment.center,
@@ -181,7 +181,7 @@ class _PostItemInDetailsState extends State<PostItemInDetails> {
                           },
                           icon: Icon(
                             Icons.arrow_downward_rounded,
-                            color: widget.post.userDownVoted(Datas().currentUser) ? Colors.red:Colors.black,
+                            color: widget.post.userDownVoted(Datas().currentUser) ? Colors.red:null,
                           ),
                         ),
                       ],
@@ -217,9 +217,6 @@ class _PostItemInDetailsState extends State<PostItemInDetails> {
                             label: Text(
                               Datas().currentUser.savedThisPost(widget.post) ? "Saved!" : "Save",
 
-                            ),
-                            style: TextButton.styleFrom(
-                              primary: Colors.grey[900],
                             ),
                           ),
                         ],

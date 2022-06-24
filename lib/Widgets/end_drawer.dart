@@ -12,14 +12,9 @@ class EndDrawer extends StatefulWidget {
 
 class _EndDrawerState extends State<EndDrawer> {
 
-  void _onDarkModeSelection(){
-    setState((){
-      Datas().darkMode=!Datas().darkMode;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<ThemeProvider>(context, listen: false);
     return Drawer(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -115,7 +110,7 @@ class _EndDrawerState extends State<EndDrawer> {
               child: Row(
                 children: [
                   SizedBox(width: 15,),
-                  Icon(Icons.person_outline, size: 25, color: Colors.grey[900],),
+                  Icon(Icons.person_outline, size: 25),
                   SizedBox(width: 10,),
                   Text(
                     'My profile',
@@ -147,7 +142,7 @@ class _EndDrawerState extends State<EndDrawer> {
               child: Row(
                 children: [
                   SizedBox(width: 15,),
-                  Icon(Icons.group_outlined, size: 25, color: Colors.grey[900],),
+                  Icon(Icons.group_outlined, size: 25),
                   SizedBox(width: 10,),
                   Text(
                     'My forums',
@@ -179,7 +174,7 @@ class _EndDrawerState extends State<EndDrawer> {
               child: Row(
                 children: [
                   SizedBox(width: 15,),
-                  Icon(Icons.bookmark_border_rounded, size: 25, color: Colors.grey[900],),
+                  Icon(Icons.bookmark_border_rounded, size: 25),
                   SizedBox(width: 10,),
                   Text(
                     'Saved posts',
@@ -205,7 +200,7 @@ class _EndDrawerState extends State<EndDrawer> {
               child: Row(
                 children: [
                   SizedBox(width: 15,),
-                  Icon(Icons.group_add_outlined, size: 25, color: Colors.grey[900],),
+                  Icon(Icons.group_add_outlined, size: 25,),
                   SizedBox(width: 10,),
                   Text(
                     'Create a forum',
@@ -242,7 +237,7 @@ class _EndDrawerState extends State<EndDrawer> {
                   child: Row(
                     children: [
                       SizedBox(width: 15,),
-                      Icon(Icons.settings_outlined, size: 25, color: Colors.grey[900],),
+                      Icon(Icons.settings_outlined, size: 25,),
                       SizedBox(width: 10,),
                       Text(
                         'Settings',
@@ -256,13 +251,14 @@ class _EndDrawerState extends State<EndDrawer> {
               ),
               IconButton(
                   onPressed: (){
-                    _onDarkModeSelection();
-                    widget.pageSetState();
+                    setState((){
+                      provider.toggleTheme(!provider.isDarkMode);
+                      widget.pageSetState();
+                    });
                   },
                   icon: Transform.rotate(
                     angle: 225 * pi / 180,
-                    child: Datas().darkMode ? Icon(Icons.nightlight,):Icon(Icons.nightlight_outlined,),
-
+                    child: provider.isDarkMode ? Icon(Icons.nightlight,):Icon(Icons.nightlight_outlined,),
                   )
               ),
             ],

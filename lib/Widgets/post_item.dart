@@ -51,7 +51,7 @@ class _PostItemState extends State<PostItem> {
       },
       child: Container(
         margin: EdgeInsets.only(bottom: 5),
-        color: Colors.white,
+        // color: Colors.white,
         child: Material(
           child: (
               Column(
@@ -73,7 +73,7 @@ class _PostItemState extends State<PostItem> {
                             },
                             child: CircleAvatar(
                               backgroundImage: widget.post.publisher.userProfileImage.image,
-                              backgroundColor: Colors.white,
+                              // backgroundColor: Colors.white,
                               radius: 18,
                             ),
                           ),
@@ -87,7 +87,11 @@ class _PostItemState extends State<PostItem> {
                                 style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500),
                               ),
                               Text(publishTimeAgo() +
-                                  " ago", style: TextStyle(fontSize: 13, color: Colors.grey, fontWeight: FontWeight.w400),),
+                                  " ago", style: TextStyle(
+                                  fontSize: 13,
+                                  // color: Colors.grey,
+                                  fontWeight: FontWeight.w400
+                              ),),
                             ],
                           ): Column(
                             children: [
@@ -111,21 +115,24 @@ class _PostItemState extends State<PostItem> {
                                 children: [
                                   Text(
                                     "u/" + widget.post.publisher.userName,
-                                    style: TextStyle(fontSize: 13, color: Colors.grey[800]),
+                                    style: TextStyle(
+                                        fontSize: 13,
+                                        // color: Colors.grey[800],
+                                    ),
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.all(4),
                                     child: Icon(
                                       Icons.circle,
                                       size: 4,
-                                      color: Colors.grey[600],
+                                      // color: Colors.grey[600],
                                     ),
                                   ),
                                   Text(
                                     publishTimeAgo(),
                                     style: TextStyle(
                                         fontSize: 13,
-                                        color: Colors.grey[600],
+                                        // color: Colors.grey[600],
                                         fontWeight: FontWeight.w400),
                                   ),
                                 ],
@@ -210,7 +217,7 @@ class _PostItemState extends State<PostItem> {
                             },
                             icon: Icon(
                                 Icons.arrow_upward_rounded),
-                            color: widget.post.userUpVoted(Datas().currentUser) ? Colors.green:Colors.black,
+                            color: widget.post.userUpVoted(Datas().currentUser) ? Colors.green:null,
                           ),
                           Align(
                             alignment: Alignment.center,
@@ -235,7 +242,7 @@ class _PostItemState extends State<PostItem> {
                             },
                             icon: Icon(
                               Icons.arrow_downward_rounded,
-                              color: widget.post.userDownVoted(Datas().currentUser) ? Colors.red:Colors.black,
+                              color: widget.post.userDownVoted(Datas().currentUser) ? Colors.red:null,
                             ),
                           ),
                         ],
@@ -253,7 +260,7 @@ class _PostItemState extends State<PostItem> {
                             },
                             icon: Icon(Icons.mode_comment_outlined), label: Text(widget.post.commentsCount.toString()),
                             style: TextButton.styleFrom(
-                              primary: Colors.grey[900],
+                              // primary: Colors.grey[900],
                             ),
                           ),
                         ],
@@ -282,7 +289,7 @@ class _PostItemState extends State<PostItem> {
 
                               ),
                               style: TextButton.styleFrom(
-                                primary: Colors.grey[900],
+                                // primary: Colors.grey[900],
                               ),
                             ),
                           ],

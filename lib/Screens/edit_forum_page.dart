@@ -64,10 +64,12 @@ class _EditForumPageState extends State<EditForumPage> {
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<ThemeProvider>(context, listen: false);
     return Container(
-      color: Colors.white,
+      color: provider.isDarkMode ? Colors.grey.shade900:Colors.white,
       child: SafeArea(
         child: Scaffold(
+          backgroundColor: provider.isDarkMode ? Colors.grey.shade900:Colors.white,
           floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
           floatingActionButton: Row(
             children: [
@@ -105,7 +107,7 @@ class _EditForumPageState extends State<EditForumPage> {
                                 children: [
                                   Icon(Icons.emoji_emotions_outlined, color: Colors.white,),
                                   SizedBox(width: 10,),
-                                  Text('Forum changes saved'),
+                                  Text('Forum changes saved', style: TextStyle(color: Colors.white),),
                                   Spacer(),
                                   Icon(Icons.check, color: Colors.white,)
                                 ],
@@ -128,7 +130,6 @@ class _EditForumPageState extends State<EditForumPage> {
             ],
           ),
           resizeToAvoidBottomInset: false,
-          backgroundColor: Colors.white,
           body: SingleChildScrollView(
             child: Column(
               children: [
@@ -164,18 +165,14 @@ class _EditForumPageState extends State<EditForumPage> {
                         ),
                       ),
                       Positioned(
-                        bottom: 5,
-                        right: 5,
+                        bottom: 10,
+                        right: 10,
                         child: ClipOval(
-                          child: Container(
-                            padding: EdgeInsets.all(4),
-                            color: Colors.white,
-                            child: ClipOval(
-                              child: Container(
-                                  padding: EdgeInsets.all(7),
-                                  color: Colors.blue,
-                                  child: Icon(Icons.add_a_photo, color: Colors.white, size: 20,)
-                              ),
+                          child: ClipOval(
+                            child: Container(
+                                padding: EdgeInsets.all(7),
+                                color: Colors.blue,
+                                child: Icon(Icons.add_photo_alternate_rounded, color: Colors.white, size: 20,)
                             ),
                           ),
                         ),
@@ -185,14 +182,14 @@ class _EditForumPageState extends State<EditForumPage> {
                         left: 20,
                         child: Container(
                           decoration: BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.grey.withOpacity(0.5),
-                                  spreadRadius: 3,
-                                  blurRadius: 30,
-                                  offset: Offset(0, 5), // changes position of shadow
-                                ),
-                              ],
+                              // boxShadow: [
+                              //   BoxShadow(
+                              //     color: Colors.grey.withOpacity(0.5),
+                              //     spreadRadius: 3,
+                              //     blurRadius: 30,
+                              //     offset: Offset(0, 5), // changes position of shadow
+                              //   ),
+                              // ],
                               borderRadius: BorderRadius.all(Radius.circular(20))
                           ),
                           child: Stack(
@@ -212,17 +209,17 @@ class _EditForumPageState extends State<EditForumPage> {
                                 ),
                               ),
                               Positioned(
-                                bottom: 0,
-                                right: 5,
+                                bottom: -2,
+                                right: 6,
                                 child: ClipOval(
                                   child: Container(
-                                    padding: EdgeInsets.all(3),
-                                    color: Colors.white,
+                                    padding: EdgeInsets.all(5),
+                                    color: provider.isDarkMode ? Colors.grey.shade900:Colors.white,
                                     child: ClipOval(
                                       child: Container(
-                                          padding: EdgeInsets.all(5),
+                                          padding: EdgeInsets.all(4),
                                           color: Colors.blue,
-                                          child: Icon(Icons.add_a_photo, color: Colors.white, size: 15,)
+                                          child: Icon(Icons.add_photo_alternate_rounded, color: Colors.white, size: 15,)
                                       ),
                                     ),
                                   ),
@@ -251,7 +248,6 @@ class _EditForumPageState extends State<EditForumPage> {
                           borderSide: BorderSide(color: Colors.deepOrange, width: 2)
                       ),
                       filled: true,
-                      hintStyle: TextStyle(color: Colors.grey[800]),
                       hintText: "Forum name" ,
                       errorText: nameErrorMessage,
                     ),
@@ -276,7 +272,6 @@ class _EditForumPageState extends State<EditForumPage> {
                           borderSide: BorderSide(color: Colors.deepOrange, width: 2)
                       ),
                       filled: true,
-                      hintStyle: TextStyle(color: Colors.grey[800]),
                       hintText: "About forum",
                       errorText: descErrorMessage,
 

@@ -1,6 +1,6 @@
 // Important packages!
 export 'package:flutter/material.dart';
-
+export 'package:provider/provider.dart';
 // exporting project files!
 export 'Screens/sign_up.dart';
 export 'Screens/login.dart';
@@ -43,3 +43,5 @@ export 'Screens/edit_profile_page.dart';
 export 'Widgets/single_forum_posts_list.dart';
 export 'Widgets/forum_info.dart';
 export 'Screens/edit_forum_page.dart';
+export 'theme_provider.dart';
+export 'themes.dart';

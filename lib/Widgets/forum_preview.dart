@@ -36,7 +36,7 @@ class _ForumPreviewState extends State<ForumPreview> {
               SizedBox(width: 10,),
               Text(
                 "r/" + widget.forum.forumName,
-                style: TextStyle(color: Colors.black, fontSize: 14, fontWeight: FontWeight.w400),
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
               ),
               Spacer(),
               IconButton(
@@ -50,7 +50,7 @@ class _ForumPreviewState extends State<ForumPreview> {
                     widget.pageSetStateFunc();
                   });
                 },
-                icon: Datas().currentUser.starredForums.contains(widget.forum) ? Icon(Icons.star_rate_rounded, color: Colors.yellow[900], size: 25,):Icon(Icons.star_outline_rounded, color: Colors.grey[800], size: 25,),
+                icon: Datas().currentUser.starredForums.contains(widget.forum) ? Icon(Icons.star_rate_rounded, color: Colors.yellow[900], size: 25,):Icon(Icons.star_outline_rounded, size: 25,),
               ),
             ],
           ),

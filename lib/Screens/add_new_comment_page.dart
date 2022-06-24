@@ -48,11 +48,12 @@ class _AddNewCommentPageState extends State<AddNewCommentPage> {
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<ThemeProvider>(context, listen: false);
     return Container(
-      color: Colors.white,
+      color: provider.isDarkMode ? Colors.grey.shade900:Colors.white,
       child: SafeArea(
         child: Scaffold(
-          backgroundColor: Colors.white,
+          backgroundColor: provider.isDarkMode ? Colors.grey.shade900:Colors.white,
           body: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -67,7 +68,7 @@ class _AddNewCommentPageState extends State<AddNewCommentPage> {
                     Text(title(), style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),),
                     Spacer(),
                     Container(
-                      width: 80,
+                      width: 85,
                       margin: const EdgeInsets.only(right: 5,),
                       height: 40,
                       decoration: ShapeDecoration(
@@ -124,8 +125,7 @@ class _AddNewCommentPageState extends State<AddNewCommentPage> {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20),
                 child: Divider(
-                  color: Colors.black,
-                  // thickness: 1,
+                  thickness: 2,
                 ),
               ),
               Container(

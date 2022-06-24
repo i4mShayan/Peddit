@@ -124,7 +124,6 @@ class _NavigationPageState extends State<NavigationPage> with SingleTickerProvid
               label: '',
             ),
           ],
-          selectedItemColor: Colors.black,
           onTap: _onItemTapped,
           currentIndex: _selectedIndex,
         ),
