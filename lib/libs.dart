@@ -42,3 +42,4 @@ export 'Screens/profile_page.dart';
 export 'Screens/edit_profile_page.dart';
 export 'Widgets/single_forum_posts_list.dart';
 export 'Widgets/forum_info.dart';
+export 'Screens/edit_forum_page.dart';
