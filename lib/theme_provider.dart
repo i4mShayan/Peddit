@@ -14,6 +14,7 @@ class ThemeProvider extends ChangeNotifier{
 class Themes{
   static final lightTheme = ThemeData(
     scaffoldBackgroundColor: Colors.blueGrey[50],
+    backgroundColor: Colors.white,
     colorScheme: ColorScheme.light(),
     iconTheme: IconThemeData(color: Colors.black),
     appBarTheme: AppBarTheme(color: Colors.white),
@@ -27,10 +28,12 @@ class Themes{
       primary: Colors.black,
       ),
     ),
+
   );
 
   static final darkTheme = ThemeData(
     scaffoldBackgroundColor: Colors.grey.shade900,
+    backgroundColor: Colors.grey.shade900,
     colorScheme: ColorScheme.dark(),
     iconTheme: IconThemeData(color: Colors.white),
     appBarTheme: AppBarTheme(color: Colors.grey.shade900),

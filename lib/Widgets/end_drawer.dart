@@ -252,7 +252,6 @@ class _EndDrawerState extends State<EndDrawer> {
               IconButton(
                   onPressed: (){
                     setState((){
-                      final provider = Provider.of<ThemeProvider>(context, listen: false);
                       provider.toggleTheme(!provider.isDarkMode);
                       widget.pageSetState();
                     });
