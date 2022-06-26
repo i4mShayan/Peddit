@@ -32,7 +32,7 @@ class _AddNewPostPageState extends State<AddNewPostPage> {
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<ThemeProvider>(context, listen: false);
+    final provider = Provider.of<ThemeProvider>(context, listen: true);
     return Container(
       color: provider.isDarkMode ? Colors.grey.shade900:Colors.white,
       child: SafeArea(
@@ -161,24 +161,29 @@ class _AddNewPostPageState extends State<AddNewPostPage> {
                 SizedBox(height: 100,),
               ]),
             ),
-          bottomNavigationBar: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              ButtonBar(
+          bottomSheet: BottomSheet(
+            elevation: 300,
+            onClosing: (){},
+            builder: (BuildContext) {
+              return Row(
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  IconButton(
-                      onPressed: () => pickImage(ImageSource.gallery),
-                      icon: Icon(Icons.photo_outlined,)
-                  ),
-                  IconButton(
-                      onPressed: () => pickImage(ImageSource.camera),
-                      icon: Icon(Icons.photo_camera_outlined,)
+                  ButtonBar(
+                    children: [
+                      IconButton(
+                          onPressed: () => pickImage(ImageSource.gallery),
+                          icon: Icon(Icons.photo_outlined,)
+                      ),
+                      IconButton(
+                          onPressed: () => pickImage(ImageSource.camera),
+                          icon: Icon(Icons.photo_camera_outlined,)
+                      ),
+                    ],
                   ),
                 ],
-              ),
-            ],
+              );
+            },
           ),
-          floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         ),
       ),
     );

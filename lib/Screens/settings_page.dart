@@ -18,12 +18,11 @@ class _SettingsPageState extends State<SettingsPage> {
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<ThemeProvider>(context, listen: false);
-    return Scaffold(
-      // backgroundColor: provider.isDarkMode ? Colors.grey.shade900:Colors.white,
-      body: SingleChildScrollView(
+    final provider = Provider.of<ThemeProvider>(context, listen: true);
+    return SingleChildScrollView(
       child: Column(
           children: [
+            SizedBox(height: 50,),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -257,7 +256,6 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
           ],
         ),
-      ),
-    );
+      );
   }
 }
