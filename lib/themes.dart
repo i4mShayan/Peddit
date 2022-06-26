@@ -18,7 +18,6 @@ class Themes{
       ),
     ),
     bottomSheetTheme: BottomSheetThemeData(
-      constraints: BoxConstraints(maxHeight: 52),
       backgroundColor: Colors.grey[300],
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
@@ -46,7 +45,6 @@ class Themes{
       ),
     ),
     bottomSheetTheme: BottomSheetThemeData(
-      constraints: BoxConstraints(maxHeight: 52),
       backgroundColor: Colors.grey.shade800,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(

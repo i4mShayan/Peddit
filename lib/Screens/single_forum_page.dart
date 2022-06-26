@@ -137,7 +137,7 @@ class _SingleForumPageState extends State<SingleForumPage> with SingleTickerProv
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                          builder: (context) => EditForumPage(forum: widget.forum),
+                                          builder: (context) => AdminPanel(forum: widget.forum),
                                         ),
                                       ).then((value) => setState(() {}));
                                     });
@@ -150,8 +150,11 @@ class _SingleForumPageState extends State<SingleForumPage> with SingleTickerProv
                                     ),
                                     padding: EdgeInsets.symmetric(vertical: 5, horizontal: 20),
                                   ),
-                                  label: Text("Edit", style: TextStyle(color: Colors.blueAccent),),
-                                  icon: Icon(Icons.edit_rounded),
+                                  label: Text("Admin Panel", style: TextStyle(color: Colors.blueAccent),),
+                                  icon: Transform.rotate(
+                                    angle: 90 * math.pi / 180,
+                                    child: Icon(Icons.build_rounded),
+                                  )
                                 ),
                               )
                                   :
