@@ -29,7 +29,7 @@ class _MainAppBarState extends State<MainAppBar> {
             // Icons.menu_rounded,
             LineIcons.bars,
             size: 33,
-            color: provider.isDarkMode ? Colors.grey[400]:Colors.grey[600],
+            color: provider.isDarkMode ? Colors.grey[500]:Colors.grey[600],
           ),
           onPressed: widget._openDrawer(),
         ),
@@ -45,7 +45,8 @@ class _MainAppBarState extends State<MainAppBar> {
           height: 40,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
-            color: Colors.blueGrey[50],
+            color: provider.isDarkMode? Colors.grey[800]:Colors.blueGrey[50],
+
           ),
           child: Row(
             children: [
@@ -57,7 +58,7 @@ class _MainAppBarState extends State<MainAppBar> {
                   child: Icon(
                     // Icons.search,
                     LineIcons.search,
-                    color: Colors.grey[400],
+                    color: provider.isDarkMode? Colors.grey[500]:Colors.grey[400],
                     size: 22,
                   ),
                 ),
@@ -68,7 +69,7 @@ class _MainAppBarState extends State<MainAppBar> {
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.w300,
-                  color: Colors.grey[400],
+                  color: provider.isDarkMode? Colors.grey[500]:Colors.grey[400],
                 ),
               ),
             ],
