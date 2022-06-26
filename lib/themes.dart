@@ -17,7 +17,6 @@ class Themes{
         primary: Colors.black,
       ),
     ),
-
   );
 
   static final darkTheme = ThemeData(

@@ -12,7 +12,7 @@ class _DrawerMenuState extends State<DrawerMenu> {
   Widget build(BuildContext context) {
     return Drawer(
       width: 330,
-      child: ForumsPage()
+      child: SafeArea(child: ForumsPage()),
     );
   }
 }

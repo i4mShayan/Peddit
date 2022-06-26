@@ -193,7 +193,7 @@ class AboutUs extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-                                Text("AP Spring 1401", style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500),),
+                                Text("AP Spring 1401", style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500, color: Colors.black),),
                               ],
                             ),
                           ],
