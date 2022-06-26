@@ -1,6 +1,9 @@
 // Important packages!
 export 'package:flutter/material.dart';
 export 'package:provider/provider.dart';
+export 'package:font_awesome_flutter/font_awesome_flutter.dart';
+export 'package:line_icons/line_icons.dart';
+
 // exporting project files!
 export 'Screens/sign_up.dart';
 export 'Screens/login.dart';
