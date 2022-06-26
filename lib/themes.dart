@@ -18,11 +18,12 @@ class Themes{
       ),
     ),
     bottomSheetTheme: BottomSheetThemeData(
+      constraints: BoxConstraints(maxHeight: 52),
       backgroundColor: Colors.grey[300],
       shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.only(
-        topLeft: Radius.circular(20.0),
-        topRight: Radius.circular(20.0),
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(20.0),
+          topRight: Radius.circular(20.0),
         ),
       ),
     ),
@@ -45,6 +46,7 @@ class Themes{
       ),
     ),
     bottomSheetTheme: BottomSheetThemeData(
+      constraints: BoxConstraints(maxHeight: 52),
       backgroundColor: Colors.grey.shade800,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
