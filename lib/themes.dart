@@ -17,6 +17,7 @@ class Themes{
         primary: Colors.black,
       ),
     ),
+    bottomSheetTheme: BottomSheetThemeData(backgroundColor: Colors.white,),
   );
 
   static final darkTheme = ThemeData(
@@ -24,7 +25,7 @@ class Themes{
     backgroundColor: Colors.grey.shade900,
     colorScheme: ColorScheme.dark(),
     iconTheme: IconThemeData(color: Colors.white),
-    appBarTheme: AppBarTheme(color: Colors.grey.shade900, elevation: 1),
+    appBarTheme: AppBarTheme(color: Colors.grey.shade900, elevation: 2),
     buttonTheme: ButtonThemeData(
       buttonColor: Colors.white,
       textTheme: ButtonTextTheme.primary,
@@ -35,5 +36,6 @@ class Themes{
         primary: Colors.white,
       ),
     ),
+    bottomSheetTheme: BottomSheetThemeData(backgroundColor: Colors.grey.shade900,),
   );
 }
