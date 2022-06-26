@@ -1,7 +1,7 @@
 import 'libs.dart';
 
 class ThemeProvider extends ChangeNotifier{
-  ThemeMode themeMode = ThemeMode.light;
+  ThemeMode themeMode = ThemeMode.system;
 
   bool get isDarkMode => themeMode==ThemeMode.dark;
 
