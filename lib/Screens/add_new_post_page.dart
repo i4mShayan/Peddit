@@ -162,7 +162,7 @@ class _AddNewPostPageState extends State<AddNewPostPage> {
               ]),
             ),
           bottomSheet: BottomSheet(
-            elevation: 20,
+            elevation: 300,
             onClosing: (){},
             builder: (BuildContext) {
               return Row(

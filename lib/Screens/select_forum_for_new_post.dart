@@ -74,12 +74,12 @@ class _SelectForumForNewPostState extends State<SelectForumForNewPost> {
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
-                                      Icon(Icons.emoji_emotions_outlined,),
+                                      Icon(Icons.emoji_emotions_outlined, color: Colors.white),
                                       SizedBox(width: 10,),
                                       Text('Posted in r/', style: TextStyle(color: Colors.white),),
                                       Text(_selectedForum!.forumName, style: TextStyle(fontWeight: FontWeight.w500, color: Colors.white),),
                                       Spacer(),
-                                      Icon(Icons.check,)
+                                      Icon(Icons.check, color: Colors.white)
                                     ],
                                   ),
                                 ),

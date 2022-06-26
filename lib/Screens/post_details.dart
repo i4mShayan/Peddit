@@ -188,12 +188,11 @@ class _PostDetailsState extends State<PostDetails> with SingleTickerProviderStat
               ),
               SizedBox(height: 5,),
               CommentSection(post: widget.post, sortType: _sortType,),
-              SizedBox(height: 200,),
+              SizedBox(height: 60,),
             ],
             ),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: Positioned(
+      bottomSheet: Positioned(
         child: Container(
           width: MediaQuery.of(context).size.width,
           child: InkWell(

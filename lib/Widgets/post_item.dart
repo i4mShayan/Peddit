@@ -51,7 +51,6 @@ class _PostItemState extends State<PostItem> {
       },
       child: Container(
         margin: EdgeInsets.only(bottom: 5),
-        // color: Colors.white,
         child: Material(
           child: (
               Column(

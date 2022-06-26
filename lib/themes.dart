@@ -17,7 +17,15 @@ class Themes{
         primary: Colors.black,
       ),
     ),
-    bottomSheetTheme: BottomSheetThemeData(backgroundColor: Colors.white,),
+    bottomSheetTheme: BottomSheetThemeData(
+      backgroundColor: Colors.grey[300],
+      shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.only(
+        topLeft: Radius.circular(20.0),
+        topRight: Radius.circular(20.0),
+        ),
+      ),
+    ),
   );
 
   static final darkTheme = ThemeData(
@@ -36,6 +44,14 @@ class Themes{
         primary: Colors.white,
       ),
     ),
-    bottomSheetTheme: BottomSheetThemeData(backgroundColor: Colors.grey.shade900,),
+    bottomSheetTheme: BottomSheetThemeData(
+      backgroundColor: Colors.grey.shade800,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(20.0),
+          topRight: Radius.circular(20.0),
+        ),
+      ),
+    ),
   );
 }
