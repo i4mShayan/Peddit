@@ -18,7 +18,7 @@ class _AddNewCommentPageState extends State<AddNewCommentPage> {
       return widget.replyingComment!.commentDesc;
     }
     else if(widget.replyingPost!=null){
-      return widget.replyingPost.desc;
+      return widget.replyingPost.title;
     }
     else{
       return "unable to show this!";
@@ -131,6 +131,7 @@ class _AddNewCommentPageState extends State<AddNewCommentPage> {
               Container(
                 margin: EdgeInsets.only(right: 30 , left: 30),
                 child: TextFormField(
+                  autofocus:true,
                   onChanged: (value){
                     setState(() {});
                   },

@@ -28,7 +28,6 @@ class _CommentState extends State<Comment> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white,
       margin: EdgeInsets.only(bottom: widget.isReply ? 0:10),
       child: Material(
         child: Column(

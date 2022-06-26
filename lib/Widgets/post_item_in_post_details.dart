@@ -33,7 +33,6 @@ class _PostItemInDetailsState extends State<PostItemInDetails> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white,
       child: Material(
         child: (
             Column(
