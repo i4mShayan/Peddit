@@ -1,8 +1,18 @@
 import 'dart:ui';
 import '../libs.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AboutUs extends StatelessWidget {
   const AboutUs({Key? key}) : super(key: key);
+
+
+  _launchURL(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url,);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -79,21 +89,17 @@ class AboutUs extends StatelessWidget {
                                       TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
                                 ),
                                 SizedBox(height: 20,),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 71),
-                                  child: ElevatedButton(
-                                    onPressed: () {},
-                                    style: ElevatedButton.styleFrom(
-                                      shape: StadiumBorder(),
-                                      primary: Colors.black87,
-                                      elevation: 0,
-                                    ),
-                                    child: Row(
-                                      children: [
-                                        Image.asset("assets/images/logo/github.png", width: 25,),
-                                        SizedBox(width: 7,),
-                                        Text('itsfarbod', style: TextStyle(color: Colors.white),),
-                                      ],
+                                ElevatedButton.icon(
+                                  onPressed: (){
+                                    _launchURL("https://github.com/itsfarbod");
+                                  },
+                                  icon: Image.asset("assets/images/logo/github.png", width: 25,),
+                                  label: Text('itsfarbod', style: TextStyle(color: Colors.white),),
+                                  style: ElevatedButton.styleFrom(
+                                    elevation: 0,
+                                    primary: Colors.black,
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(18.0),
                                     ),
                                   ),
                                 ),
@@ -150,21 +156,17 @@ class AboutUs extends StatelessWidget {
                                       TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
                                 ),
                                 SizedBox(height: 20,),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 65),
-                                  child: ElevatedButton(
-                                    onPressed: () {},
-                                    style: ElevatedButton.styleFrom(
-                                      shape: StadiumBorder(),
-                                      primary: Colors.black87,
-                                      elevation: 0,
-                                    ),
-                                    child: Row(
-                                      children: [
-                                        Image.asset("assets/images/logo/github.png", width: 25,),
-                                        SizedBox(width: 7,),
-                                        Text('i4mShayan', style: TextStyle(color: Colors.white),),
-                                      ],
+                                ElevatedButton.icon(
+                                  onPressed: (){
+                                    _launchURL("https://github.com/i4mShayan");
+                                  },
+                                  icon: Image.asset("assets/images/logo/github.png", width: 25,),
+                                  label: Text('i4mShayan', style: TextStyle(color: Colors.white),),
+                                  style: ElevatedButton.styleFrom(
+                                    elevation: 0,
+                                    primary: Colors.black,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(18.0),
                                     ),
                                   ),
                                 ),
