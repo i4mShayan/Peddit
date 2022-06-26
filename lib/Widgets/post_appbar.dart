@@ -18,13 +18,15 @@ class PostAppBar extends StatefulWidget implements PreferredSizeWidget{
 class _PostAppBarState extends State<PostAppBar> {
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<ThemeProvider>(context, listen: false);
     return AppBar(
       flexibleSpace: Container(
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           gradient: LinearGradient(
               begin: Alignment.bottomLeft,
               end: Alignment.bottomRight,
-              colors: <Color>[Colors.red, Colors.orange]),
+              colors: (provider.isDarkMode ? [Color(0xff374ABE), Colors.blue]:[Colors.red, Colors.orange]),
+          ),
         ),
       ),
       elevation: 1,

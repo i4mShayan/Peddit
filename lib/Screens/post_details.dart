@@ -58,13 +58,12 @@ class _PostDetailsState extends State<PostDetails> with SingleTickerProviderStat
   Widget build(BuildContext context) {
     final provider = Provider.of<ThemeProvider>(context, listen: false);
     return Scaffold(
-      // backgroundColor: Colors.blueGrey[50],
       resizeToAvoidBottomInset: false,
       key: _scaffoldKey,
       appBar: _getAppbar(),
       endDrawer: EndDrawer(pageSetState: ()=>setState((){}),),
       body: RefreshIndicator(
-        color: Colors.black54,
+        color: provider.isDarkMode ? Colors.white:Colors.black,
         onRefresh: _onRefresh,
         child: ListView(
           shrinkWrap: true,

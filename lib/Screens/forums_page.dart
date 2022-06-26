@@ -15,8 +15,9 @@ class _ForumsPageState extends State<ForumsPage> {
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<ThemeProvider>(context, listen: false);
     return RefreshIndicator(
-      color: Colors.black54,
+      color: provider.isDarkMode ? Colors.white:Colors.black,
       onRefresh: _onRefresh,
       child: ListView(
         children: [
