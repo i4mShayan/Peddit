@@ -56,7 +56,7 @@ class _PostDetailsState extends State<PostDetails> with SingleTickerProviderStat
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<ThemeProvider>(context, listen: false);
+    final provider = Provider.of<ThemeProvider>(context, listen: true);
     return Scaffold(
       resizeToAvoidBottomInset: false,
       key: _scaffoldKey,

@@ -44,7 +44,7 @@ class _SingleForumPageState extends State<SingleForumPage> with SingleTickerProv
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<ThemeProvider>(context, listen: false);
+    final provider = Provider.of<ThemeProvider>(context, listen: true);
     return Scaffold(
       key: _scaffoldKey,
       // backgroundColor: Colors.blueGrey[50],

@@ -18,7 +18,7 @@ class MainAppBar extends StatefulWidget implements PreferredSizeWidget{
 class _MainAppBarState extends State<MainAppBar> {
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<ThemeProvider>(context, listen: false);
+    final provider = Provider.of<ThemeProvider>(context, listen: true);
     return AppBar(
       elevation: 1,
       leadingWidth: 70,

@@ -5,7 +5,7 @@ class FeedSearchDelegate extends SearchDelegate {
 
   // @override
   // ThemeData appBarTheme(BuildContext context){
-  //   final provider = Provider.of<ThemeProvider>(context, listen: false);
+  //   final provider = Provider.of<ThemeProvider>(context, listen: true);
   //   assert(context != null);
   //   final ThemeData theme = Theme.of(context);
   //   assert(theme != null);

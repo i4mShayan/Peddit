@@ -14,7 +14,7 @@ class _EndDrawerState extends State<EndDrawer> {
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<ThemeProvider>(context, listen: false);
+    final provider = Provider.of<ThemeProvider>(context, listen: true);
     return Drawer(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,

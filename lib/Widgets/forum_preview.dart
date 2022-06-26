@@ -13,6 +13,7 @@ class ForumPreview extends StatefulWidget {
 class _ForumPreviewState extends State<ForumPreview> {
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<ThemeProvider>(context);
     return Column(
       children: [
         MaterialButton(
@@ -50,7 +51,13 @@ class _ForumPreviewState extends State<ForumPreview> {
                     widget.pageSetStateFunc();
                   });
                 },
-                icon: Datas().currentUser.starredForums.contains(widget.forum) ? Icon(Icons.star_rate_rounded, color: Colors.yellow[900], size: 25,):Icon(Icons.star_outline_rounded, size: 25,),
+                icon:
+                (
+                  Datas().currentUser.starredForums.contains(widget.forum) ?
+                    Icon(Icons.star_rate_rounded, color: Colors.yellow[900], size: 25,)
+                        :
+                    Icon(Icons.star_outline_rounded, size: 25, color: provider.isDarkMode ? Colors.grey[400]:Colors.grey[800],)
+                ),
               ),
             ],
           ),

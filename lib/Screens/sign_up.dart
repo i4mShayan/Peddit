@@ -22,7 +22,7 @@ class _SignUpState extends State<SignUp> {
   TextEditingController _password=TextEditingController();
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<ThemeProvider>(context, listen: false);
+    final provider = Provider.of<ThemeProvider>(context, listen: true);
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: SafeArea(

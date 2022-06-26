@@ -18,7 +18,7 @@ class PostAppBar extends StatefulWidget implements PreferredSizeWidget{
 class _PostAppBarState extends State<PostAppBar> {
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<ThemeProvider>(context, listen: false);
+    final provider = Provider.of<ThemeProvider>(context, listen: true);
     return AppBar(
       flexibleSpace: Container(
         decoration: BoxDecoration(
