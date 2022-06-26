@@ -6,7 +6,7 @@ class Themes{
     backgroundColor: Colors.white,
     colorScheme: ColorScheme.light(),
     iconTheme: IconThemeData(color: Colors.black),
-    appBarTheme: AppBarTheme(color: Colors.white),
+    appBarTheme: AppBarTheme(color: Colors.white, elevation: 1),
     buttonTheme: ButtonThemeData(
       buttonColor: Colors.black,
       textTheme: ButtonTextTheme.primary,
@@ -25,7 +25,7 @@ class Themes{
     backgroundColor: Colors.grey.shade900,
     colorScheme: ColorScheme.dark(),
     iconTheme: IconThemeData(color: Colors.white),
-    appBarTheme: AppBarTheme(color: Colors.grey.shade900),
+    appBarTheme: AppBarTheme(color: Colors.grey.shade900, elevation: 1),
     buttonTheme: ButtonThemeData(
       buttonColor: Colors.white,
       textTheme: ButtonTextTheme.primary,

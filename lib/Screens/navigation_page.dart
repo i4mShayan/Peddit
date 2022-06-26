@@ -94,6 +94,8 @@ class _NavigationPageState extends State<NavigationPage> with SingleTickerProvid
           ],
         ),
         child: BottomNavigationBar(
+          showSelectedLabels: false,
+          showUnselectedLabels: false,
           elevation: 1,
           iconSize: 30,
           type: BottomNavigationBarType.fixed,
