@@ -58,7 +58,7 @@ class _MainAppBarState extends State<MainAppBar> {
                   child: Icon(
                     // Icons.search,
                     LineIcons.search,
-                    color: provider.isDarkMode? Colors.grey[500]:Colors.grey[400],
+                    color: provider.isDarkMode? Colors.grey[600]:Colors.grey[400],
                     size: 22,
                   ),
                 ),
@@ -69,7 +69,7 @@ class _MainAppBarState extends State<MainAppBar> {
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.w300,
-                  color: provider.isDarkMode? Colors.grey[500]:Colors.grey[400],
+                  color: provider.isDarkMode? Colors.grey[600]:Colors.grey[400],
                 ),
               ),
             ],

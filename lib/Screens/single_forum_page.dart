@@ -1,5 +1,5 @@
 import 'dart:ui';
-
+import 'dart:math' as math;
 import '../libs.dart';
 
 class SingleForumPage extends StatefulWidget {
@@ -130,7 +130,7 @@ class _SingleForumPageState extends State<SingleForumPage> with SingleTickerProv
                               ),
                               (userAdminOf(Datas().currentUser, widget.forum) ?
                               Padding(
-                                padding: const EdgeInsets.only(bottom: 7),
+                                padding: const EdgeInsets.only(bottom: 7, right: 5),
                                 child: TextButton.icon(
                                   onPressed: () {
                                     setState((){
@@ -156,7 +156,7 @@ class _SingleForumPageState extends State<SingleForumPage> with SingleTickerProv
                               )
                                   :
                                 Padding(
-                                  padding: const EdgeInsets.only(bottom: 7),
+                                  padding: const EdgeInsets.only(bottom: 7, right: 5),
                                   child: TextButton(
                                     onPressed: () {
                                       setState((){
@@ -236,12 +236,13 @@ class _SingleForumPageState extends State<SingleForumPage> with SingleTickerProv
                 ),
               ),
               leading: Container(
-                margin: const EdgeInsets.only(left: 5, top: 3),
+                margin: const EdgeInsets.only(left: 7, top: 3),
                 child: IconButton(
                   icon: Icon(
-                    Icons.arrow_back_rounded,
+                    // Icons.arrow_back_rounded,
+                    LineIcons.arrowLeft,
                     size: 35,
-                    color: Colors.grey[700],
+                    color: provider.isDarkMode ? Colors.grey[700]:Colors.grey[600],
                   ),
                   onPressed: () {
                     Navigator.pop(context);
@@ -254,31 +255,39 @@ class _SingleForumPageState extends State<SingleForumPage> with SingleTickerProv
                   delegate: FeedSearchDelegate(),
                 ),
                 child: Container(
+                  margin: const EdgeInsets.only(left: 0, right: 0, top: 0),
+                  height: 40,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: provider.isDarkMode? Colors.grey[800]!.withOpacity(0.95):Colors.blueGrey[50]!.withOpacity(0.95),
+
+                  ),
                   child: Row(
                     children: [
+                      SizedBox(width: 7,),
                       Container(
-                        margin: const EdgeInsets.only(left: 5, right: 5),
-                        child: Icon(
-                          Icons.search,
-                          color: Colors.grey[500],
+                        child: Transform(
+                          alignment: Alignment.center,
+                          transform: Matrix4.rotationY(math.pi),
+                          child: Icon(
+                            // Icons.search,
+                            LineIcons.search,
+                            color: provider.isDarkMode? Colors.grey[600]:Colors.grey[400],
+                            size: 22,
+                          ),
                         ),
                       ),
+                      SizedBox(width: 5,),
                       Text(
                         "Search",
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.w300,
-                          color: Colors.grey[500],
+                          color: provider.isDarkMode? Colors.grey[600]:Colors.grey[400],
                         ),
                       ),
                     ],
                   ),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(4),
-                    color: Colors.grey[300]!.withOpacity(0.9),
-                  ),
-                  // margin: EdgeInsets.only(top: 5),
-                  height: 40,
                 ),
               ),
               actions: [
