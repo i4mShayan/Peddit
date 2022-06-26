@@ -89,7 +89,7 @@ class AboutUs extends StatelessWidget {
                                     style:
                                         TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
                                   ),
-                                  SizedBox(height: 20,),
+                                  SizedBox(height: 10,),
                                   ElevatedButton.icon(
                                     onPressed: (){
                                       _launchURL("https://github.com/itsfarbod");
@@ -156,7 +156,7 @@ class AboutUs extends StatelessWidget {
                                     style:
                                         TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
                                   ),
-                                  SizedBox(height: 20,),
+                                  SizedBox(height: 10,),
                                   ElevatedButton.icon(
                                     onPressed: (){
                                       _launchURL("https://github.com/i4mShayan");
