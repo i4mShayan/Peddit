@@ -140,7 +140,7 @@ class _EditForumPageState extends State<EditForumPage> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       IconButton(onPressed: (){
-                        Navigator.pop(context);}, icon: Icon(Icons.close_rounded, size: 30,
+                        Navigator.pop(context);}, icon: Icon(Icons.arrow_back_rounded, size: 30,
                       )),
                       SizedBox(width: 15,),
                       Text("Edit forum", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),),

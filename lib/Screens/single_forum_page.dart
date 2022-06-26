@@ -35,13 +35,6 @@ class _SingleForumPageState extends State<SingleForumPage> with SingleTickerProv
     setState((){});
   }
 
-  String memberCountText(){
-    String ans=widget.forum.members.length.toString() + " ";
-    if(widget.forum.members.length<=1) ans+="member";
-    else ans+="members";
-    return ans;
-  }
-
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<ThemeProvider>(context, listen: true);
@@ -122,7 +115,7 @@ class _SingleForumPageState extends State<SingleForumPage> with SingleTickerProv
                                   ),
                                   Container(
                                     margin: EdgeInsets.only(top: 5),
-                                    child: Text(memberCountText(),
+                                    child: Text(memberCountTextOf(widget.forum),
                                         style: TextStyle(
                                             fontSize: 17, fontWeight: FontWeight.w400)),
                                   ),
@@ -165,9 +158,11 @@ class _SingleForumPageState extends State<SingleForumPage> with SingleTickerProv
                                       setState((){
                                         if(userMemberOf(Datas().currentUser, widget.forum)){
                                           widget.forum.members.remove(Datas().currentUser);
+                                          Datas().currentUser.followedForums.remove(widget.forum);
                                         }
                                         else{
                                           widget.forum.members.add(Datas().currentUser);
+                                          Datas().currentUser.followedForums.add(widget.forum);
                                         }
                                       });
                                     },

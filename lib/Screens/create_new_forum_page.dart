@@ -94,7 +94,15 @@ class _CreateNewForumPageState extends State<CreateNewForumPage> {
                       if(nameErrorMessage==null) {
                         setState(() {
                           ForumModel newForum = ForumModel(owner: Datas().currentUser,
-                              admins: [],
+                              admins: [
+
+                                new UserModel(userName: "admin", email: "admin@gmail.com", followedForums: [], starredForums: [], comments: [], userPosts: [], upVotedPosts: [], downVotedPosts: [], savedPosts: [], likedComments: [], disLikedComments: [], userProfileImage: Datas().defaultProfilePicture, password: "password"),
+                                new UserModel(userName: "admin", email: "admin@gmail.com", followedForums: [], starredForums: [], comments: [], userPosts: [], upVotedPosts: [], downVotedPosts: [], savedPosts: [], likedComments: [], disLikedComments: [], userProfileImage: Datas().defaultProfilePicture, password: "password"),
+                                new UserModel(userName: "admin", email: "admin@gmail.com", followedForums: [], starredForums: [], comments: [], userPosts: [], upVotedPosts: [], downVotedPosts: [], savedPosts: [], likedComments: [], disLikedComments: [], userProfileImage: Datas().defaultProfilePicture, password: "password"),
+                                new UserModel(userName: "admin", email: "admin@gmail.com", followedForums: [], starredForums: [], comments: [], userPosts: [], upVotedPosts: [], downVotedPosts: [], savedPosts: [], likedComments: [], disLikedComments: [], userProfileImage: Datas().defaultProfilePicture, password: "password"),
+                                new UserModel(userName: "admin", email: "admin@gmail.com", followedForums: [], starredForums: [], comments: [], userPosts: [], upVotedPosts: [], downVotedPosts: [], savedPosts: [], likedComments: [], disLikedComments: [], userProfileImage: Datas().defaultProfilePicture, password: "password"),
+
+                              ],
                               posts: [],
                               members: [],
                               forumName: _name.text,

@@ -45,3 +45,14 @@ void deletePost(PostModel post){
   post.forum.posts.remove(post);
   Datas().updateFeed();
 }
+
+int memberCountOf(ForumModel forum){
+  return forum.members.length + forum.admins.length + 1;
+}
+
+String memberCountTextOf(ForumModel forum){
+  String ans=memberCountOf(forum).toString() + " ";
+  if(memberCountOf(forum)<=1) ans+="member";
+  else ans+="members";
+  return ans;
+}
