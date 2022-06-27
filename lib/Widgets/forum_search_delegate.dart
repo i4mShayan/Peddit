@@ -3,7 +3,8 @@ import '../libs.dart';
 class ForumSearchDelegate extends SearchDelegate {
 
 
-  final List<ForumModel> forums=Datas().forumsList;
+  List<ForumModel> forums;
+  ForumSearchDelegate({required this.forums});
 
   // @override
   // ThemeData appBarTheme(BuildContext context){
@@ -46,10 +47,9 @@ class ForumSearchDelegate extends SearchDelegate {
 
   @override
   Widget buildResults(BuildContext context) {
-    List<PostModel> results = posts
+    List<ForumModel> results = forums
         .where(
-            (forum) =>
-        forum.title.toLowerCase().contains(query.toLowerCase()) || forum.desc.toLowerCase().contains(query.toLowerCase())
+            (forum) => forum.forumName.contains(query)
     ).toList();
 
     return Padding(
@@ -57,8 +57,8 @@ class ForumSearchDelegate extends SearchDelegate {
       child: ListView.builder(
         itemCount: results.length,
         itemBuilder: (context, index) {
-          return PostItem(
-            post: posts[index], pageSetState: (){},
+          return ForumPreview(
+              forum: results[index],
           );
         },
       ),
@@ -67,10 +67,9 @@ class ForumSearchDelegate extends SearchDelegate {
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    List<PostModel> suggested = posts
+    List<ForumModel> suggested = forums
         .where(
-            (forum) =>
-        forum.title.toLowerCase().contains(query.toLowerCase()) || forum.desc.toLowerCase().contains(query.toLowerCase())
+            (forum) => forum.forumName.contains(query)
     ).toList();
 
     return Padding(
@@ -78,8 +77,9 @@ class ForumSearchDelegate extends SearchDelegate {
       child: query.isEmpty ? SizedBox():ListView.builder(
           itemCount: suggested.length,
           itemBuilder: (context, index) {
-            return PostItem(
-              post: posts[index], pageSetState: () {},
+            return ForumPreview(
+              forum: suggested[index],
+              showStar: false,
             );
           }
       ),

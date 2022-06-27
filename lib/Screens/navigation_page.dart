@@ -36,6 +36,7 @@ class _NavigationPageState extends State<NavigationPage> with SingleTickerProvid
   void _onPageChanged(int index) {
     setState(() {
       _selectedIndex = index;
+      Datas().navigationSelectedIndex=index;
     });
   }
 

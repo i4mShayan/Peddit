@@ -250,7 +250,7 @@ class _SingleForumPageState extends State<SingleForumPage> with SingleTickerProv
               title: GestureDetector(
                 onTap: () => showSearch(
                   context: context,
-                  delegate: PostSearchDelegate(),
+                  delegate: PostSearchDelegate(posts: widget.forum.posts),
                 ),
                 child: Container(
                   margin: const EdgeInsets.only(left: 0, right: 0, top: 0),

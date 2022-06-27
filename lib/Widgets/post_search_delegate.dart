@@ -2,9 +2,9 @@ import '../libs.dart';
 
 class PostSearchDelegate extends SearchDelegate {
 
-  
-  final List<ForumModel> forums=Datas().forumsList;
-  final List<PostModel> posts=Datas().feedPosts;
+
+  List<PostModel> posts;
+  PostSearchDelegate({required this.posts});
 
 
   // @override
@@ -50,8 +50,8 @@ class PostSearchDelegate extends SearchDelegate {
   Widget buildResults(BuildContext context) {
     List<PostModel> results = posts
         .where(
-            (forum) =>
-                forum.title.toLowerCase().contains(query.toLowerCase()) || forum.desc.toLowerCase().contains(query.toLowerCase())
+            (post) =>
+            post.title.toLowerCase().contains(query.toLowerCase()) || post.desc.toLowerCase().contains(query.toLowerCase())
         ).toList();
 
     return Padding(
@@ -60,7 +60,7 @@ class PostSearchDelegate extends SearchDelegate {
         itemCount: results.length,
         itemBuilder: (context, index) {
           return PostItem(
-            post: posts[index], pageSetState: (){},
+            post: results[index], pageSetState: (){},
           );
         },
       ),
@@ -71,8 +71,8 @@ class PostSearchDelegate extends SearchDelegate {
   Widget buildSuggestions(BuildContext context) {
     List<PostModel> suggested = posts
         .where(
-            (forum) =>
-        forum.title.toLowerCase().contains(query.toLowerCase()) || forum.desc.toLowerCase().contains(query.toLowerCase())
+            (post) =>
+            post.title.toLowerCase().contains(query.toLowerCase()) || post.desc.toLowerCase().contains(query.toLowerCase())
     ).toList();
 
     return Padding(
@@ -81,7 +81,7 @@ class PostSearchDelegate extends SearchDelegate {
           itemCount: suggested.length,
           itemBuilder: (context, index) {
             return PostItem(
-              post: posts[index], pageSetState: () {},
+              post: suggested[index], pageSetState: () {},
             );
           }
       ),
