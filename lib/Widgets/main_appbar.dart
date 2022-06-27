@@ -39,9 +39,14 @@ class _MainAppBarState extends State<MainAppBar> {
         onTap: () => showSearch(
             context: context,
             delegate: (Datas().navigationSelectedIndex==1 ?
-                ForumSearchDelegate(forums: Datas().forumsList)
+              ForumSearchDelegate(forums: Datas().forumsList)
                 :
+              (
+                Datas().navigationSelectedIndex==3 ?
+                PostSearchDelegate(posts: Datas().currentUser.savedPosts)
+                    :
                 PostSearchDelegate(posts: Datas().feedPosts)
+              )
             ),
         ),
         child: Container(
