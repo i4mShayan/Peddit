@@ -24,7 +24,7 @@ class AdminPanel extends StatelessWidget {
       'leading': Icons.block_rounded,
       'title': "Members moderation",
       'subtitle': "block/unblock a member!",
-      'route': AdminsModerationPage(forum: forum),
+      'route': MembersModerationPage(forum: forum),
       'enabled': ()=>forum.owner == Datas().currentUser,
     },
 

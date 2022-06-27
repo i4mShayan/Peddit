@@ -37,11 +37,22 @@ class _AdminsModerationPageState extends State<AdminsModerationPage> {
                   physics: NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   children: [
+                    ListTile(
+                      leading: CircleAvatar(
+                        child: widget.forum.owner.userProfileImage,
+                        backgroundColor: Colors.white,
+                      ),
+                      title: Text(widget.forum.owner.userName),
+                      // subtitle: Text(widget.forum.owner.email),
+                      subtitle: Text('Owner',),
+                      trailing: Icon(Icons.stars_rounded, color: Colors.blue,),
+                    ),
+                    Divider(thickness: 2, height: 1,),
                     for(UserModel admin in widget.forum.admins)
                       ListTile(
                         onTap: (){
                           setState((){
-                            widget.forum.admins.remove(admin);
+                            removeAdminFrom(admin, widget.forum);
                           });
                         },
                         leading: CircleAvatar(
@@ -49,7 +60,8 @@ class _AdminsModerationPageState extends State<AdminsModerationPage> {
                           backgroundColor: Colors.white,
                         ),
                         title: Text(admin.userName),
-                        subtitle: Text(admin.email),
+                        // subtitle: Text(admin.email),
+                        subtitle: Text('Admin'),
                         trailing: Icon(Icons.person_remove_rounded, color: Colors.red[600],),
                       ),
                   ],
@@ -58,25 +70,33 @@ class _AdminsModerationPageState extends State<AdminsModerationPage> {
               ],
             ),
           ),
+          // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
           floatingActionButton:
-          // FloatingActionButton.extended(
-          //   onPressed: () {},
-          //   label: Text('Add a admin'),
-          //   icon: Icon(Icons.person_add_rounded),
-          //   backgroundColor: Colors.green,
-          // ),
-          FloatingActionButton(
-            backgroundColor: Colors.green,
-            onPressed: (){
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => AddAdminPage(forum: widget.forum),
-                ),
-              ).then((value) => setState(() {}));
+          FloatingActionButton.extended(
+            onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => AddAdminPage(forum: widget.forum),
+                  ),
+                ).then((value) => setState(() {}));
             },
-            child: Icon(Icons.person_add_rounded),
-          )
+            label: Text('Add a admin'),
+            icon: Icon(Icons.person_add_rounded),
+            backgroundColor: Colors.green,
+          ),
+          // FloatingActionButton(
+          //   backgroundColor: Colors.green,
+          //   onPressed: (){
+          //     Navigator.push(
+          //       context,
+          //       MaterialPageRoute(
+          //         builder: (context) => AddAdminPage(forum: widget.forum),
+          //       ),
+          //     ).then((value) => setState(() {}));
+          //   },
+          //   child: Icon(Icons.person_add_rounded),
+          // )
         ),
       ),
     );

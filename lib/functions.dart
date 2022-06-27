@@ -56,3 +56,13 @@ String memberCountTextOf(ForumModel forum){
   else ans+="members";
   return ans;
 }
+
+void removeAdminFrom(UserModel admin, ForumModel forum){
+  forum.admins.remove(admin);
+  forum.members.add(admin);
+}
+
+void addAdminTo(UserModel admin, ForumModel forum){
+  forum.admins.add(admin);
+  forum.members.remove(admin);
+}

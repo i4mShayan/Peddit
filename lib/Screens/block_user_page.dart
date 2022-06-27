@@ -1,15 +1,15 @@
 import '../libs.dart';
 
-class AddAdminPage extends StatefulWidget {
+
+class BlockUserPage extends StatefulWidget {
   ForumModel forum;
-  AddAdminPage({Key? key, required this.forum}) : super(key: key);
+  BlockUserPage({Key? key, required this.forum}) : super(key: key);
 
   @override
-  State<AddAdminPage> createState() => _AddAdminPageState();
+  State<BlockUserPage> createState() => _BlockUserPageState();
 }
 
-class _AddAdminPageState extends State<AddAdminPage> {
-
+class _BlockUserPageState extends State<BlockUserPage> {
   UserModel? _selected;
 
   bool canConfirm(){
@@ -19,6 +19,8 @@ class _AddAdminPageState extends State<AddAdminPage> {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<ThemeProvider>(context, listen: true);
+    List<UserModel> notBlockedMembers=widget.forum.members;
+    notBlockedMembers.removeWhere((element) => widget.forum.blockedUsers.contains(element));
     return Container(
       color: provider.isDarkMode ? Colors.grey.shade900:Colors.white,
       child: SafeArea(
@@ -35,7 +37,7 @@ class _AddAdminPageState extends State<AddAdminPage> {
                     children: [
                       IconButton(onPressed: (){Navigator.pop(context);}, icon: Icon(Icons.arrow_back_rounded, size: 30,)),
                       SizedBox(width: 15,),
-                      Text("Make admin", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),),
+                      Text("Block user", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),),
                       Spacer(),
                       Container(
                         width: 85,
@@ -52,21 +54,21 @@ class _AddAdminPageState extends State<AddAdminPage> {
                           ),
                         ),
                         child: MaterialButton(
-                          splashColor: canConfirm() ? null:Colors.transparent,
-                          highlightColor: canConfirm() ? null:Colors.transparent,
-                          onPressed: () {
-                            if(canConfirm()){
-                              setState((){
-                                addAdminTo(_selected!, widget.forum);
-                              });
-                              Navigator.pop(context);
-                            }
-                          },
-                          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(50),
-                          ),
-                          child: Icon(Icons.check, color: Colors.white,)
+                            splashColor: canConfirm() ? null:Colors.transparent,
+                            highlightColor: canConfirm() ? null:Colors.transparent,
+                            onPressed: () {
+                              if(canConfirm()){
+                                setState((){
+                                  widget.forum.blockedUsers.add(_selected!);
+                                });
+                                Navigator.pop(context);
+                              }
+                            },
+                            materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(50),
+                            ),
+                            child: Icon(Icons.check, color: Colors.white,)
                         ),
                       ),
                     ],
@@ -76,10 +78,10 @@ class _AddAdminPageState extends State<AddAdminPage> {
                 ListView.builder(
                   physics: NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
-                  itemCount: widget.forum.members.length,
+                  itemCount: notBlockedMembers.length,
                   itemBuilder: (context, i){
                     return RadioListTile(
-                      value: widget.forum.members[i],
+                      value: notBlockedMembers[i],
                       groupValue: _selected,
                       onChanged: (value){
                         setState((){
@@ -88,10 +90,10 @@ class _AddAdminPageState extends State<AddAdminPage> {
                       },
                       controlAffinity: ListTileControlAffinity.trailing,
                       activeColor: Colors.blue[700],
-                      title: Text(widget.forum.members[i].userName),
-                      subtitle: Text(widget.forum.members[i].email),
+                      title: Text(notBlockedMembers[i].userName),
+                      subtitle: Text(notBlockedMembers[i].email),
                       secondary: CircleAvatar(
-                        backgroundImage: widget.forum.members[i].userProfileImage.image,
+                        backgroundImage: notBlockedMembers[i].userProfileImage.image,
                         backgroundColor: Colors.white,
                         // radius: 15,
                       ),
@@ -106,3 +108,4 @@ class _AddAdminPageState extends State<AddAdminPage> {
     );
   }
 }
+

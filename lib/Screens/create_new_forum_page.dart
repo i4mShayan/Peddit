@@ -112,8 +112,9 @@ class _CreateNewForumPageState extends State<CreateNewForumPage> {
                                   .defaultProfilePicture : Image.file(profileImageFile!),
                               headerImage: headerImageFile == null
                                   ? Datas().defaultBackground
-                                  : Image.file(headerImageFile!));
+                                  : Image.file(headerImageFile!), blockedUsers: []);
                           Datas().forumsList.add(newForum);
+                          Datas().currentUser.followedForums.add(newForum);
                           Navigator.of(context).pop();
                           SnackBar snackBar = SnackBar(
                             backgroundColor: Colors.green,
