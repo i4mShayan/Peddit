@@ -38,19 +38,19 @@ class _MembersModerationPageState extends State<MembersModerationPage> {
                     physics: NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     children: [
-                      for(UserModel admin in widget.forum.admins)
+                      for(UserModel blockedUser in widget.forum.blockedUsers)
                         ListTile(
                           onTap: (){
                             setState((){
-                              widget.forum.admins.remove(admin);
+                              widget.forum.blockedUsers.remove(blockedUser);
                             });
                           },
                           leading: CircleAvatar(
-                            child: admin.userProfileImage,
+                            child: blockedUser.userProfileImage,
                             backgroundColor: Colors.white,
                           ),
-                          title: Text(admin.userName),
-                          subtitle: Text(admin.email),
+                          title: Text("u/" + blockedUser.userName),
+                          subtitle: Text(blockedUser.email),
                           trailing: Icon(Icons.person_remove_rounded, color: Colors.green,),
                         ),
                     ],

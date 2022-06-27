@@ -4,7 +4,7 @@ class Datas{
   ThemeMode themeMode=ThemeMode.dark;
   bool loggedIn = true;
   late UserModel currentUser=UserModel(userName: "username", email: "email", userProfileImage: Datas().defaultProfilePicture,
-  followedForums: forumsList, starredForums: [], downVotedPosts: [], upVotedPosts: [], savedPosts: [],
+  followedForums: [], starredForums: [], downVotedPosts: [], upVotedPosts: [], savedPosts: [],
       likedComments: [], disLikedComments: [], userPosts: [], comments: [], password: 'Fasda1231');
   PageController pageController=PageController();
   int navigationSelectedIndex=0;

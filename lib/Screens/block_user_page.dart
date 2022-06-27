@@ -19,7 +19,8 @@ class _BlockUserPageState extends State<BlockUserPage> {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<ThemeProvider>(context, listen: true);
-    List<UserModel> notBlockedMembers=widget.forum.members;
+    List<UserModel> notBlockedMembers=[];
+    notBlockedMembers.addAll(widget.forum.members);
     notBlockedMembers.removeWhere((element) => widget.forum.blockedUsers.contains(element));
     return Container(
       color: provider.isDarkMode ? Colors.grey.shade900:Colors.white,

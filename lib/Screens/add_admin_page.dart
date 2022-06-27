@@ -19,6 +19,9 @@ class _AddAdminPageState extends State<AddAdminPage> {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<ThemeProvider>(context, listen: true);
+    List<UserModel> notBlockedMembers=[];
+    notBlockedMembers.addAll(widget.forum.members);
+    notBlockedMembers.removeWhere((element) => widget.forum.blockedUsers.contains(element));
     return Container(
       color: provider.isDarkMode ? Colors.grey.shade900:Colors.white,
       child: SafeArea(
@@ -76,10 +79,10 @@ class _AddAdminPageState extends State<AddAdminPage> {
                 ListView.builder(
                   physics: NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
-                  itemCount: widget.forum.members.length,
+                  itemCount: notBlockedMembers.length,
                   itemBuilder: (context, i){
                     return RadioListTile(
-                      value: widget.forum.members[i],
+                      value: notBlockedMembers[i],
                       groupValue: _selected,
                       onChanged: (value){
                         setState((){
@@ -88,10 +91,10 @@ class _AddAdminPageState extends State<AddAdminPage> {
                       },
                       controlAffinity: ListTileControlAffinity.trailing,
                       activeColor: Colors.blue[700],
-                      title: Text(widget.forum.members[i].userName),
-                      subtitle: Text(widget.forum.members[i].email),
+                      title: Text(notBlockedMembers[i].userName),
+                      subtitle: Text(notBlockedMembers[i].email),
                       secondary: CircleAvatar(
-                        backgroundImage: widget.forum.members[i].userProfileImage.image,
+                        backgroundImage: notBlockedMembers[i].userProfileImage.image,
                         backgroundColor: Colors.white,
                         // radius: 15,
                       ),
