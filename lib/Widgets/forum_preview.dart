@@ -37,7 +37,7 @@ class _ForumPreviewState extends State<ForumPreview> {
               SizedBox(width: 10,),
               Text(
                 "r/" + widget.forum.forumName,
-                style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400, fontFamily: 'Verdana',),
               ),
               Spacer(),
               IconButton(

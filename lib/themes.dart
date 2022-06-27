@@ -2,6 +2,7 @@ import 'libs.dart';
 
 class Themes{
   static final lightTheme = ThemeData(
+    // fontFamily: 'Verdana',
     scaffoldBackgroundColor: Colors.blueGrey[50],
     backgroundColor: Colors.white,
     colorScheme: ColorScheme.light(),
@@ -29,6 +30,7 @@ class Themes{
   );
 
   static final darkTheme = ThemeData(
+    // fontFamily: 'Verdana',
     scaffoldBackgroundColor: Colors.grey.shade900,
     backgroundColor: Colors.grey.shade900,
     colorScheme: ColorScheme.dark(),
