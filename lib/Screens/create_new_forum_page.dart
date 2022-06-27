@@ -94,31 +94,9 @@ class _CreateNewForumPageState extends State<CreateNewForumPage> {
                       if(nameErrorMessage==null) {
                         setState(() {
                           ForumModel newForum = ForumModel(owner: Datas().currentUser,
-                              admins: [
-
-                                new UserModel(userName: "admin", email: "admin@gmail.com", followedForums: [], starredForums: [], comments: [], userPosts: [], upVotedPosts: [], downVotedPosts: [], savedPosts: [], likedComments: [], disLikedComments: [], userProfileImage: Datas().defaultProfilePicture, password: "password"),
-                                new UserModel(userName: "admin", email: "admin@gmail.com", followedForums: [], starredForums: [], comments: [], userPosts: [], upVotedPosts: [], downVotedPosts: [], savedPosts: [], likedComments: [], disLikedComments: [], userProfileImage: Datas().defaultProfilePicture, password: "password"),
-                                new UserModel(userName: "admin", email: "admin@gmail.com", followedForums: [], starredForums: [], comments: [], userPosts: [], upVotedPosts: [], downVotedPosts: [], savedPosts: [], likedComments: [], disLikedComments: [], userProfileImage: Datas().defaultProfilePicture, password: "password"),
-                                new UserModel(userName: "admin", email: "admin@gmail.com", followedForums: [], starredForums: [], comments: [], userPosts: [], upVotedPosts: [], downVotedPosts: [], savedPosts: [], likedComments: [], disLikedComments: [], userProfileImage: Datas().defaultProfilePicture, password: "password"),
-                                new UserModel(userName: "admin", email: "admin@gmail.com", followedForums: [], starredForums: [], comments: [], userPosts: [], upVotedPosts: [], downVotedPosts: [], savedPosts: [], likedComments: [], disLikedComments: [], userProfileImage: Datas().defaultProfilePicture, password: "password"),
-
-                              ],
+                              admins: [],
                               posts: [],
-                              members: [
-                                new UserModel(userName: "memeber", email: "admin@gmail.com", followedForums: [], starredForums: [], comments: [], userPosts: [], upVotedPosts: [], downVotedPosts: [], savedPosts: [], likedComments: [], disLikedComments: [], userProfileImage: Datas().defaultProfilePicture, password: "password"),
-                                new UserModel(userName: "memeber", email: "admin@gmail.com", followedForums: [], starredForums: [], comments: [], userPosts: [], upVotedPosts: [], downVotedPosts: [], savedPosts: [], likedComments: [], disLikedComments: [], userProfileImage: Datas().defaultProfilePicture, password: "password"),
-                                new UserModel(userName: "memeber", email: "admin@gmail.com", followedForums: [], starredForums: [], comments: [], userPosts: [], upVotedPosts: [], downVotedPosts: [], savedPosts: [], likedComments: [], disLikedComments: [], userProfileImage: Datas().defaultProfilePicture, password: "password"),
-                                new UserModel(userName: "memeber", email: "admin@gmail.com", followedForums: [], starredForums: [], comments: [], userPosts: [], upVotedPosts: [], downVotedPosts: [], savedPosts: [], likedComments: [], disLikedComments: [], userProfileImage: Datas().defaultProfilePicture, password: "password"),
-                                new UserModel(userName: "memeber", email: "admin@gmail.com", followedForums: [], starredForums: [], comments: [], userPosts: [], upVotedPosts: [], downVotedPosts: [], savedPosts: [], likedComments: [], disLikedComments: [], userProfileImage: Datas().defaultProfilePicture, password: "password"),
-                                new UserModel(userName: "memeber", email: "admin@gmail.com", followedForums: [], starredForums: [], comments: [], userPosts: [], upVotedPosts: [], downVotedPosts: [], savedPosts: [], likedComments: [], disLikedComments: [], userProfileImage: Datas().defaultProfilePicture, password: "password"),
-                                new UserModel(userName: "memeber", email: "admin@gmail.com", followedForums: [], starredForums: [], comments: [], userPosts: [], upVotedPosts: [], downVotedPosts: [], savedPosts: [], likedComments: [], disLikedComments: [], userProfileImage: Datas().defaultProfilePicture, password: "password"),
-                                new UserModel(userName: "memeber", email: "admin@gmail.com", followedForums: [], starredForums: [], comments: [], userPosts: [], upVotedPosts: [], downVotedPosts: [], savedPosts: [], likedComments: [], disLikedComments: [], userProfileImage: Datas().defaultProfilePicture, password: "password"),
-                                new UserModel(userName: "memeber", email: "admin@gmail.com", followedForums: [], starredForums: [], comments: [], userPosts: [], upVotedPosts: [], downVotedPosts: [], savedPosts: [], likedComments: [], disLikedComments: [], userProfileImage: Datas().defaultProfilePicture, password: "password"),
-                                new UserModel(userName: "memeber", email: "admin@gmail.com", followedForums: [], starredForums: [], comments: [], userPosts: [], upVotedPosts: [], downVotedPosts: [], savedPosts: [], likedComments: [], disLikedComments: [], userProfileImage: Datas().defaultProfilePicture, password: "password"),
-                                new UserModel(userName: "memeber", email: "admin@gmail.com", followedForums: [], starredForums: [], comments: [], userPosts: [], upVotedPosts: [], downVotedPosts: [], savedPosts: [], likedComments: [], disLikedComments: [], userProfileImage: Datas().defaultProfilePicture, password: "password"),
-                                new UserModel(userName: "memeber", email: "admin@gmail.com", followedForums: [], starredForums: [], comments: [], userPosts: [], upVotedPosts: [], downVotedPosts: [], savedPosts: [], likedComments: [], disLikedComments: [], userProfileImage: Datas().defaultProfilePicture, password: "password"),
-                                new UserModel(userName: "memeber", email: "admin@gmail.com", followedForums: [], starredForums: [], comments: [], userPosts: [], upVotedPosts: [], downVotedPosts: [], savedPosts: [], likedComments: [], disLikedComments: [], userProfileImage: Datas().defaultProfilePicture, password: "password"),
-                              ],
+                              members: [],
                               forumName: _name.text,
                               forumDesc: _desc.text,
                               forumCreateTime: DateTime.now(),

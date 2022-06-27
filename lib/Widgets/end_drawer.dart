@@ -72,6 +72,7 @@ class _EndDrawerState extends State<EndDrawer> {
                     child: MaterialButton(
                       height: 37,
                       onPressed: () {
+                        Datas().loggedIn=false;
                         Navigator.of(context).pushNamedAndRemoveUntil('/login', (route) => false);
                       },
                       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,

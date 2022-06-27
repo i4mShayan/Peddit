@@ -294,6 +294,7 @@ class _SignUpState extends State<SignUp> {
                     ),
                     child: MaterialButton(
                       onPressed: () {
+                        Datas().loggedIn=true;
                         setState((){
                           emailErrorMessage=emailError(_email);
                           usernameErrorMessage=usernameError(_username);
