@@ -254,6 +254,19 @@ class _LoginState extends State<Login> {
                     child: MaterialButton(
                       onPressed: () {
                         // Datas().loggedIn=true;
+                        // SnackBar snackBar = SnackBar(
+                        //   backgroundColor: Colors.green,
+                        //   content: Row(
+                        //     mainAxisAlignment: MainAxisAlignment.start,
+                        //     children:
+                        //     [
+                        //       Icon(Icons.emoji_emotions_outlined, color: Colors.white,),
+                        //       SizedBox(width: 10,),
+                        //       Text('Welcome back', style: TextStyle(color: Colors.white),),
+                        //     ],
+                        //   ),
+                        // );
+                        // ScaffoldMessenger.of(context).showSnackBar(snackBar);
                       },
                       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                       shape: const StadiumBorder(),

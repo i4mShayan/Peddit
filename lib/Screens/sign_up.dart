@@ -300,8 +300,22 @@ class _SignUpState extends State<SignUp> {
                           usernameErrorMessage=usernameError(_username);
                           passwordErrorMessage=passwordError(_password);
                           if(!signupHasError(_email, _username, _password)){
-                            Datas().currentUser=UserModel(userName: _username.text, email: _email.text, followedForums: [], starredForums: [], comments: [], userPosts: [], upVotedPosts: [], downVotedPosts: [], savedPosts: [], likedComments: [], disLikedComments: [], userProfileImage: Datas().defaultProfilePicture, password: _password.text);
+                            UserModel newUser=UserModel(userName: _username.text, email: _email.text, followedForums: [], starredForums: [], comments: [], userPosts: [], upVotedPosts: [], downVotedPosts: [], savedPosts: [], likedComments: [], disLikedComments: [], userProfileImage: Datas().defaultProfilePicture, password: _password.text);
+                            Datas().currentUser=newUser;
                             Navigator.of(context).pushNamedAndRemoveUntil('/navigation_page', (route) => false);
+                            SnackBar snackBar = SnackBar(
+                              backgroundColor: Colors.green,
+                              content: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children:
+                                  [
+                                    Icon(Icons.emoji_emotions_outlined, color: Colors.white,),
+                                    SizedBox(width: 10,),
+                                    Text('Welcome to Peddit', style: TextStyle(color: Colors.white),),
+                                  ],
+                                ),
+                              );
+                            ScaffoldMessenger.of(context).showSnackBar(snackBar);
                           }
                         });
                       },
