@@ -162,6 +162,7 @@ class _AddNewPostPageState extends State<AddNewPostPage> {
               ]),
             ),
           bottomSheet: BottomSheet(
+            constraints: BoxConstraints(maxHeight: 52),
             elevation: 300,
             onClosing: (){},
             builder: (BuildContext) {

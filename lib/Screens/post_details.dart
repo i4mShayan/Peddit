@@ -223,9 +223,18 @@ class _PostDetailsState extends State<PostDetails> with SingleTickerProviderStat
                               ),
                               child: InkWell(
                                 onTap: (){
-                                  Navigator.push(context, MaterialPageRoute(
-                                      builder: (context) => AddNewCommentPage(pageSetState: ()=>setState((){}), replyingPost: widget.post,)
-                                  ));
+                                  if(widget.post.forum.blockedUsers.contains(Datas().currentUser)){
+                                    showDialogWith(context: context, title: "Your are blocked :(", content: "You can't make posts/comments in this forum!");
+                                  }
+                                  else {
+                                    Navigator.push(context, MaterialPageRoute(
+                                        builder: (context) =>
+                                            AddNewCommentPage(
+                                              pageSetState: () =>
+                                                  setState(() {}),
+                                              replyingPost: widget.post,)
+                                    ));
+                                  }
                                 },
                                 child: Text(
                                   "Add a comment",

@@ -4,7 +4,7 @@ class Datas{
   ThemeMode themeMode=ThemeMode.dark;
   bool loggedIn = true;
   late UserModel currentUser=UserModel(userName: "username", email: "email", userProfileImage: Datas().defaultProfilePicture,
-  followedForums: forumsList, starredForums: [], downVotedPosts: [], upVotedPosts: [], savedPosts: [],
+  followedForums: [], starredForums: [], downVotedPosts: [], upVotedPosts: [], savedPosts: [],
       likedComments: [], disLikedComments: [], userPosts: [], comments: [], password: 'Fasda1231');
   PageController pageController=PageController();
   int navigationSelectedIndex=0;
@@ -22,7 +22,7 @@ class Datas{
         profileImage: Image.network("https://cdn.dribbble.com/users/1622791/screenshots/11174104/flutter_intro.png"),
         members: [], posts: [], admins: [],
         forumName: "Flutter",
-        forumDesc: "Flutter is an open-source UI software development kit created by Google. It is used to develop cross platform applications for Android, iOS, Linux, macOS, Windows, Google Fuchsia, and the web from a single codebase. First described in 2015, Flutter was released in May 2017."),
+        forumDesc: "Flutter is an open-source UI software development kit created by Google. It is used to develop cross platform applications for Android, iOS, Linux, macOS, Windows, Google Fuchsia, and the web from a single codebase. First described in 2015, Flutter was released in May 2017.", blockedUsers: []),
     ForumModel(owner: UserModel(userName: "username", email: "email", userProfileImage: Datas().defaultProfilePicture,
         followedForums: [], starredForums: [], downVotedPosts: [], upVotedPosts: [], savedPosts: [],
         likedComments: [], disLikedComments: [], userPosts: [], comments: [], password: 'Fasda1231'),
@@ -31,7 +31,7 @@ class Datas{
         profileImage: Image.network("https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco,dpr_1/zblwhkcto9iqiwjx2ckg"),
         members: [], posts: [], admins: [],
         forumName: "Shahid_Beheshti_Uni",
-        forumDesc:  "Shahid Beheshti University is a public university founded in 1959 and one of the top universities in Iran. The university offers a large number of programs at Bachelor's, Master's and Ph.D. levels."
+        forumDesc:  "Shahid Beheshti University is a public university founded in 1959 and one of the top universities in Iran. The university offers a large number of programs at Bachelor's, Master's and Ph.D. levels.", blockedUsers: []
     ),
   ];
 

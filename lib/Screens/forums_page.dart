@@ -58,6 +58,7 @@ class _ForumsPageState extends State<ForumsPage> {
           children: [
             // SizedBox(height: 1,),
             ExpansionPanelList(
+              // dividerColor: Colors.transparent,
               elevation: 0,
               animationDuration: Duration(milliseconds: 500),
               expansionCallback: (index, isExpanded) {
@@ -68,7 +69,7 @@ class _ForumsPageState extends State<ForumsPage> {
               children: [
                 for(dynamic item in _items)
                   ExpansionPanel(
-                    backgroundColor: Theme.of(context).cardColor,
+                    // backgroundColor: Theme.of(context).cardColor,
                     isExpanded: item['isExpanded'],
                     canTapOnHeader: true,
                     headerBuilder: (BuildContext, isExpanded)=>
@@ -87,8 +88,8 @@ class _ForumsPageState extends State<ForumsPage> {
                       ),
                     body:
                         Container(
-                          padding: EdgeInsets.only(top: 5),
-                          color: Theme.of(context).scaffoldBackgroundColor,
+                          padding: EdgeInsets.only(top: 0, bottom: 15),
+                          // color: Theme.of(context).scaffoldBackgroundColor,
                           child: (item['list'].length!=0 ?
                           ForumsList(forums: item['list'], pageSetState: () => setState((){}),)
                               :

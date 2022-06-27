@@ -20,9 +20,9 @@ class Themes{
     bottomSheetTheme: BottomSheetThemeData(
       backgroundColor: Colors.grey[300],
       shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.only(
-        topLeft: Radius.circular(20.0),
-        topRight: Radius.circular(20.0),
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(20.0),
+          topRight: Radius.circular(20.0),
         ),
       ),
     ),
