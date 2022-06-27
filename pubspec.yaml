@@ -83,7 +83,7 @@ flutter:
   fonts:
     - family: Verdana
       fonts:
-        - asset: assets/fonts/verdana_bold_italic.ttf
+        - asset: assets/fonts/verdana.ttf
 #        - asset: assets/fonts/verdana-italic.ttf
 #          style: italic
 #        - asset: assets/fonts/verdana-bold-italic.ttf

@@ -33,7 +33,7 @@ class _ForumsPageState extends State<ForumsPage> {
       },
       {
         'icon': Icons.groups_rounded,
-        'title': "All Of Forums",
+        'title': "All Forums",
         'list': Datas().forumsList,
         'isExpanded': false,
         'empty_list_message': "Be the first one who creates a forum!",
