@@ -38,7 +38,7 @@ class _AddAdminPageState extends State<AddAdminPage> {
                     children: [
                       IconButton(onPressed: (){Navigator.pop(context);}, icon: Icon(Icons.arrow_back_rounded, size: 30,)),
                       SizedBox(width: 15,),
-                      Text("Make admin", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),),
+                      Text("Add Admin", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),),
                       Spacer(),
                       Container(
                         width: 85,

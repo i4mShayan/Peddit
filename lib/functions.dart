@@ -43,6 +43,9 @@ bool userCanDeletePost( UserModel user, PostModel post,){
 
 void deletePost(PostModel post){
   post.forum.posts.remove(post);
+  if(Datas().currentUser.savedPosts.contains(post)){
+    Datas().currentUser.savedPosts.remove(post);
+  }
   Datas().updateFeed();
 }
 

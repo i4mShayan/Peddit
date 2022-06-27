@@ -68,7 +68,7 @@ class _AddNewCommentPageState extends State<AddNewCommentPage> {
                     Text(title(), style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),),
                     Spacer(),
                     Container(
-                      width: 85,
+                      // width: 85,
                       margin: const EdgeInsets.only(right: 5,),
                       height: 40,
                       decoration: ShapeDecoration(

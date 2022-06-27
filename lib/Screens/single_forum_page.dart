@@ -123,7 +123,7 @@ class _SingleForumPageState extends State<SingleForumPage> with SingleTickerProv
                               ),
                               (userAdminOf(Datas().currentUser, widget.forum) ?
                               Padding(
-                                padding: const EdgeInsets.only(bottom: 7, right: 5),
+                                padding: const EdgeInsets.only(bottom: 7, right: 0),
                                 child: TextButton.icon(
                                   onPressed: () {
                                     setState((){
@@ -152,7 +152,7 @@ class _SingleForumPageState extends State<SingleForumPage> with SingleTickerProv
                               )
                                   :
                                 Padding(
-                                  padding: const EdgeInsets.only(bottom: 7, right: 5),
+                                  padding: const EdgeInsets.only(bottom: 7, right: 0),
                                   child: TextButton(
                                     onPressed: () {
                                       setState((){
@@ -250,7 +250,7 @@ class _SingleForumPageState extends State<SingleForumPage> with SingleTickerProv
               title: GestureDetector(
                 onTap: () => showSearch(
                   context: context,
-                  delegate: FeedSearchDelegate(),
+                  delegate: PostSearchDelegate(posts: widget.forum.posts),
                 ),
                 child: Container(
                   margin: const EdgeInsets.only(left: 0, right: 0, top: 0),

@@ -101,17 +101,15 @@ class _EditForumPageState extends State<EditForumPage> {
 
                           SnackBar snackBar = SnackBar(
                             backgroundColor: Colors.green,
-                            content: Expanded(
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Icon(Icons.emoji_emotions_outlined, color: Colors.white,),
-                                  SizedBox(width: 10,),
-                                  Text('Forum changes saved', style: TextStyle(color: Colors.white),),
-                                  Spacer(),
-                                  Icon(Icons.check, color: Colors.white,)
-                                ],
-                              ),
+                            content: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Icon(Icons.emoji_emotions_outlined, color: Colors.white,),
+                                SizedBox(width: 10,),
+                                Text('Forum changes saved', style: TextStyle(color: Colors.white),),
+                                Spacer(),
+                                Icon(Icons.check, color: Colors.white,)
+                              ],
                             ),
                           );
                           ScaffoldMessenger.of(context).showSnackBar(snackBar);

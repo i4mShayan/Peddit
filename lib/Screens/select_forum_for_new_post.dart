@@ -44,7 +44,7 @@ class _SelectForumForNewPostState extends State<SelectForumForNewPost> {
                     Text("Post to", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),),
                     Spacer(),
                     Container(
-                      width: 85,
+                      // width: 85,
                       margin: const EdgeInsets.only(right: 5,),
                       height: 40,
                       decoration: ShapeDecoration(
@@ -73,7 +73,7 @@ class _SelectForumForNewPostState extends State<SelectForumForNewPost> {
                               });
                               SnackBar snackBar = SnackBar(
                                 backgroundColor: Colors.green,
-                                content: Expanded(
+                                content: Flexible(
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [

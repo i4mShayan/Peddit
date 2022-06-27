@@ -21,7 +21,7 @@ class _EndDrawerState extends State<EndDrawer> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Padding(
-              padding: const EdgeInsets.fromLTRB(15, 20, 15, 10),
+              padding: const EdgeInsets.fromLTRB(15, 35, 15, 10),
               child: ClipRRect(
                   borderRadius: BorderRadius.circular(30),
                   child: Image(

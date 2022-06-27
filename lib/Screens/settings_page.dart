@@ -55,7 +55,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 Flexible(
                   child: Container(
                     // width: 170,
-                    margin: const EdgeInsets.fromLTRB(15, 10, 15, 10),
+                    margin: const EdgeInsets.fromLTRB(0, 10, 15, 10),
                     decoration: const ShapeDecoration(
                       shape: StadiumBorder(),
                       gradient: LinearGradient(
