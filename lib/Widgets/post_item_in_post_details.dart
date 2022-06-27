@@ -63,15 +63,17 @@ class _PostItemInDetailsState extends State<PostItemInDetails> {
                                       radius: 20,
                                     ),
                                   ),
-                                  Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        "u/" + widget.post.publisher.userName,
-                                        style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500),
-                                      ),
-                                      Text(shamsiDateOf(widget.post.publishTime), style: TextStyle(fontSize: 13, color: Colors.grey, fontWeight: FontWeight.w400),),
-                                    ],
+                                  Flexible(
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          "u/" + widget.post.publisher.userName,
+                                          style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500),
+                                        ),
+                                        Text(shamsiDateOf(widget.post.publishTime), style: TextStyle(fontSize: 13, color: Colors.grey, fontWeight: FontWeight.w400),),
+                                      ],
+                                    ),
                                   ),
                                 ],
                               ),
@@ -79,7 +81,6 @@ class _PostItemInDetailsState extends State<PostItemInDetails> {
                           ],
                         ),
                       ),
-                      Spacer(),
                       PopupMenuButton(
                         child: Padding(
                           padding: const EdgeInsets.all(12),

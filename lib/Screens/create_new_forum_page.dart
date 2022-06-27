@@ -110,19 +110,17 @@ class _CreateNewForumPageState extends State<CreateNewForumPage> {
                           Navigator.of(context).pop();
                           SnackBar snackBar = SnackBar(
                             backgroundColor: Colors.green,
-                            content: Expanded(
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Icon(Icons.emoji_emotions_outlined, color: Colors.white,),
-                                  SizedBox(width: 10,),
-                                  Text('Created r/', style: TextStyle(color: Colors.white),),
-                                  Text(
-                                    _name.text, style: TextStyle(fontWeight: FontWeight.w500, color: Colors.white),),
-                                  Spacer(),
-                                  Icon(Icons.check, color: Colors.white,)
-                                ],
-                              ),
+                            content: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Icon(Icons.emoji_emotions_outlined, color: Colors.white,),
+                                SizedBox(width: 10,),
+                                Text('Created r/', style: TextStyle(color: Colors.white),),
+                                Text(
+                                  _name.text, style: TextStyle(fontWeight: FontWeight.w500, color: Colors.white),),
+                                Spacer(),
+                                Icon(Icons.check, color: Colors.white,)
+                              ],
                             ),
                           );
                           ScaffoldMessenger.of(context).showSnackBar(snackBar);

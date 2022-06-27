@@ -38,7 +38,7 @@ class _MainAppBarState extends State<MainAppBar> {
       title: GestureDetector(
         onTap: () => showSearch(
             context: context,
-            delegate: FeedSearchDelegate(),
+            delegate: PostSearchDelegate(),
         ),
         child: Container(
           margin: const EdgeInsets.only(left: 0, right: 0, top: 0),

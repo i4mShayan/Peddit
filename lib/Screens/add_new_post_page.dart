@@ -50,7 +50,7 @@ class _AddNewPostPageState extends State<AddNewPostPage> {
                     children: [
                       IconButton(onPressed: (){Navigator.pop(context);}, icon: Icon(Icons.close_rounded, size: 30,)),
                       Container(
-                        width: 85,
+                        // width: 85,
                         margin: const EdgeInsets.only(right: 5,),
                         height: 40,
                         decoration: ShapeDecoration(

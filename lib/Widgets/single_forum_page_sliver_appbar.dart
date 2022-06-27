@@ -187,7 +187,7 @@
 //       title: GestureDetector(
 //         onTap: () => showSearch(
 //           context: context,
-//           delegate: FeedSearchDelegate(),
+//           delegate: PostSearchDelegate(),
 //         ),
 //         child: Container(
 //           child: Row(

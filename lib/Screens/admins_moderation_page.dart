@@ -81,7 +81,7 @@ class _AdminsModerationPageState extends State<AdminsModerationPage> {
                   ),
                 ).then((value) => setState(() {}));
             },
-            label: Text('Add a admin'),
+            label: Text('Add an admin'),
             icon: Icon(Icons.person_add_rounded),
             backgroundColor: Colors.green,
           ),
