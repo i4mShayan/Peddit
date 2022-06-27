@@ -25,10 +25,10 @@ class _ForumsPageState extends State<ForumsPage> {
       },
       {
         'icon': Icons.group_rounded,
-        'title': "Followed/Created Forums",
+        'title': "Followed Forums",
         'list': Datas().currentUser.followedForums,
         'isExpanded': true,
-        'empty_list_message': "Follow a forum to show here!",
+        'empty_list_message': "Follow/create a forum to show here!",
         'empty_list_icon': Icons.group_rounded,
       },
       {
@@ -81,7 +81,7 @@ class _ForumsPageState extends State<ForumsPage> {
                             SizedBox(width: 10,),
                             Text(
                               item['title'],
-                              style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
+                              style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, fontFamily: 'Verdana',),
                             ),
                           ],
                         ),
