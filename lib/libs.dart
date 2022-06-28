@@ -1,9 +1,6 @@
 // Important packages!
 export 'package:flutter/material.dart';
 export 'package:provider/provider.dart';
-export 'package:font_awesome_flutter/font_awesome_flutter.dart';
-export 'package:line_icons/line_icons.dart';
-
 // exporting project files!
 export 'Screens/sign_up.dart';
 export 'Screens/login.dart';
@@ -54,3 +51,10 @@ export 'Screens/admins_moderation_page.dart';
 export 'Screens/add_admin_page.dart';
 export 'Screens/members_moderation_page.dart';
 export 'Screens/block_user_page.dart';
+
+// export 'package:json_serializable/json_serializable.dart';
+export 'package:json_annotation/json_annotation.dart';
+export 'Models/comment_model.dart';
+export 'Models/forum_model.dart';
+export 'Models/post_model.dart';
+export 'Models/user_model.dart';

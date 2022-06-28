@@ -1,5 +1,8 @@
 import '../libs.dart';
 
+part 'comment_model.g.dart';
+
+@JsonSerializable(explicitToJson: true)
 class CommentModel{
   late UserModel publisher;
   late DateTime publishTime;
@@ -37,4 +40,8 @@ class CommentModel{
   bool userNotVoted(UserModel user){
     return !userVoted(user);
   }
+
+  factory CommentModel.fromJson(Map<String, dynamic> json) => _$CommentModelFromJson(json);
+  Map<String, dynamic> toJson() => _$CommentModelToJson(this);
+
 }
