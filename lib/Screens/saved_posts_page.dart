@@ -16,12 +16,12 @@ class _SavedPostsPageState extends State<SavedPostsPage> {
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<ThemeProvider>(context, listen: true);
     return Scaffold(
-      // backgroundColor: Colors.blueGrey[50],
       resizeToAvoidBottomInset: false,
       body:
         RefreshIndicator(
-          color: Colors.black54,
+          color: provider.isDarkMode ? Colors.white:Colors.black,
           onRefresh: _onRefresh,
           child: Datas().currentUser.savedPosts.isNotEmpty ? ListView.builder(
               itemCount: Datas().currentUser.savedPosts.length,

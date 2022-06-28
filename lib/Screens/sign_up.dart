@@ -1,4 +1,4 @@
-import 'dart:convert';
+import 'dart:math';
 
 import '../libs.dart';
 
@@ -22,6 +22,7 @@ class _SignUpState extends State<SignUp> {
   TextEditingController _password=TextEditingController();
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<ThemeProvider>(context, listen: true);
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: SafeArea(
@@ -35,18 +36,45 @@ class _SignUpState extends State<SignUp> {
                 children: [
                   Expanded(
                     flex: 1,
+                    child: IconButton(
+                      onPressed: () {},
+                      icon:
+                      IconButton(
+                          onPressed: (){
+                            setState((){
+                              provider.toggleTheme(!provider.isDarkMode);
+                            });
+                          },
+                          icon: Transform.rotate(
+                            angle: 325 * pi / 180,
+                            child: provider.isDarkMode ? Icon(Icons.nightlight, size: 30,):Icon(Icons.nightlight_outlined, size: 30,),
+                          )
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    flex: 1,
                     child: Container(
                       width: double.infinity,
                     ),
                   ),
                   Expanded(
-                    flex: 1,
-                      child: Image.asset(
-                    'assets/images/logo/reddit_with_text.png',
-                    width: 120,
-                  )),
+                    flex: 2,
+                    child: (
+                        provider.isDarkMode ?
+                        Image.asset(
+                          'assets/images/logo/reddit_with_text_darkmode.png',
+                          width: 120,
+                        )
+                            :
+                        Image.asset(
+                          'assets/images/logo/reddit_with_text.png',
+                          width: 120,
+                        )
+                    ),
+                  ),
                   Expanded(
-                    flex: 1,
+                    flex: 2,
                     child: Directionality(
                       textDirection: TextDirection.ltr,
                       child: Padding(
@@ -266,13 +294,28 @@ class _SignUpState extends State<SignUp> {
                     ),
                     child: MaterialButton(
                       onPressed: () {
+                        Datas().loggedIn=true;
                         setState((){
                           emailErrorMessage=emailError(_email);
                           usernameErrorMessage=usernameError(_username);
                           passwordErrorMessage=passwordError(_password);
                           if(!signupHasError(_email, _username, _password)){
-                            Datas().currentUser=UserModel(userName: _username.text, email: _email.text, followedForums: [], starredForums: [], comments: [], userPosts: [], upVotedPosts: [], downVotedPosts: [], savedPosts: [], likedComments: [], disLikedComments: [], userProfileImage: Datas().defaultProfilePicture, password: _password.text);
+                            UserModel newUser=UserModel(userName: _username.text, email: _email.text, followedForums: [], starredForums: [], comments: [], userPosts: [], upVotedPosts: [], downVotedPosts: [], savedPosts: [], likedComments: [], disLikedComments: [], userProfileImage: Datas().defaultProfilePicture, password: _password.text);
+                            Datas().currentUser=newUser;
                             Navigator.of(context).pushNamedAndRemoveUntil('/navigation_page', (route) => false);
+                            SnackBar snackBar = SnackBar(
+                              backgroundColor: Colors.green,
+                              content: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children:
+                                  [
+                                    Icon(Icons.emoji_emotions_outlined, color: Colors.white,),
+                                    SizedBox(width: 10,),
+                                    Text('Welcome to Peddit', style: TextStyle(color: Colors.white),),
+                                  ],
+                                ),
+                              );
+                            ScaffoldMessenger.of(context).showSnackBar(snackBar);
                           }
                         });
                       },

@@ -22,7 +22,10 @@ class _SelectForumForNewPostState extends State<SelectForumForNewPost> {
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<ThemeProvider>(context, listen: false);
+    final provider = Provider.of<ThemeProvider>(context, listen: true);
+    List<ForumModel> notBlockedForums=[];
+    notBlockedForums.addAll(Datas().currentUser.followedForums);
+    notBlockedForums.removeWhere((forum) => forum.blockedUsers.contains(Datas().currentUser));
     return Container(
       color: provider.isDarkMode ? Colors.grey.shade900:Colors.white,
       child: SafeArea(
@@ -41,7 +44,7 @@ class _SelectForumForNewPostState extends State<SelectForumForNewPost> {
                     Text("Post to", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),),
                     Spacer(),
                     Container(
-                      width: 85,
+                      // width: 85,
                       margin: const EdgeInsets.only(right: 5,),
                       height: 40,
                       decoration: ShapeDecoration(
@@ -70,16 +73,16 @@ class _SelectForumForNewPostState extends State<SelectForumForNewPost> {
                               });
                               SnackBar snackBar = SnackBar(
                                 backgroundColor: Colors.green,
-                                content: Expanded(
+                                content: Flexible(
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
-                                      Icon(Icons.emoji_emotions_outlined,),
+                                      Icon(Icons.emoji_emotions_outlined, color: Colors.white),
                                       SizedBox(width: 10,),
                                       Text('Posted in r/', style: TextStyle(color: Colors.white),),
                                       Text(_selectedForum!.forumName, style: TextStyle(fontWeight: FontWeight.w500, color: Colors.white),),
                                       Spacer(),
-                                      Icon(Icons.check,)
+                                      Icon(Icons.check, color: Colors.white)
                                     ],
                                   ),
                                 ),
@@ -104,10 +107,10 @@ class _SelectForumForNewPostState extends State<SelectForumForNewPost> {
               SizedBox(height: 7,),
               ListView.builder(
                 shrinkWrap: true,
-                itemCount: Datas().forumsList.length,
+                itemCount: notBlockedForums.length,
                 itemBuilder: (context, i){
                   return RadioListTile(
-                    value: Datas().forumsList[i],
+                    value: notBlockedForums[i],
                     groupValue: _selectedForum,
                     onChanged: (value){
                       setState((){
@@ -116,10 +119,10 @@ class _SelectForumForNewPostState extends State<SelectForumForNewPost> {
                     },
                     controlAffinity: ListTileControlAffinity.trailing,
                     activeColor: Colors.blue[700],
-                    title: Text(Datas().forumsList[i].forumName),
-                    subtitle: Text(Datas().forumsList[i].membersCount().toString() + (Datas().forumsList[i].membersCount()==1 ? " member":" members")),
+                    title: Text(notBlockedForums[i].forumName),
+                    subtitle: Text(notBlockedForums[i].membersCount().toString() + (notBlockedForums[i].membersCount()==1 ? " member":" members")),
                     secondary: CircleAvatar(
-                      backgroundImage: Datas().forumsList[i].profileImage.image,
+                      backgroundImage: notBlockedForums[i].profileImage.image,
                       backgroundColor: Colors.white,
                       // radius: 15,
                     ),

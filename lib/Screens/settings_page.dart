@@ -18,12 +18,11 @@ class _SettingsPageState extends State<SettingsPage> {
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<ThemeProvider>(context, listen: false);
-    return Scaffold(
-      // backgroundColor: provider.isDarkMode ? Colors.grey.shade900:Colors.white,
-      body: SingleChildScrollView(
+    final provider = Provider.of<ThemeProvider>(context, listen: true);
+    return SingleChildScrollView(
       child: Column(
           children: [
+            SizedBox(height: 50,),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -56,7 +55,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 Flexible(
                   child: Container(
                     // width: 170,
-                    margin: const EdgeInsets.fromLTRB(15, 10, 15, 10),
+                    margin: const EdgeInsets.fromLTRB(0, 10, 15, 10),
                     decoration: const ShapeDecoration(
                       shape: StadiumBorder(),
                       gradient: LinearGradient(
@@ -257,7 +256,6 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
           ],
         ),
-      ),
-    );
+      );
   }
 }

@@ -64,7 +64,7 @@ class _EditForumPageState extends State<EditForumPage> {
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<ThemeProvider>(context, listen: false);
+    final provider = Provider.of<ThemeProvider>(context, listen: true);
     return Container(
       color: provider.isDarkMode ? Colors.grey.shade900:Colors.white,
       child: SafeArea(
@@ -101,17 +101,15 @@ class _EditForumPageState extends State<EditForumPage> {
 
                           SnackBar snackBar = SnackBar(
                             backgroundColor: Colors.green,
-                            content: Expanded(
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Icon(Icons.emoji_emotions_outlined, color: Colors.white,),
-                                  SizedBox(width: 10,),
-                                  Text('Forum changes saved', style: TextStyle(color: Colors.white),),
-                                  Spacer(),
-                                  Icon(Icons.check, color: Colors.white,)
-                                ],
-                              ),
+                            content: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Icon(Icons.emoji_emotions_outlined, color: Colors.white,),
+                                SizedBox(width: 10,),
+                                Text('Forum changes saved', style: TextStyle(color: Colors.white),),
+                                Spacer(),
+                                Icon(Icons.check, color: Colors.white,)
+                              ],
                             ),
                           );
                           ScaffoldMessenger.of(context).showSnackBar(snackBar);
@@ -140,7 +138,7 @@ class _EditForumPageState extends State<EditForumPage> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       IconButton(onPressed: (){
-                        Navigator.pop(context);}, icon: Icon(Icons.close_rounded, size: 30,
+                        Navigator.pop(context);}, icon: Icon(Icons.arrow_back_rounded, size: 30,
                       )),
                       SizedBox(width: 15,),
                       Text("Edit forum", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),),

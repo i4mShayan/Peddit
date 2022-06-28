@@ -21,9 +21,10 @@ void main() {
           themeMode: provider.themeMode,
           theme: Themes.lightTheme,
           darkTheme: Themes.darkTheme,
-          initialRoute: Datas().currentUser == null
-              ? 'login'
-              : '/navigation_page',
+          initialRoute:
+          Datas().loggedIn
+              ? '/navigation_page'
+              : '/login',
           routes: {
             '/add_new_post_page': (context) => AddNewPostPage(),
             '/feed_page': (context) => FeedPage(),

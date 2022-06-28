@@ -56,15 +56,14 @@ class _PostDetailsState extends State<PostDetails> with SingleTickerProviderStat
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<ThemeProvider>(context, listen: false);
+    final provider = Provider.of<ThemeProvider>(context, listen: true);
     return Scaffold(
-      // backgroundColor: Colors.blueGrey[50],
       resizeToAvoidBottomInset: false,
       key: _scaffoldKey,
       appBar: _getAppbar(),
       endDrawer: EndDrawer(pageSetState: ()=>setState((){}),),
       body: RefreshIndicator(
-        color: Colors.black54,
+        color: provider.isDarkMode ? Colors.white:Colors.black,
         onRefresh: _onRefresh,
         child: ListView(
           shrinkWrap: true,
@@ -189,12 +188,11 @@ class _PostDetailsState extends State<PostDetails> with SingleTickerProviderStat
               ),
               SizedBox(height: 5,),
               CommentSection(post: widget.post, sortType: _sortType,),
-              SizedBox(height: 200,),
+              SizedBox(height: 60,),
             ],
             ),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: Positioned(
+      bottomSheet: Positioned(
         child: Container(
           width: MediaQuery.of(context).size.width,
           child: InkWell(
@@ -225,9 +223,18 @@ class _PostDetailsState extends State<PostDetails> with SingleTickerProviderStat
                               ),
                               child: InkWell(
                                 onTap: (){
-                                  Navigator.push(context, MaterialPageRoute(
-                                      builder: (context) => AddNewCommentPage(pageSetState: ()=>setState((){}), replyingPost: widget.post,)
-                                  ));
+                                  if(widget.post.forum.blockedUsers.contains(Datas().currentUser)){
+                                    showDialogWith(context: context, title: "Your are blocked :(", content: "You can't make posts/comments in this forum!");
+                                  }
+                                  else {
+                                    Navigator.push(context, MaterialPageRoute(
+                                        builder: (context) =>
+                                            AddNewCommentPage(
+                                              pageSetState: () =>
+                                                  setState(() {}),
+                                              replyingPost: widget.post,)
+                                    ));
+                                  }
                                 },
                                 child: Text(
                                   "Add a comment",

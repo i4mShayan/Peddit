@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import '../libs.dart';
 
 class Login extends StatefulWidget {
@@ -17,6 +19,7 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<ThemeProvider>(context, listen: true);
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: SafeArea(
@@ -30,19 +33,45 @@ class _LoginState extends State<Login> {
                 children: [
                   Expanded(
                     flex: 1,
+                    child: IconButton(
+                      onPressed: () {},
+                      icon:
+                      IconButton(
+                          onPressed: (){
+                            setState((){
+                              provider.toggleTheme(!provider.isDarkMode);
+                            });
+                          },
+                          icon: Transform.rotate(
+                            angle: 325 * pi / 180,
+                            child: provider.isDarkMode ? Icon(Icons.nightlight, size: 30,):Icon(Icons.nightlight_outlined, size: 30,),
+                          )
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    flex: 1,
                     child: Container(
                       width: double.infinity,
                     ),
                   ),
                   Expanded(
-                      flex: 1,
-                      child: Image.asset(
-                        'assets/images/logo/reddit_with_text.png',
-                        width: 120,
-                        // color: Colors.white.withOpacity(0.5),
-                      )),
+                    flex: 2,
+                    child: (
+                        provider.isDarkMode ?
+                        Image.asset(
+                          'assets/images/logo/reddit_with_text_darkmode.png',
+                          width: 120,
+                        )
+                            :
+                        Image.asset(
+                          'assets/images/logo/reddit_with_text.png',
+                          width: 120,
+                        )
+                    ),
+                  ),
                   Expanded(
-                    flex: 1,
+                    flex: 2,
                     child: Directionality(
                       textDirection: TextDirection.ltr,
                       child: Padding(
@@ -223,7 +252,22 @@ class _LoginState extends State<Login> {
                       ),
                     ),
                     child: MaterialButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        // Datas().loggedIn=true;
+                        // SnackBar snackBar = SnackBar(
+                        //   backgroundColor: Colors.green,
+                        //   content: Row(
+                        //     mainAxisAlignment: MainAxisAlignment.start,
+                        //     children:
+                        //     [
+                        //       Icon(Icons.emoji_emotions_outlined, color: Colors.white,),
+                        //       SizedBox(width: 10,),
+                        //       Text('Welcome back', style: TextStyle(color: Colors.white),),
+                        //     ],
+                        //   ),
+                        // );
+                        // ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      },
                       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                       shape: const StadiumBorder(),
                       child: const Text(

@@ -36,6 +36,7 @@ class _NavigationPageState extends State<NavigationPage> with SingleTickerProvid
   void _onPageChanged(int index) {
     setState(() {
       _selectedIndex = index;
+      Datas().navigationSelectedIndex=index;
     });
   }
 
@@ -53,7 +54,8 @@ class _NavigationPageState extends State<NavigationPage> with SingleTickerProvid
   PreferredSizeWidget? _getAppbar() {
       return SlidingAppBar(
           controller: _controller,
-          visible: (_selectedIndex == 0 || _selectedIndex == 1 || _selectedIndex == 3) ? true : false,
+          // visible: (_selectedIndex == 0 || _selectedIndex == 1 || _selectedIndex == 3),
+          visible: true,
           child: MainAppBar(() => openDrawer , () => openEndDrawer)
           );
   }
@@ -73,8 +75,12 @@ class _NavigationPageState extends State<NavigationPage> with SingleTickerProvid
   Widget build(BuildContext context) {
     return
     Scaffold(
+      backgroundColor: _selectedIndex == 4 ? Theme.of(context).backgroundColor:null,
       key: _scaffoldKey,
-      appBar: _getAppbar(),
+      appBar: _selectedIndex == 4 ? PreferredSize(
+        child: Container(),
+        preferredSize: Size(0.0, 0.0),
+      ):_getAppbar(),
       drawer: DrawerMenu(),
       endDrawer: EndDrawer(pageSetState: ()=>setState((){}),),
       body: PageView(
@@ -94,6 +100,8 @@ class _NavigationPageState extends State<NavigationPage> with SingleTickerProvid
           ],
         ),
         child: BottomNavigationBar(
+          showSelectedLabels: false,
+          showUnselectedLabels: false,
           elevation: 1,
           iconSize: 30,
           type: BottomNavigationBarType.fixed,

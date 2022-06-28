@@ -18,7 +18,7 @@ class _AddNewCommentPageState extends State<AddNewCommentPage> {
       return widget.replyingComment!.commentDesc;
     }
     else if(widget.replyingPost!=null){
-      return widget.replyingPost.desc;
+      return widget.replyingPost.title;
     }
     else{
       return "unable to show this!";
@@ -48,7 +48,7 @@ class _AddNewCommentPageState extends State<AddNewCommentPage> {
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<ThemeProvider>(context, listen: false);
+    final provider = Provider.of<ThemeProvider>(context, listen: true);
     return Container(
       color: provider.isDarkMode ? Colors.grey.shade900:Colors.white,
       child: SafeArea(
@@ -68,7 +68,7 @@ class _AddNewCommentPageState extends State<AddNewCommentPage> {
                     Text(title(), style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),),
                     Spacer(),
                     Container(
-                      width: 85,
+                      // width: 85,
                       margin: const EdgeInsets.only(right: 5,),
                       height: 40,
                       decoration: ShapeDecoration(
@@ -131,6 +131,7 @@ class _AddNewCommentPageState extends State<AddNewCommentPage> {
               Container(
                 margin: EdgeInsets.only(right: 30 , left: 30),
                 child: TextFormField(
+                  autofocus:true,
                   onChanged: (value){
                     setState(() {});
                   },

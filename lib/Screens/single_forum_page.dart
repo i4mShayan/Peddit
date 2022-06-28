@@ -1,5 +1,5 @@
 import 'dart:ui';
-
+import 'dart:math' as math;
 import '../libs.dart';
 
 class SingleForumPage extends StatefulWidget {
@@ -35,16 +35,9 @@ class _SingleForumPageState extends State<SingleForumPage> with SingleTickerProv
     setState((){});
   }
 
-  String memberCountText(){
-    String ans=widget.forum.members.length.toString() + " ";
-    if(widget.forum.members.length<=1) ans+="member";
-    else ans+="members";
-    return ans;
-  }
-
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<ThemeProvider>(context, listen: false);
+    final provider = Provider.of<ThemeProvider>(context, listen: true);
     return Scaffold(
       key: _scaffoldKey,
       // backgroundColor: Colors.blueGrey[50],
@@ -122,7 +115,7 @@ class _SingleForumPageState extends State<SingleForumPage> with SingleTickerProv
                                   ),
                                   Container(
                                     margin: EdgeInsets.only(top: 5),
-                                    child: Text(memberCountText(),
+                                    child: Text(memberCountTextOf(widget.forum),
                                         style: TextStyle(
                                             fontSize: 17, fontWeight: FontWeight.w400)),
                                   ),
@@ -130,14 +123,14 @@ class _SingleForumPageState extends State<SingleForumPage> with SingleTickerProv
                               ),
                               (userAdminOf(Datas().currentUser, widget.forum) ?
                               Padding(
-                                padding: const EdgeInsets.only(bottom: 7),
+                                padding: const EdgeInsets.only(bottom: 7, right: 0),
                                 child: TextButton.icon(
                                   onPressed: () {
                                     setState((){
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                          builder: (context) => EditForumPage(forum: widget.forum),
+                                          builder: (context) => AdminPanel(forum: widget.forum),
                                         ),
                                       ).then((value) => setState(() {}));
                                     });
@@ -150,21 +143,26 @@ class _SingleForumPageState extends State<SingleForumPage> with SingleTickerProv
                                     ),
                                     padding: EdgeInsets.symmetric(vertical: 5, horizontal: 20),
                                   ),
-                                  label: Text("Edit", style: TextStyle(color: Colors.blueAccent),),
-                                  icon: Icon(Icons.edit_rounded),
+                                  label: Text("Admin Panel", style: TextStyle(color: Colors.blueAccent),),
+                                  icon: Transform.rotate(
+                                    angle: 90 * math.pi / 180,
+                                    child: Icon(Icons.build_rounded),
+                                  )
                                 ),
                               )
                                   :
                                 Padding(
-                                  padding: const EdgeInsets.only(bottom: 7),
+                                  padding: const EdgeInsets.only(bottom: 7, right: 0),
                                   child: TextButton(
                                     onPressed: () {
                                       setState((){
                                         if(userMemberOf(Datas().currentUser, widget.forum)){
                                           widget.forum.members.remove(Datas().currentUser);
+                                          Datas().currentUser.followedForums.remove(widget.forum);
                                         }
                                         else{
                                           widget.forum.members.add(Datas().currentUser);
+                                          Datas().currentUser.followedForums.add(widget.forum);
                                         }
                                       });
                                     },
@@ -236,12 +234,13 @@ class _SingleForumPageState extends State<SingleForumPage> with SingleTickerProv
                 ),
               ),
               leading: Container(
-                margin: const EdgeInsets.only(left: 5, top: 3),
+                margin: const EdgeInsets.only(left: 7, top: 3),
                 child: IconButton(
                   icon: Icon(
-                    Icons.arrow_back_rounded,
+                    // Icons.arrow_back_rounded,
+                    LineIcons.arrowLeft,
                     size: 35,
-                    color: Colors.grey[700],
+                    color: provider.isDarkMode ? Colors.grey[700]:Colors.grey[600],
                   ),
                   onPressed: () {
                     Navigator.pop(context);
@@ -251,34 +250,42 @@ class _SingleForumPageState extends State<SingleForumPage> with SingleTickerProv
               title: GestureDetector(
                 onTap: () => showSearch(
                   context: context,
-                  delegate: FeedSearchDelegate(),
+                  delegate: PostSearchDelegate(posts: widget.forum.posts),
                 ),
                 child: Container(
+                  margin: const EdgeInsets.only(left: 0, right: 0, top: 0),
+                  height: 40,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: provider.isDarkMode? Colors.grey[800]!.withOpacity(0.95):Colors.blueGrey[50]!.withOpacity(0.95),
+
+                  ),
                   child: Row(
                     children: [
+                      SizedBox(width: 7,),
                       Container(
-                        margin: const EdgeInsets.only(left: 5, right: 5),
-                        child: Icon(
-                          Icons.search,
-                          color: Colors.grey[500],
+                        child: Transform(
+                          alignment: Alignment.center,
+                          transform: Matrix4.rotationY(math.pi),
+                          child: Icon(
+                            // Icons.search,
+                            LineIcons.search,
+                            color: provider.isDarkMode? Colors.grey[600]:Colors.grey[400],
+                            size: 22,
+                          ),
                         ),
                       ),
+                      SizedBox(width: 5,),
                       Text(
                         "Search",
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.w300,
-                          color: Colors.grey[500],
+                          color: provider.isDarkMode? Colors.grey[600]:Colors.grey[400],
                         ),
                       ),
                     ],
                   ),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(4),
-                    color: Colors.grey[300]!.withOpacity(0.9),
-                  ),
-                  // margin: EdgeInsets.only(top: 5),
-                  height: 40,
                 ),
               ),
               actions: [

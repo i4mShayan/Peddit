@@ -53,7 +53,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<ThemeProvider>(context, listen: false);
+    final provider = Provider.of<ThemeProvider>(context, listen: true);
     return Container(
       color: provider.isDarkMode ? Colors.grey.shade900:Colors.white,
       child: SafeArea(
@@ -242,17 +242,15 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             Navigator.pop(context);
                             SnackBar snackBar = SnackBar(
                               backgroundColor: Colors.green,
-                              content: Expanded(
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Icon(Icons.emoji_emotions_outlined, color: Colors.white,),
-                                    SizedBox(width: 10,),
-                                    Text('Profile changes saved', style: TextStyle(color: Colors.white),),
-                                    Spacer(),
-                                    Icon(Icons.check, color: Colors.white,)
-                                  ],
-                                ),
+                              content: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Icon(Icons.emoji_emotions_outlined, color: Colors.white,),
+                                  SizedBox(width: 10,),
+                                  Text('Profile changes saved', style: TextStyle(color: Colors.white),),
+                                  Spacer(),
+                                  Icon(Icons.check, color: Colors.white,)
+                                ],
                               ),
                             );
                             ScaffoldMessenger.of(context).showSnackBar(snackBar);
