@@ -1,5 +1,10 @@
+import 'dart:convert';
+
 import '../libs.dart';
 
+part 'post_model.g.dart';
+
+@JsonSerializable(explicitToJson: true)
 class PostModel{
   late String title;
   late String desc;
@@ -9,6 +14,10 @@ class PostModel{
   late List<UserModel> upVotedUsers;
   late List<UserModel> downVotedUsers;
   late List<CommentModel> comments;
+  @JsonKey(
+      toJson: _Base64StringFromImage,
+      fromJson: _imageFromBase64String
+  )
   late Image? postImage;
   late int commentsCount;
 
@@ -44,5 +53,17 @@ class PostModel{
 
   bool userNotVoted(UserModel user){
     return !userVoted(user);
+  }
+
+  factory PostModel.fromJson(Map<String, dynamic> json) => _$PostModelFromJson(json);
+  Map<String, dynamic> toJson() => _$PostModelToJson(this);
+
+  static Image? _imageFromBase64String(String base64String) {
+    if(base64String.isEmpty) return null;
+    return Image.memory(base64Decode(base64String));
+  }
+
+  static String _Base64StringFromImage(Image? img){
+    return "";
   }
 }

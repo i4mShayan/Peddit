@@ -19,7 +19,6 @@ class _FeedPageState extends State<FeedPage> {
     return Scaffold(
       // backgroundColor: Colors.blueGrey[50],
       resizeToAvoidBottomInset: false,
-
       // Feed Body(Posts)
   body: RefreshIndicator(
     // color: Colors.black54,

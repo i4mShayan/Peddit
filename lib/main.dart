@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'libs.dart';
 import 'package:flutter/services.dart';
 
@@ -7,6 +9,8 @@ void main() {
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
     statusBarColor: Colors.transparent, // status bar color
   ));
+
+  print(jsonEncode(Datas().currentUser.toJson()));
 
   runApp(
     ChangeNotifierProvider(
