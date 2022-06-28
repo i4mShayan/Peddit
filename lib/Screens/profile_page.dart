@@ -107,7 +107,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       width: 65,
                       child: Column(
                         children: [
-                          Text(widget.user.userPosts.length.toString(), style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),),
+                          Text(widget.user.userPostsCount.toString(), style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),),
                           SizedBox(height: 3,),
                           Text("Total\nPosts", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 12),textAlign: TextAlign.center),
                         ],
@@ -121,7 +121,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       width: 65,
                       child: Column(
                         children: [
-                          Text(widget.user.comments.length.toString(), style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),),
+                          Text(widget.user.commentsCount.toString(), style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),),
                           SizedBox(height: 3,),
                           Text("Total\nComments", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 12),textAlign: TextAlign.center),
                         ],

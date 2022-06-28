@@ -5,8 +5,7 @@ class Datas{
   bool loggedIn = true;
 
   late UserModel currentUser=UserModel(userName: "username", email: "email@site.com", userProfileImage: Datas().defaultProfilePicture,
-  followedForums: [], starredForums: [], downVotedPosts: [], upVotedPosts: [], savedPosts: [],
-      likedComments: [], disLikedComments: [], userPosts: [], comments: [], password: 'Aaaa1234');
+  followedForums: [], starredForums: [], savedPosts: [], password: 'Aaaa1234', commentsCount: 0, userPostsCount: 0);
 
   PageController pageController=PageController();
   int navigationSelectedIndex=0;

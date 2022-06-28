@@ -300,7 +300,7 @@ class _SignUpState extends State<SignUp> {
                           usernameErrorMessage=usernameError(_username);
                           passwordErrorMessage=passwordError(_password);
                           if(!signupHasError(_email, _username, _password)){
-                            UserModel newUser=UserModel(userName: _username.text, email: _email.text, followedForums: [], starredForums: [], comments: [], userPosts: [], upVotedPosts: [], downVotedPosts: [], savedPosts: [], likedComments: [], disLikedComments: [], userProfileImage: Datas().defaultProfilePicture, password: _password.text);
+                            UserModel newUser=UserModel(userName: _username.text, email: _email.text, followedForums: [], starredForums: [], savedPosts: [], userProfileImage: Datas().defaultProfilePicture, password: _password.text, commentsCount: 0, userPostsCount: 0);
                             Datas().currentUser=newUser;
                             Navigator.of(context).pushNamedAndRemoveUntil('/navigation_page', (route) => false);
                             SnackBar snackBar = SnackBar(

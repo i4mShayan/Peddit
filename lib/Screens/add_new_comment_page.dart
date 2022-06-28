@@ -2,9 +2,9 @@ import '../libs.dart';
 
 class AddNewCommentPage extends StatefulWidget {
   Function pageSetState;
-  late PostModel replyingPost;
+  PostModel? replyingPost;
   CommentModel? replyingComment;
-  AddNewCommentPage({Key? key, required this.replyingPost, this.replyingComment=null, required this.pageSetState}) : super(key: key);
+  AddNewCommentPage({Key? key, this.replyingPost=null, this.replyingComment=null, required this.pageSetState}) : super(key: key);
 
   @override
   State<AddNewCommentPage> createState() => _AddNewCommentPageState();
@@ -18,7 +18,7 @@ class _AddNewCommentPageState extends State<AddNewCommentPage> {
       return widget.replyingComment!.commentDesc;
     }
     else if(widget.replyingPost!=null){
-      return widget.replyingPost.title;
+      return widget.replyingPost!.title;
     }
     else{
       return "unable to show this!";
@@ -87,15 +87,15 @@ class _AddNewCommentPageState extends State<AddNewCommentPage> {
                         onPressed: () {
                           if(canPostComment()) {
                             setState((){
-                              CommentModel newComment = CommentModel(publisher: Datas().currentUser, publishTime: DateTime.now(), post: widget.replyingPost, commentDesc: _commentText.text, upVotedUsers: [], downVotedUsers: [], repliedComments: []);
+                              CommentModel newComment = CommentModel(publisher: Datas().currentUser, publishTime: DateTime.now(), commentDesc: _commentText.text, upVotedUsers: [], downVotedUsers: [], repliedComments: []);
                               if(isReply()){
                                 widget.replyingComment!.repliedComments.insert(0, newComment);
                               }
                               else{
-                                widget.replyingPost.comments.insert(0, newComment);
+                                widget.replyingPost!.comments.insert(0, newComment);
                               }
-                              Datas().currentUser.comments.insert(0, newComment);
-                              widget.replyingPost.commentsCount++;
+                              Datas().currentUser.commentsCount++;
+                              widget.replyingPost!.commentsCount++;
                               widget.pageSetState();
                               Navigator.pop(context);
                             });

@@ -2,9 +2,10 @@ import '../../libs.dart';
 
 class Comment extends StatefulWidget {
   CommentModel comment;
+  PostModel post;
   bool isReply;
   double dividerThickness;
-  Comment({required this.comment, this.isReply=false, this.dividerThickness=1, Key? key}) : super(key: key);
+  Comment({required this.comment, required this.post, this.isReply=false, this.dividerThickness=1, Key? key}) : super(key: key);
 
   @override
   State<Comment> createState() => _CommentState();
@@ -103,7 +104,11 @@ class _CommentState extends State<Comment> {
                             TextButton.icon(
                               onPressed: (){
                                 Navigator.push(context, MaterialPageRoute(
-                                    builder: (context) => AddNewCommentPage(pageSetState: ()=>setState((){}), replyingComment: widget.comment, replyingPost: widget.comment.post, )
+                                    builder: (context) =>
+                                        AddNewCommentPage(pageSetState: ()=>setState((){}),
+                                          replyingComment: widget.comment,
+                                          replyingPost: widget.post,
+                                        ),
                                 ));
                               },
                               icon: Icon(Icons.reply_rounded),
@@ -209,7 +214,7 @@ class _CommentState extends State<Comment> {
                           child: Column(children: [
                             for (CommentModel comment
                                 in widget.comment.repliedComments)
-                              Comment(comment: comment, isReply: true, dividerThickness: widget.dividerThickness+1,)
+                              Comment(comment: comment, isReply: true, dividerThickness: widget.dividerThickness+1, post: widget.post,)
                           ]),
                         )
                       : SizedBox(),

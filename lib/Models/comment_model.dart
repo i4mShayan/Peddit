@@ -2,8 +2,6 @@ import '../libs.dart';
 
 class CommentModel{
   late UserModel publisher;
-  late PostModel post;
-  late ForumModel forum;
   late DateTime publishTime;
   late String commentDesc;
   late List<UserModel> upVotedUsers;
@@ -17,7 +15,7 @@ class CommentModel{
 
   CommentModel({required this.publisher, required this.publishTime,
     required this.commentDesc,
-    required this.upVotedUsers, required this.downVotedUsers ,  required this.repliedComments, required this.post
+    required this.upVotedUsers, required this.downVotedUsers ,  required this.repliedComments,
   });
 
   bool anyVotes(){

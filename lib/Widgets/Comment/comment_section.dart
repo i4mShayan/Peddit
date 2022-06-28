@@ -41,7 +41,7 @@ class _CommentSectionState extends State<CommentSection> {
       )
         :
       Column(
-        children: [for(CommentModel comment in returnSortedBy(widget.sortType)) Comment(comment: comment)],
+        children: [for(CommentModel comment in returnSortedBy(widget.sortType)) Comment(comment: comment, post: widget.post,)],
       )
     );
   }
