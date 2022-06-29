@@ -24,10 +24,11 @@ class _FeedPageState extends State<FeedPage> {
 
   Future<void> updatePostsList() async {
     await Socket.connect(ServerInfo.ip, ServerInfo.port).then((socket) {
-      socket.write("${Datas().currentUser.userName}/FeedPagePosts#\u0000");
+      socket.write("@${Datas().currentUser.userName}/FeedPagePosts#\u0000");
       socket.flush();
       socket.listen((response) {
         String responseString = String.fromCharCodes(response);
+        print("$responseString");
         if(responseString == "UserDidNotfound") {
           print(responseString);
         }
