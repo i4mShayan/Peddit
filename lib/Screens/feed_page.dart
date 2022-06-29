@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:io';
+
 import '../libs.dart';
 import 'package:flutter/services.dart';
 
@@ -10,8 +13,27 @@ class FeedPage extends StatefulWidget {
 
 class _FeedPageState extends State<FeedPage> {
 
+  late FeedPagePostsForCurrentUser posts;
+
   Future<void> _onRefresh() async {
     setState((){});
+  }
+
+  Future<void> updatePostsList() async {
+    await Socket.connect(ServerInfo.Ip, ServerInfo.port).then((socket) {
+      socket.write("${Datas().currentUser.userName}/FeedPagePosts#");
+      socket.flush();
+      socket.listen((response) {
+        String responseString = String.fromCharCodes(response);
+        if(responseString == "UserDidNotfound") {
+          print(responseString);
+        }
+        else {
+          posts = FeedPagePostsForCurrentUser.fromJson(jsonDecode(responseString));
+        }
+      });
+      socket.close();
+    });
   }
 
   @override

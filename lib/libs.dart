@@ -51,6 +51,8 @@ export 'Screens/admins_moderation_page.dart';
 export 'Screens/add_admin_page.dart';
 export 'Screens/members_moderation_page.dart';
 export 'Screens/block_user_page.dart';
+export 'Models/feed_page_post_model.dart';
+export 'ServerInfo.dart';
 
 // export 'package:json_serializable/json_serializable.dart';
 export 'package:json_annotation/json_annotation.dart';
