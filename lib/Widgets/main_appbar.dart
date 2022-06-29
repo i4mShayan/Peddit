@@ -1,3 +1,5 @@
+import 'package:line_icons/line_icons.dart';
+
 import '../libs.dart';
 import 'dart:math' as math;
 
