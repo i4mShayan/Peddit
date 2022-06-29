@@ -6,12 +6,12 @@ part 'forum_model.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class ForumModel{
+  late String forumName;
   late UserModel owner;
   late List<UserModel> admins;
   late List<UserModel> blockedUsers;
   late List<UserModel> members;
   late List<PostModel> posts;
-  late String forumName;
   late String forumDesc;
   late DateTime forumCreateTime;
   @JsonKey(
