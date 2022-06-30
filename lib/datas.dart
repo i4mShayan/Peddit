@@ -1,5 +1,10 @@
 import 'libs.dart';
 
+
+part 'datas.g.dart';
+
+
+@JsonSerializable(explicitToJson: true)
 class Datas{
 
   late List<ForumModel> forumsList;
@@ -27,6 +32,10 @@ class Datas{
     feedPosts=newFeedPosts;
     sortFeed();
   }
+
+
+  factory Datas.fromJson(Map<String, dynamic> json) => _$DatasFromJson(json);
+  Map<String, dynamic> toJson() => _$DatasToJson(this);
 
   // Future<void> updateCurrentUser() async {
   //   await Socket.connect(ServerInfo.ip, ServerInfo.port).then((socket) {

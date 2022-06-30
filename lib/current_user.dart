@@ -1,6 +1,10 @@
 import 'libs.dart';
 
 
+part 'current_user.g.dart';
+
+
+@JsonSerializable(explicitToJson: true)
 class CurrentUser{
   late UserModel user;
   // =UserModel(userName: "username", email: "email@site.com", userProfileImage: Datas().defaultProfilePicture,
@@ -31,4 +35,8 @@ class CurrentUser{
       socket.close();
     });
   }
+
+
+  factory CurrentUser.fromJson(Map<String, dynamic> json) => _$CurrentUserFromJson(json);
+  Map<String, dynamic> toJson() => _$CurrentUserToJson(this);
 }
