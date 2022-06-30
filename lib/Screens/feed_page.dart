@@ -27,8 +27,9 @@ class _FeedPageState extends State<FeedPage> {
       socket.write("@${Datas().currentUser.userName}/FeedPagePosts#\u0000");
       socket.flush();
       socket.listen((response) {
+        print(response.toString());
         String responseString = String.fromCharCodes(response);
-        print("response: $responseString");
+        print("Recieved response: $responseString");
         if(responseString == "UserDidNotfound") {
           print(responseString);
         }

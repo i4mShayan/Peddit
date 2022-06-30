@@ -26,7 +26,7 @@ class _ForumsPageState extends State<ForumsPage> {
       {
         'icon': Icons.star_rounded,
         'title': "Favorites",
-        'list': Datas().currentUser.starredForums,
+        'list': staredForums,
         'isExpanded': true,
         'empty_list_message': "Star a forum to show here!",
         'empty_list_icon': Icons.star_rate_rounded,
@@ -34,7 +34,7 @@ class _ForumsPageState extends State<ForumsPage> {
       {
         'icon': Icons.group_rounded,
         'title': "Followed Forums",
-        'list': Datas().currentUser.followedForums,
+        'list': followedForums,
         'isExpanded': true,
         'empty_list_message': "Follow/create a forum to show here!",
         'empty_list_icon': Icons.group_rounded,
@@ -42,7 +42,7 @@ class _ForumsPageState extends State<ForumsPage> {
       {
         'icon': Icons.groups_rounded,
         'title': "All Forums",
-        'list': Datas().forumsList,
+        'list': allForums,
         'isExpanded': false,
         'empty_list_message': "Be the first one who creates a forum!",
         'empty_list_icon': Icons.group_add_rounded,
@@ -52,7 +52,11 @@ class _ForumsPageState extends State<ForumsPage> {
   }
 
   Future<void> _onRefresh() async {
-    setState((){});
+    setState((){
+      updateAllForumsList();
+      updateFollowedForumsList();
+      updateStaredForumsList();
+    });
   }
 
   Future<void> updateAllForumsList() async {
