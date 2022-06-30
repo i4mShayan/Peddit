@@ -19,7 +19,8 @@ class _SignUpState extends State<SignUp> {
 
   Future<void> userSignUp(String username, String password, String email) async {
     await Socket.connect(ServerInfo.ip, ServerInfo.port).then((socket) {
-      socket.write("@$username/Login#$password&$email" + "\u0000");
+      UserModel newUser=UserModel(userName: _username.text, email: _email.text, followedForums: [], starredForums: [], savedPosts: [], userProfileImage: AppDatas().defaultProfilePicture, password: _password.text, commentsCount: 0, userPostsCount: 0);
+      socket.write("@$username/SignUp#" + newUser.toJson().toString() + "\u0000");
       socket.flush();
       socket.listen((response) {
         String responseString = String.fromCharCodes(response);
@@ -28,10 +29,9 @@ class _SignUpState extends State<SignUp> {
           showDialogWith(context: context, title: "login!", content: "you have signed up before!");
         }
         else if(responseString == "Account Created Successfully"){
-          UserModel newUser=UserModel(userName: _username.text, email: _email.text, followedForums: [], starredForums: [], savedPosts: [], userProfileImage: AppDatas().defaultProfilePicture, password: _password.text, commentsCount: 0, userPostsCount: 0);
           CurrentUser().user=newUser;
           AppDatas().loggedIn=true;
-
+          Datas().updateDatas();
           Navigator.of(context).pushNamedAndRemoveUntil('/navigation_page', (route) => false);
           SnackBar snackBar = SnackBar(
             backgroundColor: Colors.green,

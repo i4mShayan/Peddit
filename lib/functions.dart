@@ -70,9 +70,8 @@ void addAdminTo(UserModel admin, ForumModel forum){
   forum.members.remove(admin);
 }
 
-Future<void> updateUserInServer(UserModel user) async {
-  //TODO
-}
+
+
 
 Future<void> updateUser(UserModel user) async {
   await Socket.connect(ServerInfo.ip, ServerInfo.port).then((socket) {

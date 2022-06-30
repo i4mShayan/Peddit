@@ -239,7 +239,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                               widget.user.userProfileImage =
                                   Image.file(imageFile!);
                             }
-                            updateUserInServer(widget.user);
+                            // updateUserInServer(widget.user);
                             Navigator.pop(context);
                             SnackBar snackBar = SnackBar(
                               backgroundColor: Colors.green,

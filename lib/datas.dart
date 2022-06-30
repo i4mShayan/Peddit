@@ -33,6 +33,28 @@ class Datas{
     sortFeed();
   }
 
+  Future<void> updateAllForumsList() async {
+    await Socket.connect(ServerInfo.ip, ServerInfo.port).then((socket) {
+      socket.write("@${CurrentUser().user.userName}/AllForumsList#\u0000");
+      socket.flush();
+      socket.listen((response) {
+        String responseString = String.fromCharCodes(response);
+        print("$responseString");
+        if(responseString == "UserDidNotfound") {
+          print(responseString);
+        }
+        else {
+          Datas().forumsList = ForumListModel.fromJson(jsonDecode(responseString)).forums;
+        }
+      });
+      socket.close();
+    });
+  }
+
+  Future<void> updateDatas() async {
+    CurrentUser().updateUser();
+    updateAllForumsList();
+  }
 
   factory Datas.fromJson(Map<String, dynamic> json) => _$DatasFromJson(json);
   Map<String, dynamic> toJson() => _$DatasToJson(this);

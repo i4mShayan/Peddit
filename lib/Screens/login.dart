@@ -33,6 +33,7 @@ class _LoginState extends State<Login> {
         else {
           CurrentUser().user=UserModel.fromJson(jsonDecode(responseString));
           AppDatas().loggedIn=true;
+          Datas().updateDatas();
           Navigator.of(context).pushNamedAndRemoveUntil('/navigation_page', (route) => false);
 
           SnackBar snackBar = SnackBar(
