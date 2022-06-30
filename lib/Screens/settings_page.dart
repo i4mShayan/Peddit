@@ -97,9 +97,6 @@ class _SettingsPageState extends State<SettingsPage> {
               height: _buttonsHeight,
               child: InkWell(
                 onTap: (){
-                  setState((){
-                    Datas().updateCurrentUser();
-                  });
                   Navigator.push(
                     context,
                     MaterialPageRoute(

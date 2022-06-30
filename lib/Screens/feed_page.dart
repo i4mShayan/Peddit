@@ -13,35 +13,8 @@ class FeedPage extends StatefulWidget {
 
 class _FeedPageState extends State<FeedPage> {
 
-  late FeedPagePostsForCurrentUser postsFromServer;
-  List<PostModel> posts=[];
-
   Future<void> _onRefresh() async {
-    setState((){
-      updatePostsList();
-    });
-  }
-
-  Future<void> updatePostsList() async {
-    await Socket.connect(ServerInfo.ip, ServerInfo.port).then((socket) {
-      socket.write("@${Datas().currentUser.userName}/FeedPagePosts#\u0000");
-      socket.flush();
-      socket.listen((response) {
-        print(response.toString());
-        String responseString = String.fromCharCodes(response);
-        print("Recieved response: $responseString");
-        if(responseString == "UserDidNotfound") {
-          print(responseString);
-        }
-        else {
-          setState((){
-            postsFromServer = FeedPagePostsForCurrentUser.fromJson(jsonDecode(responseString));
-            posts=postsFromServer.posts;
-          });
-        }
-      });
-      socket.close();
-    });
+    setState((){});
   }
 
   @override
@@ -52,13 +25,13 @@ class _FeedPageState extends State<FeedPage> {
     body: RefreshIndicator(
       color: provider.isDarkMode ? Colors.white:Colors.black,
       onRefresh: _onRefresh,
-      child: posts.length!=0 ? ListView.builder(
+      child: Datas().feedPosts.length!=0 ? ListView.builder(
         itemCount: Datas().feedPosts.length,
         itemBuilder: (contex, index) {
           return InkWell(
-            child: PostItem(post: posts[index], pageSetState: ()=>setState((){}),),
+            child: PostItem(post: Datas().feedPosts[index], pageSetState: ()=>setState((){}),),
             onTap: (){
-              PostModel post = posts[index];
+              PostModel post = Datas().feedPosts[index];
               SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
                 systemNavigationBarColor: Colors.white,
                 systemNavigationBarIconBrightness: Brightness.dark,
@@ -71,7 +44,7 @@ class _FeedPageState extends State<FeedPage> {
               ).then((value) => setState(() {}));
             },
             onDoubleTap: (){
-              PostModel post = posts[index];
+              PostModel post = Datas().feedPosts[index];
               setState((){
                 if(post.userDownVoted(Datas().currentUser)){ //deleting other vote
                   post.downVotedUsers.remove(Datas().currentUser);

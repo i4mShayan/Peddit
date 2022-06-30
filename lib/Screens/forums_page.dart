@@ -14,9 +14,6 @@ class ForumsPage extends StatefulWidget {
 
 class _ForumsPageState extends State<ForumsPage> {
 
-  List<ForumModel> allForums = [];
-  List<ForumModel> followedForums = [];
-  List<ForumModel> staredForums = [];
 
   late List<Map<String, dynamic>> _items;
 
@@ -26,7 +23,7 @@ class _ForumsPageState extends State<ForumsPage> {
       {
         'icon': Icons.star_rounded,
         'title': "Favorites",
-        'list': staredForums,
+        'list': Datas().currentUser.starredForums,
         'isExpanded': true,
         'empty_list_message': "Star a forum to show here!",
         'empty_list_icon': Icons.star_rate_rounded,
@@ -34,7 +31,7 @@ class _ForumsPageState extends State<ForumsPage> {
       {
         'icon': Icons.group_rounded,
         'title': "Followed Forums",
-        'list': followedForums,
+        'list': Datas().currentUser.followedForums,
         'isExpanded': true,
         'empty_list_message': "Follow/create a forum to show here!",
         'empty_list_icon': Icons.group_rounded,
@@ -42,7 +39,7 @@ class _ForumsPageState extends State<ForumsPage> {
       {
         'icon': Icons.groups_rounded,
         'title': "All Forums",
-        'list': allForums,
+        'list': Datas().forumsList,
         'isExpanded': false,
         'empty_list_message': "Be the first one who creates a forum!",
         'empty_list_icon': Icons.group_add_rounded,
@@ -52,71 +49,7 @@ class _ForumsPageState extends State<ForumsPage> {
   }
 
   Future<void> _onRefresh() async {
-    setState((){
-      updateAllForumsList();
-      updateFollowedForumsList();
-      updateStaredForumsList();
-    });
-  }
-
-  Future<void> updateAllForumsList() async {
-    await Socket.connect(ServerInfo.ip, ServerInfo.port).then((socket) {
-      socket.write("@${Datas().currentUser.userName}/AllForumsList#\u0000");
-      socket.flush();
-      socket.listen((response) {
-        String responseString = String.fromCharCodes(response);
-        print("$responseString");
-        if(responseString == "UserDidNotfound") {
-          print(responseString);
-        }
-        else {
-          setState((){
-            allForums = ForumListModel.fromJson(jsonDecode(responseString)).forums;
-          });
-        }
-      });
-      socket.close();
-    });
-  }
-
-  Future<void> updateFollowedForumsList() async {
-    await Socket.connect(ServerInfo.ip, ServerInfo.port).then((socket) {
-      socket.write("@${Datas().currentUser.userName}/FollowedForumsList#\u0000");
-      socket.flush();
-      socket.listen((response) {
-        String responseString = String.fromCharCodes(response);
-        print("$responseString");
-        if(responseString == "UserDidNotfound") {
-          print(responseString);
-        }
-        else {
-          setState((){
-            followedForums = ForumListModel.fromJson(jsonDecode(responseString)).forums;
-          });
-        }
-      });
-      socket.close();
-    });
-  }
-
-  Future<void> updateStaredForumsList() async {
-    await Socket.connect(ServerInfo.ip, ServerInfo.port).then((socket) {
-      socket.write("@${Datas().currentUser.userName}/StarredForumsList#\u0000");
-      socket.flush();
-      socket.listen((response) {
-        String responseString = String.fromCharCodes(response);
-        print("$responseString");
-        if(responseString == "UserDidNotfound") {
-          print(responseString);
-        }
-        else {
-          setState((){
-            staredForums = ForumListModel.fromJson(jsonDecode(responseString)).forums;
-          });
-        }
-      });
-      socket.close();
-    });
+    setState((){});
   }
 
   @override

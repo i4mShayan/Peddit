@@ -102,9 +102,6 @@ class _EndDrawerState extends State<EndDrawer> {
               height: 37,
               child: InkWell(
                 onTap: (){
-                  setState((){
-                    Datas().updateCurrentUser();
-                  });
                   Navigator.push(
                     context,
                     MaterialPageRoute(
