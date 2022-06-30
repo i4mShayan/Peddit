@@ -29,7 +29,7 @@ class _SignUpState extends State<SignUp> {
         }
         else if(responseString == "Account Created Successfully"){
           UserModel newUser=UserModel(userName: _username.text, email: _email.text, followedForums: [], starredForums: [], savedPosts: [], userProfileImage: AppDatas().defaultProfilePicture, password: _password.text, commentsCount: 0, userPostsCount: 0);
-          Datas().currentUser=newUser;
+          CurrentUser().user=newUser;
           AppDatas().loggedIn=true;
 
           Navigator.of(context).pushNamedAndRemoveUntil('/navigation_page', (route) => false);

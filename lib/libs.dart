@@ -59,6 +59,7 @@ export 'Models/feed_page_post_model.dart';
 export 'ServerInfo.dart';
 export 'Models/forum_list_model.dart';
 export 'app_datas.dart';
+export 'current_user.dart';
 // export 'package:json_serializable/json_serializable.dart';
 export 'package:json_annotation/json_annotation.dart';
 export 'Models/comment_model.dart';

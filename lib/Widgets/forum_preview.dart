@@ -44,17 +44,17 @@ class _ForumPreviewState extends State<ForumPreview> {
                   IconButton(
                     onPressed: () {
                       setState(() {
-                        if(Datas().currentUser.starredForums.contains(widget.forum)){
-                          Datas().currentUser.starredForums.remove(widget.forum);
+                        if(CurrentUser().user.starredForums.contains(widget.forum)){
+                          CurrentUser().user.starredForums.remove(widget.forum);
                         }else{
-                          Datas().currentUser.starredForums.insert(0, widget.forum);
+                          CurrentUser().user.starredForums.insert(0, widget.forum);
                         }
                         widget.pageSetStateFunc();
                       });
                     },
                     icon:
                     (
-                        Datas().currentUser.starredForums.contains(widget.forum) ?
+                        CurrentUser().user.starredForums.contains(widget.forum) ?
                         Icon(Icons.star_rate_rounded, color: Colors.yellow[900], size: 25,)
                             :
                         Icon(Icons.star_outline_rounded, size: 25, color: provider.isDarkMode ? Colors.grey[400]:Colors.grey[800],)

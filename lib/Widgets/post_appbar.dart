@@ -71,7 +71,7 @@ class _PostAppBarState extends State<PostAppBar> {
               child: FittedBox(
                 fit: BoxFit.contain,
                 child: CircleAvatar(
-                  backgroundImage: Datas().currentUser.userProfileImage.image,
+                  backgroundImage: CurrentUser().user.userProfileImage.image,
                   backgroundColor: Colors.white,
                 ),
               ),

@@ -88,7 +88,7 @@ class _PostItemInDetailsState extends State<PostItemInDetails> {
                         ),
                         itemBuilder: (context)=>[
                           PopupMenuItem(
-                              enabled: userCanDeletePost(Datas().currentUser, widget.post),
+                              enabled: userCanDeletePost(CurrentUser().user, widget.post),
                               onTap: (){
                                 setState((){
                                   deletePost(widget.post);
@@ -144,20 +144,20 @@ class _PostItemInDetailsState extends State<PostItemInDetails> {
                         IconButton(
                           onPressed: () {
                             setState((){
-                              if(widget.post.userDownVoted(Datas().currentUser)){ //deleting other vote
-                                widget.post.downVotedUsers.remove(Datas().currentUser);
+                              if(widget.post.userDownVoted(CurrentUser().user)){ //deleting other vote
+                                widget.post.downVotedUsers.remove(CurrentUser().user);
                               }
-                              if(widget.post.userUpVoted(Datas().currentUser)) {
-                                widget.post.upVotedUsers.remove(Datas().currentUser);
+                              if(widget.post.userUpVoted(CurrentUser().user)) {
+                                widget.post.upVotedUsers.remove(CurrentUser().user);
                               }
                               else{
-                                widget.post.upVotedUsers.add(Datas().currentUser);
+                                widget.post.upVotedUsers.add(CurrentUser().user);
                               }
                             });
                           },
                           icon: Icon(
                               Icons.arrow_upward_rounded),
-                          color: widget.post.userUpVoted(Datas().currentUser) ? Colors.green:null,
+                          color: widget.post.userUpVoted(CurrentUser().user) ? Colors.green:null,
                         ),
                         Align(
                           alignment: Alignment.center,
@@ -168,20 +168,20 @@ class _PostItemInDetailsState extends State<PostItemInDetails> {
                         IconButton(
                           onPressed: () {
                             setState((){
-                              if(widget.post.userUpVoted(Datas().currentUser)){ //deleting other vote
-                                widget.post.upVotedUsers.remove(Datas().currentUser);
+                              if(widget.post.userUpVoted(CurrentUser().user)){ //deleting other vote
+                                widget.post.upVotedUsers.remove(CurrentUser().user);
                               }
-                              if(widget.post.userDownVoted(Datas().currentUser)) {
-                                widget.post.downVotedUsers.remove(Datas().currentUser);
+                              if(widget.post.userDownVoted(CurrentUser().user)) {
+                                widget.post.downVotedUsers.remove(CurrentUser().user);
                               }
                               else{
-                                widget.post.downVotedUsers.add(Datas().currentUser);
+                                widget.post.downVotedUsers.add(CurrentUser().user);
                               }
                             });
                           },
                           icon: Icon(
                             Icons.arrow_downward_rounded,
-                            color: widget.post.userDownVoted(Datas().currentUser) ? Colors.red:null,
+                            color: widget.post.userDownVoted(CurrentUser().user) ? Colors.red:null,
                           ),
                         ),
                       ],
@@ -203,19 +203,19 @@ class _PostItemInDetailsState extends State<PostItemInDetails> {
                           TextButton.icon(
                             onPressed: () {
                               setState((){
-                                if(Datas().currentUser.savedThisPost(widget.post)) {
-                                  Datas().currentUser.savedPosts.remove(widget.post);
+                                if(CurrentUser().user.savedThisPost(widget.post)) {
+                                  CurrentUser().user.savedPosts.remove(widget.post);
                                 }
                                 else{
-                                  Datas().currentUser.savedPosts.insert(0, widget.post);
+                                  CurrentUser().user.savedPosts.insert(0, widget.post);
                                 }
                               });
                             },
                             icon: Icon(
-                              Datas().currentUser.savedThisPost(widget.post) ? Icons.bookmark_rounded :Icons.bookmark_border_rounded,
+                              CurrentUser().user.savedThisPost(widget.post) ? Icons.bookmark_rounded :Icons.bookmark_border_rounded,
                             ),
                             label: Text(
-                              Datas().currentUser.savedThisPost(widget.post) ? "Saved!" : "Save",
+                              CurrentUser().user.savedThisPost(widget.post) ? "Saved!" : "Save",
 
                             ),
                           ),

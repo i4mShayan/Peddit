@@ -35,7 +35,7 @@ class _EndDrawerState extends State<EndDrawer> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   CircleAvatar(
-                    backgroundImage: Datas().currentUser.userProfileImage.image,
+                    backgroundImage: CurrentUser().user.userProfileImage.image,
                     backgroundColor: Colors.white,
                     radius: 20,
                   ),
@@ -47,7 +47,7 @@ class _EndDrawerState extends State<EndDrawer> {
                     ),
                   ),
                   Text(
-                    Datas().currentUser.userName,
+                    CurrentUser().user.userName,
                     style: TextStyle(
                     fontSize: 17,
                     fontWeight: FontWeight.bold
@@ -105,7 +105,7 @@ class _EndDrawerState extends State<EndDrawer> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => ProfilePage(user: Datas().currentUser),
+                      builder: (context) => ProfilePage(user: CurrentUser().user),
                     ),
                   ).then((value) => setState(() {}));
                 },

@@ -87,14 +87,14 @@ class _AddNewCommentPageState extends State<AddNewCommentPage> {
                         onPressed: () {
                           if(canPostComment()) {
                             setState((){
-                              CommentModel newComment = CommentModel(publisher: Datas().currentUser, publishTime: DateTime.now(), commentDesc: _commentText.text, upVotedUsers: [], downVotedUsers: [], repliedComments: []);
+                              CommentModel newComment = CommentModel(publisher: CurrentUser().user, publishTime: DateTime.now(), commentDesc: _commentText.text, upVotedUsers: [], downVotedUsers: [], repliedComments: []);
                               if(isReply()){
                                 widget.replyingComment!.repliedComments.insert(0, newComment);
                               }
                               else{
                                 widget.replyingPost!.comments.insert(0, newComment);
                               }
-                              Datas().currentUser.commentsCount++;
+                              CurrentUser().user.commentsCount++;
                               widget.replyingPost!.commentsCount++;
                               widget.pageSetState();
                               Navigator.pop(context);

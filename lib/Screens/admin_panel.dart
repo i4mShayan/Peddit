@@ -18,14 +18,14 @@ class AdminPanel extends StatelessWidget {
       'title': "Admins moderation",
       'subtitle': "add/remove an admin!",
       'route': AdminsModerationPage(forum: forum),
-      'enabled': ()=>forum.owner == Datas().currentUser,
+      'enabled': ()=>forum.owner == CurrentUser().user,
     },
     {
       'leading': Icons.block_rounded,
       'title': "Members moderation",
       'subtitle': "block/unblock a member!",
       'route': MembersModerationPage(forum: forum),
-      'enabled': ()=>forum.admins.contains(Datas().currentUser) || forum.owner == Datas().currentUser,
+      'enabled': ()=>forum.admins.contains(CurrentUser().user) || forum.owner == CurrentUser().user,
     },
 
   ];

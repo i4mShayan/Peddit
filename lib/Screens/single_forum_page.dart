@@ -123,7 +123,7 @@ class _SingleForumPageState extends State<SingleForumPage> with SingleTickerProv
                                   ),
                                 ],
                               ),
-                              (userAdminOf(Datas().currentUser, widget.forum) ?
+                              (userAdminOf(CurrentUser().user, widget.forum) ?
                               Padding(
                                 padding: const EdgeInsets.only(bottom: 7, right: 0),
                                 child: TextButton.icon(
@@ -158,18 +158,18 @@ class _SingleForumPageState extends State<SingleForumPage> with SingleTickerProv
                                   child: TextButton(
                                     onPressed: () {
                                       setState((){
-                                        if(userMemberOf(Datas().currentUser, widget.forum)){
-                                          widget.forum.members.remove(Datas().currentUser);
-                                          Datas().currentUser.followedForums.remove(widget.forum);
+                                        if(userMemberOf(CurrentUser().user, widget.forum)){
+                                          widget.forum.members.remove(CurrentUser().user);
+                                          CurrentUser().user.followedForums.remove(widget.forum);
                                         }
                                         else{
-                                          widget.forum.members.add(Datas().currentUser);
-                                          Datas().currentUser.followedForums.add(widget.forum);
+                                          widget.forum.members.add(CurrentUser().user);
+                                          CurrentUser().user.followedForums.add(widget.forum);
                                         }
                                       });
                                     },
                                     style: ElevatedButton.styleFrom(
-                                      primary: userMemberOf(Datas().currentUser, widget.forum) ? Colors.transparent:Colors.blueAccent,
+                                      primary: userMemberOf(CurrentUser().user, widget.forum) ? Colors.transparent:Colors.blueAccent,
                                       onPrimary: Colors.blueAccent,
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(50),
@@ -177,7 +177,7 @@ class _SingleForumPageState extends State<SingleForumPage> with SingleTickerProv
                                       ),
                                       padding: EdgeInsets.symmetric(vertical: 5, horizontal: 30),
                                     ),
-                                    child: userMemberOf(Datas().currentUser, widget.forum) ? Text("Joined", style: TextStyle(color: Colors.blueAccent),):Text("Join", style: TextStyle(color: Colors.white),),
+                                    child: userMemberOf(CurrentUser().user, widget.forum) ? Text("Joined", style: TextStyle(color: Colors.blueAccent),):Text("Join", style: TextStyle(color: Colors.white),),
                                   ),
                                 )
                               ),
@@ -300,7 +300,7 @@ class _SingleForumPageState extends State<SingleForumPage> with SingleTickerProv
                       child: FittedBox(
                         fit: BoxFit.contain,
                         child: CircleAvatar(
-                          backgroundImage: Datas().currentUser.userProfileImage.image,
+                          backgroundImage: CurrentUser().user.userProfileImage.image,
                           backgroundColor: Colors.white,
                         ),
                       ),

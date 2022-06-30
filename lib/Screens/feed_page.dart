@@ -46,14 +46,14 @@ class _FeedPageState extends State<FeedPage> {
             onDoubleTap: (){
               PostModel post = Datas().feedPosts[index];
               setState((){
-                if(post.userDownVoted(Datas().currentUser)){ //deleting other vote
-                  post.downVotedUsers.remove(Datas().currentUser);
+                if(post.userDownVoted(CurrentUser().user)){ //deleting other vote
+                  post.downVotedUsers.remove(CurrentUser().user);
                 }
-                if(post.userUpVoted(Datas().currentUser)) {
-                  post.upVotedUsers.remove(Datas().currentUser);
+                if(post.userUpVoted(CurrentUser().user)) {
+                  post.upVotedUsers.remove(CurrentUser().user);
                 }
                 else{
-                  post.upVotedUsers.add(Datas().currentUser);
+                  post.upVotedUsers.add(CurrentUser().user);
                 }
               });
             },

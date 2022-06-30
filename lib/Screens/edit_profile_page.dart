@@ -94,7 +94,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         ),
                       ),
                     ),
-                    (widget.user == Datas().currentUser ?
+                    (widget.user == CurrentUser().user ?
                     Positioned(
                       bottom: 0,
                       right: 5,

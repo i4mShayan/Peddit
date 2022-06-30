@@ -123,20 +123,20 @@ class _CommentState extends State<Comment> {
                             IconButton(
                               onPressed: () {
                                 setState(() {
-                                  if (widget.comment.userDownVoted(Datas().currentUser)) {
+                                  if (widget.comment.userDownVoted(CurrentUser().user)) {
                                     //deleting other vote
                                     widget.comment.downVotedUsers
-                                        .remove(Datas().currentUser);
+                                        .remove(CurrentUser().user);
                                   }
-                                  if (widget.comment.userUpVoted(Datas().currentUser)) {
-                                    widget.comment.upVotedUsers.remove(Datas().currentUser);
+                                  if (widget.comment.userUpVoted(CurrentUser().user)) {
+                                    widget.comment.upVotedUsers.remove(CurrentUser().user);
                                   } else {
-                                    widget.comment.upVotedUsers.add(Datas().currentUser);
+                                    widget.comment.upVotedUsers.add(CurrentUser().user);
                                   }
                                 });
                               },
                               icon: Icon(Icons.arrow_upward_rounded),
-                              color: widget.comment.userUpVoted(Datas().currentUser)
+                              color: widget.comment.userUpVoted(CurrentUser().user)
                                   ? Colors.green
                                   : null,
                             ),
@@ -155,21 +155,21 @@ class _CommentState extends State<Comment> {
                             IconButton(
                               onPressed: () {
                                 setState(() {
-                                  if (widget.comment.userUpVoted(Datas().currentUser)) {
+                                  if (widget.comment.userUpVoted(CurrentUser().user)) {
                                     //deleting other vote
-                                    widget.comment.upVotedUsers.remove(Datas().currentUser);
+                                    widget.comment.upVotedUsers.remove(CurrentUser().user);
                                   }
-                                  if (widget.comment.userDownVoted(Datas().currentUser)) {
+                                  if (widget.comment.userDownVoted(CurrentUser().user)) {
                                     widget.comment.downVotedUsers
-                                        .remove(Datas().currentUser);
+                                        .remove(CurrentUser().user);
                                   } else {
-                                    widget.comment.downVotedUsers.add(Datas().currentUser);
+                                    widget.comment.downVotedUsers.add(CurrentUser().user);
                                   }
                                 });
                               },
                               icon: Icon(
                                 Icons.arrow_downward_rounded,
-                                color: widget.comment.userDownVoted(Datas().currentUser)
+                                color: widget.comment.userDownVoted(CurrentUser().user)
                                     ? Colors.red
                                     : null,
                               ),

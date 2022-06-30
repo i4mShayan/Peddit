@@ -49,7 +49,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             fit: BoxFit.cover,
                             width: profileRadius*2,
                             height: profileRadius*2,
-                            child: (widget.user == Datas().currentUser ? InkWell(
+                            child: (widget.user == CurrentUser().user ? InkWell(
                               onTap: (){
                                 Navigator.push(
                                   context,
@@ -62,7 +62,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           ),
                         ),
                       ),
-                      (widget.user == Datas().currentUser ?
+                      (widget.user == CurrentUser().user ?
                       Positioned(
                         bottom: 0,
                         right: 5,

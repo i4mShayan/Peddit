@@ -31,7 +31,7 @@ class _LoginState extends State<Login> {
           showDialogWith(context: context, title: "can't login!", content: "username/password not correct!");
         }
         else {
-          Datas().currentUser=UserModel.fromJson(jsonDecode(responseString));
+          CurrentUser().user=UserModel.fromJson(jsonDecode(responseString));
           AppDatas().loggedIn=true;
           Navigator.of(context).pushNamedAndRemoveUntil('/navigation_page', (route) => false);
 

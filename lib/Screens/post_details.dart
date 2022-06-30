@@ -223,7 +223,7 @@ class _PostDetailsState extends State<PostDetails> with SingleTickerProviderStat
                               ),
                               child: InkWell(
                                 onTap: (){
-                                  if(widget.post.forum.blockedUsers.contains(Datas().currentUser)){
+                                  if(widget.post.forum.blockedUsers.contains(CurrentUser().user)){
                                     showDialogWith(context: context, title: "Your are blocked :(", content: "You can't make posts/comments in this forum!");
                                   }
                                   else {

@@ -23,7 +23,7 @@ class _ForumsPageState extends State<ForumsPage> {
       {
         'icon': Icons.star_rounded,
         'title': "Favorites",
-        'list': Datas().currentUser.starredForums,
+        'list': CurrentUser().user.starredForums,
         'isExpanded': true,
         'empty_list_message': "Star a forum to show here!",
         'empty_list_icon': Icons.star_rate_rounded,
@@ -31,7 +31,7 @@ class _ForumsPageState extends State<ForumsPage> {
       {
         'icon': Icons.group_rounded,
         'title': "Followed Forums",
-        'list': Datas().currentUser.followedForums,
+        'list': CurrentUser().user.followedForums,
         'isExpanded': true,
         'empty_list_message': "Follow/create a forum to show here!",
         'empty_list_icon': Icons.group_rounded,

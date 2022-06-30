@@ -45,7 +45,7 @@ class _MainAppBarState extends State<MainAppBar> {
                 :
               (
                 AppDatas().navigationSelectedIndex==3 ?
-                PostSearchDelegate(posts: Datas().currentUser.savedPosts)
+                PostSearchDelegate(posts: CurrentUser().user.savedPosts)
                     :
                 PostSearchDelegate(posts: Datas().feedPosts)
               )
@@ -97,7 +97,7 @@ class _MainAppBarState extends State<MainAppBar> {
               child: FittedBox(
                 fit: BoxFit.contain,
                 child: CircleAvatar(
-                  backgroundImage: Datas().currentUser.userProfileImage.image,
+                  backgroundImage: CurrentUser().user.userProfileImage.image,
                   backgroundColor: Colors.white,
                 ),
               ),

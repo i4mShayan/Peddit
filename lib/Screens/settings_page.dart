@@ -32,7 +32,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       CircleAvatar(
-                        backgroundImage: Datas().currentUser.userProfileImage.image,
+                        backgroundImage: CurrentUser().user.userProfileImage.image,
                         radius: 20,
                       ),
                       SizedBox(width: 12,),
@@ -43,7 +43,7 @@ class _SettingsPageState extends State<SettingsPage> {
                         ),
                       ),
                       Text(
-                        Datas().currentUser.userName,
+                        CurrentUser().user.userName,
                         style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold
@@ -100,7 +100,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => ProfilePage(user: Datas().currentUser,),
+                      builder: (context) => ProfilePage(user: CurrentUser().user,),
                     ),
                   ).then((value) => setState(() {}));
                 },

@@ -23,10 +23,10 @@ class _SelectForumForNewPostState extends State<SelectForumForNewPost> {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<ThemeProvider>(context, listen: true);
-    List<ForumModel> followedForums=Datas().currentUser.followedForums;
+    List<ForumModel> followedForums=CurrentUser().user.followedForums;
     List<ForumModel> notBlockedForums=[];
     notBlockedForums.addAll(followedForums);
-    notBlockedForums.removeWhere((forum) => forum.blockedUsers.contains(Datas().currentUser));
+    notBlockedForums.removeWhere((forum) => forum.blockedUsers.contains(CurrentUser().user));
     return Container(
       color: provider.isDarkMode ? Colors.grey.shade900:Colors.white,
       child: SafeArea(
@@ -64,9 +64,9 @@ class _SelectForumForNewPostState extends State<SelectForumForNewPost> {
                         onPressed: () {
                           if(canCreatePost()) {
                             setState((){
-                              PostModel newPost = PostModel(postImage: widget.postImageFile!=null ? Image.file(widget.postImageFile!):null ,title: widget.title, desc: widget.desc, publisher: Datas().currentUser, forum: _selectedForum!, publishTime: DateTime.now(), upVotedUsers: [], downVotedUsers: [], comments: [], commentsCount: 0);
+                              PostModel newPost = PostModel(postImage: widget.postImageFile!=null ? Image.file(widget.postImageFile!):null ,title: widget.title, desc: widget.desc, publisher: CurrentUser().user, forum: _selectedForum!, publishTime: DateTime.now(), upVotedUsers: [], downVotedUsers: [], comments: [], commentsCount: 0);
                               _selectedForum!.addPost(newPost);
-                              Datas().currentUser.userPostsCount++;
+                              CurrentUser().user.userPostsCount++;
                               Datas().updateFeed();
                               widget.feedSetState();
                               Navigator.of(context).popUntil((route) {

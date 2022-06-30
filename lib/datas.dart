@@ -2,9 +2,6 @@ import 'libs.dart';
 
 class Datas{
 
-  late UserModel currentUser;
-  // =UserModel(userName: "username", email: "email@site.com", userProfileImage: Datas().defaultProfilePicture,
-  //     followedForums: [], starredForums: [], savedPosts: [], password: 'Aaaa1234', commentsCount: 0, userPostsCount: 0);
   late List<ForumModel> forumsList;
   late List<PostModel> feedPosts;
 
@@ -24,7 +21,7 @@ class Datas{
 
   void updateFeed(){
     List<PostModel> newFeedPosts=[];
-    for(ForumModel forum in currentUser.followedForums){
+    for(ForumModel forum in CurrentUser().user.followedForums){
       newFeedPosts.addAll(forum.posts);
     }
     feedPosts=newFeedPosts;
@@ -51,7 +48,7 @@ class Datas{
   //
   // Future<void> updatePostsList() async {
   //   await Socket.connect(ServerInfo.ip, ServerInfo.port).then((socket) {
-  //     socket.write("@${Datas().currentUser.userName}/FeedPagePosts#\u0000");
+  //     socket.write("@${CurrentUser().user.userName}/FeedPagePosts#\u0000");
   //     socket.flush();
   //     socket.listen((response) {
   //       print(response.toString());

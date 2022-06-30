@@ -93,7 +93,7 @@ class _CreateNewForumPageState extends State<CreateNewForumPage> {
                       });
                       if(nameErrorMessage==null) {
                         setState(() {
-                          ForumModel newForum = ForumModel(owner: Datas().currentUser,
+                          ForumModel newForum = ForumModel(owner: CurrentUser().user,
                               admins: [],
                               posts: [],
                               members: [],
@@ -106,7 +106,7 @@ class _CreateNewForumPageState extends State<CreateNewForumPage> {
                                   ? AppDatas().defaultBackground
                                   : Image.file(headerImageFile!), blockedUsers: []);
                           Datas().forumsList.add(newForum);
-                          Datas().currentUser.followedForums.add(newForum);
+                          CurrentUser().user.followedForums.add(newForum);
                           Navigator.of(context).pop();
                           SnackBar snackBar = SnackBar(
                             backgroundColor: Colors.green,

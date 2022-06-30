@@ -23,10 +23,10 @@ class _SavedPostsPageState extends State<SavedPostsPage> {
         RefreshIndicator(
           color: provider.isDarkMode ? Colors.white:Colors.black,
           onRefresh: _onRefresh,
-          child: Datas().currentUser.savedPosts.isNotEmpty ? ListView.builder(
-              itemCount: Datas().currentUser.savedPosts.length,
+          child: CurrentUser().user.savedPosts.isNotEmpty ? ListView.builder(
+              itemCount: CurrentUser().user.savedPosts.length,
               itemBuilder: (contex, index) {
-                return PostItem(post: Datas().currentUser.savedPosts[index], pageSetState: ()=>setState((){}));
+                return PostItem(post: CurrentUser().user.savedPosts[index], pageSetState: ()=>setState((){}));
               })
               :
           ListView(
