@@ -20,11 +20,46 @@ class _SelectForumForNewPostState extends State<SelectForumForNewPost> {
     return _selectedForum!=null;
   }
 
+
+
+  Future<void> addPostRequest(PostModel post) async {
+    await Socket.connect(ServerInfo.ip, ServerInfo.port).then((socket) {
+      socket.write("/AddPost#" + post.toJson().toString() + "\u0000");
+      print(post.toJson().toString());
+      socket.flush();
+      print("AddPost request sent!");
+      socket.close();
+    });
+  }
+
+
+  late List<ForumModel> followedForums;
+  Future<void> updateFollowedForumsList() async {
+    await Socket.connect(ServerInfo.ip, ServerInfo.port).then((socket) {
+      socket.write("@${Datas().currentUser.userName}/FollowedForumsList#\u0000");
+      socket.flush();
+      socket.listen((response) {
+        String responseString = String.fromCharCodes(response);
+        print("$responseString");
+        if(responseString == "UserDidNotfound") {
+          print(responseString);
+        }
+        else {
+          setState((){
+            followedForums = ForumListModel.fromJson(jsonDecode(responseString)).forums;
+          });
+        }
+      });
+      socket.close();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<ThemeProvider>(context, listen: true);
+    updateFollowedForumsList();
     List<ForumModel> notBlockedForums=[];
-    notBlockedForums.addAll(Datas().currentUser.followedForums);
+    notBlockedForums.addAll(followedForums);
     notBlockedForums.removeWhere((forum) => forum.blockedUsers.contains(Datas().currentUser));
     return Container(
       color: provider.isDarkMode ? Colors.grey.shade900:Colors.white,
@@ -67,6 +102,7 @@ class _SelectForumForNewPostState extends State<SelectForumForNewPost> {
                               _selectedForum!.addPost(newPost);
                               Datas().currentUser.userPostsCount++;
                               Datas().updateFeed();
+                              addPostRequest(newPost);
                               widget.feedSetState();
                               Navigator.of(context).popUntil((route) {
                                 return route.settings.name == '/navigation_page';
