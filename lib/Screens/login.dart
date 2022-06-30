@@ -11,12 +11,10 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   bool _passwordVisible = false;
-  bool canLogIn=false;
 
   @override
   void initState() {
     _passwordVisible = false;
-    canLogIn=false;
   }
 
   TextEditingController _username=TextEditingController();
@@ -33,7 +31,23 @@ class _LoginState extends State<Login> {
           showDialogWith(context: context, title: "can't login!", content: "username/password not correct!");
         }
         else {
-          canLogIn=true;
+          Datas().currentUser=UserModel.fromJson(jsonDecode(responseString));
+          Datas().loggedIn=true;
+          Navigator.of(context).pushNamedAndRemoveUntil('/navigation_page', (route) => false);
+
+          SnackBar snackBar = SnackBar(
+            backgroundColor: Colors.green,
+            content: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children:
+              [
+                Icon(Icons.emoji_emotions_outlined, color: Colors.white,),
+                SizedBox(width: 10,),
+                Text('Welcome back', style: TextStyle(color: Colors.white),),
+              ],
+            ),
+          );
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
         }
       });
       socket.close();
@@ -274,20 +288,6 @@ class _LoginState extends State<Login> {
                     child: MaterialButton(
                       onPressed: () {
                         userLogin(_username.text, _password.text);
-                        Datas().loggedIn=true;
-                        SnackBar snackBar = SnackBar(
-                          backgroundColor: Colors.green,
-                          content: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children:
-                            [
-                              Icon(Icons.emoji_emotions_outlined, color: Colors.white,),
-                              SizedBox(width: 10,),
-                              Text('Welcome back', style: TextStyle(color: Colors.white),),
-                            ],
-                          ),
-                        );
-                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
                       },
                       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                       shape: const StadiumBorder(),

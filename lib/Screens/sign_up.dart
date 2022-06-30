@@ -17,6 +17,24 @@ class _SignUpState extends State<SignUp> {
     _passwordVisible = false;
   }
 
+  Future<void> userLogin(String username, String password) async {
+    await Socket.connect(ServerInfo.ip, ServerInfo.port).then((socket) {
+      socket.write("@$username/SignUp#$password" + "\u0000");
+      socket.flush();
+      socket.listen((response) {
+        String responseString = String.fromCharCodes(response);
+        print("$responseString");
+        if (responseString == "UserDidNotfound") {
+          showDialogWith(context: context, title: "can't login!", content: "username/password not correct!");
+        }
+        else {
+          canLogIn=true;
+        }
+      });
+      socket.close();
+    });
+  }
+
   TextEditingController _email=TextEditingController();
   TextEditingController _username=TextEditingController();
   TextEditingController _password=TextEditingController();
