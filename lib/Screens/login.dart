@@ -11,10 +11,33 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   bool _passwordVisible = false;
+  bool canLogIn=false;
 
   @override
   void initState() {
     _passwordVisible = false;
+    canLogIn=false;
+  }
+
+  TextEditingController _username=TextEditingController();
+  TextEditingController _password=TextEditingController();
+
+  Future<void> userLogin(String username, String password) async {
+    await Socket.connect(ServerInfo.ip, ServerInfo.port).then((socket) {
+      socket.write("@$username/Login#$password" + "\u0000");
+      socket.flush();
+      socket.listen((response) {
+        String responseString = String.fromCharCodes(response);
+        print("$responseString");
+        if (responseString == "UserDidNotfound") {
+          showDialogWith(context: context, title: "can't login!", content: "username/password not correct!");
+        }
+        else {
+          canLogIn=true;
+        }
+      });
+      socket.close();
+    });
   }
 
   @override
@@ -33,9 +56,7 @@ class _LoginState extends State<Login> {
                 children: [
                   Expanded(
                     flex: 1,
-                    child: IconButton(
-                      onPressed: () {},
-                      icon:
+                    child:
                       IconButton(
                           onPressed: (){
                             setState((){
@@ -47,7 +68,6 @@ class _LoginState extends State<Login> {
                             child: provider.isDarkMode ? Icon(Icons.nightlight, size: 30,):Icon(Icons.nightlight_outlined, size: 30,),
                           )
                       ),
-                    ),
                   ),
                   Expanded(
                     flex: 1,
@@ -189,7 +209,7 @@ class _LoginState extends State<Login> {
             Padding(
               padding: const EdgeInsets.only(top: 10, left: 20, right: 20),
               child: TextField(
-                // controller: _taskName,
+                controller: _username,
                 decoration: InputDecoration(
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(50),
@@ -208,7 +228,7 @@ class _LoginState extends State<Login> {
               padding: const EdgeInsets.only(top: 10, left: 20, right: 20),
               child: TextFormField(
                 keyboardType: TextInputType.text,
-                // controller: _userPasswordController,
+                controller: _password,
                 obscureText: !_passwordVisible,
                 decoration: InputDecoration(
                   focusedBorder: OutlineInputBorder(
@@ -253,20 +273,21 @@ class _LoginState extends State<Login> {
                     ),
                     child: MaterialButton(
                       onPressed: () {
-                        // Datas().loggedIn=true;
-                        // SnackBar snackBar = SnackBar(
-                        //   backgroundColor: Colors.green,
-                        //   content: Row(
-                        //     mainAxisAlignment: MainAxisAlignment.start,
-                        //     children:
-                        //     [
-                        //       Icon(Icons.emoji_emotions_outlined, color: Colors.white,),
-                        //       SizedBox(width: 10,),
-                        //       Text('Welcome back', style: TextStyle(color: Colors.white),),
-                        //     ],
-                        //   ),
-                        // );
-                        // ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                        userLogin(_username.text, _password.text);
+                        Datas().loggedIn=true;
+                        SnackBar snackBar = SnackBar(
+                          backgroundColor: Colors.green,
+                          content: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children:
+                            [
+                              Icon(Icons.emoji_emotions_outlined, color: Colors.white,),
+                              SizedBox(width: 10,),
+                              Text('Welcome back', style: TextStyle(color: Colors.white),),
+                            ],
+                          ),
+                        );
+                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
                       },
                       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                       shape: const StadiumBorder(),
