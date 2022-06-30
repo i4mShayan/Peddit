@@ -15,6 +15,11 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
+
+    setState((){
+      Datas().updateCurrentUser();
+    });
+
     final provider = Provider.of<ThemeProvider>(context, listen: true);
     return Container(
       color: provider.isDarkMode ? Colors.grey.shade900:Colors.white,

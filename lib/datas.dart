@@ -42,6 +42,26 @@ class Datas{
     sortFeed();
   }
 
+  Future<void> updateCurrentUser() async {
+    await Socket.connect(ServerInfo.ip, ServerInfo.port).then((socket) {
+      socket.write("@${currentUser.userName}/ProfilePage#\u0000");
+      socket.flush();
+      socket.listen((response) {
+        String responseString = String.fromCharCodes(response);
+        print("$responseString");
+        if (responseString == "UserDidNotfound") {
+          print(responseString);
+        }
+        else {
+          currentUser = UserModel.fromJson(jsonDecode(responseString));
+        }
+      });
+      socket.close();
+    });
+  }
+
+
+
   Datas._();
 
   static final Datas _instance = Datas._();

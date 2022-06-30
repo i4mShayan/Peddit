@@ -2,7 +2,8 @@
 export 'package:flutter/material.dart';
 export 'package:provider/provider.dart';
 export 'package:line_icons/line_icons.dart';
-
+export 'dart:io';
+export 'dart:convert';
 
 // exporting project files!
 export 'Screens/sign_up.dart';
