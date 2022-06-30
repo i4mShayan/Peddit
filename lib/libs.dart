@@ -56,6 +56,7 @@ export 'Screens/members_moderation_page.dart';
 export 'Screens/block_user_page.dart';
 export 'Models/feed_page_post_model.dart';
 export 'ServerInfo.dart';
+export 'Models/forum_list_model.dart';
 
 // export 'package:json_serializable/json_serializable.dart';
 export 'package:json_annotation/json_annotation.dart';

@@ -1,3 +1,8 @@
+import 'dart:convert';
+import 'dart:io';
+
+import 'package:reddit_project/Models/forum_list_model.dart';
+
 import '../libs.dart';
 
 class ForumsPage extends StatefulWidget {
@@ -9,6 +14,9 @@ class ForumsPage extends StatefulWidget {
 
 class _ForumsPageState extends State<ForumsPage> {
 
+  List<ForumModel> allForums = [];
+  List<ForumModel> followedForums = [];
+  List<ForumModel> staredForums = [];
 
   late List<Map<String, dynamic>> _items;
 
@@ -45,6 +53,66 @@ class _ForumsPageState extends State<ForumsPage> {
 
   Future<void> _onRefresh() async {
     setState((){});
+  }
+
+  Future<void> updateAllForumsList() async {
+    await Socket.connect(ServerInfo.ip, ServerInfo.port).then((socket) {
+      socket.write("@${Datas().currentUser.userName}/AllForumsList#\u0000");
+      socket.flush();
+      socket.listen((response) {
+        String responseString = String.fromCharCodes(response);
+        print("$responseString");
+        if(responseString == "UserDidNotfound") {
+          print(responseString);
+        }
+        else {
+          setState((){
+            allForums = ForumListModel.fromJson(jsonDecode(responseString)).forums;
+          });
+        }
+      });
+      socket.close();
+    });
+  }
+
+  Future<void> updateFollowedForumsList() async {
+    await Socket.connect(ServerInfo.ip, ServerInfo.port).then((socket) {
+      socket.write("@${Datas().currentUser.userName}/FollowedForumsList#\u0000");
+      socket.flush();
+      socket.listen((response) {
+        String responseString = String.fromCharCodes(response);
+        print("$responseString");
+        if(responseString == "UserDidNotfound") {
+          print(responseString);
+        }
+        else {
+          setState((){
+            followedForums = ForumListModel.fromJson(jsonDecode(responseString)).forums;
+          });
+        }
+      });
+      socket.close();
+    });
+  }
+
+  Future<void> updateStaredForumsList() async {
+    await Socket.connect(ServerInfo.ip, ServerInfo.port).then((socket) {
+      socket.write("@${Datas().currentUser.userName}/StarredForumsList#\u0000");
+      socket.flush();
+      socket.listen((response) {
+        String responseString = String.fromCharCodes(response);
+        print("$responseString");
+        if(responseString == "UserDidNotfound") {
+          print(responseString);
+        }
+        else {
+          setState((){
+            staredForums = ForumListModel.fromJson(jsonDecode(responseString)).forums;
+          });
+        }
+      });
+      socket.close();
+    });
   }
 
   @override
