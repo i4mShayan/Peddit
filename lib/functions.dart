@@ -69,3 +69,25 @@ void addAdminTo(UserModel admin, ForumModel forum){
   forum.admins.add(admin);
   forum.members.remove(admin);
 }
+
+Future<void> updateUserInServer(UserModel user) async {
+  //TODO
+}
+
+Future<void> updateUser(UserModel user) async {
+  await Socket.connect(ServerInfo.ip, ServerInfo.port).then((socket) {
+    socket.write("@${user.userName}/ProfilePage#\u0000");
+    socket.flush();
+    socket.listen((response) {
+      String responseString = String.fromCharCodes(response);
+      print("$responseString");
+      if (responseString == "UserDidNotfound") {
+        print(responseString);
+      }
+      else {
+        user = UserModel.fromJson(jsonDecode(responseString));
+      }
+    });
+    socket.close();
+  });
+}

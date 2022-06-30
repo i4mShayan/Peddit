@@ -28,7 +28,7 @@ class _FeedPageState extends State<FeedPage> {
       socket.flush();
       socket.listen((response) {
         String responseString = String.fromCharCodes(response);
-        print("$responseString");
+        print("response: $responseString");
         if(responseString == "UserDidNotfound") {
           print(responseString);
         }
