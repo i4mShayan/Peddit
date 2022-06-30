@@ -28,9 +28,9 @@ class _SignUpState extends State<SignUp> {
           showDialogWith(context: context, title: "login!", content: "you have signed up before!");
         }
         else if(responseString == "Account Created Successfully"){
-          UserModel newUser=UserModel(userName: _username.text, email: _email.text, followedForums: [], starredForums: [], savedPosts: [], userProfileImage: Datas().defaultProfilePicture, password: _password.text, commentsCount: 0, userPostsCount: 0);
+          UserModel newUser=UserModel(userName: _username.text, email: _email.text, followedForums: [], starredForums: [], savedPosts: [], userProfileImage: AppDatas().defaultProfilePicture, password: _password.text, commentsCount: 0, userPostsCount: 0);
           Datas().currentUser=newUser;
-          Datas().loggedIn=true;
+          AppDatas().loggedIn=true;
 
           Navigator.of(context).pushNamedAndRemoveUntil('/navigation_page', (route) => false);
           SnackBar snackBar = SnackBar(
@@ -329,7 +329,7 @@ class _SignUpState extends State<SignUp> {
                     ),
                     child: MaterialButton(
                       onPressed: () {
-                        Datas().loggedIn=true;
+                        AppDatas().loggedIn=true;
                         setState((){
                           emailErrorMessage=emailError(_email);
                           usernameErrorMessage=usernameError(_username);

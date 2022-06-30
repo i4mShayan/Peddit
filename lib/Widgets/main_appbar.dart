@@ -40,11 +40,11 @@ class _MainAppBarState extends State<MainAppBar> {
       title: GestureDetector(
         onTap: () => showSearch(
             context: context,
-            delegate: (Datas().navigationSelectedIndex==1 ?
+            delegate: (AppDatas().navigationSelectedIndex==1 ?
               ForumSearchDelegate(forums: Datas().forumsList)
                 :
               (
-                Datas().navigationSelectedIndex==3 ?
+                AppDatas().navigationSelectedIndex==3 ?
                 PostSearchDelegate(posts: Datas().currentUser.savedPosts)
                     :
                 PostSearchDelegate(posts: Datas().feedPosts)

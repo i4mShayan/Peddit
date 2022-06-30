@@ -100,10 +100,10 @@ class _CreateNewForumPageState extends State<CreateNewForumPage> {
                               forumName: _name.text,
                               forumDesc: _desc.text,
                               forumCreateTime: DateTime.now(),
-                              profileImage: profileImageFile == null ? Datas()
+                              profileImage: profileImageFile == null ? AppDatas()
                                   .defaultProfilePicture : Image.file(profileImageFile!),
                               headerImage: headerImageFile == null
-                                  ? Datas().defaultBackground
+                                  ? AppDatas().defaultBackground
                                   : Image.file(headerImageFile!), blockedUsers: []);
                           Datas().forumsList.add(newForum);
                           Datas().currentUser.followedForums.add(newForum);
@@ -164,7 +164,7 @@ class _CreateNewForumPageState extends State<CreateNewForumPage> {
                       Material(
                         // color: Colors.transparent,
                         child: Ink.image(
-                          image: headerImageFile==null ? Datas().defaultBackground.image:Image.file(headerImageFile!).image,
+                          image: headerImageFile==null ? AppDatas().defaultBackground.image:Image.file(headerImageFile!).image,
                           fit: BoxFit.cover,
                           // width: profileRadius*3,
                           height: profileRadius*4,
@@ -207,7 +207,7 @@ class _CreateNewForumPageState extends State<CreateNewForumPage> {
                               child: Material(
                                 // color: Colors.transparent,
                                 child: Ink.image(
-                                  image: profileImageFile==null ? Datas().defaultProfilePicture.image:Image.file(profileImageFile!).image,
+                                  image: profileImageFile==null ? AppDatas().defaultProfilePicture.image:Image.file(profileImageFile!).image,
                                   fit: BoxFit.cover,
                                   width: profileRadius*1.5,
                                   height: profileRadius*1.5,

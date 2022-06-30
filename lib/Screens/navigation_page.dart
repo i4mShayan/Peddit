@@ -22,8 +22,8 @@ class _NavigationPageState extends State<NavigationPage> with SingleTickerProvid
     );
   }
 
-  PageController _pageController = Datas().pageController;
-  int _selectedIndex = Datas().navigationSelectedIndex;
+  PageController _pageController = AppDatas().pageController;
+  int _selectedIndex = AppDatas().navigationSelectedIndex;
 
   List<Widget> _screens = [
     FeedPage(), ForumsPage(),
@@ -36,7 +36,7 @@ class _NavigationPageState extends State<NavigationPage> with SingleTickerProvid
   void _onPageChanged(int index) {
     setState(() {
       _selectedIndex = index;
-      Datas().navigationSelectedIndex=index;
+      AppDatas().navigationSelectedIndex=index;
     });
   }
 

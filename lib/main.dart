@@ -22,7 +22,7 @@ void main() {
           theme: Themes.lightTheme,
           darkTheme: Themes.darkTheme,
           initialRoute:
-          Datas().loggedIn
+          AppDatas().loggedIn
               ? '/navigation_page'
               : '/login',
           routes: {

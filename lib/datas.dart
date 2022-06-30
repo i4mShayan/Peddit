@@ -2,17 +2,9 @@ import 'libs.dart';
 
 class Datas{
 
-  ThemeMode themeMode=ThemeMode.dark;
-  bool loggedIn = true;
-  PageController pageController=PageController();
-  int navigationSelectedIndex=0;
-  Image defaultProfilePicture=Image.asset("assets/images/default_profile.png");
-  Image defaultBackground=Image.asset("assets/images/default_background.png");
-
-
-
-  late UserModel currentUser=UserModel(userName: "username", email: "email@site.com", userProfileImage: Datas().defaultProfilePicture,
-      followedForums: [], starredForums: [], savedPosts: [], password: 'Aaaa1234', commentsCount: 0, userPostsCount: 0);
+  late UserModel currentUser;
+  // =UserModel(userName: "username", email: "email@site.com", userProfileImage: Datas().defaultProfilePicture,
+  //     followedForums: [], starredForums: [], savedPosts: [], password: 'Aaaa1234', commentsCount: 0, userPostsCount: 0);
   late List<ForumModel> forumsList;
   late List<PostModel> feedPosts;
 

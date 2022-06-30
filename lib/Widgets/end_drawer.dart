@@ -25,7 +25,7 @@ class _EndDrawerState extends State<EndDrawer> {
               child: ClipRRect(
                   borderRadius: BorderRadius.circular(30),
                   child: Image(
-                    image: Datas().defaultBackground.image,
+                    image: AppDatas().defaultBackground.image,
                 ),
               ),
             ),
@@ -72,7 +72,7 @@ class _EndDrawerState extends State<EndDrawer> {
                     child: MaterialButton(
                       height: 37,
                       onPressed: () {
-                        Datas().loggedIn=false;
+                        AppDatas().loggedIn=false;
                         Navigator.of(context).pushNamedAndRemoveUntil('/login', (route) => false);
                       },
                       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
@@ -136,8 +136,8 @@ class _EndDrawerState extends State<EndDrawer> {
                       return route.settings.name == '/navigation_page';
                     });
                     // Navigator.pop(context);
-                    Datas().navigationSelectedIndex=1;
-                    Datas().pageController.animateToPage(1, duration: Duration(milliseconds: 200), curve: Curves.ease);
+                    AppDatas().navigationSelectedIndex=1;
+                    AppDatas().pageController.animateToPage(1, duration: Duration(milliseconds: 200), curve: Curves.ease);
                   }
                   );
                 },
@@ -168,8 +168,8 @@ class _EndDrawerState extends State<EndDrawer> {
                       return route.settings.name == '/navigation_page';
                     });
                     // Navigator.pop(context);
-                    Datas().navigationSelectedIndex=3;
-                    Datas().pageController.animateToPage(3, duration: Duration(milliseconds: 200), curve: Curves.ease);
+                    AppDatas().navigationSelectedIndex=3;
+                    AppDatas().pageController.animateToPage(3, duration: Duration(milliseconds: 200), curve: Curves.ease);
                   }
                   );
                 },
@@ -231,8 +231,8 @@ class _EndDrawerState extends State<EndDrawer> {
                           return route.settings.name == '/navigation_page';
                         });
                         // Navigator.pop(context);
-                        Datas().navigationSelectedIndex=4;
-                        Datas().pageController.animateToPage(4, duration: Duration(milliseconds: 200), curve: Curves.ease);
+                        AppDatas().navigationSelectedIndex=4;
+                        AppDatas().pageController.animateToPage(4, duration: Duration(milliseconds: 200), curve: Curves.ease);
                       }
                       );
                     },

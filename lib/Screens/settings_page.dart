@@ -67,7 +67,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     child: MaterialButton(
                       height: _buttonsHeight,
                       onPressed: () {
-                        Datas().loggedIn=false;
+                        AppDatas().loggedIn=false;
                         Navigator.of(context).pushNamedAndRemoveUntil('/login', (route) => false);
                       },
                       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
@@ -125,8 +125,8 @@ class _SettingsPageState extends State<SettingsPage> {
               child: InkWell(
                 onTap: (){
                   setState((){
-                    Datas().navigationSelectedIndex=1;
-                    Datas().pageController.animateToPage(1, duration: Duration(milliseconds: 200), curve: Curves.ease);
+                    AppDatas().navigationSelectedIndex=1;
+                    AppDatas().pageController.animateToPage(1, duration: Duration(milliseconds: 200), curve: Curves.ease);
                   });
                 },
                 child: Row(
@@ -177,8 +177,8 @@ class _SettingsPageState extends State<SettingsPage> {
               child: InkWell(
                 onTap: (){
                   setState((){
-                    Datas().navigationSelectedIndex=3;
-                    Datas().pageController.animateToPage(3, duration: Duration(milliseconds: 200), curve: Curves.ease);
+                    AppDatas().navigationSelectedIndex=3;
+                    AppDatas().pageController.animateToPage(3, duration: Duration(milliseconds: 200), curve: Curves.ease);
                   });
                 },
                 child: Row(
