@@ -17,18 +17,35 @@ class _SignUpState extends State<SignUp> {
     _passwordVisible = false;
   }
 
-  Future<void> userLogin(String username, String password) async {
+  Future<void> userSignUp(String username, String password, String email) async {
     await Socket.connect(ServerInfo.ip, ServerInfo.port).then((socket) {
-      socket.write("@$username/SignUp#$password" + "\u0000");
+      socket.write("@$username/Login#$password&$email" + "\u0000");
       socket.flush();
       socket.listen((response) {
         String responseString = String.fromCharCodes(response);
         print("$responseString");
-        if (responseString == "UserDidNotfound") {
-          showDialogWith(context: context, title: "can't login!", content: "username/password not correct!");
+        if (responseString == "DuplicateUsername") {
+          showDialogWith(context: context, title: "login!", content: "you have signed up before!");
         }
-        else {
-          canLogIn=true;
+        else if(responseString == "Account Created Successfully"){
+          UserModel newUser=UserModel(userName: _username.text, email: _email.text, followedForums: [], starredForums: [], savedPosts: [], userProfileImage: Datas().defaultProfilePicture, password: _password.text, commentsCount: 0, userPostsCount: 0);
+          Datas().currentUser=newUser;
+          Datas().loggedIn=true;
+
+          Navigator.of(context).pushNamedAndRemoveUntil('/navigation_page', (route) => false);
+          SnackBar snackBar = SnackBar(
+            backgroundColor: Colors.green,
+            content: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children:
+              [
+                Icon(Icons.emoji_emotions_outlined, color: Colors.white,),
+                SizedBox(width: 10,),
+                Text('Welcome to Peddit', style: TextStyle(color: Colors.white),),
+              ],
+            ),
+          );
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
         }
       });
       socket.close();
@@ -318,22 +335,7 @@ class _SignUpState extends State<SignUp> {
                           usernameErrorMessage=usernameError(_username);
                           passwordErrorMessage=passwordError(_password);
                           if(!signupHasError(_email, _username, _password)){
-                            UserModel newUser=UserModel(userName: _username.text, email: _email.text, followedForums: [], starredForums: [], savedPosts: [], userProfileImage: Datas().defaultProfilePicture, password: _password.text, commentsCount: 0, userPostsCount: 0);
-                            Datas().currentUser=newUser;
-                            Navigator.of(context).pushNamedAndRemoveUntil('/navigation_page', (route) => false);
-                            SnackBar snackBar = SnackBar(
-                              backgroundColor: Colors.green,
-                              content: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children:
-                                  [
-                                    Icon(Icons.emoji_emotions_outlined, color: Colors.white,),
-                                    SizedBox(width: 10,),
-                                    Text('Welcome to Peddit', style: TextStyle(color: Colors.white),),
-                                  ],
-                                ),
-                              );
-                            ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                            userSignUp(_username.text, _password.text, _email.text);
                           }
                         });
                       },
