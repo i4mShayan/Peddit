@@ -106,7 +106,9 @@ class _CreateNewForumPageState extends State<CreateNewForumPage> {
                                   ? AppDatas().defaultBackground
                                   : Image.file(headerImageFile!), blockedUsers: []);
                           Datas().forumsList.add(newForum);
+                          Datas().sendDatas();
                           CurrentUser().user.followedForums.add(newForum);
+                          // update user in server
                           Navigator.of(context).pop();
                           SnackBar snackBar = SnackBar(
                             backgroundColor: Colors.green,

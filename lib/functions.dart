@@ -73,7 +73,7 @@ void addAdminTo(UserModel admin, ForumModel forum){
 
 
 
-Future<void> updateUser(UserModel user) async {
+Future<void> getUser(UserModel user) async {
   await Socket.connect(ServerInfo.ip, ServerInfo.port).then((socket) {
     socket.write("@${user.userName}/GetUser#\u0000");
     socket.flush();

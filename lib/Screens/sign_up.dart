@@ -22,10 +22,10 @@ class _SignUpState extends State<SignUp> {
     return json.encode(user.toJson());
   }
 
+
   Future<void> userSignUp(String username, String password, String email) async {
     await Socket.connect(ServerInfo.ip, ServerInfo.port).then((socket) {
       UserModel newUser=UserModel(userName: username, email: email, followedForums: [], starredForums: [], savedPosts: [], userProfileImage: AppDatas().defaultProfilePicture, password: password, commentsCount: 0, userPostsCount: 0);
-      print(userToJson(newUser));
       socket.write("@$username/SignUp#" + userToJson(newUser) + "\u0000");
       socket.flush();
       socket.listen((response) {
@@ -36,7 +36,8 @@ class _SignUpState extends State<SignUp> {
         else if(responseString == "Account Created Successfully"){
           CurrentUser().user=newUser;
           AppDatas().loggedIn=true;
-          Datas().updateDatas();
+          Datas().getDatas();
+          AppDatas().updateFeed();
           Navigator.of(context).pushNamedAndRemoveUntil('/navigation_page', (route) => false);
           SnackBar snackBar = SnackBar(
             backgroundColor: Colors.green,
@@ -76,21 +77,21 @@ class _SignUpState extends State<SignUp> {
                 children: [
                   Expanded(
                     flex: 1,
-                    child: IconButton(
-                      onPressed: () {},
-                      icon:
-                      IconButton(
-                          onPressed: (){
-                            setState((){
-                              provider.toggleTheme(!provider.isDarkMode);
-                            });
-                          },
-                          icon: Transform.rotate(
-                            angle: 325 * pi / 180,
-                            child: provider.isDarkMode ? Icon(Icons.nightlight, size: 30,):Icon(Icons.nightlight_outlined, size: 30,),
-                          )
+                    child:
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20, top: 10),
+                        child: IconButton(
+                            onPressed: (){
+                              setState((){
+                                provider.toggleTheme(!provider.isDarkMode);
+                              });
+                            },
+                            icon: Transform.rotate(
+                              angle: 325 * pi / 180,
+                              child: provider.isDarkMode ? Icon(Icons.nightlight, size: 30,):Icon(Icons.nightlight_outlined, size: 30,),
+                            )
+                        ),
                       ),
-                    ),
                   ),
                   Expanded(
                     flex: 1,

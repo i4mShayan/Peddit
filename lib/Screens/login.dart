@@ -20,20 +20,35 @@ class _LoginState extends State<Login> {
   TextEditingController _username=TextEditingController();
   TextEditingController _password=TextEditingController();
 
-  Future<void> userLogin(String username, String password) async {
+
+  Future<void> getUser(String username) async {
     await Socket.connect(ServerInfo.ip, ServerInfo.port).then((socket) {
-      socket.write("@$username/Login#$password" + "\u0000");
+      socket.write("@$username/GetUser#\u0000");
       socket.flush();
       socket.listen((response) {
         String responseString = String.fromCharCodes(response);
-        print("$responseString");
         if (responseString == "UserDidNotfound") {
-          showDialogWith(context: context, title: "can't login!", content: "username/password not correct!");
+          print(responseString);
         }
         else {
-          CurrentUser().user=UserModel.fromJson(jsonDecode(responseString));
+          CurrentUser().user = UserModel.fromJson(jsonDecode(responseString));
+        }
+      });
+      socket.close();
+    });
+  }
+
+  Future<void> userLogin(String username, String password) async {
+    await Socket.connect(ServerInfo.ip, ServerInfo.port).then((socket) {
+      socket.write("@$username/LogIn#$password" + "\u0000");
+      socket.flush();
+      socket.listen((response) {
+        String responseString = String.fromCharCodes(response);
+        if (responseString == "CanLogin") {
+          getUser(username);
           AppDatas().loggedIn=true;
-          Datas().updateDatas();
+          Datas().getDatas();
+          AppDatas().updateFeed();
           Navigator.of(context).pushNamedAndRemoveUntil('/navigation_page', (route) => false);
 
           SnackBar snackBar = SnackBar(
@@ -49,6 +64,9 @@ class _LoginState extends State<Login> {
             ),
           );
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        }
+        else {
+          showDialogWith(context: context, title: "can't login!", content: "username/password not correct!");
         }
       });
       socket.close();
@@ -72,16 +90,19 @@ class _LoginState extends State<Login> {
                   Expanded(
                     flex: 1,
                     child:
-                      IconButton(
-                          onPressed: (){
-                            setState((){
-                              provider.toggleTheme(!provider.isDarkMode);
-                            });
-                          },
-                          icon: Transform.rotate(
-                            angle: 325 * pi / 180,
-                            child: provider.isDarkMode ? Icon(Icons.nightlight, size: 30,):Icon(Icons.nightlight_outlined, size: 30,),
-                          )
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20, top: 10),
+                        child: IconButton(
+                            onPressed: (){
+                              setState((){
+                                provider.toggleTheme(!provider.isDarkMode);
+                              });
+                            },
+                            icon: Transform.rotate(
+                              angle: 325 * pi / 180,
+                              child: provider.isDarkMode ? Icon(Icons.nightlight, size: 30,):Icon(Icons.nightlight_outlined, size: 30,),
+                            )
+                        ),
                       ),
                   ),
                   Expanded(

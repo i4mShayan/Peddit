@@ -1,3 +1,5 @@
+import 'package:reddit_project/datas_model.dart';
+
 import 'libs.dart';
 
 
@@ -18,32 +20,39 @@ class Datas{
     return _instance;
   }
 
-  Future<void> updateAllForumsList() async {
+  factory Datas.fromJson(Map<String, dynamic> json) => _$DatasFromJson(json);
+  Map<String, dynamic> toJson() => _$DatasToJson(this);
+
+
+
+  Future<void> getDatas() async {
     await Socket.connect(ServerInfo.ip, ServerInfo.port).then((socket) {
-      socket.write("@${CurrentUser().user.userName}/AllForumsList#\u0000");
+      socket.write("/GetDatas#\u0000");
       socket.flush();
       socket.listen((response) {
         String responseString = String.fromCharCodes(response);
-        print("$responseString");
-        if(responseString == "UserDidNotfound") {
-          print(responseString);
-        }
-        else {
-          forumsList = ForumListModel.fromJson(jsonDecode(responseString)).forums;
-        }
+        forumsList = Datas.fromJson(jsonDecode(responseString)).forumsList;
       });
       socket.close();
     });
   }
 
-  Future<void> updateDatas() async {
-    CurrentUser().updateUser();
-    updateAllForumsList();
-    AppDatas().updateFeed();
+  Future<void> sendDatas() async {
+    await Socket.connect(ServerInfo.ip, ServerInfo.port).then((socket) {
+      socket.write("/SendDatas#"+ json.encode((DatasModel(Datas().forumsList)).toJson()) +"\u0000");
+      socket.flush();
+      socket.listen((response) {
+        String responseString = String.fromCharCodes(response);
+        if(responseString=="DatasUpdated"){
+          print("DatasUpdated");
+        }
+        else{
+          print("problem in updating datas");
+        }
+      });
+      socket.close();
+    });
   }
-
-  factory Datas.fromJson(Map<String, dynamic> json) => _$DatasFromJson(json);
-  Map<String, dynamic> toJson() => _$DatasToJson(this);
 
   // Future<void> updateCurrentUser() async {
   //   await Socket.connect(ServerInfo.ip, ServerInfo.port).then((socket) {

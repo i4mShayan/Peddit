@@ -18,6 +18,7 @@ class CurrentUser{
   }
 
 
+
   Future<void> updateUser() async {
     await Socket.connect(ServerInfo.ip, ServerInfo.port).then((socket) {
       socket.write("@${user.userName}/GetUser#\u0000");
