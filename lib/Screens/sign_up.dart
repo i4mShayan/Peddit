@@ -1,5 +1,5 @@
 import 'dart:math';
-
+import 'dart:convert';
 import '../libs.dart';
 
 class SignUp extends StatefulWidget {
@@ -17,10 +17,15 @@ class _SignUpState extends State<SignUp> {
     _passwordVisible = false;
   }
 
+
+  String userToJson(UserModel user){
+    return jsonEncode(user.toJson);
+  }
+
   Future<void> userSignUp(String username, String password, String email) async {
     await Socket.connect(ServerInfo.ip, ServerInfo.port).then((socket) {
-      UserModel newUser=UserModel(userName: _username.text, email: _email.text, followedForums: [], starredForums: [], savedPosts: [], userProfileImage: AppDatas().defaultProfilePicture, password: _password.text, commentsCount: 0, userPostsCount: 0);
-      socket.write("@$username/SignUp#" + newUser.toJson().toString() + "\u0000");
+      UserModel newUser=UserModel(userName: username, email: email, followedForums: [], starredForums: [], savedPosts: [], userProfileImage: AppDatas().defaultProfilePicture, password: password, commentsCount: 0, userPostsCount: 0);
+      socket.write("@$username/SignUp#" + userToJson(newUser) + "\u0000");
       socket.flush();
       socket.listen((response) {
         String responseString = String.fromCharCodes(response);

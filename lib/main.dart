@@ -10,8 +10,6 @@ void main() {
     statusBarColor: Colors.transparent, // status bar color
   ));
 
-  // print(jsonEncode(Datas().forumsList[0].toJson()));
-
   runApp(
     ChangeNotifierProvider(
       create: (BuildContext context) => ThemeProvider(),

@@ -3,7 +3,7 @@ import 'libs.dart';
 class AppDatas{
 
   ThemeMode themeMode=ThemeMode.dark;
-  bool loggedIn = true;
+  bool loggedIn = false;
   PageController pageController=PageController();
   int navigationSelectedIndex=0;
   Image defaultProfilePicture=Image.asset("assets/images/default_profile.png");
