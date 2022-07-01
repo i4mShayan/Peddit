@@ -19,7 +19,7 @@ class _SignUpState extends State<SignUp> {
 
 
   String userToJson(UserModel user){
-    return jsonEncode(user.toJson);
+    return json.encode(user.toJson());
   }
 
   Future<void> userSignUp(String username, String password, String email) async {
@@ -340,8 +340,7 @@ class _SignUpState extends State<SignUp> {
                           usernameErrorMessage=usernameError(_username);
                           passwordErrorMessage=passwordError(_password);
                           if(!signupHasError(_email, _username, _password)){
-                            userSignUp(_username.text, _password.text, _email.text);
-                          }
+                            userSignUp(_username.text, _password.text, _email.text);                        }
                         });
                       },
                       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
