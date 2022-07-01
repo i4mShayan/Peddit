@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:reddit_project/datas_model.dart';
+
 import 'libs.dart';
 import 'package:flutter/services.dart';
 
@@ -9,6 +11,10 @@ void main() {
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
     statusBarColor: Colors.transparent, // status bar color
   ));
+
+  // DatasModel dm = DatasModel(forumsList: []);
+  // print(jsonEncode(dm.toJson()));
+
 
   runApp(
     ChangeNotifierProvider(

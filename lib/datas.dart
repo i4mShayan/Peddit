@@ -39,7 +39,7 @@ class Datas{
 
   Future<void> sendDatas() async {
     await Socket.connect(ServerInfo.ip, ServerInfo.port).then((socket) {
-      socket.write("/SendDatas#"+ json.encode((DatasModel(Datas().forumsList)).toJson()) +"\u0000");
+      socket.write("/SendDatas#"+ jsonEncode(DatasModel(forumsList: Datas().forumsList).toJson()) +"\u0000");
       socket.flush();
       socket.listen((response) {
         String responseString = String.fromCharCodes(response);

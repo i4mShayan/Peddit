@@ -7,7 +7,7 @@ part of 'datas_model.dart';
 // **************************************************************************
 
 DatasModel _$DatasModelFromJson(Map<String, dynamic> json) => DatasModel(
-      (json['forumsList'] as List<dynamic>)
+      forumsList: (json['forumsList'] as List<dynamic>)
           .map((e) => ForumModel.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
