@@ -16,6 +16,7 @@ void main() {
       builder: (context, _) {
         final provider = Provider.of<ThemeProvider>(context);
         return MaterialApp(
+          debugShowCheckedModeBanner: false,
           themeMode: provider.themeMode,
           theme: Themes.lightTheme,
           darkTheme: Themes.darkTheme,

@@ -67,7 +67,7 @@ class _SelectForumForNewPostState extends State<SelectForumForNewPost> {
                               PostModel newPost = PostModel(postImage: widget.postImageFile!=null ? Image.file(widget.postImageFile!):null ,title: widget.title, desc: widget.desc, publisher: CurrentUser().user, forum: _selectedForum!, publishTime: DateTime.now(), upVotedUsers: [], downVotedUsers: [], comments: [], commentsCount: 0);
                               _selectedForum!.addPost(newPost);
                               CurrentUser().user.userPostsCount++;
-                              Datas().updateFeed();
+                              AppDatas().updateFeed();
                               widget.feedSetState();
                               Navigator.of(context).popUntil((route) {
                                 return route.settings.name == '/navigation_page';

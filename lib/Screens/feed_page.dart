@@ -25,13 +25,13 @@ class _FeedPageState extends State<FeedPage> {
     body: RefreshIndicator(
       color: provider.isDarkMode ? Colors.white:Colors.black,
       onRefresh: _onRefresh,
-      child: Datas().feedPosts.length!=0 ? ListView.builder(
-        itemCount: Datas().feedPosts.length,
+      child: AppDatas().feedPosts.length!=0 ? ListView.builder(
+        itemCount: AppDatas().feedPosts.length,
         itemBuilder: (contex, index) {
           return InkWell(
-            child: PostItem(post: Datas().feedPosts[index], pageSetState: ()=>setState((){}),),
+            child: PostItem(post: AppDatas().feedPosts[index], pageSetState: ()=>setState((){}),),
             onTap: (){
-              PostModel post = Datas().feedPosts[index];
+              PostModel post = AppDatas().feedPosts[index];
               SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
                 systemNavigationBarColor: Colors.white,
                 systemNavigationBarIconBrightness: Brightness.dark,
@@ -44,7 +44,7 @@ class _FeedPageState extends State<FeedPage> {
               ).then((value) => setState(() {}));
             },
             onDoubleTap: (){
-              PostModel post = Datas().feedPosts[index];
+              PostModel post = AppDatas().feedPosts[index];
               setState((){
                 if(post.userDownVoted(CurrentUser().user)){ //deleting other vote
                   post.downVotedUsers.remove(CurrentUser().user);

@@ -8,7 +8,6 @@ part 'datas.g.dart';
 class Datas{
 
   late List<ForumModel> forumsList;
-  late List<PostModel> feedPosts;
 
 
   Datas._();
@@ -17,20 +16,6 @@ class Datas{
 
   factory Datas() {
     return _instance;
-  }
-
-
-  void sortFeed(){
-    feedPosts.sort((a,b) => b.publishTime.compareTo(a.publishTime));
-  }
-
-  void updateFeed(){
-    List<PostModel> newFeedPosts=[];
-    for(ForumModel forum in CurrentUser().user.followedForums){
-      newFeedPosts.addAll(forum.posts);
-    }
-    feedPosts=newFeedPosts;
-    sortFeed();
   }
 
   Future<void> updateAllForumsList() async {
@@ -44,7 +29,7 @@ class Datas{
           print(responseString);
         }
         else {
-          Datas().forumsList = ForumListModel.fromJson(jsonDecode(responseString)).forums;
+          forumsList = ForumListModel.fromJson(jsonDecode(responseString)).forums;
         }
       });
       socket.close();
@@ -54,6 +39,7 @@ class Datas{
   Future<void> updateDatas() async {
     CurrentUser().updateUser();
     updateAllForumsList();
+    AppDatas().updateFeed();
   }
 
   factory Datas.fromJson(Map<String, dynamic> json) => _$DatasFromJson(json);

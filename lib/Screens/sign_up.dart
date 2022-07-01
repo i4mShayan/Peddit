@@ -25,11 +25,11 @@ class _SignUpState extends State<SignUp> {
   Future<void> userSignUp(String username, String password, String email) async {
     await Socket.connect(ServerInfo.ip, ServerInfo.port).then((socket) {
       UserModel newUser=UserModel(userName: username, email: email, followedForums: [], starredForums: [], savedPosts: [], userProfileImage: AppDatas().defaultProfilePicture, password: password, commentsCount: 0, userPostsCount: 0);
+      print(userToJson(newUser));
       socket.write("@$username/SignUp#" + userToJson(newUser) + "\u0000");
       socket.flush();
       socket.listen((response) {
         String responseString = String.fromCharCodes(response);
-        print("$responseString");
         if (responseString == "DuplicateUsername") {
           showDialogWith(context: context, title: "login!", content: "you have signed up before!");
         }

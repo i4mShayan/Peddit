@@ -47,7 +47,7 @@ class _MainAppBarState extends State<MainAppBar> {
                 AppDatas().navigationSelectedIndex==3 ?
                 PostSearchDelegate(posts: CurrentUser().user.savedPosts)
                     :
-                PostSearchDelegate(posts: Datas().feedPosts)
+                PostSearchDelegate(posts: AppDatas().feedPosts)
               )
             ),
         ),
