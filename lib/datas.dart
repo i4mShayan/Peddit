@@ -12,21 +12,25 @@ class Datas{
   Image defaultProfilePicture=Image.asset("assets/images/default_profile.png");
   Image defaultBackground=Image.asset("assets/images/default_background.png");
 
-  late List<UserModel> usersList=[currentUser];
+
+  late List<UserModel> adminsForTest=[
+    for (int i=0; i<10; i++)
+        UserModel(userName: "admin"+i.toString(), email: "email@site.com", followedForums: [], starredForums: [], savedPosts: [], userProfileImage: defaultProfilePicture, password: "Password1", userPostsCount: 0, commentsCount: 0),
+  ];
+
+  late List<UserModel> membersForTest=[
+    for (int i=0; i<10; i++)
+      UserModel(userName: "member"+i.toString(), email: "email@site.com", followedForums: [], starredForums: [], savedPosts: [], userProfileImage: defaultProfilePicture, password: "Password1", userPostsCount: 0, commentsCount: 0),
+  ];
+
+  late UserModel ownerForTest=UserModel(userName: "owner", email: "email@site.com", followedForums: [], starredForums: [], savedPosts: [], userProfileImage: defaultProfilePicture, password: "Password1", userPostsCount: 0, commentsCount: 0);
 
   late List<ForumModel> forumsList=[
-    ForumModel(owner: currentUser, admins: [], members: [], blockedUsers: [], posts: [], forumName: "name", forumDesc: "", forumCreateTime: DateTime.now(), profileImage: defaultProfilePicture, headerImage: defaultBackground)
+    for (int i=0; i<10; i++)
+      ForumModel(owner: ownerForTest, admins: adminsForTest, members: [], blockedUsers: [], posts: [], forumName: "forum_number_"+i.toString(), forumDesc: "", forumCreateTime: DateTime.now(), profileImage: defaultProfilePicture, headerImage: defaultBackground),
   ];
 
-  late List<PostModel> feedPosts=[
-    PostModel(title: "test", desc: "test", publisher: currentUser, forum: forumsList[0], publishTime: DateTime.now(), upVotedUsers: [], downVotedUsers: [], comments: [], commentsCount: 0),
-    PostModel(title: "test", desc: "test", publisher: currentUser, forum: forumsList[0], publishTime: DateTime.now(), upVotedUsers: [], downVotedUsers: [], comments: [], commentsCount: 0),
-    PostModel(title: "test", desc: "test", publisher: currentUser, forum: forumsList[0], publishTime: DateTime.now(), upVotedUsers: [], downVotedUsers: [], comments: [], commentsCount: 0),
-    PostModel(title: "test", desc: "test", publisher: currentUser, forum: forumsList[0], publishTime: DateTime.now(), upVotedUsers: [], downVotedUsers: [], comments: [], commentsCount: 0),
-    PostModel(title: "test", desc: "test", publisher: currentUser, forum: forumsList[0], publishTime: DateTime.now(), upVotedUsers: [], downVotedUsers: [], comments: [], commentsCount: 0),
-    PostModel(title: "test", desc: "test", publisher: currentUser, forum: forumsList[0], publishTime: DateTime.now(), upVotedUsers: [], downVotedUsers: [], comments: [], commentsCount: 0),
-    PostModel(title: "test", desc: "test", publisher: currentUser, forum: forumsList[0], publishTime: DateTime.now(), upVotedUsers: [], downVotedUsers: [], comments: [], commentsCount: 0),
-  ];
+  late List<PostModel> feedPosts=[];
 
 
   void sortFeed(){
