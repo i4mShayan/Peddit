@@ -16,4 +16,4 @@ Advanced Programming final project (Spring 2022)
 - [Server repository](https://github.com/itsfarbod/Peddit_Server)
 
 ## About us
-Developed by Farbod Saghafi and Shayan Kebriti
+Developed by Shayan Kebriti and Farbod Saghafi
